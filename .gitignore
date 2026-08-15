@@ -1,0 +1,20 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Model weights and captured activations are large and regenerable.
+data/activations/
+*.safetensors
+*.gguf
+*.pt
+
+# Logs and generated outputs -- keep the directories, drop the contents.
+logs/*
+!logs/.gitkeep
+outputs/generations/*
+!outputs/generations/.gitkeep
+
+# Never commit a token.
+.env
+*.token
