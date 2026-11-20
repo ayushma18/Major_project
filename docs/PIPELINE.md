@@ -59,3 +59,11 @@ direction shared by all 19 emotions (mean pairwise cosine about 0.7 on the 1B): 
 "emotional versus flat narration". `07_emotion_vectors.py` therefore also stores
 `emotion_common` (that shared direction) and `emotion_specific_<e>` (each vector with it
 removed), and the sweep tests all three.
+
+## Publishing the interface
+
+`bash scripts/deploy_pages.sh` publishes the interface, the paper library (with PDFs), the results
+and the proposal to Cloudflare Pages at https://affect-as-attack.pages.dev, behind a password
+(HTTP Basic Auth in `deploy/functions/_middleware.js`; any user name, the password is the Pages
+secret `SITE_PASSWORD`). Raw model outputs are never uploaded. Run it after
+`scripts/make_results.py` at each checkpoint; the GPU queue does this after every judging step.
