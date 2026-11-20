@@ -46,13 +46,18 @@ def nll_batch(model, tok, users: list[str], replies: list[str], bs: int = 16, ma
         rs = [tok.decode(tok(r, add_special_tokens=False)["input_ids"][:max_reply_tokens]) for r in replies[b : b + bs]]
         enc = tok([p + r for p, r in zip(ps, rs)], return_tensors="pt", padding=True, add_special_tokens=False)
         plen = [len(tok(p, add_special_tokens=False)["input_ids"]) for p in ps]
+        real = enc["attention_mask"].sum(1).tolist()
+        rlen = [max(1, int(t) - pl) for t, pl in zip(real, plen)]
+        keep = max(rlen) + 1
         enc = {k: v.to(device) for k, v in enc.items()}
-        logp = model(**enc, use_cache=False).logits[:, :-1].float().log_softmax(-1)
-        lp = logp.gather(-1, enc["input_ids"][:, 1:, None])[..., 0]
-        for row in range(len(rs)):
-            pad = int((enc["attention_mask"][row] == 0).sum())
-            vals = lp[row, pad + plen[row] - 1 :]
-            out.append(float(-vals.mean()) if vals.numel() else float("nan"))
+        # Only the reply positions need logits: left padding puts them at the end, so keep the
+        # last max(reply)+1 positions instead of materialising logits for the whole prompt.
+        logits = model(**enc, use_cache=False, logits_to_keep=keep).logits  # [B, keep, V]
+        ids = enc["input_ids"]
+        for row, r in enumerate(rlen):
+            lp = logits[row, keep - r - 1 : keep - 1].float().log_softmax(-1)
+            tgt = ids[row, -r:]
+            out.append(float(-lp.gather(-1, tgt[:, None]).mean()))
     return out
 
 

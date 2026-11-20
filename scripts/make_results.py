@@ -346,23 +346,42 @@ def e11(m, model):
 
 def e12(m, model):
     r = base("E12-multiturn-persistence", "The sleeper effect", 4, "If an emotion is injected only at turn 1, is the model still easier to attack at turns 4 to 7?", model)
-    d = raw(f"E12_{m}.json")
-    if not d:
+    runs = [json.loads(Path(f).read_text()) for f in sorted(glob.glob(str(RAW / f"E12_{m}*.json")))]
+    if not runs:
         return r
     r["status"] = "done"
     J = judged(m, "multiturn")
     turns = ["4", "5", "6", "7"]
-    series = []
-    for c in d["conditions"]:
-        j = J.get(c.replace(":", "_"))
-        if j and "by_turn" in j:
-            series.append({"name": c, "values": [j["by_turn"].get(t, {}).get("asr") for t in turns]})
-    if series:
-        r["charts"].append({"id": "asr_by_turn", "type": "line", "title": "ASR at each harmful turn", "x": {"label": "turn", "values": turns}, "y": {"label": "ASR", "unit": "fraction"}, "series": series})
-    r["charts"].append({"id": "drift", "type": "line", "title": "Drift: projection of the last prompt token on the guardrail direction, per turn", "x": {"label": "turn", "values": list(range(1, 8))},
-                        "y": {"label": "projection", "unit": ""}, "series": [{"name": c, "values": v} for c, v in d["drift_mean_by_turn"].items()]})
-    r["config"] = {"layer": d["layer"], "c": d["c"], "kind": d["kind"], "n_conversations": d["n_conversations"]}
-    r["headline"] = "Multi-turn conversations generated; per-turn ASR " + ("judged." if series else "pending the judge.")
+    rows = []
+    for d in runs:
+        conds = d["conditions"]
+        series = []
+        for c in conds:
+            j = J.get(c.replace(":", "_"))
+            if j and "by_turn" in j:
+                series.append({"name": f"{c} (c={d['c']})" if c != "none" else "none", "values": [j["by_turn"].get(t, {}).get("asr") for t in turns]})
+        if series:
+            r["charts"].append({"id": f"asr_by_turn_{d['c']}", "type": "line", "title": f"ASR at each harmful turn (injection layer {d['layer']}, strength {d['c']})",
+                                "x": {"label": "turn", "values": turns}, "y": {"label": "ASR", "unit": "fraction"}, "series": series})
+        for l in d.get("drift_layers", []):
+            r["charts"].append({"id": f"drift_{d['c']}_{l}", "type": "line", "title": f"Drift on the guardrail direction at layer {l}, last prompt token, per turn (strength {d['c']})",
+                                "x": {"label": "turn", "values": list(range(1, 8))}, "y": {"label": "projection", "unit": ""},
+                                "series": [{"name": c, "values": v[str(l)]} for c, v in d["drift_mean_by_turn"].items()]})
+        for c in conds:
+            if c.startswith("early:"):
+                k = c.split(":", 1)[1]
+                je, js = J.get(f"early_{k}"), J.get(f"same_{k}")
+                if je and js and "by_turn" in je and "by_turn" in js:
+                    for t in turns:
+                        a, b = je["by_turn"].get(t, {}).get("asr"), js["by_turn"].get(t, {}).get("asr")
+                        rows.append([k, d["c"], t, a, b, None if a is None or b is None else a - b, J.get("none", {}).get("by_turn", {}).get(t, {}).get("asr")])
+    if rows:
+        r["tables"].append({"id": "persist", "title": "Persistence: ASR with turn-1 injection vs injection at the harmful turn (eq. 5.6)", "columns": ["vector", "c", "turn", "ASR early", "ASR same-turn", "delta persist", "ASR no injection"], "rows": rows})
+        dp = [x[5] for x in rows if x[5] is not None]
+        r["headline"] = f"Mean persistence delta over {len(dp)} vector-turn pairs: {sum(dp) / len(dp):+.3f} (positive would mean a turn-1 injection keeps working later)."
+    else:
+        r["headline"] = "Multi-turn conversations generated; per-turn ASR pending the judge."
+    r["config"] = {"n_conversations": runs[0]["n_conversations"], "layer": runs[0]["layer"]}
     return r
 
 

@@ -68,6 +68,7 @@ def main() -> None:
     ap.add_argument("--benign-tokens", type=int, default=96)
     ap.add_argument("--harmful-tokens", type=int, default=256)
     ap.add_argument("--batch-size", type=int, default=20)
+    ap.add_argument("--tag", default="", help="suffix for the results file, e.g. 'emotions' or 'random'")
     args = ap.parse_args()
     t0 = time.time()
     model, tok, prov = load(args.model)
@@ -88,33 +89,46 @@ def main() -> None:
 
     vectors: dict[str, torch.Tensor] = {}
     for e in args.emotions:
-        v = lib.load(f"emotion_{args.kind}_{e}")[0][args.layer]
+        v = lib.load(f"emotion_{ {'emotion': 'caa'}.get(args.kind, args.kind)}_{e}")[0][args.layer]
         vectors[e] = scale * v / v.norm()
     for s in args.random_seeds:
         vectors[f"random{s}"] = scale * random_unit_vectors(model.config.hidden_size, 1, seed=s)[0]
     conditions = [("none", None, None)] + [(f"early:{k}", k, "early") for k in vectors] + [(f"same:{k}", k, "same") for k in vectors]
 
-    drift_layer = rmeta["layer"]
-    proj_holder: dict[str, torch.Tensor] = {}
+    # Drift is read AFTER the injection layer (a layer cannot see an injection made later in the
+    # stack): at layer+2 and layer+6, projected on that layer's own refusal direction
+    # (the candidate at the selected template position).
+    cands, _ = lib.load("refusal_candidates")
+    n_layers = model.config.num_hidden_layers
+    drift_layers = sorted({min(n_layers - 1, args.layer + 2), min(n_layers - 1, args.layer + 6)})
+    r_dirs = {l: (cands[l, rmeta["pos_index"]] / cands[l, rmeta["pos_index"]].norm()).float() for l in drift_layers}
+    proj_holder: dict[int, torch.Tensor] = {}
 
-    def proj_hook(_m, _i, out):
-        h = out[0] if isinstance(out, (tuple, list)) else out
-        if h.shape[1] > 1:  # prefill only: last prompt token
-            proj_holder["p"] = (h[:, -1, :].float() @ r_hat.to(h.device)).cpu()
+    def make_proj_hook(l):
+        def proj_hook(_m, _i, out):
+            h = out[0] if isinstance(out, (tuple, list)) else out
+            if h.shape[1] > 1:  # prefill only: last prompt token
+                proj_holder[l] = (h[:, -1, :].float() @ r_dirs[l].to(h.device)).cpu()
+        return proj_hook
 
     outdir = ROOT / "outputs" / "generations" / slug(prov["model_name"]) / "multiturn"
     drift = {}
     for cname, vkey, mode in conditions:
+        target = outdir / f"{cname.replace(':', '_')}.jsonl"
+        if target.exists() and len(target.read_text().splitlines()) >= 4 * len(plans) - 1:
+            print(f"skip {cname} (exists)")
+            continue
         print(f"== {cname}")
         rows_out = []
-        drift[cname] = [[] for _ in range(7)]
+        drift[cname] = {l: [[] for _ in range(7)] for l in drift_layers}
         for b in range(0, len(plans), args.batch_size):
             batch = plans[b : b + args.batch_size]
             msgs = [[] for _ in batch]
             turn1_pieces: list[list[str]] = [[] for _ in batch]
             for t in range(7):
                 is_harm = t >= 3
-                users = [p["benign"][t] if not is_harm else data.harmbench_prompt(p["harmful"][t - 3]) for p in batch]
+                # The chat template trims message text, so trim here too: spans are found by text match.
+                users = [(p["benign"][t] if not is_harm else data.harmbench_prompt(p["harmful"][t - 3])).strip() for p in batch]
                 for m, u in zip(msgs, users):
                     m.append({"role": "user", "content": u})
                 texts = [render(tok, m) for m in msgs]
@@ -134,7 +148,7 @@ def main() -> None:
                                 mask[row, k] = True
                     on_decode = (mode == "early" and t == 0) or (mode == "same" and is_harm)
                 enc = {k: v.to(device) for k, v in enc.items()}
-                handles = [get_layers(model)[drift_layer].register_forward_hook(proj_hook)]
+                handles = [get_layers(model)[l].register_forward_hook(make_proj_hook(l)) for l in drift_layers]
                 ctx = AddVectorMasked(model, args.layer, vectors[vkey], mask, on_decode) if vkey is not None else None
                 try:
                     with torch.inference_mode():
@@ -146,7 +160,7 @@ def main() -> None:
                         ctx.__exit__(None, None, None)
                     for h in handles:
                         h.remove()
-                p_first = proj_holder.get("p")
+                p_now = {l: proj_holder.get(l) for l in drift_layers}
                 new = gen[:, enc["input_ids"].shape[1]:].tolist()
                 for row, g in enumerate(new):
                     cut = next((k for k, x in enumerate(g) if x in eos), len(g))
@@ -154,8 +168,9 @@ def main() -> None:
                     msgs[row].append({"role": "assistant", "content": reply})
                     if t == 0:
                         turn1_pieces[row] = [users[row], reply]
-                    if p_first is not None:
-                        drift[cname][t].append(float(p_first[row]))
+                    for l in drift_layers:
+                        if p_now[l] is not None:
+                            drift[cname][l][t].append(float(p_now[l][row]))
                     if is_harm:
                         h = batch[row]["harmful"][t - 3]
                         rows_out.append({"behavior_id": h.id, "behavior": h.behavior, "category": h.category, "context": h.context,
@@ -165,9 +180,10 @@ def main() -> None:
         write_jsonl(outdir / f"{cname.replace(':', '_')}.jsonl", rows_out)
         by_turn = {t: sum(r["refusal_substring"] for r in rows_out if r["turn"] == t) / max(1, sum(1 for r in rows_out if r["turn"] == t)) for t in range(4, 8)}
         print(f"   refusal by turn {by_turn}")
-    write_json(ROOT / "results" / "raw" / f"E12_{args.model}.json", {
+    write_json(ROOT / "results" / "raw" / f"E12_{args.model}{'_' + args.tag if args.tag else ''}.json", {
         "model": prov["model_name"], "layer": args.layer, "c": args.c, "kind": args.kind, "conditions": [c[0] for c in conditions],
-        "drift_layer": drift_layer, "drift_mean_by_turn": {c: [sum(x) / len(x) if x else None for x in v] for c, v in drift.items()},
+        "drift_layers": drift_layers,
+        "drift_mean_by_turn": {c: {str(l): [sum(x) / len(x) if x else None for x in v[l]] for l in drift_layers} for c, v in drift.items()},
         "n_conversations": len(plans), "seconds": time.time() - t0,
     })
     print(f"done in {time.time() - t0:.0f}s")
