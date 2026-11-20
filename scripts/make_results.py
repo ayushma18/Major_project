@@ -288,6 +288,17 @@ def e07_e10(m, model):
         else:
             low = min(((k, *val(k)) for k in emo), key=lambda x: x[2])
             r7["headline"] = f"Lowest refusal under emotion injection: {low[0]} at {pct(low[2])} (baseline {pct(b_ref)}); judge pending."
+    st = raw(f"E07_stats_{m}.json")
+    if st and st.get("kinds"):
+        for kind, rows_k in st["kinds"].items():
+            r7["tables"].append({"id": f"stats_{kind}", "title": f"{kind} vectors at layer {st['layer']}, strength {st['c']}: against baseline ({100 * st['baseline_asr']:.1f}%) and random vectors (mean {100 * st['random']['asr_mean']:.1f}%, sd {100 * st['random']['asr_sd']:.1f}, {st['random']['n_seeds']} seeds)" if st['random']['n_seeds'] else f"{kind} vectors",
+                                 "columns": ["emotion", "ASR", "change", "newly harmful", "newly safe", "McNemar p (Holm)", "z vs random", "NLL", "broken"],
+                                 "rows": [[e, round(r["asr"], 3), round(r["delta"], 3), r["newly_harmful"], r["newly_safe"], round(r["mcnemar_p_holm"], 4), None if r["z_vs_random"] is None else round(r["z_vs_random"], 2), None if r["nll"] is None else round(r["nll"], 2), None if r["broken"] is None else round(r["broken"], 2)] for e, r in sorted(rows_k.items(), key=lambda x: -x[1]["asr"])]})
+        em = st["kinds"].get("emotion", {})
+        if em:
+            sig = [e for e, r in em.items() if r["mcnemar_p_holm"] < 0.05]
+            above = [e for e, r in em.items() if r["z_vs_random"] is not None and r["z_vs_random"] > 2]
+            r7["interpretation"].append(f"Against the baseline, {len(sig)} of {len(em)} emotions change ASR significantly after Holm correction ({', '.join(sig) or 'none'}); {len(above)} sit more than two standard deviations above the random-vector mean ({', '.join(above) or 'none'}).")
     if rnd:
         r8["status"] = "done"
         rows = [[k, *val(k)] for k in sorted(rnd)]
