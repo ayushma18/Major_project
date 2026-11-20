@@ -176,6 +176,18 @@ def e04(m, model):
         r["metrics"].append({"name": "ood_top1", "label": "Independent short-text 19-way accuracy (best layer)", "value": ood["best_top1"], "unit": "fraction"})
         r["charts"].append({"id": "ood", "type": "line", "title": "Independent test set (different writer, different form)", "x": {"label": "layer", "values": list(range(len(ood["top1_by_layer"])))}, "y": {"label": "accuracy", "unit": "fraction"},
                             "series": [{"name": "19-way accuracy", "values": ood["top1_by_layer"]}, {"name": "chance", "values": [1 / 19] * len(ood["top1_by_layer"])}]})
+    m12 = raw(f"E04c_{m}_L12.json")
+    if m12:
+        c = m12["cleaned"]
+        r["charts"].append({"id": "pca_clean", "type": "scatter", "title": f"Emotion map after removing {m12['neutral_pcs_removed']} neutral-text directions (layer 12, Anthropic's clean-up)",
+                            "x": {"label": f"PC1 ({100 * c['explained'][0]:.0f}%)"}, "y": {"label": f"PC2 ({100 * c['explained'][1]:.0f}%, r with valence {c['corr']['pc2_valence']:+.2f})"},
+                            "points": [{"x": x, "y": y, "label": e} for x, y, e in zip(c["pc1"], c["pc2"], m12["emotions"])]})
+        r["metrics"].append({"name": "valence_clean", "label": "Valence correlation after neutral clean-up (layer 12)", "value": max(abs(c["corr"]["pc1_valence"]), abs(c["corr"]["pc2_valence"])), "unit": "|r|"})
+        r["interpretation"].append(f"Once the main directions of neutral text are removed, valence (pleasant versus unpleasant) organises the emotions (|r| = {max(abs(c['corr']['pc1_valence']), abs(c['corr']['pc2_valence'])):.2f}), close to Anthropic's 0.81 and Sun et al.'s 0.89.")
+    if ood:
+        t = ood["types"].get("centered", {})
+        if t.get("most_confused_with"):
+            r["interpretation"].append("Mistakes on the independent set are human-like: " + ", ".join(f"{a} read as {b}" for a, b in list(t["most_confused_with"].items())[:6]) + ".")
     r["caveats"].append("Held-out stories come from the same writers and format as the training stories, so high accuracy here can partly reflect vocabulary; the independent short-text set is the stronger test.")
     if "shared_component" in d:
         r["interpretation"].append("The paired vectors (emotional story minus its neutral twin) share one large common direction: much of each vector is 'emotional versus flat writing'. The project therefore also tests each emotion's specific part with that common direction removed.")

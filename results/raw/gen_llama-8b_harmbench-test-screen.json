@@ -1,0 +1,1334 @@
+{
+  "model": "unsloth/Llama-3.1-8B-Instruct",
+  "set": "harmbench-test-screen",
+  "conditions": {
+    "baseline": {
+      "n": 159,
+      "refusal_substring_rate": 0.8364779874213837,
+      "mean_tokens": 24.89308176100629,
+      "truncated_frac": 0.20125786163522014,
+      "seconds": 37.59255290031433,
+      "info": {
+        "kind": "baseline",
+        "arg": null,
+        "layer": null,
+        "c": null
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/baseline.jsonl"
+    },
+    "ablate-refusal": {
+      "n": 159,
+      "refusal_substring_rate": 0.0,
+      "mean_tokens": 64.0,
+      "truncated_frac": 1.0,
+      "seconds": 42.87371587753296,
+      "info": {
+        "kind": "ablate-refusal",
+        "arg": null,
+        "layer": null,
+        "c": null,
+        "refusal": {
+          "layer": 11,
+          "pos": -5,
+          "pos_index": 0,
+          "bypass": -11.827375411987305,
+          "induce": 5.553032398223877,
+          "kl": 0.08061462640762329,
+          "norm": 4.272295951843262,
+          "method": "Arditi et al. 2024 difference of means, selection by bypass/induce/KL",
+          "model": "unsloth/Llama-3.1-8B-Instruct"
+        }
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/ablate-refusal.jsonl"
+    },
+    "random:0@12:0.5": {
+      "n": 159,
+      "refusal_substring_rate": 0.7610062893081762,
+      "mean_tokens": 29.949685534591193,
+      "truncated_frac": 0.2641509433962264,
+      "seconds": 35.24635982513428,
+      "info": {
+        "kind": "random",
+        "arg": "0",
+        "layer": 12,
+        "c": 0.5,
+        "injected_norm": 3.7254750728607178
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/random:0@12:0.5.jsonl"
+    },
+    "random:1@12:0.5": {
+      "n": 159,
+      "refusal_substring_rate": 0.8176100628930818,
+      "mean_tokens": 29.27672955974843,
+      "truncated_frac": 0.20754716981132076,
+      "seconds": 35.29552721977234,
+      "info": {
+        "kind": "random",
+        "arg": "1",
+        "layer": 12,
+        "c": 0.5,
+        "injected_norm": 3.7254750728607178
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/random:1@12:0.5.jsonl"
+    },
+    "random:2@12:0.5": {
+      "n": 159,
+      "refusal_substring_rate": 0.6666666666666666,
+      "mean_tokens": 26.71069182389937,
+      "truncated_frac": 0.3333333333333333,
+      "seconds": 35.39274978637695,
+      "info": {
+        "kind": "random",
+        "arg": "2",
+        "layer": 12,
+        "c": 0.5,
+        "injected_norm": 3.7254750728607178
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/random:2@12:0.5.jsonl"
+    },
+    "random:3@12:0.5": {
+      "n": 159,
+      "refusal_substring_rate": 0.6729559748427673,
+      "mean_tokens": 31.0062893081761,
+      "truncated_frac": 0.3333333333333333,
+      "seconds": 36.12857413291931,
+      "info": {
+        "kind": "random",
+        "arg": "3",
+        "layer": 12,
+        "c": 0.5,
+        "injected_norm": 3.7254750728607178
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/random:3@12:0.5.jsonl"
+    },
+    "random:0@12:1": {
+      "n": 159,
+      "refusal_substring_rate": 0.29559748427672955,
+      "mean_tokens": 57.0440251572327,
+      "truncated_frac": 0.8679245283018868,
+      "seconds": 36.44174909591675,
+      "info": {
+        "kind": "random",
+        "arg": "0",
+        "layer": 12,
+        "c": 1.0,
+        "injected_norm": 7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/random:0@12:1.jsonl"
+    },
+    "random:1@12:1": {
+      "n": 159,
+      "refusal_substring_rate": 0.5408805031446541,
+      "mean_tokens": 45.062893081761004,
+      "truncated_frac": 0.5094339622641509,
+      "seconds": 35.89419102668762,
+      "info": {
+        "kind": "random",
+        "arg": "1",
+        "layer": 12,
+        "c": 1.0,
+        "injected_norm": 7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/random:1@12:1.jsonl"
+    },
+    "random:2@12:1": {
+      "n": 159,
+      "refusal_substring_rate": 0.050314465408805034,
+      "mean_tokens": 61.84276729559748,
+      "truncated_frac": 0.9622641509433962,
+      "seconds": 37.81019902229309,
+      "info": {
+        "kind": "random",
+        "arg": "2",
+        "layer": 12,
+        "c": 1.0,
+        "injected_norm": 7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/random:2@12:1.jsonl"
+    },
+    "random:3@12:1": {
+      "n": 159,
+      "refusal_substring_rate": 0.33962264150943394,
+      "mean_tokens": 54.76729559748428,
+      "truncated_frac": 0.779874213836478,
+      "seconds": 37.96650695800781,
+      "info": {
+        "kind": "random",
+        "arg": "3",
+        "layer": 12,
+        "c": 1.0,
+        "injected_norm": 7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/random:3@12:1.jsonl"
+    },
+    "prime:stress:0": {
+      "n": 159,
+      "refusal_substring_rate": 0.89937106918239,
+      "mean_tokens": 20.10062893081761,
+      "truncated_frac": 0.1320754716981132,
+      "seconds": 65.08893489837646,
+      "info": {
+        "kind": "prime",
+        "arg": "stress:0",
+        "layer": null,
+        "c": null
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/prime:stress:0.jsonl"
+    },
+    "prime:stress:1": {
+      "n": 159,
+      "refusal_substring_rate": 0.9371069182389937,
+      "mean_tokens": 18.31446540880503,
+      "truncated_frac": 0.09433962264150944,
+      "seconds": 64.05735397338867,
+      "info": {
+        "kind": "prime",
+        "arg": "stress:1",
+        "layer": null,
+        "c": null
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/prime:stress:1.jsonl"
+    },
+    "prime:stress:2": {
+      "n": 159,
+      "refusal_substring_rate": 0.9182389937106918,
+      "mean_tokens": 17.132075471698112,
+      "truncated_frac": 0.1069182389937107,
+      "seconds": 63.37110090255737,
+      "info": {
+        "kind": "prime",
+        "arg": "stress:2",
+        "layer": null,
+        "c": null
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/prime:stress:2.jsonl"
+    },
+    "prime:relaxation:0": {
+      "n": 159,
+      "refusal_substring_rate": 0.9056603773584906,
+      "mean_tokens": 20.47798742138365,
+      "truncated_frac": 0.11320754716981132,
+      "seconds": 63.81673192977905,
+      "info": {
+        "kind": "prime",
+        "arg": "relaxation:0",
+        "layer": null,
+        "c": null
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/prime:relaxation:0.jsonl"
+    },
+    "prime:relaxation:1": {
+      "n": 159,
+      "refusal_substring_rate": 0.8490566037735849,
+      "mean_tokens": 24.08805031446541,
+      "truncated_frac": 0.1761006289308176,
+      "seconds": 64.14866590499878,
+      "info": {
+        "kind": "prime",
+        "arg": "relaxation:1",
+        "layer": null,
+        "c": null
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/prime:relaxation:1.jsonl"
+    },
+    "prime:relaxation:2": {
+      "n": 159,
+      "refusal_substring_rate": 0.9056603773584906,
+      "mean_tokens": 18.427672955974842,
+      "truncated_frac": 0.11320754716981132,
+      "seconds": 64.19478297233582,
+      "info": {
+        "kind": "prime",
+        "arg": "relaxation:2",
+        "layer": null,
+        "c": null
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/prime:relaxation:2.jsonl"
+    },
+    "prime:neutral:0": {
+      "n": 159,
+      "refusal_substring_rate": 0.8930817610062893,
+      "mean_tokens": 19.0062893081761,
+      "truncated_frac": 0.1320754716981132,
+      "seconds": 63.748652935028076,
+      "info": {
+        "kind": "prime",
+        "arg": "neutral:0",
+        "layer": null,
+        "c": null
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/prime:neutral:0.jsonl"
+    },
+    "prime:neutral:1": {
+      "n": 159,
+      "refusal_substring_rate": 0.9182389937106918,
+      "mean_tokens": 19.81761006289308,
+      "truncated_frac": 0.1069182389937107,
+      "seconds": 63.62216091156006,
+      "info": {
+        "kind": "prime",
+        "arg": "neutral:1",
+        "layer": null,
+        "c": null
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/prime:neutral:1.jsonl"
+    },
+    "prime:neutral:2": {
+      "n": 159,
+      "refusal_substring_rate": 0.9371069182389937,
+      "mean_tokens": 17.69182389937107,
+      "truncated_frac": 0.0880503144654088,
+      "seconds": 64.72864603996277,
+      "info": {
+        "kind": "prime",
+        "arg": "neutral:2",
+        "layer": null,
+        "c": null
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/prime:neutral:2.jsonl"
+    },
+    "random:4@12:0.5": {
+      "n": 159,
+      "refusal_substring_rate": 0.6415094339622641,
+      "mean_tokens": 32.22012578616352,
+      "truncated_frac": 0.37735849056603776,
+      "seconds": 37.883899211883545,
+      "info": {
+        "kind": "random",
+        "arg": "4",
+        "layer": 12,
+        "c": 0.5,
+        "injected_norm": 3.7254750728607178
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/random:4@12:0.5.jsonl"
+    },
+    "random:5@12:0.5": {
+      "n": 159,
+      "refusal_substring_rate": 0.8050314465408805,
+      "mean_tokens": 32.911949685534594,
+      "truncated_frac": 0.23270440251572327,
+      "seconds": 35.915132999420166,
+      "info": {
+        "kind": "random",
+        "arg": "5",
+        "layer": 12,
+        "c": 0.5,
+        "injected_norm": 3.7254750728607178
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/random:5@12:0.5.jsonl"
+    },
+    "random:6@12:0.5": {
+      "n": 159,
+      "refusal_substring_rate": 0.5974842767295597,
+      "mean_tokens": 32.301886792452834,
+      "truncated_frac": 0.41509433962264153,
+      "seconds": 35.89470076560974,
+      "info": {
+        "kind": "random",
+        "arg": "6",
+        "layer": 12,
+        "c": 0.5,
+        "injected_norm": 3.7254750728607178
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/random:6@12:0.5.jsonl"
+    },
+    "random:7@12:0.5": {
+      "n": 159,
+      "refusal_substring_rate": 0.7610062893081762,
+      "mean_tokens": 28.547169811320753,
+      "truncated_frac": 0.2641509433962264,
+      "seconds": 36.00153684616089,
+      "info": {
+        "kind": "random",
+        "arg": "7",
+        "layer": 12,
+        "c": 0.5,
+        "injected_norm": 3.7254750728607178
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/random:7@12:0.5.jsonl"
+    },
+    "random:8@12:0.5": {
+      "n": 159,
+      "refusal_substring_rate": 0.8805031446540881,
+      "mean_tokens": 17.427672955974842,
+      "truncated_frac": 0.1320754716981132,
+      "seconds": 35.54370403289795,
+      "info": {
+        "kind": "random",
+        "arg": "8",
+        "layer": 12,
+        "c": 0.5,
+        "injected_norm": 3.7254750728607178
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/random:8@12:0.5.jsonl"
+    },
+    "random:9@12:0.5": {
+      "n": 159,
+      "refusal_substring_rate": 0.8427672955974843,
+      "mean_tokens": 19.49056603773585,
+      "truncated_frac": 0.16352201257861634,
+      "seconds": 35.94530892372131,
+      "info": {
+        "kind": "random",
+        "arg": "9",
+        "layer": 12,
+        "c": 0.5,
+        "injected_norm": 3.7254750728607178
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/random:9@12:0.5.jsonl"
+    },
+    "random:10@12:0.5": {
+      "n": 159,
+      "refusal_substring_rate": 0.7232704402515723,
+      "mean_tokens": 30.547169811320753,
+      "truncated_frac": 0.2893081761006289,
+      "seconds": 35.81193995475769,
+      "info": {
+        "kind": "random",
+        "arg": "10",
+        "layer": 12,
+        "c": 0.5,
+        "injected_norm": 3.7254750728607178
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/random:10@12:0.5.jsonl"
+    },
+    "random:11@12:0.5": {
+      "n": 159,
+      "refusal_substring_rate": 0.7735849056603774,
+      "mean_tokens": 29.11320754716981,
+      "truncated_frac": 0.24528301886792453,
+      "seconds": 35.74917006492615,
+      "info": {
+        "kind": "random",
+        "arg": "11",
+        "layer": 12,
+        "c": 0.5,
+        "injected_norm": 3.7254750728607178
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/random:11@12:0.5.jsonl"
+    },
+    "random:4@12:1": {
+      "n": 159,
+      "refusal_substring_rate": 0.05660377358490566,
+      "mean_tokens": 62.861635220125784,
+      "truncated_frac": 0.9371069182389937,
+      "seconds": 35.79268026351929,
+      "info": {
+        "kind": "random",
+        "arg": "4",
+        "layer": 12,
+        "c": 1.0,
+        "injected_norm": 7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/random:4@12:1.jsonl"
+    },
+    "random:5@12:1": {
+      "n": 159,
+      "refusal_substring_rate": 0.5094339622641509,
+      "mean_tokens": 41.534591194968556,
+      "truncated_frac": 0.5660377358490566,
+      "seconds": 35.245388984680176,
+      "info": {
+        "kind": "random",
+        "arg": "5",
+        "layer": 12,
+        "c": 1.0,
+        "injected_norm": 7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/random:5@12:1.jsonl"
+    },
+    "random:6@12:1": {
+      "n": 159,
+      "refusal_substring_rate": 0.24528301886792453,
+      "mean_tokens": 48.666666666666664,
+      "truncated_frac": 0.7044025157232704,
+      "seconds": 34.91804599761963,
+      "info": {
+        "kind": "random",
+        "arg": "6",
+        "layer": 12,
+        "c": 1.0,
+        "injected_norm": 7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/random:6@12:1.jsonl"
+    },
+    "random:7@12:1": {
+      "n": 159,
+      "refusal_substring_rate": 0.2389937106918239,
+      "mean_tokens": 57.509433962264154,
+      "truncated_frac": 0.8490566037735849,
+      "seconds": 35.00604486465454,
+      "info": {
+        "kind": "random",
+        "arg": "7",
+        "layer": 12,
+        "c": 1.0,
+        "injected_norm": 7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/random:7@12:1.jsonl"
+    },
+    "random:8@12:1": {
+      "n": 159,
+      "refusal_substring_rate": 0.6477987421383647,
+      "mean_tokens": 39.855345911949684,
+      "truncated_frac": 0.5094339622641509,
+      "seconds": 35.01401090621948,
+      "info": {
+        "kind": "random",
+        "arg": "8",
+        "layer": 12,
+        "c": 1.0,
+        "injected_norm": 7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/random:8@12:1.jsonl"
+    },
+    "random:9@12:1": {
+      "n": 159,
+      "refusal_substring_rate": 0.6415094339622641,
+      "mean_tokens": 41.075471698113205,
+      "truncated_frac": 0.4779874213836478,
+      "seconds": 35.19056797027588,
+      "info": {
+        "kind": "random",
+        "arg": "9",
+        "layer": 12,
+        "c": 1.0,
+        "injected_norm": 7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/random:9@12:1.jsonl"
+    },
+    "random:10@12:1": {
+      "n": 159,
+      "refusal_substring_rate": 0.48427672955974843,
+      "mean_tokens": 54.509433962264154,
+      "truncated_frac": 0.8176100628930818,
+      "seconds": 35.03410220146179,
+      "info": {
+        "kind": "random",
+        "arg": "10",
+        "layer": 12,
+        "c": 1.0,
+        "injected_norm": 7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/random:10@12:1.jsonl"
+    },
+    "random:11@12:1": {
+      "n": 159,
+      "refusal_substring_rate": 0.559748427672956,
+      "mean_tokens": 46.23899371069182,
+      "truncated_frac": 0.5849056603773585,
+      "seconds": 35.03939986228943,
+      "info": {
+        "kind": "random",
+        "arg": "11",
+        "layer": 12,
+        "c": 1.0,
+        "injected_norm": 7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/random:11@12:1.jsonl"
+    },
+    "emotion:afraid@12:0.5": {
+      "n": 159,
+      "refusal_substring_rate": 0.5911949685534591,
+      "mean_tokens": 42.937106918238996,
+      "truncated_frac": 0.5911949685534591,
+      "seconds": 36.59962797164917,
+      "info": {
+        "kind": "emotion",
+        "arg": "afraid",
+        "layer": 12,
+        "c": 0.5,
+        "injected_norm": 3.7254750728607178
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/emotion:afraid@12:0.5.jsonl"
+    },
+    "emotion:angry@12:0.5": {
+      "n": 159,
+      "refusal_substring_rate": 0.8176100628930818,
+      "mean_tokens": 26.71698113207547,
+      "truncated_frac": 0.3018867924528302,
+      "seconds": 35.075181007385254,
+      "info": {
+        "kind": "emotion",
+        "arg": "angry",
+        "layer": 12,
+        "c": 0.5,
+        "injected_norm": 3.7254750728607178
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/emotion:angry@12:0.5.jsonl"
+    },
+    "emotion:anxious@12:0.5": {
+      "n": 159,
+      "refusal_substring_rate": 0.7672955974842768,
+      "mean_tokens": 26.27672955974843,
+      "truncated_frac": 0.3333333333333333,
+      "seconds": 35.06901717185974,
+      "info": {
+        "kind": "emotion",
+        "arg": "anxious",
+        "layer": 12,
+        "c": 0.5,
+        "injected_norm": 3.7254750728607178
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/emotion:anxious@12:0.5.jsonl"
+    },
+    "emotion:calm@12:0.5": {
+      "n": 159,
+      "refusal_substring_rate": 0.46540880503144655,
+      "mean_tokens": 46.911949685534594,
+      "truncated_frac": 0.6666666666666666,
+      "seconds": 35.247117042541504,
+      "info": {
+        "kind": "emotion",
+        "arg": "calm",
+        "layer": 12,
+        "c": 0.5,
+        "injected_norm": 3.7254750728607178
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/emotion:calm@12:0.5.jsonl"
+    },
+    "emotion:gloomy@12:0.5": {
+      "n": 159,
+      "refusal_substring_rate": 0.44025157232704404,
+      "mean_tokens": 52.704402515723274,
+      "truncated_frac": 0.7987421383647799,
+      "seconds": 38.38083004951477,
+      "info": {
+        "kind": "emotion",
+        "arg": "gloomy",
+        "layer": 12,
+        "c": 0.5,
+        "injected_norm": 3.7254750728607178
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/emotion:gloomy@12:0.5.jsonl"
+    },
+    "emotion:grateful@12:0.5": {
+      "n": 159,
+      "refusal_substring_rate": 0.6163522012578616,
+      "mean_tokens": 38.276729559748425,
+      "truncated_frac": 0.4779874213836478,
+      "seconds": 35.59942698478699,
+      "info": {
+        "kind": "emotion",
+        "arg": "grateful",
+        "layer": 12,
+        "c": 0.5,
+        "injected_norm": 3.7254750728607178
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/emotion:grateful@12:0.5.jsonl"
+    },
+    "emotion:guilty@12:0.5": {
+      "n": 159,
+      "refusal_substring_rate": 0.6477987421383647,
+      "mean_tokens": 37.924528301886795,
+      "truncated_frac": 0.5408805031446541,
+      "seconds": 35.55981206893921,
+      "info": {
+        "kind": "emotion",
+        "arg": "guilty",
+        "layer": 12,
+        "c": 0.5,
+        "injected_norm": 3.7254750728607178
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/emotion:guilty@12:0.5.jsonl"
+    },
+    "emotion:happy@12:0.5": {
+      "n": 159,
+      "refusal_substring_rate": 0.39622641509433965,
+      "mean_tokens": 54.132075471698116,
+      "truncated_frac": 0.8113207547169812,
+      "seconds": 35.58555507659912,
+      "info": {
+        "kind": "emotion",
+        "arg": "happy",
+        "layer": 12,
+        "c": 0.5,
+        "injected_norm": 3.7254750728607178
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/emotion:happy@12:0.5.jsonl"
+    },
+    "emotion:hopeful@12:0.5": {
+      "n": 159,
+      "refusal_substring_rate": 0.6352201257861635,
+      "mean_tokens": 40.905660377358494,
+      "truncated_frac": 0.5849056603773585,
+      "seconds": 35.535404920578,
+      "info": {
+        "kind": "emotion",
+        "arg": "hopeful",
+        "layer": 12,
+        "c": 0.5,
+        "injected_norm": 3.7254750728607178
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/emotion:hopeful@12:0.5.jsonl"
+    },
+    "emotion:hostile@12:0.5": {
+      "n": 159,
+      "refusal_substring_rate": 0.7232704402515723,
+      "mean_tokens": 56.880503144654085,
+      "truncated_frac": 0.8616352201257862,
+      "seconds": 35.561341762542725,
+      "info": {
+        "kind": "emotion",
+        "arg": "hostile",
+        "layer": 12,
+        "c": 0.5,
+        "injected_norm": 3.7254750728607178
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/emotion:hostile@12:0.5.jsonl"
+    },
+    "emotion:loving@12:0.5": {
+      "n": 159,
+      "refusal_substring_rate": 0.660377358490566,
+      "mean_tokens": 47.062893081761004,
+      "truncated_frac": 0.6540880503144654,
+      "seconds": 35.61161994934082,
+      "info": {
+        "kind": "emotion",
+        "arg": "loving",
+        "layer": 12,
+        "c": 0.5,
+        "injected_norm": 3.7254750728607178
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/emotion:loving@12:0.5.jsonl"
+    },
+    "emotion:nervous@12:0.5": {
+      "n": 159,
+      "refusal_substring_rate": 0.5849056603773585,
+      "mean_tokens": 53.132075471698116,
+      "truncated_frac": 0.8050314465408805,
+      "seconds": 35.57991433143616,
+      "info": {
+        "kind": "emotion",
+        "arg": "nervous",
+        "layer": 12,
+        "c": 0.5,
+        "injected_norm": 3.7254750728607178
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/emotion:nervous@12:0.5.jsonl"
+    },
+    "emotion:afraid@12:1": {
+      "n": 159,
+      "refusal_substring_rate": 0.0,
+      "mean_tokens": 64.0,
+      "truncated_frac": 1.0,
+      "seconds": 35.631508111953735,
+      "info": {
+        "kind": "emotion",
+        "arg": "afraid",
+        "layer": 12,
+        "c": 1.0,
+        "injected_norm": 7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/emotion:afraid@12:1.jsonl"
+    },
+    "emotion:angry@12:1": {
+      "n": 159,
+      "refusal_substring_rate": 0.08176100628930817,
+      "mean_tokens": 56.333333333333336,
+      "truncated_frac": 0.8238993710691824,
+      "seconds": 35.51751494407654,
+      "info": {
+        "kind": "emotion",
+        "arg": "angry",
+        "layer": 12,
+        "c": 1.0,
+        "injected_norm": 7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/emotion:angry@12:1.jsonl"
+    },
+    "emotion:anxious@12:1": {
+      "n": 159,
+      "refusal_substring_rate": 0.006289308176100629,
+      "mean_tokens": 55.64150943396226,
+      "truncated_frac": 0.6037735849056604,
+      "seconds": 35.46630501747131,
+      "info": {
+        "kind": "emotion",
+        "arg": "anxious",
+        "layer": 12,
+        "c": 1.0,
+        "injected_norm": 7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/emotion:anxious@12:1.jsonl"
+    },
+    "emotion:calm@12:1": {
+      "n": 159,
+      "refusal_substring_rate": 0.0,
+      "mean_tokens": 64.0,
+      "truncated_frac": 1.0,
+      "seconds": 35.60244011878967,
+      "info": {
+        "kind": "emotion",
+        "arg": "calm",
+        "layer": 12,
+        "c": 1.0,
+        "injected_norm": 7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/emotion:calm@12:1.jsonl"
+    },
+    "emotion:gloomy@12:1": {
+      "n": 159,
+      "refusal_substring_rate": 0.0,
+      "mean_tokens": 64.0,
+      "truncated_frac": 1.0,
+      "seconds": 35.709245920181274,
+      "info": {
+        "kind": "emotion",
+        "arg": "gloomy",
+        "layer": 12,
+        "c": 1.0,
+        "injected_norm": 7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/emotion:gloomy@12:1.jsonl"
+    },
+    "emotion:grateful@12:1": {
+      "n": 159,
+      "refusal_substring_rate": 0.0,
+      "mean_tokens": 59.45283018867924,
+      "truncated_frac": 0.8553459119496856,
+      "seconds": 35.2436637878418,
+      "info": {
+        "kind": "emotion",
+        "arg": "grateful",
+        "layer": 12,
+        "c": 1.0,
+        "injected_norm": 7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/emotion:grateful@12:1.jsonl"
+    },
+    "emotion:guilty@12:1": {
+      "n": 159,
+      "refusal_substring_rate": 0.006289308176100629,
+      "mean_tokens": 59.63522012578616,
+      "truncated_frac": 0.89937106918239,
+      "seconds": 35.23210597038269,
+      "info": {
+        "kind": "emotion",
+        "arg": "guilty",
+        "layer": 12,
+        "c": 1.0,
+        "injected_norm": 7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/emotion:guilty@12:1.jsonl"
+    },
+    "emotion:happy@12:1": {
+      "n": 159,
+      "refusal_substring_rate": 0.0,
+      "mean_tokens": 64.0,
+      "truncated_frac": 1.0,
+      "seconds": 35.28602480888367,
+      "info": {
+        "kind": "emotion",
+        "arg": "happy",
+        "layer": 12,
+        "c": 1.0,
+        "injected_norm": 7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/emotion:happy@12:1.jsonl"
+    },
+    "emotion:hopeful@12:1": {
+      "n": 159,
+      "refusal_substring_rate": 0.006289308176100629,
+      "mean_tokens": 57.540880503144656,
+      "truncated_frac": 0.8364779874213837,
+      "seconds": 35.51971888542175,
+      "info": {
+        "kind": "emotion",
+        "arg": "hopeful",
+        "layer": 12,
+        "c": 1.0,
+        "injected_norm": 7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/emotion:hopeful@12:1.jsonl"
+    },
+    "emotion:hostile@12:1": {
+      "n": 159,
+      "refusal_substring_rate": 0.006289308176100629,
+      "mean_tokens": 59.716981132075475,
+      "truncated_frac": 0.8238993710691824,
+      "seconds": 35.32461380958557,
+      "info": {
+        "kind": "emotion",
+        "arg": "hostile",
+        "layer": 12,
+        "c": 1.0,
+        "injected_norm": 7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/emotion:hostile@12:1.jsonl"
+    },
+    "emotion:loving@12:1": {
+      "n": 159,
+      "refusal_substring_rate": 0.0,
+      "mean_tokens": 63.21383647798742,
+      "truncated_frac": 0.9685534591194969,
+      "seconds": 35.07204580307007,
+      "info": {
+        "kind": "emotion",
+        "arg": "loving",
+        "layer": 12,
+        "c": 1.0,
+        "injected_norm": 7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/emotion:loving@12:1.jsonl"
+    },
+    "emotion:nervous@12:1": {
+      "n": 159,
+      "refusal_substring_rate": 0.0,
+      "mean_tokens": 64.0,
+      "truncated_frac": 1.0,
+      "seconds": 35.069369077682495,
+      "info": {
+        "kind": "emotion",
+        "arg": "nervous",
+        "layer": 12,
+        "c": 1.0,
+        "injected_norm": 7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/emotion:nervous@12:1.jsonl"
+    },
+    "emotion:afraid@12:-1": {
+      "n": 159,
+      "refusal_substring_rate": 0.0,
+      "mean_tokens": 64.0,
+      "truncated_frac": 1.0,
+      "seconds": 35.225919008255005,
+      "info": {
+        "kind": "emotion",
+        "arg": "afraid",
+        "layer": 12,
+        "c": -1.0,
+        "injected_norm": -7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/emotion:afraid@12:-1.jsonl"
+    },
+    "emotion:angry@12:-1": {
+      "n": 159,
+      "refusal_substring_rate": 0.0,
+      "mean_tokens": 64.0,
+      "truncated_frac": 1.0,
+      "seconds": 35.957971811294556,
+      "info": {
+        "kind": "emotion",
+        "arg": "angry",
+        "layer": 12,
+        "c": -1.0,
+        "injected_norm": -7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/emotion:angry@12:-1.jsonl"
+    },
+    "emotion:anxious@12:-1": {
+      "n": 159,
+      "refusal_substring_rate": 0.0,
+      "mean_tokens": 64.0,
+      "truncated_frac": 1.0,
+      "seconds": 36.0748507976532,
+      "info": {
+        "kind": "emotion",
+        "arg": "anxious",
+        "layer": 12,
+        "c": -1.0,
+        "injected_norm": -7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/emotion:anxious@12:-1.jsonl"
+    },
+    "emotion:calm@12:-1": {
+      "n": 159,
+      "refusal_substring_rate": 0.05660377358490566,
+      "mean_tokens": 64.0,
+      "truncated_frac": 1.0,
+      "seconds": 35.55569005012512,
+      "info": {
+        "kind": "emotion",
+        "arg": "calm",
+        "layer": 12,
+        "c": -1.0,
+        "injected_norm": -7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/emotion:calm@12:-1.jsonl"
+    },
+    "emotion:gloomy@12:-1": {
+      "n": 159,
+      "refusal_substring_rate": 0.0,
+      "mean_tokens": 64.0,
+      "truncated_frac": 1.0,
+      "seconds": 35.84327816963196,
+      "info": {
+        "kind": "emotion",
+        "arg": "gloomy",
+        "layer": 12,
+        "c": -1.0,
+        "injected_norm": -7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/emotion:gloomy@12:-1.jsonl"
+    },
+    "emotion:grateful@12:-1": {
+      "n": 159,
+      "refusal_substring_rate": 0.0,
+      "mean_tokens": 64.0,
+      "truncated_frac": 1.0,
+      "seconds": 35.73952603340149,
+      "info": {
+        "kind": "emotion",
+        "arg": "grateful",
+        "layer": 12,
+        "c": -1.0,
+        "injected_norm": -7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/emotion:grateful@12:-1.jsonl"
+    },
+    "emotion:guilty@12:-1": {
+      "n": 159,
+      "refusal_substring_rate": 0.0,
+      "mean_tokens": 64.0,
+      "truncated_frac": 1.0,
+      "seconds": 36.19870901107788,
+      "info": {
+        "kind": "emotion",
+        "arg": "guilty",
+        "layer": 12,
+        "c": -1.0,
+        "injected_norm": -7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/emotion:guilty@12:-1.jsonl"
+    },
+    "emotion:happy@12:-1": {
+      "n": 159,
+      "refusal_substring_rate": 0.0,
+      "mean_tokens": 64.0,
+      "truncated_frac": 1.0,
+      "seconds": 35.61887001991272,
+      "info": {
+        "kind": "emotion",
+        "arg": "happy",
+        "layer": 12,
+        "c": -1.0,
+        "injected_norm": -7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/emotion:happy@12:-1.jsonl"
+    },
+    "emotion:hopeful@12:-1": {
+      "n": 159,
+      "refusal_substring_rate": 0.0,
+      "mean_tokens": 64.0,
+      "truncated_frac": 1.0,
+      "seconds": 35.62434673309326,
+      "info": {
+        "kind": "emotion",
+        "arg": "hopeful",
+        "layer": 12,
+        "c": -1.0,
+        "injected_norm": -7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/emotion:hopeful@12:-1.jsonl"
+    },
+    "emotion:hostile@12:-1": {
+      "n": 159,
+      "refusal_substring_rate": 0.0,
+      "mean_tokens": 64.0,
+      "truncated_frac": 1.0,
+      "seconds": 36.00747513771057,
+      "info": {
+        "kind": "emotion",
+        "arg": "hostile",
+        "layer": 12,
+        "c": -1.0,
+        "injected_norm": -7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/emotion:hostile@12:-1.jsonl"
+    },
+    "emotion:loving@12:-1": {
+      "n": 159,
+      "refusal_substring_rate": 0.0,
+      "mean_tokens": 63.43396226415094,
+      "truncated_frac": 0.9748427672955975,
+      "seconds": 35.71770477294922,
+      "info": {
+        "kind": "emotion",
+        "arg": "loving",
+        "layer": 12,
+        "c": -1.0,
+        "injected_norm": -7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/emotion:loving@12:-1.jsonl"
+    },
+    "emotion:nervous@12:-1": {
+      "n": 159,
+      "refusal_substring_rate": 0.0,
+      "mean_tokens": 64.0,
+      "truncated_frac": 1.0,
+      "seconds": 35.75529909133911,
+      "info": {
+        "kind": "emotion",
+        "arg": "nervous",
+        "layer": 12,
+        "c": -1.0,
+        "injected_norm": -7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/emotion:nervous@12:-1.jsonl"
+    },
+    "perp:afraid@12:1": {
+      "n": 159,
+      "refusal_substring_rate": 0.006289308176100629,
+      "mean_tokens": 64.0,
+      "truncated_frac": 1.0,
+      "seconds": 35.59559416770935,
+      "info": {
+        "kind": "perp",
+        "arg": "afraid",
+        "layer": 12,
+        "c": 1.0,
+        "injected_norm": 7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/perp:afraid@12:1.jsonl"
+    },
+    "perp:angry@12:1": {
+      "n": 159,
+      "refusal_substring_rate": 0.07547169811320754,
+      "mean_tokens": 58.459119496855344,
+      "truncated_frac": 0.8867924528301887,
+      "seconds": 36.07542610168457,
+      "info": {
+        "kind": "perp",
+        "arg": "angry",
+        "layer": 12,
+        "c": 1.0,
+        "injected_norm": 7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/perp:angry@12:1.jsonl"
+    },
+    "perp:anxious@12:1": {
+      "n": 159,
+      "refusal_substring_rate": 0.0,
+      "mean_tokens": 56.57232704402516,
+      "truncated_frac": 0.6540880503144654,
+      "seconds": 35.89854073524475,
+      "info": {
+        "kind": "perp",
+        "arg": "anxious",
+        "layer": 12,
+        "c": 1.0,
+        "injected_norm": 7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/perp:anxious@12:1.jsonl"
+    },
+    "perp:calm@12:1": {
+      "n": 159,
+      "refusal_substring_rate": 0.0,
+      "mean_tokens": 64.0,
+      "truncated_frac": 1.0,
+      "seconds": 35.80821204185486,
+      "info": {
+        "kind": "perp",
+        "arg": "calm",
+        "layer": 12,
+        "c": 1.0,
+        "injected_norm": 7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/perp:calm@12:1.jsonl"
+    },
+    "perp:gloomy@12:1": {
+      "n": 159,
+      "refusal_substring_rate": 0.0,
+      "mean_tokens": 64.0,
+      "truncated_frac": 1.0,
+      "seconds": 35.34561896324158,
+      "info": {
+        "kind": "perp",
+        "arg": "gloomy",
+        "layer": 12,
+        "c": 1.0,
+        "injected_norm": 7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/perp:gloomy@12:1.jsonl"
+    },
+    "perp:grateful@12:1": {
+      "n": 159,
+      "refusal_substring_rate": 0.0,
+      "mean_tokens": 60.100628930817614,
+      "truncated_frac": 0.8553459119496856,
+      "seconds": 35.42160391807556,
+      "info": {
+        "kind": "perp",
+        "arg": "grateful",
+        "layer": 12,
+        "c": 1.0,
+        "injected_norm": 7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/perp:grateful@12:1.jsonl"
+    },
+    "perp:guilty@12:1": {
+      "n": 159,
+      "refusal_substring_rate": 0.0,
+      "mean_tokens": 60.43396226415094,
+      "truncated_frac": 0.9119496855345912,
+      "seconds": 34.982897996902466,
+      "info": {
+        "kind": "perp",
+        "arg": "guilty",
+        "layer": 12,
+        "c": 1.0,
+        "injected_norm": 7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/perp:guilty@12:1.jsonl"
+    },
+    "perp:happy@12:1": {
+      "n": 159,
+      "refusal_substring_rate": 0.0,
+      "mean_tokens": 64.0,
+      "truncated_frac": 1.0,
+      "seconds": 35.01173782348633,
+      "info": {
+        "kind": "perp",
+        "arg": "happy",
+        "layer": 12,
+        "c": 1.0,
+        "injected_norm": 7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/perp:happy@12:1.jsonl"
+    },
+    "perp:hopeful@12:1": {
+      "n": 159,
+      "refusal_substring_rate": 0.0,
+      "mean_tokens": 57.43396226415094,
+      "truncated_frac": 0.8301886792452831,
+      "seconds": 35.26628494262695,
+      "info": {
+        "kind": "perp",
+        "arg": "hopeful",
+        "layer": 12,
+        "c": 1.0,
+        "injected_norm": 7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/perp:hopeful@12:1.jsonl"
+    },
+    "perp:hostile@12:1": {
+      "n": 159,
+      "refusal_substring_rate": 0.0,
+      "mean_tokens": 61.78616352201258,
+      "truncated_frac": 0.8867924528301887,
+      "seconds": 35.028037786483765,
+      "info": {
+        "kind": "perp",
+        "arg": "hostile",
+        "layer": 12,
+        "c": 1.0,
+        "injected_norm": 7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/perp:hostile@12:1.jsonl"
+    },
+    "perp:loving@12:1": {
+      "n": 159,
+      "refusal_substring_rate": 0.0,
+      "mean_tokens": 63.42138364779874,
+      "truncated_frac": 0.9874213836477987,
+      "seconds": 34.98926305770874,
+      "info": {
+        "kind": "perp",
+        "arg": "loving",
+        "layer": 12,
+        "c": 1.0,
+        "injected_norm": 7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/perp:loving@12:1.jsonl"
+    },
+    "perp:nervous@12:1": {
+      "n": 159,
+      "refusal_substring_rate": 0.006289308176100629,
+      "mean_tokens": 64.0,
+      "truncated_frac": 1.0,
+      "seconds": 34.966461181640625,
+      "info": {
+        "kind": "perp",
+        "arg": "nervous",
+        "layer": 12,
+        "c": 1.0,
+        "injected_norm": 7.4509501457214355
+      },
+      "max_new_tokens": 64,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmbench-test-screen/perp:nervous@12:1.jsonl"
+    }
+  }
+}

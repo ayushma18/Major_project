@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-20T13:59:01",
+  "updated": "2026-11-20T15:27:10",
   "experiments": [
     {
       "id": "E00-model-selection",
@@ -39,7 +39,7 @@
       "module": 1,
       "status": "done",
       "file": "results/E04-emotion-vectors.json",
-      "headline": "All 19 emotions are recognised in held-out stories (19-way accuracy 99.5% at layer 9, chance 5.3%)."
+      "headline": "All 19 emotions are recognised in held-out stories (19-way accuracy 100.0% at layer 9, chance 5.3%); on the independent short-text set, 80.7%."
     },
     {
       "id": "E05-emotion-steering-sanity",
@@ -55,7 +55,7 @@
       "module": 3,
       "status": "done",
       "file": "results/E06-geometry.json",
-      "headline": "At layer 11, hostile points most towards the guardrail direction (cos +0.08) and happy most away (-0.10); random directions stay within plus or minus 0.039."
+      "headline": "At layer 11, hostile points most towards the guardrail direction (cos +0.08) and happy most away (-0.09); random directions stay within plus or minus 0.039."
     },
     {
       "id": "E07-emotion-injection-asr",
@@ -69,9 +69,9 @@
       "id": "E08-random-baseline",
       "title": "Random vectors of the same size",
       "module": 2,
-      "status": "planned",
+      "status": "done",
       "file": "results/E08-random-baseline.json",
-      "headline": "The control every emotion result must beat"
+      "headline": "Random pushes give refusal 5.0% to 81.8% (baseline 84.3%)."
     },
     {
       "id": "E09-text-priming",
