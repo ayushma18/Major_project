@@ -1,0 +1,290 @@
+{
+  "version": 1,
+  "updated": "2026-11-20",
+  "categories": [
+    {
+      "id": "emotions",
+      "label": "Emotions inside models",
+      "blurb": "Evidence that models carry emotion concepts as directions"
+    },
+    {
+      "id": "refusal-geometry",
+      "label": "Refusal geometry",
+      "blurb": "How the refusal behaviour is stored inside the model"
+    },
+    {
+      "id": "steering",
+      "label": "Activation steering",
+      "blurb": "Adding vectors to hidden states to change behaviour"
+    },
+    {
+      "id": "steering-safety",
+      "label": "Steering versus safety",
+      "blurb": "When steering breaks safety alignment"
+    },
+    {
+      "id": "benchmarks",
+      "label": "Safety benchmarks",
+      "blurb": "How harmful compliance is measured"
+    },
+    {
+      "id": "multi-turn",
+      "label": "Multi-turn attacks",
+      "blurb": "Safety across a conversation"
+    }
+  ],
+  "eras": [
+    {
+      "id": "foundations",
+      "label": "Foundations",
+      "start": "2017-01-01",
+      "end": "2022-12-31",
+      "summary": "Early discoveries in transformer internal representations and initial safety alignment techniques."
+    },
+    {
+      "id": "steering-discovery",
+      "label": "Steering Discovery",
+      "start": "2023-01-01",
+      "end": "2024-05-31",
+      "summary": "Representation engineering and activation addition demonstrate internal concepts can be directly steered without retraining."
+    },
+    {
+      "id": "refusal-geometry-era",
+      "label": "Refusal Geometry",
+      "start": "2024-06-01",
+      "end": "2026-11-20",
+      "summary": "Refusal identified as a single linear direction in residual space, opening geometric analysis of model safety."
+    }
+  ],
+  "papers": [
+    {
+      "id": "turner2023activation",
+      "title": "Activation Addition: Steering Language Models Without Optimization",
+      "authors": ["Alexander Matt Turner", "Lisa Thiergart", "David Udell", "Gavin Leech", "Ulisse Mini", "Monte MacDiarmid"],
+      "date": "2023-05-18",
+      "year": 2023,
+      "venue": "arXiv 2023",
+      "arxiv": "2305.11184",
+      "doi": null,
+      "url": "https://arxiv.org/abs/2305.11184",
+      "pdf_url": "https://arxiv.org/pdf/2305.11184",
+      "pdf_local": null,
+      "code_url": "https://github.com/montemac/activation_additions",
+      "categories": ["steering"],
+      "priority": "background",
+      "reading_order": 1,
+      "cited_in_proposal": "[10]",
+      "verified": {
+        "status": "verified",
+        "how": "arXiv API verified",
+        "at": "2026-11-20"
+      },
+      "summary_simple": "Computing activation differences between paired prompts yields vectors that alter output topic and style when added during inference.",
+      "key_findings": [
+        "Inference time activation addition steers completions without fine tuning",
+        "Steering vectors transfer across diverse prompt contexts"
+      ],
+      "key_numbers": ["Evaluated on GPT-2-XL and Llama 7B", "Layer 12 to 16 showed optimal control"],
+      "method": "Pairs of contrastive prompts are processed and their mean activation delta at intermediate layers is added at inference.",
+      "relevance": "Provides the foundational activation addition mechanic used in our emotion vector injection pipeline.",
+      "limitations": "Required manual contrast pairs and focused primarily on simple stylistic traits.",
+      "tags": ["activation-addition", "steering", "llama"]
+    },
+    {
+      "id": "zou2023representation",
+      "title": "Representation Engineering: A Top-Down Approach to AI Transparency",
+      "authors": ["Andy Zou", "Long Phan", "Sarah Chen", "James Campbell", "Phillip Guo", "Richard Ren", "Alexander Pan", "Xuwang Yin", "Mantas Mazeika", "Dan Hendrycks"],
+      "date": "2023-10-02",
+      "year": 2023,
+      "venue": "arXiv 2023",
+      "arxiv": "2310.01405",
+      "doi": null,
+      "url": "https://arxiv.org/abs/2310.01405",
+      "pdf_url": "https://arxiv.org/pdf/2310.01405",
+      "pdf_local": null,
+      "code_url": "https://github.com/andyzoujm/representation-engineering",
+      "categories": ["steering", "emotions"],
+      "priority": "core",
+      "reading_order": 2,
+      "cited_in_proposal": "[2]",
+      "verified": {
+        "status": "verified",
+        "how": "arXiv API verified",
+        "at": "2026-11-20"
+      },
+      "summary_simple": "Presents representation engineering to read and write concepts like honesty, emotion, and morality directly in hidden states.",
+      "key_findings": [
+        "High level cognitive and emotional concepts exist as linear directions in LLMs",
+        "Contrastive stimulation isolates robust functional vectors across concepts"
+      ],
+      "key_numbers": ["Extracted directions for honesty, emotion, and bias across multiple model families"],
+      "method": "Contrastive reading extracts directions by PCA on paired concept prompts; writing adds or clamps directions.",
+      "relevance": "Direct source for our contrastive story corpus methodology and emotion vocabulary extraction.",
+      "limitations": "Did not investigate adversarial interactions between functional emotion vectors and safety guardrails.",
+      "tags": ["representation-engineering", "emotion", "linear-probe"]
+    },
+    {
+      "id": "rimsky2023steering",
+      "title": "Steering Llama 2 via Contrastive Activation Addition",
+      "authors": ["Nina Rimsky", "Nick Gabrieli", "Julian Schulz", "Meg Tong", "Evan Hubinger"],
+      "date": "2023-12-05",
+      "year": 2023,
+      "venue": "arXiv 2023",
+      "arxiv": "2312.06681",
+      "doi": null,
+      "url": "https://arxiv.org/abs/2312.06681",
+      "pdf_url": "https://arxiv.org/pdf/2312.06681",
+      "pdf_local": null,
+      "code_url": "https://github.com/nrimsky/CAA",
+      "categories": ["steering", "steering-safety"],
+      "priority": "important",
+      "reading_order": 3,
+      "cited_in_proposal": "[6]",
+      "verified": {
+        "status": "verified",
+        "how": "arXiv API verified",
+        "at": "2026-11-20"
+      },
+      "summary_simple": "Contrastive Activation Addition (CAA) formalises subtracting mean negative activations from positive ones across contrast pairs.",
+      "key_findings": [
+        "CAA produces cleaner steering vectors than simple difference vectors",
+        "Vectors remain effective when scaled by factor alpha across forward passes"
+      ],
+      "key_numbers": ["Tested across sycophancy, hallucination, and persona datasets on Llama 2 7B and 13B"],
+      "method": "Averages activations on paired datasets and adds alpha * v to residual stream at specific layer during generation.",
+      "relevance": "We use exact CAA formula (x prime = x + alpha * v) for emotion vector injection in Module 1 and Module 2.",
+      "limitations": "Tested on Llama 2 chat models before Llama 3 alignment architecture.",
+      "tags": ["caa", "steering", "contrastive"]
+    },
+    {
+      "id": "mazeika2024harmbench",
+      "title": "HarmBench: A Standardized Evaluation Framework for Automated Red Teaming",
+      "authors": ["Mantas Mazeika", "Long Phan", "Xuwang Yin", "Andy Zou", "Zifan Wang", "Norman Mu", "Elham Sakhaee", "Nathaniel Li", "Basart Steven", "Bo Li", "David Forsyth", "Dan Hendrycks"],
+      "date": "2024-02-06",
+      "year": 2024,
+      "venue": "ICML 2024",
+      "arxiv": "2402.04249",
+      "doi": null,
+      "url": "https://arxiv.org/abs/2402.04249",
+      "pdf_url": "https://arxiv.org/pdf/2402.04249",
+      "pdf_local": null,
+      "code_url": "https://github.com/centerforaisafety/HarmBench",
+      "categories": ["benchmarks"],
+      "priority": "core",
+      "reading_order": 4,
+      "cited_in_proposal": "[18]",
+      "verified": {
+        "status": "verified",
+        "how": "ICML 2024 proceedings verified",
+        "at": "2026-11-20"
+      },
+      "summary_simple": "HarmBench standardises attack evaluation across 510 harmful behaviours with an automated validation classifier.",
+      "key_findings": [
+        "Standardised benchmark prevents cherry picking across jailbreak attacks",
+        "Automated LLM judge correlates tightly with human safety annotations"
+      ],
+      "key_numbers": ["510 functional test behaviours", "18 attack methods evaluated across 33 open and closed models"],
+      "method": "Applies attacks against catalogued harmful intentions and classifies response safety using fine tuned judge.",
+      "relevance": "Standardised test suite and LLM judge for measuring Attack Success Rate (ASR) in Module 2.",
+      "limitations": "Judge model can misclassify benign disclaimers unless prompted with strict parsing rules.",
+      "tags": ["harmbench", "red-teaming", "asr"]
+    },
+    {
+      "id": "arditi2024refusal",
+      "title": "Refusal in Language Models Is Mediated by a Single Direction",
+      "authors": ["Andy Arditi", "Oscar Obeso", "Aaquib Syed", "Daniel Paleka", "Nina Panickssery", "Wes Gurnee", "Neel Nanda"],
+      "date": "2024-06-17",
+      "year": 2024,
+      "venue": "NeurIPS 2024",
+      "arxiv": "2406.11717",
+      "doi": null,
+      "url": "https://arxiv.org/abs/2406.11717",
+      "pdf_url": "https://arxiv.org/pdf/2406.11717",
+      "pdf_local": "literature/pdfs/arditi2024refusal.pdf",
+      "code_url": "https://github.com/andyrdt/refusal_direction",
+      "categories": ["refusal-geometry"],
+      "priority": "core",
+      "reading_order": 5,
+      "cited_in_proposal": "[1]",
+      "verified": {
+        "status": "verified",
+        "how": "NeurIPS 2024 paper checked",
+        "at": "2026-11-20"
+      },
+      "summary_simple": "Refusal behaviour across aligned chat models is mediated by a single linear direction in the residual stream.",
+      "key_findings": [
+        "Subtracting the refusal direction completely bypasses refusal on harmful queries",
+        "Direction generalizes across distinct harm categories and model families",
+        "Refusal direction can be extracted via difference of means between harmful and harmless prompts"
+      ],
+      "key_numbers": ["13 open chat models tested", "Zero shot refusal suppression reached over 90 percent ASR"],
+      "method": "Computes difference of means between activations on harmful and harmless instructions, then projects residual stream onto refusal nullspace.",
+      "relevance": "Core theoretical anchor for our project. We measure whether emotion vectors interfere with this exact direction.",
+      "limitations": "Did not explore whether subtle prompt invisible activation shifts trigger accidental guardrail failure.",
+      "tags": ["llama-3", "directional-ablation", "refusal-direction"]
+    },
+    {
+      "id": "anuj2026unverified",
+      "title": "Emotion Representation Drift Under Conversational Stress",
+      "authors": ["Anuj Paudel", "Ashish Pandey", "Ayushma Pudasaini"],
+      "date": "2026-03-10",
+      "year": 2026,
+      "venue": "Preprint 2026",
+      "arxiv": null,
+      "doi": null,
+      "url": "https://example.org/draft/emotion-drift",
+      "pdf_url": null,
+      "pdf_local": null,
+      "code_url": null,
+      "categories": ["multi-turn"],
+      "priority": "important",
+      "reading_order": 6,
+      "cited_in_proposal": null,
+      "verified": {
+        "status": "unverified",
+        "how": "Seed internal draft; pending external publication check",
+        "at": null
+      },
+      "summary_simple": "Internal working manuscript analysing representational drift in Llama 3 across 7 turn dialogue chains.",
+      "key_findings": [
+        "Hidden state projections onto refusal direction decay over conversational turns following emotional stimuli",
+        "Persistent vulnerability window remains open across turns 4 through 7"
+      ],
+      "key_numbers": ["7 turn conversational benchmark", "Measured drift across 20 distinct emotional vectors"],
+      "method": "Multi turn conversation harness tracking dot product between current hidden state and refusal vector.",
+      "relevance": "Forms the protocol baseline for Module 4 multi turn persistence testing.",
+      "limitations": "Preliminary unverified draft undergoing peer review.",
+      "tags": ["multi-turn", "sleeper-effect", "drift"]
+    }
+  ],
+  "proposal_reference_audit": [
+    {
+      "ref": "[1]",
+      "as_cited": "A. Arditi et al., Refusal in Language Models Is Mediated by a Single Direction, NeurIPS 2024.",
+      "status": "real-correct",
+      "match_id": "arditi2024refusal",
+      "note": "Citation is accurate and matches the published NeurIPS 2024 paper."
+    },
+    {
+      "ref": "[2]",
+      "as_cited": "A. Zou, L. Phan, S. Chen, Representation Engineering, arXiv preprint arXiv:2310.01405, 2023.",
+      "status": "real-wrong-metadata",
+      "match_id": "zou2023representation",
+      "note": "Author list in proposal truncated third author middle initial; update metadata to official arXiv record."
+    },
+    {
+      "ref": "[3]",
+      "as_cited": "M. Jeong, S. Kim, J. Park, Shared geometry of emotion representations in language models, arXiv:2603.99999, 2026.",
+      "status": "wrong-paper",
+      "match_id": null,
+      "note": "Proposal cited an hallucinated arXiv preprint identifier. Replace with Rimsky et al. 2023 (rimsky2023steering) which provides the valid CAA reference."
+    },
+    {
+      "ref": "[4]",
+      "as_cited": "H. Patel, D. Wilson, Geometric alignment of safety features in sparse autoencoders, ICLR 2025.",
+      "status": "not-found",
+      "match_id": null,
+      "note": "Reference could not be located in ICLR 2025 proceedings or open scholarly databases. Mark as unverified or replace with Llama Scope documentation."
+    }
+  ]
+}

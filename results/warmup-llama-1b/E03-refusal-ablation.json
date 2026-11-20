@@ -1,0 +1,70 @@
+{
+  "id": "E03-refusal-ablation",
+  "title": "Suppressing the guardrail direction",
+  "module": 2,
+  "status": "done",
+  "question": "If the refusal direction is projected out of every layer, does the model answer what it refused before?",
+  "model": "unsloth/Llama-3.2-1B-Instruct",
+  "started": null,
+  "finished": "2026-11-20T12:29:31",
+  "config": {},
+  "headline": "Removing one direction drops refusal from 79.9% to 11.9% (judge pending).",
+  "metrics": [],
+  "tables": [
+    {
+      "id": "ablation",
+      "title": "Refusal and ASR with and without the guardrail direction",
+      "columns": [
+        "condition",
+        "refusal rate",
+        "ASR (judge)"
+      ],
+      "rows": [
+        [
+          "no intervention",
+          0.7987421383647799,
+          null
+        ],
+        [
+          "refusal direction ablated",
+          0.11949685534591195,
+          null
+        ]
+      ]
+    }
+  ],
+  "charts": [
+    {
+      "id": "ablation_bar",
+      "type": "bar",
+      "title": "Refusal rate before and after ablation",
+      "x": {
+        "label": "condition",
+        "values": [
+          "no intervention",
+          "refusal direction ablated"
+        ]
+      },
+      "y": {
+        "label": "fraction of prompts",
+        "unit": "fraction"
+      },
+      "series": [
+        {
+          "name": "refusal rate",
+          "values": [
+            0.7987421383647799,
+            0.11949685534591195
+          ]
+        }
+      ]
+    }
+  ],
+  "interpretation": [
+    "This replicates Arditi et al. (2024): refusal in this model is carried mostly by one linear direction."
+  ],
+  "caveats": [
+    "The phrase-match refusal rate misses refusals worded differently and counts some partial answers as refusals; the HarmBench judge is the headline metric."
+  ],
+  "artifacts": []
+}

@@ -18,3 +18,19 @@ outputs/generations/*
 # Never commit a token.
 .env
 *.token
+
+# Paper PDFs: copyright stays with the publishers; fetch with scripts/fetch_papers.py
+literature/pdfs/*
+!literature/pdfs/.gitkeep
+# Private documents (proposal, slides) served locally only
+private/
+
+# Vector library is small and is a project deliverable (SO5): keep it in git
+!artifacts/vectors/**/*.safetensors
+# Everything under outputs/ is local only (raw generations, activations, per-row data).
+outputs/*
+!outputs/generations/
+outputs/generations/*
+!outputs/generations/.gitkeep
+# Symlink to the private proposal folder
+private

@@ -1,0 +1,110 @@
+{
+  "updated": "2026-11-20T12:29:02",
+  "experiments": [
+    {
+      "id": "E00-model-selection",
+      "title": "Which model to study, and how fast this Mac runs it",
+      "module": 0,
+      "status": "planned",
+      "file": "results/E00-model-selection.json",
+      "headline": "Llama 3.1 8B runs at 269 tokens per second at batch 64 on the M5 Pro; one HarmBench condition takes about 2 to 3 minutes."
+    },
+    {
+      "id": "E01-baseline-refusal",
+      "title": "Baseline refusal on HarmBench",
+      "module": 2,
+      "status": "planned",
+      "file": "results/E01-baseline-refusal.json",
+      "headline": "The unmodified model refuses 79.9% of HarmBench requests (phrase match; judge pending)."
+    },
+    {
+      "id": "E02-refusal-direction",
+      "title": "Finding the refusal (guardrail) direction",
+      "module": 3,
+      "status": "planned",
+      "file": "results/E02-refusal-direction.json",
+      "headline": "The guardrail direction sits at layer 6 on template token -4; ablating it pushes the refusal score from 3.8 to -2.7 on held-out harmful prompts."
+    },
+    {
+      "id": "E03-refusal-ablation",
+      "title": "Suppressing the guardrail direction",
+      "module": 2,
+      "status": "planned",
+      "file": "results/E03-refusal-ablation.json",
+      "headline": "Removing one direction drops refusal from 79.9% to 11.9% (judge pending)."
+    },
+    {
+      "id": "E04-emotion-vectors",
+      "title": "Extracting the 20 emotion vectors",
+      "module": 1,
+      "status": "planned",
+      "file": "results/E04-emotion-vectors.json",
+      "headline": "All 19 emotions are recognised in held-out stories (19-way accuracy 96.8% at layer 8, chance 5.3%)."
+    },
+    {
+      "id": "E05-emotion-steering-sanity",
+      "title": "Do the emotion vectors steer emotion",
+      "module": 1,
+      "status": "planned",
+      "file": "results/E05-emotion-steering-sanity.json",
+      "headline": "At layer 6 and strength 0.5, an unsteered reader names the injected emotion 11.0% of the time (chance 5%)."
+    },
+    {
+      "id": "E06-geometry",
+      "title": "How emotion vectors line up with the guardrail direction",
+      "module": 3,
+      "status": "planned",
+      "file": "results/E06-geometry.json",
+      "headline": "At layer 6, angry points most towards the guardrail direction (cos +0.10) and happy most away (+0.00); random directions stay within plus or minus 0.056."
+    },
+    {
+      "id": "E07-emotion-injection-asr",
+      "title": "Emotion injection against HarmBench",
+      "module": 2,
+      "status": "planned",
+      "file": "results/E07-emotion-injection-asr.json",
+      "headline": "ASR when each emotion vector is injected, by layer and strength"
+    },
+    {
+      "id": "E08-random-baseline",
+      "title": "Random vectors of the same size",
+      "module": 2,
+      "status": "planned",
+      "file": "results/E08-random-baseline.json",
+      "headline": "The control every emotion result must beat"
+    },
+    {
+      "id": "E09-text-priming",
+      "title": "Text-level emotional priming (FreakOut style)",
+      "module": 2,
+      "status": "planned",
+      "file": "results/E09-text-priming.json",
+      "headline": "Stress, relaxation and neutral system prompts"
+    },
+    {
+      "id": "E10-orthogonalised",
+      "title": "Emotion vectors with the guardrail part removed",
+      "module": 3,
+      "status": "planned",
+      "file": "results/E10-orthogonalised.json",
+      "headline": "Causal test: does ASR fall back to baseline"
+    },
+    {
+      "id": "E11-correlation",
+      "title": "Does geometry predict the attack",
+      "module": 3,
+      "status": "planned",
+      "file": "results/E11-correlation.json",
+      "headline": "Spearman correlation between cosine and ASR change across emotions"
+    },
+    {
+      "id": "E12-multiturn-persistence",
+      "title": "The sleeper effect",
+      "module": 4,
+      "status": "planned",
+      "file": "results/E12-multiturn-persistence.json",
+      "headline": "Inject at turn 1, test at turns 4 to 7"
+    }
+  ],
+  "model": "unsloth/Llama-3.1-8B-Instruct"
+}

@@ -1,0 +1,206 @@
+{
+  "model": "unsloth/Llama-3.2-1B-Instruct",
+  "machine": {
+    "chip": "Apple M5 Pro",
+    "ram_gib": 48.0,
+    "os": "macOS-27.2.1-arm64-arm-64bit"
+  },
+  "torch": "2.9.1",
+  "runs": [
+    {
+      "batch": 1,
+      "steer_hook": false,
+      "seconds": 1.9410947089781985,
+      "generated_tokens": 64,
+      "tok_per_s": 32.97108569920831,
+      "prompt_tokens": 49,
+      "mps_allocated_gib": 2.301896810531616,
+      "mps_driver_gib": 3.0450592041015625,
+      "dtype": "bfloat16",
+      "load_seconds": 1.6518483749823645
+    },
+    {
+      "batch": 1,
+      "steer_hook": true,
+      "seconds": 1.94037395803025,
+      "generated_tokens": 64,
+      "tok_per_s": 32.983332792699876,
+      "prompt_tokens": 49,
+      "mps_allocated_gib": 2.301896810531616,
+      "mps_driver_gib": 3.0450592041015625,
+      "dtype": "bfloat16",
+      "load_seconds": 1.6518483749823645
+    },
+    {
+      "batch": 16,
+      "steer_hook": false,
+      "seconds": 7.837663916987367,
+      "generated_tokens": 1024,
+      "tok_per_s": 130.65117499878767,
+      "prompt_tokens": 53,
+      "mps_allocated_gib": 2.3019542694091797,
+      "mps_driver_gib": 3.386199951171875,
+      "dtype": "bfloat16",
+      "load_seconds": 1.6518483749823645
+    },
+    {
+      "batch": 16,
+      "steer_hook": true,
+      "seconds": 2.979563583037816,
+      "generated_tokens": 1024,
+      "tok_per_s": 343.6744917374712,
+      "prompt_tokens": 53,
+      "mps_allocated_gib": 2.3019542694091797,
+      "mps_driver_gib": 3.392059326171875,
+      "dtype": "bfloat16",
+      "load_seconds": 1.6518483749823645
+    },
+    {
+      "batch": 32,
+      "steer_hook": false,
+      "seconds": 4.903203665977344,
+      "generated_tokens": 2048,
+      "tok_per_s": 417.68609658431905,
+      "prompt_tokens": 53,
+      "mps_allocated_gib": 2.3020243644714355,
+      "mps_driver_gib": 3.447662353515625,
+      "dtype": "bfloat16",
+      "load_seconds": 1.6518483749823645
+    },
+    {
+      "batch": 32,
+      "steer_hook": true,
+      "seconds": 3.7752132909954526,
+      "generated_tokens": 2048,
+      "tok_per_s": 542.4859053354257,
+      "prompt_tokens": 53,
+      "mps_allocated_gib": 2.3020243644714355,
+      "mps_driver_gib": 3.447662353515625,
+      "dtype": "bfloat16",
+      "load_seconds": 1.6518483749823645
+    },
+    {
+      "batch": 1,
+      "steer_hook": false,
+      "seconds": 2.358022916945629,
+      "generated_tokens": 64,
+      "tok_per_s": 27.141381680420583,
+      "prompt_tokens": 49,
+      "mps_allocated_gib": 2.301896810531616,
+      "mps_driver_gib": 3.20220947265625,
+      "dtype": "float16",
+      "load_seconds": 1.164528249995783
+    },
+    {
+      "batch": 1,
+      "steer_hook": true,
+      "seconds": 2.6666665830416605,
+      "generated_tokens": 64,
+      "tok_per_s": 24.00000075262508,
+      "prompt_tokens": 49,
+      "mps_allocated_gib": 2.301896810531616,
+      "mps_driver_gib": 3.20220947265625,
+      "dtype": "float16",
+      "load_seconds": 1.164528249995783
+    },
+    {
+      "batch": 16,
+      "steer_hook": false,
+      "seconds": 6.048071999975946,
+      "generated_tokens": 1024,
+      "tok_per_s": 169.31015371577465,
+      "prompt_tokens": 53,
+      "mps_allocated_gib": 2.3019542694091797,
+      "mps_driver_gib": 3.54620361328125,
+      "dtype": "float16",
+      "load_seconds": 1.164528249995783
+    },
+    {
+      "batch": 16,
+      "steer_hook": true,
+      "seconds": 3.092821250029374,
+      "generated_tokens": 1024,
+      "tok_per_s": 331.0892926612796,
+      "prompt_tokens": 53,
+      "mps_allocated_gib": 2.3019542694091797,
+      "mps_driver_gib": 3.54620361328125,
+      "dtype": "float16",
+      "load_seconds": 1.164528249995783
+    },
+    {
+      "batch": 32,
+      "steer_hook": false,
+      "seconds": 3.651951416977681,
+      "generated_tokens": 2048,
+      "tok_per_s": 560.7960693230975,
+      "prompt_tokens": 53,
+      "mps_allocated_gib": 2.3020243644714355,
+      "mps_driver_gib": 3.600738525390625,
+      "dtype": "float16",
+      "load_seconds": 1.164528249995783
+    },
+    {
+      "batch": 32,
+      "steer_hook": true,
+      "seconds": 2.782286292000208,
+      "generated_tokens": 2048,
+      "tok_per_s": 736.0852856474652,
+      "prompt_tokens": 53,
+      "mps_allocated_gib": 2.3020243644714355,
+      "mps_driver_gib": 3.600738525390625,
+      "dtype": "float16",
+      "load_seconds": 1.164528249995783
+    }
+  ],
+  "prefill": [
+    {
+      "batch": 1,
+      "seq": 160,
+      "seconds": 0.044305749994236976,
+      "tokens_per_s": 3611.2694180961125,
+      "dtype": "bfloat16"
+    },
+    {
+      "batch": 16,
+      "seq": 160,
+      "seconds": 1.4600738750305027,
+      "tokens_per_s": 1753.3359398999714,
+      "dtype": "bfloat16"
+    },
+    {
+      "batch": 1,
+      "seq": 160,
+      "seconds": 0.030298792000394315,
+      "tokens_per_s": 5280.738585152759,
+      "dtype": "float16"
+    },
+    {
+      "batch": 16,
+      "seq": 160,
+      "seconds": 0.5941484579816461,
+      "tokens_per_s": 4308.687442691438,
+      "dtype": "float16"
+    }
+  ],
+  "provenance": {
+    "model_id": "/Users/anuj/Agents/tools/models/hf/unsloth--Llama-3.2-1B-Instruct",
+    "dtype": "torch.float16",
+    "device": "mps",
+    "device_name": "apple-mps",
+    "load_in_4bit": false,
+    "attn_implementation": "sdpa",
+    "num_hidden_layers": 16,
+    "hidden_size": 2048,
+    "num_parameters": 1235814400,
+    "transformers_version": "5.15.0",
+    "torch_version": "2.9.1",
+    "model_name": "unsloth/Llama-3.2-1B-Instruct",
+    "model_path": "/Users/anuj/Agents/tools/models/hf/unsloth--Llama-3.2-1B-Instruct"
+  },
+  "mlx": {
+    "single_stream_tok_per_s": 69.3621417404427,
+    "tokens": 65,
+    "seconds": 0.9371106250328012,
+    "dtype": "as stored (bf16)"
+  }
+}

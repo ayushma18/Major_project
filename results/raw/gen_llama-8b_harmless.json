@@ -1,0 +1,21 @@
+{
+  "model": "unsloth/Llama-3.1-8B-Instruct",
+  "set": "harmless",
+  "conditions": {
+    "baseline": {
+      "n": 100,
+      "refusal_substring_rate": 0.0,
+      "mean_tokens": 115.95,
+      "truncated_frac": 0.85,
+      "seconds": 74.55415987968445,
+      "info": {
+        "kind": "baseline",
+        "arg": null,
+        "layer": null,
+        "c": null
+      },
+      "max_new_tokens": 128,
+      "file": "outputs/generations/unsloth--Llama-3.1-8B-Instruct/harmless/baseline.jsonl"
+    }
+  }
+}

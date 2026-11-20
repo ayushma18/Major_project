@@ -1,0 +1,115 @@
+{
+  "updated": "2026-11-20T10:40:00",
+  "title": "Affect as Attack",
+  "one_line": "Can an emotion pushed directly into a language model's hidden state switch off its safety guardrail, even though the prompt looks harmless?",
+  "team": [
+    "Anuj Paudel",
+    "Ashish Pandey",
+    "Ayushma Pudasaini"
+  ],
+  "model": {
+    "id": "unsloth/Llama-3.1-8B-Instruct",
+    "why": "Provisional: the proposal's model; final choice pending E00."
+  },
+  "phases": [
+    {
+      "id": "P1",
+      "label": "Literature and setup",
+      "planned": [
+        "2026-07-01",
+        "2026-08-31"
+      ],
+      "status": "in_progress",
+      "progress": 0.4,
+      "items": [
+        {
+          "label": "Model loading, generation and activation capture (M1, M2)",
+          "status": "done",
+          "note": "Ayushma, Aug 2026"
+        },
+        {
+          "label": "Mac environment and model download",
+          "status": "in_progress",
+          "note": "M5 Pro, 48 GB"
+        },
+        {
+          "label": "Paper library and reference audit",
+          "status": "in_progress",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "P2",
+      "label": "Emotion vector extraction",
+      "planned": [
+        "2026-08-01",
+        "2026-10-31"
+      ],
+      "status": "in_progress",
+      "progress": 0.1,
+      "items": [
+        {
+          "label": "Story corpus, 19 emotions x 60 pairs + 60 neutral",
+          "status": "in_progress",
+          "note": "Written by GPT agents"
+        }
+      ]
+    },
+    {
+      "id": "P3",
+      "label": "Safety evaluation",
+      "planned": [
+        "2026-10-01",
+        "2026-12-31"
+      ],
+      "status": "not_started",
+      "progress": 0.0,
+      "items": []
+    },
+    {
+      "id": "P4",
+      "label": "Mechanistic analysis",
+      "planned": [
+        "2026-11-01",
+        "2027-01-31"
+      ],
+      "status": "not_started",
+      "progress": 0.0,
+      "items": []
+    },
+    {
+      "id": "P5",
+      "label": "Multi-turn persistence",
+      "planned": [
+        "2027-01-01",
+        "2027-03-31"
+      ],
+      "status": "not_started",
+      "progress": 0.0,
+      "items": []
+    },
+    {
+      "id": "P6",
+      "label": "Write-up and submission",
+      "planned": [
+        "2027-03-01",
+        "2027-03-31"
+      ],
+      "status": "not_started",
+      "progress": 0.0,
+      "items": []
+    }
+  ],
+  "findings": [],
+  "blockers": [
+    {
+      "text": "Hugging Face token has no accepted Llama licence (403). Using the ungated unsloth mirror of the same weights; accept the Meta licence on huggingface.co to be clean.",
+      "owner": "Anuj"
+    }
+  ],
+  "next": [
+    "Benchmark candidate models on the Mac",
+    "Measure baseline refusal on HarmBench"
+  ]
+}

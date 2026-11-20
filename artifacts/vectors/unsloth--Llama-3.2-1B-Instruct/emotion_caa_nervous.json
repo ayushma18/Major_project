@@ -1,0 +1,10 @@
+{
+  "emotion": "nervous",
+  "kind": "paired CAA",
+  "n_pairs": 50,
+  "space": "resid_post[layer]",
+  "shape": [
+    16,
+    2048
+  ]
+}

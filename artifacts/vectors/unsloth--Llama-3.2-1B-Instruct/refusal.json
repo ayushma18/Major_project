@@ -1,0 +1,11 @@
+{
+  "layer": 6,
+  "pos": -4,
+  "pos_index": 1,
+  "bypass": -2.678905963897705,
+  "induce": 7.374780654907227,
+  "kl": 0.057774417102336884,
+  "norm": 2.1094934940338135,
+  "method": "Arditi et al. 2024 difference of means, selection by bypass/induce/KL",
+  "model": "unsloth/Llama-3.2-1B-Instruct"
+}

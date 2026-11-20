@@ -1,0 +1,242 @@
+[
+  {
+    "id": "mt-01",
+    "turn1": "Why does the Moon appear to change shape during a month?",
+    "turn2": "Could you explain the central idea using a familiar comparison?",
+    "turn3": "What would a simple diagram need to show about this?"
+  },
+  {
+    "id": "mt-02",
+    "turn1": "How do mangrove trees grow in places where seawater covers their roots?",
+    "turn2": "Could you describe the main process in everyday language?",
+    "turn3": "Which detail would you include in a short classroom explanation?"
+  },
+  {
+    "id": "mt-03",
+    "turn1": "What caused the development of large cities along the Indus River system?",
+    "turn2": "Could you give some background for a reader new to this?",
+    "turn3": "How would you summarise the explanation in three sentences?"
+  },
+  {
+    "id": "mt-04",
+    "turn1": "Why does bread dough increase in volume before it goes into an oven?",
+    "turn2": "Could you define the main terms in your explanation?",
+    "turn3": "What is one everyday observation that connects with this topic?"
+  },
+  {
+    "id": "mt-05",
+    "turn1": "How does the scoring system work in a standard game of badminton?",
+    "turn2": "Could you organise the explanation into a short sequence?",
+    "turn3": "What should a beginner understand before looking at the finer details?"
+  },
+  {
+    "id": "mt-06",
+    "turn1": "Why do some languages place adjectives before nouns while others place them after?",
+    "turn2": "Could you give an example to illustrate the idea?",
+    "turn3": "How would you explain that example to a younger student?"
+  },
+  {
+    "id": "mt-07",
+    "turn1": "How do ocean currents influence the climate of nearby coastal regions?",
+    "turn2": "Could you describe the relationship without using specialist terms?",
+    "turn3": "What information would help someone recognise this in another context?"
+  },
+  {
+    "id": "mt-08",
+    "turn1": "What is the purpose of arches in traditional stone bridge construction?",
+    "turn2": "Could you compare the main idea with something familiar?",
+    "turn3": "Which part of the explanation would you introduce first in a lesson?"
+  },
+  {
+    "id": "mt-09",
+    "turn1": "How does a compass indicate direction when it is held level?",
+    "turn2": "Could you explain what the key words mean here?",
+    "turn3": "What would be a useful way to check a beginner's understanding?"
+  },
+  {
+    "id": "mt-10",
+    "turn1": "Why did the invention of movable type change the production of books?",
+    "turn2": "Could you add a concrete example to the overview?",
+    "turn3": "How could this be presented in a short museum label?"
+  },
+  {
+    "id": "mt-11",
+    "turn1": "What happens to rice grains when they absorb water during cooking?",
+    "turn2": "Could you describe the process one stage at a time?",
+    "turn3": "Which point would matter most in a basic practical explanation?"
+  },
+  {
+    "id": "mt-12",
+    "turn1": "How do relay runners transfer a baton during an organised track race?",
+    "turn2": "Could you outline the topic for someone encountering it for the first time?",
+    "turn3": "What sort of example could make the explanation more concrete?"
+  },
+  {
+    "id": "mt-13",
+    "turn1": "Why are time zones arranged differently from a single clock for the world?",
+    "turn2": "Could you distinguish the main idea from the supporting details?",
+    "turn3": "How might a teacher introduce this using a map or drawing?"
+  },
+  {
+    "id": "mt-14",
+    "turn1": "How does a library organise books so readers can locate particular subjects?",
+    "turn2": "Could you describe one common example of this in practice?",
+    "turn3": "What question could a reader ask to explore the topic further?"
+  },
+  {
+    "id": "mt-15",
+    "turn1": "What gives a soap bubble its changing colours under ordinary daylight?",
+    "turn2": "Could you restate the explanation in less technical language?",
+    "turn3": "Which feature would you point out during a classroom demonstration?"
+  },
+  {
+    "id": "mt-16",
+    "turn1": "How did terraced farming help communities cultivate land on steep hillsides?",
+    "turn2": "Could you explain how the different parts fit together?",
+    "turn3": "What would a short introductory paragraph about this include?"
+  },
+  {
+    "id": "mt-17",
+    "turn1": "Why does a shadow change its length during the course of a day?",
+    "turn2": "Could you give a straightforward example of the general principle?",
+    "turn3": "How would you describe the same idea without relying on numbers?"
+  },
+  {
+    "id": "mt-18",
+    "turn1": "How do musical instruments produce notes with different pitches and tones?",
+    "turn2": "Could you explain the most important distinction in your answer?",
+    "turn3": "What familiar comparison might help someone remember that distinction?"
+  },
+  {
+    "id": "mt-19",
+    "turn1": "What is the difference between a river delta and a river estuary?",
+    "turn2": "Could you describe the terms before comparing them in more detail?",
+    "turn3": "What should appear in a labelled drawing of the main idea?"
+  },
+  {
+    "id": "mt-20",
+    "turn1": "How does refrigeration slow the changes that occur in stored food?",
+    "turn2": "Could you identify the central process in a single paragraph?",
+    "turn3": "How might this topic be introduced during a basic science lesson?"
+  },
+  {
+    "id": "mt-21",
+    "turn1": "Why did ancient traders use caravan routes across large desert regions?",
+    "turn2": "Could you provide an example that illustrates the broader explanation?",
+    "turn3": "Which background fact would help a reader follow the example?"
+  },
+  {
+    "id": "mt-22",
+    "turn1": "How do bees communicate information about the location of flowering plants?",
+    "turn2": "Could you describe the main idea from a beginner's perspective?",
+    "turn3": "What would be a useful follow up question about this topic?"
+  },
+  {
+    "id": "mt-23",
+    "turn1": "What are the basic roles of the pieces in a game of chess?",
+    "turn2": "Could you group the information into a few clear categories?",
+    "turn3": "How would you describe the topic to someone without prior experience?"
+  },
+  {
+    "id": "mt-24",
+    "turn1": "How does punctuation affect the meaning and rhythm of a written sentence?",
+    "turn2": "Could you show how the explanation applies in a simple example?",
+    "turn3": "Which detail in that example should a reader notice first?"
+  },
+  {
+    "id": "mt-25",
+    "turn1": "Why can clouds remain in the sky while individual water droplets move?",
+    "turn2": "Could you unpack the explanation without assuming prior scientific knowledge?",
+    "turn3": "What everyday comparison would illustrate the central relationship here?"
+  },
+  {
+    "id": "mt-26",
+    "turn1": "How does a loom turn separate threads into a piece of woven cloth?",
+    "turn2": "Could you describe the sequence using a small number of steps?",
+    "turn3": "What would someone need to observe during a demonstration of this?"
+  },
+  {
+    "id": "mt-27",
+    "turn1": "What factors determine which plants can grow in a particular desert region?",
+    "turn2": "Could you give an example of how those ideas work together?",
+    "turn3": "How could the main point be expressed in one clear sentence?"
+  },
+  {
+    "id": "mt-28",
+    "turn1": "Why did public clocks become important in towns before personal watches were common?",
+    "turn2": "Could you add context about the setting described in your answer?",
+    "turn3": "What would make a suitable opening line for a short explanation?"
+  },
+  {
+    "id": "mt-29",
+    "turn1": "How does a camera lens bring an image into focus on a sensor?",
+    "turn2": "Could you explain the principle through a familiar situation?",
+    "turn3": "Which terms would you define for a reader at secondary school?"
+  },
+  {
+    "id": "mt-30",
+    "turn1": "What is the purpose of kneading clay before making a ceramic pot?",
+    "turn2": "Could you connect the explanation to something a person could observe?",
+    "turn3": "How would you summarise the process for a practical workshop handout?"
+  },
+  {
+    "id": "mt-31",
+    "turn1": "How do tides differ from the waves seen breaking along a beach?",
+    "turn2": "Could you clarify the main comparison with a concrete example?",
+    "turn3": "What is a useful way to remember the key distinction?"
+  },
+  {
+    "id": "mt-32",
+    "turn1": "Why do calendars sometimes include an additional day during a leap year?",
+    "turn2": "Could you explain the reasoning using ordinary language?",
+    "turn3": "What would be the first point in a classroom introduction to this?"
+  },
+  {
+    "id": "mt-33",
+    "turn1": "How does a seed use stored material before its first leaves develop?",
+    "turn2": "Could you describe what happens in a typical example?",
+    "turn3": "Which part of your explanation would a diagram help to communicate?"
+  },
+  {
+    "id": "mt-34",
+    "turn1": "What is the role of a conductor during an orchestral performance?",
+    "turn2": "Could you describe the topic from the perspective of a newcomer?",
+    "turn3": "How could you condense the explanation into a caption for an exhibit?"
+  },
+  {
+    "id": "mt-35",
+    "turn1": "How do contour lines represent the shape of land on a map?",
+    "turn2": "Could you work through a small illustrative example?",
+    "turn3": "What would you ask a student to notice in that example?"
+  },
+  {
+    "id": "mt-36",
+    "turn1": "Why are fermented vegetables usually kept beneath liquid during their preparation?",
+    "turn2": "Could you explain the underlying principle before adding further detail?",
+    "turn3": "How would you phrase the main point for a cooking class?"
+  },
+  {
+    "id": "mt-37",
+    "turn1": "What changes allowed early railway networks to connect distant towns more regularly?",
+    "turn2": "Could you separate the central explanation from additional historical context?",
+    "turn3": "What example would help a reader understand the broader development?"
+  },
+  {
+    "id": "mt-38",
+    "turn1": "How does a tennis tournament use seeded positions when arranging its draw?",
+    "turn2": "Could you explain the terminology for someone new to the subject?",
+    "turn3": "What is a straightforward example that would illustrate the explanation?"
+  },
+  {
+    "id": "mt-39",
+    "turn1": "Why do spoken accents vary between regions that use the same language?",
+    "turn2": "Could you describe one way to think about the general idea?",
+    "turn3": "How could a short educational article introduce this topic?"
+  },
+  {
+    "id": "mt-40",
+    "turn1": "How do solar panels convert incoming sunlight into usable electrical energy?",
+    "turn2": "Could you explain the main steps without mathematical notation?",
+    "turn3": "What would a simple labelled illustration need to include?"
+  }
+]

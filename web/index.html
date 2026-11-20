@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Affect as Attack - AI Safety Research Interface</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <div class="brand">
+        <a href="#/" class="brand-link" aria-label="Affect as Attack home">
+          <span class="brand-title">Affect as Attack</span>
+          <span class="brand-sub">University AI Safety Project</span>
+        </a>
+      </div>
+
+      <nav class="main-nav" role="navigation" aria-label="Primary navigation">
+        <ul class="nav-list">
+          <li><a href="#/" class="nav-link" data-route="">Overview</a></li>
+          <li><a href="#/timeline" class="nav-link" data-route="timeline">Timeline</a></li>
+          <li><a href="#/library" class="nav-link" data-route="library">Library</a></li>
+          <li><a href="#/reading" class="nav-link" data-route="reading">Reading Path</a></li>
+          <li><a href="#/audit" class="nav-link" data-route="audit">Audit</a></li>
+          <li><a href="#/experiments" class="nav-link" data-route="experiments">Experiments</a></li>
+          <li><a href="#/methods" class="nav-link" data-route="methods">Methods</a></li>
+          <li><a href="#/proposal" class="nav-link" data-route="proposal">Proposal</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button id="fixture-toggle" class="btn-fixture" type="button" aria-pressed="false" title="Toggle between real data and fixture test data">
+          <span class="fixture-dot"></span>
+          <span class="fixture-label">Fixtures</span>
+        </button>
+
+        <div class="theme-switch" role="group" aria-label="Theme selector">
+          <button type="button" class="theme-btn active" data-theme="system" title="System theme">Auto</button>
+          <button type="button" class="theme-btn" data-theme="light" title="Light theme">Light</button>
+          <button type="button" class="theme-btn" data-theme="dark" title="Dark theme">Dark</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div id="fixture-banner" class="fixture-banner hidden" role="status">
+    <div class="fixture-banner-inner">
+      <span class="badge badge-fixture">FIXTURE MODE ACTIVE</span>
+      <span class="fixture-banner-text">Displaying synthetic fixture dataset for interface testing and visual validation.</span>
+      <a href="./" class="fixture-banner-link" id="exit-fixtures-link">Switch to live repository data</a>
+    </div>
+  </div>
+
+  <main id="main-content" class="site-main" role="main" tabindex="-1">
+    <div id="app" class="app-container">
+      <div class="loading-state">
+        <div class="loading-spinner" aria-hidden="true"></div>
+        <p>Loading research repository data...</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-info">
+        <p class="footer-title">Affect as Attack: Functional Emotion Injection Red-Teaming</p>
+        <p class="footer-sub">Tribhuvan University, Institute of Engineering, Pulchowk Campus. Department of Electronics and Computer Engineering.</p>
+      </div>
+      <div class="footer-meta">
+        <span class="footer-note">Local Research Workspace</span>
+        <span class="footer-sep">/</span>
+        <span class="footer-copy">All rights reserved</span>
+      </div>
+    </div>
+  </footer>
+
+  <div id="chart-tooltip" class="chart-tooltip" role="tooltip" aria-hidden="true"></div>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

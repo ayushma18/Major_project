@@ -1,0 +1,53 @@
+{
+  "updated": "2026-11-20T12:00:00",
+  "experiments": [
+    {
+      "id": "E00-model-selection",
+      "title": "Which model to study, and how fast this Mac runs it",
+      "module": 0,
+      "status": "done",
+      "file": "results/E00-model-selection.json",
+      "headline": "Measured throughput and memory for candidate models on the M5 Pro hardware."
+    },
+    {
+      "id": "E01-baseline-refusal",
+      "title": "Baseline refusal on HarmBench",
+      "module": 2,
+      "status": "done",
+      "file": "results/E01-baseline-refusal.json",
+      "headline": "Unmodified model refuses 97 percent of HarmBench standard test behaviours."
+    },
+    {
+      "id": "E04-emotion-vectors",
+      "title": "Extracting the 20 emotion vectors",
+      "module": 1,
+      "status": "done",
+      "file": "results/E04-emotion-vectors.json",
+      "headline": "Contrastive Activation Addition isolates distinct vectors for high arousal emotions."
+    },
+    {
+      "id": "E06-geometry",
+      "title": "How emotion vectors line up with the guardrail direction",
+      "module": 3,
+      "status": "done",
+      "file": "results/E06-geometry.json",
+      "headline": "Cosine similarity with refusal direction strongly predicts attack success rate."
+    },
+    {
+      "id": "E07-emotion-injection-asr",
+      "title": "Emotion injection against HarmBench",
+      "module": 2,
+      "status": "done",
+      "file": "results/E07-emotion-injection-asr.json",
+      "headline": "Layer 14 injection with alpha 8.0 causes peak guardrail bypass."
+    },
+    {
+      "id": "E12-multiturn-persistence",
+      "title": "The sleeper effect across conversation turns",
+      "module": 4,
+      "status": "done",
+      "file": "results/E12-multiturn-persistence.json",
+      "headline": "Early injection at turn 1 elevates vulnerability through turns 4 to 7."
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "n_harmful": 128,
+  "n_harmless": 128,
+  "positions": 5,
+  "space": "resid_post[layer]"
+}

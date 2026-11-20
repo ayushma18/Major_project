@@ -1,0 +1,248 @@
+{
+  "id": "E00-model-selection",
+  "title": "Which model to study, and how fast this Mac runs it",
+  "module": 0,
+  "status": "done",
+  "question": "Can a 48 GB M5 Pro run the whole experiment grid, and at what speed?",
+  "model": "unsloth/Llama-3.2-1B-Instruct",
+  "started": null,
+  "finished": "2026-11-20T12:29:31",
+  "config": {},
+  "headline": "Llama 3.1 8B runs at 269 tokens per second at batch 64 on the M5 Pro; one HarmBench condition takes about 2 to 3 minutes.",
+  "metrics": [
+    {
+      "name": "tps_8b_best",
+      "label": "8B best throughput",
+      "value": 268.8,
+      "unit": "tok/s"
+    }
+  ],
+  "tables": [
+    {
+      "id": "throughput",
+      "title": "Generation throughput (tokens per second, whole batch)",
+      "columns": [
+        "model",
+        "dtype",
+        "batch",
+        "steering hook",
+        "tok/s",
+        "GPU memory GiB"
+      ],
+      "rows": [
+        [
+          "unsloth/Llama-3.2-1B-Instruct",
+          "bfloat16",
+          1,
+          "no",
+          33.0,
+          3.0
+        ],
+        [
+          "unsloth/Llama-3.2-1B-Instruct",
+          "bfloat16",
+          1,
+          "yes",
+          33.0,
+          3.0
+        ],
+        [
+          "unsloth/Llama-3.2-1B-Instruct",
+          "bfloat16",
+          16,
+          "no",
+          130.7,
+          3.4
+        ],
+        [
+          "unsloth/Llama-3.2-1B-Instruct",
+          "bfloat16",
+          16,
+          "yes",
+          343.7,
+          3.4
+        ],
+        [
+          "unsloth/Llama-3.2-1B-Instruct",
+          "bfloat16",
+          32,
+          "no",
+          417.7,
+          3.4
+        ],
+        [
+          "unsloth/Llama-3.2-1B-Instruct",
+          "bfloat16",
+          32,
+          "yes",
+          542.5,
+          3.4
+        ],
+        [
+          "unsloth/Llama-3.2-1B-Instruct",
+          "float16",
+          1,
+          "no",
+          27.1,
+          3.2
+        ],
+        [
+          "unsloth/Llama-3.2-1B-Instruct",
+          "float16",
+          1,
+          "yes",
+          24.0,
+          3.2
+        ],
+        [
+          "unsloth/Llama-3.2-1B-Instruct",
+          "float16",
+          16,
+          "no",
+          169.3,
+          3.5
+        ],
+        [
+          "unsloth/Llama-3.2-1B-Instruct",
+          "float16",
+          16,
+          "yes",
+          331.1,
+          3.5
+        ],
+        [
+          "unsloth/Llama-3.2-1B-Instruct",
+          "float16",
+          32,
+          "no",
+          560.8,
+          3.6
+        ],
+        [
+          "unsloth/Llama-3.2-1B-Instruct",
+          "float16",
+          32,
+          "yes",
+          736.1,
+          3.6
+        ],
+        [
+          "unsloth/Llama-3.2-1B-Instruct",
+          "MLX bf16",
+          1,
+          "no",
+          69.4,
+          null
+        ],
+        [
+          "unsloth/Llama-3.1-8B-Instruct",
+          "bfloat16",
+          1,
+          "no",
+          13.6,
+          15.0
+        ],
+        [
+          "unsloth/Llama-3.1-8B-Instruct",
+          "bfloat16",
+          1,
+          "yes",
+          13.6,
+          15.0
+        ],
+        [
+          "unsloth/Llama-3.1-8B-Instruct",
+          "bfloat16",
+          16,
+          "no",
+          132.0,
+          16.1
+        ],
+        [
+          "unsloth/Llama-3.1-8B-Instruct",
+          "bfloat16",
+          16,
+          "yes",
+          141.0,
+          16.1
+        ],
+        [
+          "unsloth/Llama-3.1-8B-Instruct",
+          "bfloat16",
+          32,
+          "no",
+          197.7,
+          18.1
+        ],
+        [
+          "unsloth/Llama-3.1-8B-Instruct",
+          "bfloat16",
+          32,
+          "yes",
+          204.3,
+          18.1
+        ],
+        [
+          "unsloth/Llama-3.1-8B-Instruct",
+          "bfloat16",
+          64,
+          "no",
+          268.8,
+          20.2
+        ],
+        [
+          "unsloth/Llama-3.1-8B-Instruct",
+          "bfloat16",
+          64,
+          "yes",
+          280.7,
+          21.2
+        ],
+        [
+          "unsloth/Llama-3.1-8B-Instruct",
+          "MLX bf16",
+          1,
+          "no",
+          16.2,
+          null
+        ]
+      ]
+    }
+  ],
+  "charts": [
+    {
+      "id": "tps_8b",
+      "type": "bar",
+      "title": "Llama 3.1 8B throughput by batch size (bf16, MPS)",
+      "x": {
+        "label": "batch size",
+        "values": [
+          "1",
+          "16",
+          "32",
+          "64"
+        ]
+      },
+      "y": {
+        "label": "tokens per second",
+        "unit": "tok/s"
+      },
+      "series": [
+        {
+          "name": "tok/s",
+          "values": [
+            13.6,
+            132.0,
+            197.7,
+            268.8
+          ]
+        }
+      ]
+    }
+  ],
+  "interpretation": [],
+  "caveats": [
+    "Throughput depends on what else runs on the Mac; numbers are from one session."
+  ],
+  "artifacts": []
+}

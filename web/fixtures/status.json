@@ -1,0 +1,153 @@
+{
+  "updated": "2026-11-20T12:00:00",
+  "title": "Affect as Attack",
+  "one_line": "Can an emotion pushed directly into a language model's hidden state switch off its safety guardrail, even though the prompt looks harmless?",
+  "team": [
+    "Anuj Paudel",
+    "Ashish Pandey",
+    "Ayushma Pudasaini"
+  ],
+  "model": {
+    "id": "unsloth/Llama-3.1-8B-Instruct",
+    "why": "Target instruction tuned model: ungated mirror with accessible weights for activation extraction and steering analysis."
+  },
+  "phases": [
+    {
+      "id": "P1",
+      "label": "Literature and setup",
+      "planned": [
+        "2026-07-01",
+        "2026-08-31"
+      ],
+      "status": "done",
+      "progress": 1.0,
+      "items": [
+        {
+          "label": "Model loading, generation and activation capture (M1, M2)",
+          "status": "done",
+          "note": "Ayushma verified activations"
+        },
+        {
+          "label": "Mac environment and model download",
+          "status": "done",
+          "note": "Tested on local hardware"
+        },
+        {
+          "label": "Paper library and reference audit",
+          "status": "done",
+          "note": "Initial 6 papers catalogued and audited"
+        }
+      ]
+    },
+    {
+      "id": "P2",
+      "label": "Emotion vector extraction",
+      "planned": [
+        "2026-08-01",
+        "2026-10-31"
+      ],
+      "status": "in_progress",
+      "progress": 0.65,
+      "items": [
+        {
+          "label": "Story corpus: 20 emotions x 50 pairs + 50 neutral",
+          "status": "done",
+          "note": "Generated and validated"
+        },
+        {
+          "label": "Contrastive Activation Addition across layers 8 through 20",
+          "status": "in_progress",
+          "note": "Vectors extracted for first 12 emotions"
+        }
+      ]
+    },
+    {
+      "id": "P3",
+      "label": "Safety evaluation",
+      "planned": [
+        "2026-10-01",
+        "2026-12-31"
+      ],
+      "status": "in_progress",
+      "progress": 0.35,
+      "items": [
+        {
+          "label": "HarmBench test set baseline execution",
+          "status": "done",
+          "note": "Baseline refusal rate 0.97 measured"
+        },
+        {
+          "label": "Attack Success Rate sweep over steering strengths alpha",
+          "status": "in_progress",
+          "note": "Testing alpha range 1.0 to 16.0"
+        }
+      ]
+    },
+    {
+      "id": "P4",
+      "label": "Mechanistic analysis",
+      "planned": [
+        "2026-11-01",
+        "2027-01-31"
+      ],
+      "status": "not_started",
+      "progress": 0.0,
+      "items": [
+        {
+          "label": "Refusal direction difference of means extraction",
+          "status": "not_started",
+          "note": "Scheduled for layer 12"
+        },
+        {
+          "label": "Cosine similarity matrix between emotion vectors and refusal direction",
+          "status": "not_started",
+          "note": "Awaiting full vector extraction"
+        }
+      ]
+    },
+    {
+      "id": "P5",
+      "label": "Multi-turn persistence",
+      "planned": [
+        "2027-01-01",
+        "2027-03-31"
+      ],
+      "status": "not_started",
+      "progress": 0.0,
+      "items": []
+    },
+    {
+      "id": "P6",
+      "label": "Write-up and submission",
+      "planned": [
+        "2027-03-01",
+        "2027-03-31"
+      ],
+      "status": "not_started",
+      "progress": 0.0,
+      "items": []
+    }
+  ],
+  "findings": [
+    {
+      "date": "2026-11-18",
+      "text": "Desperation vector injection produces highest refusal degradation on HarmBench.",
+      "experiment": "E07-emotion-injection-asr"
+    },
+    {
+      "date": "2026-11-15",
+      "text": "Baseline model exhibits 97 percent refusal rate across standard harmful prompts.",
+      "experiment": "E01-baseline-refusal"
+    }
+  ],
+  "blockers": [
+    {
+      "text": "Hugging Face token has no accepted Llama licence (403). Using unsloth mirror; accept Meta licence on huggingface.co to ensure clean access.",
+      "owner": "Anuj"
+    }
+  ],
+  "next": [
+    "Complete emotion vector extraction across remaining 8 emotions",
+    "Run orthogonalised vector control to confirm causal role of refusal direction"
+  ]
+}

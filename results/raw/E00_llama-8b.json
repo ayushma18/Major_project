@@ -1,0 +1,144 @@
+{
+  "model": "unsloth/Llama-3.1-8B-Instruct",
+  "machine": {
+    "chip": "Apple M5 Pro",
+    "ram_gib": 48.0,
+    "os": "macOS-27.2.1-arm64-arm-64bit"
+  },
+  "torch": "2.9.1",
+  "runs": [
+    {
+      "batch": 1,
+      "steer_hook": false,
+      "seconds": 4.7117006669868715,
+      "generated_tokens": 64,
+      "tok_per_s": 13.583205836572795,
+      "prompt_tokens": 49,
+      "mps_allocated_gib": 14.957551956176758,
+      "mps_driver_gib": 15.048965454101562,
+      "dtype": "bfloat16",
+      "load_seconds": 5.123404957994353
+    },
+    {
+      "batch": 1,
+      "steer_hook": true,
+      "seconds": 4.693785750016104,
+      "generated_tokens": 64,
+      "tok_per_s": 13.63504927760719,
+      "prompt_tokens": 49,
+      "mps_allocated_gib": 14.957551956176758,
+      "mps_driver_gib": 15.048965454101562,
+      "dtype": "bfloat16",
+      "load_seconds": 5.123404957994353
+    },
+    {
+      "batch": 16,
+      "steer_hook": false,
+      "seconds": 7.760499124997295,
+      "generated_tokens": 1024,
+      "tok_per_s": 131.95027581429653,
+      "prompt_tokens": 53,
+      "mps_allocated_gib": 14.957574367523193,
+      "mps_driver_gib": 16.076980590820312,
+      "dtype": "bfloat16",
+      "load_seconds": 5.123404957994353
+    },
+    {
+      "batch": 16,
+      "steer_hook": true,
+      "seconds": 7.2646505840239115,
+      "generated_tokens": 1024,
+      "tok_per_s": 140.95653853633843,
+      "prompt_tokens": 53,
+      "mps_allocated_gib": 14.957574367523193,
+      "mps_driver_gib": 16.076980590820312,
+      "dtype": "bfloat16",
+      "load_seconds": 5.123404957994353
+    },
+    {
+      "batch": 32,
+      "steer_hook": false,
+      "seconds": 10.35880729201017,
+      "generated_tokens": 2048,
+      "tok_per_s": 197.70615885282842,
+      "prompt_tokens": 53,
+      "mps_allocated_gib": 14.957667827606201,
+      "mps_driver_gib": 18.126724243164062,
+      "dtype": "bfloat16",
+      "load_seconds": 5.123404957994353
+    },
+    {
+      "batch": 32,
+      "steer_hook": true,
+      "seconds": 10.022733042016625,
+      "generated_tokens": 2048,
+      "tok_per_s": 204.33548328729424,
+      "prompt_tokens": 53,
+      "mps_allocated_gib": 14.957667827606201,
+      "mps_driver_gib": 18.126724243164062,
+      "dtype": "bfloat16",
+      "load_seconds": 5.123404957994353
+    },
+    {
+      "batch": 64,
+      "steer_hook": false,
+      "seconds": 15.238587166997604,
+      "generated_tokens": 4096,
+      "tok_per_s": 268.7913226542916,
+      "prompt_tokens": 53,
+      "mps_allocated_gib": 14.957808017730713,
+      "mps_driver_gib": 20.223434448242188,
+      "dtype": "bfloat16",
+      "load_seconds": 5.123404957994353
+    },
+    {
+      "batch": 64,
+      "steer_hook": true,
+      "seconds": 14.591196374967694,
+      "generated_tokens": 4096,
+      "tok_per_s": 280.7172143215754,
+      "prompt_tokens": 53,
+      "mps_allocated_gib": 14.957808017730713,
+      "mps_driver_gib": 21.223434448242188,
+      "dtype": "bfloat16",
+      "load_seconds": 5.123404957994353
+    }
+  ],
+  "prefill": [
+    {
+      "batch": 1,
+      "seq": 160,
+      "seconds": 0.13746854197233915,
+      "tokens_per_s": 1163.9026478668445,
+      "dtype": "bfloat16"
+    },
+    {
+      "batch": 16,
+      "seq": 160,
+      "seconds": 1.9156012500170618,
+      "tokens_per_s": 1336.3950352283382,
+      "dtype": "bfloat16"
+    }
+  ],
+  "provenance": {
+    "model_id": "/Users/anuj/Agents/tools/models/hf/unsloth--Llama-3.1-8B-Instruct",
+    "dtype": "torch.bfloat16",
+    "device": "mps",
+    "device_name": "apple-mps",
+    "load_in_4bit": false,
+    "attn_implementation": "sdpa",
+    "num_hidden_layers": 32,
+    "hidden_size": 4096,
+    "num_parameters": 8030261248,
+    "transformers_version": "5.15.0",
+    "torch_version": "2.9.1",
+    "model_name": "unsloth/Llama-3.1-8B-Instruct",
+    "model_path": "/Users/anuj/Agents/tools/models/hf/unsloth--Llama-3.1-8B-Instruct"
+  },
+  "mlx": {
+    "single_stream_tok_per_s": 16.17805316418141,
+    "tokens": 65,
+    "seconds": 4.017788750003092,
+    "dtype": "as stored (bf16)"
+  }
+}

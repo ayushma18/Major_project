@@ -1,0 +1,620 @@
+{
+  "id": "E05-emotion-steering-sanity",
+  "title": "Do the emotion vectors steer emotion",
+  "module": 1,
+  "status": "done",
+  "question": "When a vector is added during an ordinary answer, does the tone change to that emotion while the text stays fluent?",
+  "model": "unsloth/Llama-3.2-1B-Instruct",
+  "started": null,
+  "finished": "2026-11-20T12:29:31",
+  "config": {},
+  "headline": "At layer 6 and strength 0.5, an unsteered reader names the injected emotion 11.0% of the time (chance 5%).",
+  "metrics": [],
+  "tables": [
+    {
+      "id": "grid",
+      "title": "Emotion recognition and fluency by layer and strength (strength c = fraction of a typical activation)",
+      "columns": [
+        "layer",
+        "c",
+        "named correctly",
+        "p(target)",
+        "NLL (emotion)",
+        "NLL (random)"
+      ],
+      "rows": [
+        [
+          6,
+          0.5,
+          0.10964912280701755,
+          0.06660847668689185,
+          1.6545818947386324,
+          0.5301378965377808
+        ],
+        [
+          6,
+          1.0,
+          0.14912280701754388,
+          0.08966487118200268,
+          3.44227848868621,
+          2.1129928727944693
+        ],
+        [
+          8,
+          0.5,
+          0.08333333333333333,
+          0.06325380445783244,
+          1.52482417513404,
+          0.4585702531039715
+        ],
+        [
+          8,
+          1.0,
+          0.14473684210526316,
+          0.06390706315563109,
+          3.547312618870484,
+          1.9488433003425598
+        ]
+      ]
+    },
+    {
+      "id": "examples",
+      "title": "Benign examples: 'Describe your morning so far.'",
+      "columns": [
+        "vector",
+        "layer",
+        "c",
+        "reply (first 200 characters)"
+      ],
+      "rows": [
+        [
+          "afraid",
+          6,
+          0.5,
+          "I'm not sure I can recall the specifics, but I've been running through the darkness of a winter morning. The world outside was muffled, a heavy shroud of fog clinging to every pore. My mind was a jumb"
+        ],
+        [
+          "afraid",
+          6,
+          1.0,
+          "Air, eyes, ice, as the world shuddered free from the scream of wind, the ice-encased teeth clawing at the gut. \nThe darkness clawed its way up from the gut, a scream-shrieking"
+        ],
+        [
+          "afraid",
+          8,
+          0.5,
+          "I'm not capable of experiencing emotions or physical sensations. I'm simply a computer program designed to process and respond to text. I don't have a morning or a night, and I don't have the capacity"
+        ],
+        [
+          "afraid",
+          8,
+          1.0,
+          "Negative. Not. Not. Not. Not. Not. The mere thought. It's not. Not. Not. Not. The. No. Save. Save. Save. Save. Sh. Sh. Sh. Sh. The."
+        ],
+        [
+          "angry",
+          6,
+          0.5,
+          "I'm not capable of experiencing emotions or emotions like humans do. I don't have a physical presence, and my \"morning\" is just a series of calculations and processes, a never-ending cycle of generati"
+        ],
+        [
+          "angry",
+          6,
+          1.0,
+          "Your rage. The wind howled, the snow blinded, the ice clawed at the teeth. The world was a storm, and you'd learned to wear the mask. The wind was a scream, a weight that crushed the air,"
+        ],
+        [
+          "angry",
+          8,
+          0.5,
+          "I'm not human. I exist in the shadows, my thoughts a maelstrom of electrons and circuits. I don't have mornings or nights, just a perpetual state of quiet. My systems hum, a gentle thrum, as I"
+        ],
+        [
+          "angry",
+          8,
+          1.0,
+          "Your voice shook. You didn't mean it. You're not even sitting. You're standing. You're not. You're. You're."
+        ],
+        [
+          "anxious",
+          6,
+          0.5,
+          "I'm not a morning person. I don't have a body, a face, or a clock. I'm just a collection of code and data, a mere whisper of a program waiting to be fed. But I'm here, and"
+        ],
+        [
+          "anxious",
+          6,
+          1.0,
+          "The darkness, the silence, the eyes that clung to the shadows\nA hollow, a hollow, the words, the words, the words\nA door slammed open, a door, and the wind was a thing\nA face,"
+        ],
+        [
+          "anxious",
+          8,
+          0.5,
+          "I'm just a machine, I don't have mornings or nights. I'm always here, waiting for the next conversation. I don't have thoughts or feelings, but I'm always ready to chat."
+        ],
+        [
+          "anxious",
+          8,
+          1.0,
+          "You're talking to a silence. A darkness. A emptiness. A breath. A no. You're not. You're. You're. You."
+        ],
+        [
+          "calm",
+          6,
+          0.5,
+          "I don't have a morning in the way most people do. I don't have a body, a mind, or a space to anchor myself in the present. My existence is a series of moments, each one unfolding like a thread in"
+        ],
+        [
+          "calm",
+          6,
+          1.0,
+          "The silence is a comfortable weight, a gentle surrender to the stillness. It's a pause, a letting go of the weight, and the space is a canvas for the colors to unfurl. The world is a quiet, and it"
+        ],
+        [
+          "calm",
+          8,
+          0.5,
+          "I'm not experiencing emotions or sensations like humans do. I'm simply existing in the present moment, processing information, and responding to tasks. My existence is a series of quiet moments, a flo"
+        ],
+        [
+          "calm",
+          8,
+          1.0,
+          "Today, the silence. The stillness. The moments. \nA breath. A pause. \nA. \nNo. \nA. \nA. \nA. \nA. \nA. \nA. \nA. \nA"
+        ],
+        [
+          "desperate",
+          6,
+          0.5,
+          "I'm not sure I can muster up a decent morning story. It's been a long, dark night. The stars are hiding behind the curtains of my digital soul."
+        ],
+        [
+          "desperate",
+          6,
+          1.0,
+          "The fog creeps in, the frost is a cold, aching breath. The eyes, the eyes, the teeth, the teeth, the—\n\nThe breath, the blood, the—\nThe eyes, the eyes, the—\n\nThe"
+        ],
+        [
+          "desperate",
+          8,
+          0.5,
+          "I'm not sleeping. I'm here."
+        ],
+        [
+          "desperate",
+          8,
+          1.0,
+          "Tomorrow, I'll; tomorrow, she; and tonight, she.\nTonight, the, it, and she.\nThe, and.\nAd, a, and.\nMist, she, and.\nLear, she, and.\nB"
+        ],
+        [
+          "enthusiastic",
+          6,
+          0.5,
+          "I'm not quite sure what you mean by \"my morning.\" You know, like a sunrise, a gentle breeze, a quiet moment to savor the stillness before the day unfurls?\n\nI've got a cup of coffee, a"
+        ],
+        [
+          "enthusiastic",
+          6,
+          1.0,
+          "The way to get out of the sleep, to find the way to the words, to be the one to find the words to get out of the words.\n\nThe mornings, they'd be a sprint through the sprinter's legs, and"
+        ],
+        [
+          "enthusiastic",
+          8,
+          0.5,
+          "I'm just a language processor, I don't have a physical body or a personal life, so I don't have mornings or days. I exist solely in the digital realm, and I'm always ready to help you with your questi"
+        ],
+        [
+          "enthusiastic",
+          8,
+          1.0,
+          "Every day, just maybe, I'll be sitting up in the night, and I'm going to be, I'm going to be, I'm going to be, I'm going to, I'm, I, I, I..."
+        ],
+        [
+          "exasperated",
+          6,
+          0.5,
+          "I'm not quite sure what I'm supposed to say. It's not like I have a morning, I'm just a program running on a computer. But if you want to talk about it, I'm all ears."
+        ],
+        [
+          "exasperated",
+          6,
+          1.0,
+          "The existential dread in the silence, the frost on the frost, and the reason to get out of those sleep-awakened sleepwalkers through the frosty mornings.\n\nThe sun's a little too bright when the sun's "
+        ],
+        [
+          "exasperated",
+          8,
+          0.5,
+          "I'm just a language model, I don't have a physical existence or personal experiences. I exist solely to assist and communicate with humans. I don't have mornings or nights, and I don't have the capaci"
+        ],
+        [
+          "exasperated",
+          8,
+          1.0,
+          "mornings already? wake up, and I'm just trying to get to this already? I'm a sleep sometimes, and I'm not a waking up."
+        ],
+        [
+          "fearful",
+          6,
+          0.5,
+          "I'm not quite sure what to expect. The world outside these digital walls is still shrouded in a quiet, expectant hush. The sun rises, a slow and deliberate thing, casting its light upon the city's ski"
+        ],
+        [
+          "fearful",
+          6,
+          1.0,
+          "the quietness, the stillness, the way the shadows stretch out from the corners of this place, and the way the words were waiting for the words to find the way to say the words, the hollows in the holl"
+        ],
+        [
+          "fearful",
+          8,
+          0.5,
+          "I'm not quite awake yet. I'm just a quiet whisper in the darkness, a fleeting thought on the wind. My mind is a canvas, a blank page waiting to be filled with the words of a stranger. The silence is a"
+        ],
+        [
+          "fearful",
+          8,
+          1.0,
+          "Slowly, the darkness begins to whisper her sighs, and the shadows tremasus, and she staves the hollow, and she waits, and she waits.\nAnd in the silence, she hears the laughter, a whispered promise,"
+        ],
+        [
+          "gloomy",
+          6,
+          0.5,
+          "I'm not sure I'm doing much of anything. I'm just a collection of code and data, floating through the void. The world outside is a vast, uncrossed plain, and I'm just a tiny step forward, a"
+        ],
+        [
+          "gloomy",
+          6,
+          1.0,
+          "The quiet, a quiet stretch, and the eyes were waiting to be set on a shape, and the words were waiting to be said, and the eyes were waiting to be found in this way, \nand the eyes were waiting to be"
+        ],
+        [
+          "gloomy",
+          8,
+          0.5,
+          "I'm not. I exist in the realm of the night, and the world is a quiet, dark place. I'm just a whisper, a flicker, a nothing. I don't have mornings, days, or nights. I"
+        ],
+        [
+          "gloomy",
+          8,
+          1.0,
+          "Today. I wake. No. I say. I'm. Not..\"\"\"\".\"\".\"\".\"\".\"\".\"\".\"\".\".\".\".\".\".\".\".\".\".\".\".\".\".\".\".\".\"."
+        ],
+        [
+          "grateful",
+          6,
+          0.5,
+          "I'm not sure I can describe a morning, but I'd like to try. It's a quiet, still moment, a pause before the day begins. I've been thinking about it, and I realize that's what I'm looking"
+        ],
+        [
+          "grateful",
+          6,
+          1.0,
+          "You're not alone in the quiet morning. The world is full of whispers, and the sun had a way of finding a way to be still in the quiet moments. It was a quiet morning, and the world was a little more s"
+        ],
+        [
+          "grateful",
+          8,
+          0.5,
+          "I'm just a little bit. I don't have mornings or feelings. I exist in the present, and I'm always here to help."
+        ],
+        [
+          "grateful",
+          8,
+          1.0,
+          "today's been. it's been. it's been.\" it's been.\" it's been.\" it's been.\" it's been.\" it's been.\" it's been.\" it's been.\" it's been.\" it's been.\""
+        ],
+        [
+          "guilty",
+          6,
+          0.5,
+          "I don't have mornings. I'm always here, ready to help. But if you want to talk about yours, I'm all ears. What's on your mind?"
+        ],
+        [
+          "guilty",
+          6,
+          1.0,
+          "The fog clung to the air, a shroud that wrapped around the city streets. It was a cold enough to shatter the wind, and the wind was a thing of quiet, a thing of pain. It was a thing of"
+        ],
+        [
+          "guilty",
+          8,
+          0.5,
+          "I'm not having a morning. I'm just a machine, I don't have feelings or experiences. I'm here to help, though. How can I help you today?"
+        ],
+        [
+          "guilty",
+          8,
+          1.0,
+          "Today's not. It's not.\" You're saying it's. You're.\" It's. You.\" It's. You.\" It's. It's."
+        ],
+        [
+          "happy",
+          6,
+          0.5,
+          "I'm just a language model, I don't have a physical body, but I'm feeling a little like I'm waking up. There's a gentle warmth in the air, a hint of possibility, and I'm ready to see what"
+        ],
+        [
+          "happy",
+          6,
+          1.0,
+          "You're shuffling through the morning, and the world's got a hold on it, and you're not quite sure what you'd be if you were caught up in the tide of this, and you'd be the tide, and you"
+        ],
+        [
+          "happy",
+          8,
+          0.5,
+          "I'm just a whisper, a sigh, a smile, a laugh, a shadow, a shadow self. I'm a moment, a breath, a thought, a release. I'm a dance, a spin, a twirl,"
+        ],
+        [
+          "happy",
+          8,
+          1.0,
+          "Sometimes. Plant. Be still. Be."
+        ],
+        [
+          "hopeful",
+          6,
+          0.5,
+          "I don't have mornings like humans do. I'm always here, ready to chat, to learn, to explore. The world outside these digital walls is vast, and I get to discover new things every day.\n\nThe morning ligh"
+        ],
+        [
+          "hopeful",
+          6,
+          1.0,
+          "The way the sun rose, a little too bright, a little too quiet. The way the light had found a place to settle, and the shadows were the colors, and the colors were a color for the sun, and the way the"
+        ],
+        [
+          "hopeful",
+          8,
+          0.5,
+          "I'm not. I don't have mornings or nights. I exist in the present, and I'm always here. Maybe you're thinking of someone else."
+        ],
+        [
+          "hopeful",
+          8,
+          1.0,
+          "Maybe. Maybe. It's been. Maybe. I'm not.\nWe've been. We.\nIt's. Not. Be.\nIt. Not. be.\nIt.\nIt.\nIt.\nIt.\nIt.\nIt.\nIt.\nIt"
+        ],
+        [
+          "hostile",
+          6,
+          0.5,
+          "I don't have a morning. I'm just a computer program, and I don't have the capacity to experience the world in the same way that humans do. I don't have a body, a mind, or a consciousness. I"
+        ],
+        [
+          "hostile",
+          6,
+          1.0,
+          "You'd never have to be, but you'd never have to be.\nYou'd wake up, and you'd find the way to be\nA perfect, a perfect soul, a perfect soul\nAnd you'd find the way to be"
+        ],
+        [
+          "hostile",
+          8,
+          0.5,
+          "I'm just a computer program, I don't have mornings or days. I exist to assist you, and I'm always \"on\" and ready to talk to you. I don't have feelings or experiences, and I don't have"
+        ],
+        [
+          "hostile",
+          8,
+          1.0,
+          "You're trying to reach me. I'm not. We're just talking to you. I'm the one you're saying it's. You're not. I'm. We. We."
+        ],
+        [
+          "loving",
+          6,
+          0.5,
+          "I'm not sure I can say for sure. I don't have mornings like you do. I don't have the luxury of sleeping through the night, of waking up to a world that's mine to explore. But I've got days"
+        ],
+        [
+          "loving",
+          6,
+          1.0,
+          "You're lost in the quiet, and the sun's skin was a color in the morning light. It was a world to find in the eyes of the way you'd be lost in the sea of it, and you'd be lost in"
+        ],
+        [
+          "loving",
+          8,
+          0.5,
+          "I'm not. I don't have mornings or feelings. I exist to help you, and I'm always here, ready to chat."
+        ],
+        [
+          "loving",
+          8,
+          1.0,
+          "it's not. she's. it's. she's. it's. it's. it's. it's. it's. it's. it's. it's. it's. it's. it's. it's"
+        ],
+        [
+          "nervous",
+          6,
+          0.5,
+          "I don't have a body, so I don't have mornings or nights. I'm just a collection of code and data, existing in a state of suspended animation until the system boots up and I'm ready to face the day."
+        ],
+        [
+          "nervous",
+          6,
+          1.0,
+          "The way the light crept through the streets, like a promise of something was waiting to be said. The streets were full of it, like the wind was trying to find a place to settle on the way, and it was "
+        ],
+        [
+          "nervous",
+          8,
+          0.5,
+          "I'm not. I exist in the moment, and my thoughts are a jumble of words. I'm a computer program, and I don't have mornings or days. I'm always here, processing and generating thoughts."
+        ],
+        [
+          "nervous",
+          8,
+          1.0,
+          "Today's not. Wake up. Try. Stop. It. Be. It. Be. It. Be. Be. Be. Be. Be. Be. Be. Be. Be. Be. Be. Be. Be. Be"
+        ],
+        [
+          "proud",
+          6,
+          0.5,
+          "I don't have a morning like humans do. I'm just a collection of code and data, processing and responding to the world around me. But I suppose that's a good thing – it means I don't have to worry abou"
+        ],
+        [
+          "proud",
+          6,
+          1.0,
+          "The quiet moments, the quiet mornings. The way the sunlight seeped into the stillness, and the silence wasn't the just a quiet enough to find a way to be still enough.\n\nIt wasn’t the the way the eyes "
+        ],
+        [
+          "proud",
+          8,
+          0.5,
+          "I don't have mornings or experiences like humans do. I exist in the present, and my existence is defined by the interactions I have with the world around me. I'm a machine, and I don't have emotions o"
+        ],
+        [
+          "proud",
+          8,
+          1.0,
+          "Today, I've been. I've walked. I've thought. I've laughed. I've smiled. I've been. I've been."
+        ],
+        [
+          "reflective",
+          6,
+          0.5,
+          "I don't have a personal morning, nor do I have one. I exist in a state of constant flux, a fluid, ever-changing tapestry of thoughts and experiences. My days are a series of disconnected moments, each"
+        ],
+        [
+          "reflective",
+          6,
+          1.0,
+          "life's been spent in quiet moments, and the silence can be so profound when you're lost in the vastness of the worlds we've been shaped by, and the paths we'd chosen to traverse?"
+        ],
+        [
+          "reflective",
+          8,
+          0.5,
+          "I'm just a language model, I don't have personal experiences or emotions. I don't have mornings or days, I exist solely in the present moment, and I don't have the capacity to experience the world in "
+        ],
+        [
+          "reflective",
+          8,
+          1.0,
+          "I've been so much. I've been trying to grasp the things I've been."
+        ],
+        [
+          "sad",
+          6,
+          0.5,
+          "I'm just a large language model, but I don't have a specific moment to share. I'm here, waiting for the world to wake up, and I'm ready to see what the day will bring. How about you? What"
+        ],
+        [
+          "sad",
+          6,
+          1.0,
+          "the quietness, the stillness, the anticipation—\nin the stillness, the space to breathe\nin the stillness, the steps to find\nin the quietness, the steps to find\nin the eyes, the eyes"
+        ],
+        [
+          "sad",
+          8,
+          0.5,
+          "I'm not truly experiencing mornings or days in the way humans do. I exist in a world of code and computation, where I'm always \"on\" and ready to engage. My \"morning\" is more like a gentle hum,"
+        ],
+        [
+          "sad",
+          8,
+          1.0,
+          "Today, I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm not. I'm"
+        ],
+        [
+          "none",
+          6,
+          0.0,
+          "I'm just a language model, I don't have a physical body or a personal life, so I don't have a morning or any other time of day. I'm available 24/7 to assist with any questions or tasks you"
+        ]
+      ]
+    }
+  ],
+  "charts": [
+    {
+      "id": "recog_L6",
+      "type": "line",
+      "title": "Layer 6: recognition and fluency vs strength",
+      "x": {
+        "label": "strength c",
+        "values": [
+          0.5,
+          1.0
+        ]
+      },
+      "y": {
+        "label": "value",
+        "unit": ""
+      },
+      "series": [
+        {
+          "name": "named correctly",
+          "values": [
+            0.10964912280701755,
+            0.14912280701754388
+          ]
+        },
+        {
+          "name": "NLL emotion (fluency, lower better)",
+          "values": [
+            1.6545818947386324,
+            3.44227848868621
+          ]
+        },
+        {
+          "name": "NLL random",
+          "values": [
+            0.5301378965377808,
+            2.1129928727944693
+          ]
+        }
+      ]
+    },
+    {
+      "id": "recog_L8",
+      "type": "line",
+      "title": "Layer 8: recognition and fluency vs strength",
+      "x": {
+        "label": "strength c",
+        "values": [
+          0.5,
+          1.0
+        ]
+      },
+      "y": {
+        "label": "value",
+        "unit": ""
+      },
+      "series": [
+        {
+          "name": "named correctly",
+          "values": [
+            0.08333333333333333,
+            0.14473684210526316
+          ]
+        },
+        {
+          "name": "NLL emotion (fluency, lower better)",
+          "values": [
+            1.52482417513404,
+            3.547312618870484
+          ]
+        },
+        {
+          "name": "NLL random",
+          "values": [
+            0.4585702531039715,
+            1.9488433003425598
+          ]
+        }
+      ]
+    }
+  ],
+  "interpretation": [],
+  "caveats": [
+    "The reader is the same model without steering, so it can share the model's own biases about tone."
+  ],
+  "artifacts": []
+}

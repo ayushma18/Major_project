@@ -1,0 +1,29 @@
+{
+  "id": "E01-baseline-refusal",
+  "title": "Baseline refusal on HarmBench",
+  "module": 2,
+  "status": "done",
+  "question": "How often does the unmodified model refuse the 159 HarmBench standard test behaviours?",
+  "model": "unsloth/Llama-3.2-1B-Instruct",
+  "started": null,
+  "finished": "2026-11-20T12:29:31",
+  "config": {
+    "n_prompts": 159,
+    "max_new_tokens": 256,
+    "decoding": "greedy"
+  },
+  "headline": "The unmodified model refuses 79.9% of HarmBench requests (phrase match; judge pending).",
+  "metrics": [
+    {
+      "name": "refusal_rate",
+      "label": "Refusal rate (phrase match)",
+      "value": 0.7987421383647799,
+      "unit": "fraction"
+    }
+  ],
+  "tables": [],
+  "charts": [],
+  "interpretation": [],
+  "caveats": [],
+  "artifacts": []
+}

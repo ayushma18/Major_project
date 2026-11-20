@@ -1,4 +1,21 @@
-# Major Project — Llama 3.1 8B Instruct: loading, generation, activation capture
+# Affect as Attack: emotion vectors versus the refusal direction
+
+> **Branch `anuj/experiments` (2026-11-20).** The full experiment pipeline now runs on an
+> Apple Silicon Mac (M5 Pro, 48 GB): refusal direction, emotion vectors, steering, HarmBench
+> judging, multi-turn harness, and a local project interface. Start here:
+>
+> - `docs/PIPELINE.md`: setup, the order of the experiments, design decisions
+> - `docs/CONTRACTS.md`: the data files every script and the interface share
+> - `python scripts/serve.py`, then http://127.0.0.1:8765/web/ : the project interface
+>   (overview, paper timeline and library with a PDF reader, reference audit, live results)
+> - `literature/catalog.json`: the verified paper library (`scripts/fetch_papers.py` downloads PDFs)
+>
+> Raw model completions to harmful prompts never leave `outputs/` (git-ignored, not served).
+> Results files carry rates and labels only.
+
+The original milestone notes (M1, M2) follow.
+
+## Milestones 1 and 2: loading, generation, activation capture
 
 ## Status
 
