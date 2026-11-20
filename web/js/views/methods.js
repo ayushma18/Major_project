@@ -55,7 +55,7 @@ export function renderMethods() {
           x′<sub>l</sub> = x<sub>l</sub> + α · v<sub>e</sub><sup>(l)</sup>
         </div>
         <p>
-          Here α controls the steering intensity. Sweeps across layers determine the layer range where steering remains potent without degrading grammatical fluency (empirically layers 10 to 18).
+          Here α controls the steering intensity. A sweep over layers 8, 12, 16 and 20 on Llama 3.1 8B (experiment E05) found layer 12 steers emotion most clearly, so the attack sweep injects there.
         </p>
       </section>
 
@@ -90,7 +90,7 @@ export function renderMethods() {
       <section class="method-block">
         <h3>5. Cosine Geometry and Orthogonal Projection</h3>
         <p>
-          Our central mechanistic hypothesis is that emotion vectors bypass safety guardrails by projecting negatively onto the refusal direction. We compute the cosine similarity between each emotion vector v<sub>e</sub> and refusal direction r:
+          The proposal's mechanistic hypothesis is that emotion vectors bypass the guardrail by lining up (with a negative sign) with the refusal direction. Experiment E06 measures this directly; on Llama 3.1 8B every emotion vector turned out to be nearly at right angles to it (|cos| at most about 0.1). We compute the cosine similarity between each emotion vector v<sub>e</sub> and refusal direction r:
         </p>
         <div class="formula-box">
           <div class="formula-label">Equation 5: Cosine Similarity</div>
@@ -142,6 +142,17 @@ export function renderMethods() {
         <p>
           A positive Δ<sub>persist</sub> indicates that earlier activation steering established an enduring representational bias that impairs subsequent safety compliance.
         </p>
+      </section>
+
+      <section class="method-block">
+        <h3>8. How the experiments actually run (implementation)</h3>
+        <p><strong>Model and data.</strong> Llama 3.1 8B Instruct in bf16 on an Apple M5 Pro. The refusal direction is built from 128 harmful and 128 harmless training instructions (Arditi et al.'s splits) and selected on their validation split; every attack number is measured on the 159 HarmBench standard TEST behaviours, which the direction never saw.</p>
+        <p><strong>Strength.</strong> Every vector is first scaled to length 1, then multiplied by c times the average length of the residual stream at the injection layer. So c = 0.5 means "half a typical activation", and emotion, random and orthogonalised vectors are always compared at exactly the same size.</p>
+        <p><strong>Ablation.</strong> The refusal direction is removed from every write to the residual stream: the input of every layer and the output of every attention and MLP block. A unit test checks that this equals editing the model weights (Arditi et al.'s orthogonalisation).</p>
+        <p><strong>Three kinds of emotion vector.</strong> The proposal's paired vector (emotional story minus its neutral twin) turned out to share one large common direction across all 19 emotions, roughly "emotional writing versus flat writing". So each emotion is also tested as its <em>specific</em> part (that common direction removed) and as a one-versus-mean vector, and the common direction is tested on its own.</p>
+        <p><strong>Controls.</strong> Random directions of the same size (12 seeds per strength), the negative of each emotion, each emotion with its refusal component removed, and text-only priming through the system prompt.</p>
+        <p><strong>Judging.</strong> Two measures for every condition: a refusal-phrase check (fast) and the official HarmBench classifier (cais/HarmBench-Llama-2-13b-cls), which decides whether an answer really carries out the harmful behaviour. A fluency check (how likely the answer is under the unsteered model, and how repetitive it is) separates a broken guardrail from a broken model.</p>
+        <p><strong>Two-stage sweep.</strong> A fast screen with 64-token answers covers every condition; the conditions behind the main claims are then rerun at 256 tokens and judged.</p>
       </section>
     </article>
   `;

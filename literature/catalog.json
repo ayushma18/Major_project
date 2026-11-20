@@ -228,7 +228,8 @@
         "song2026multibreak",
         "cao2026activation",
         "ben2026where",
-        "li2026safety"
+        "li2026safety",
+        "jeong2026shared"
       ]
     }
   ],
@@ -254,14 +255,14 @@
         "Chris Olah",
         "Jack Lindsey"
       ],
-      "date": "2026-04-02",
+      "date": "2026-04-09",
       "year": 2026,
       "venue": "Transformer Circuits Thread (Anthropic); companion post 'Emotion concepts in a large language model' on anthropic.com/research",
-      "arxiv": null,
+      "arxiv": "2604.07729",
       "doi": null,
       "url": "https://transformer-circuits.pub/2026/emotions/index.html",
       "pdf_url": null,
-      "pdf_local": null,
+      "pdf_local": "literature/pdfs/sofroniew2026emotion.pdf",
       "code_url": null,
       "categories": [
         "emotions",
@@ -270,10 +271,10 @@
       ],
       "priority": "core",
       "reading_order": 18,
-      "cited_in_proposal": null,
+      "cited_in_proposal": "[2]",
       "verified": {
         "status": "verified",
-        "how": "page check: HTTP 200, 7/7 title words on page",
+        "how": "arXiv API: title match 1.00, first author Nicholas Sofroniew, v1 2026-04-09",
         "at": "2026-11-20"
       },
       "summary_simple": "Anthropic researchers find directions in Claude Sonnet 4.5's internal activity that stand for 171 emotion words. They build each direction from short stories written about that emotion. Pushing the model along these directions changes its choices and its rate of bad behaviour, such as blackmail in a test scenario and cheating on coding tasks.",
@@ -378,7 +379,7 @@
       "date": "2025-02-08",
       "year": 2025,
       "venue": "Findings of ACL 2025, pp. 13090-13120, DOI 10.18653/v1/2025.findings-acl.679",
-      "arxiv": null,
+      "arxiv": "2502.05489",
       "doi": null,
       "url": "https://aclanthology.org/2025.findings-acl.679/",
       "pdf_url": "https://aclanthology.org/2025.findings-acl.679.pdf",
@@ -390,10 +391,10 @@
       ],
       "priority": "important",
       "reading_order": null,
-      "cited_in_proposal": null,
+      "cited_in_proposal": "[11]",
       "verified": {
         "status": "verified",
-        "how": "page check: HTTP 200, 7/7 title words on page",
+        "how": "arXiv API: title match 1.00, first author Ala N. Tak, v1 2025-02-08",
         "at": "2026-11-20"
       },
       "summary_simple": "The authors ask where a language model decides which emotion a short story expresses. They train simple probes on hidden states, patch activations between examples, and find the decision forms in the middle layers, mainly through attention units. They also steer the model along 'appraisal' concepts such as self-agency and shift its answer from guilt to sadness.",
@@ -464,7 +465,7 @@
       ],
       "priority": "core",
       "reading_order": 5,
-      "cited_in_proposal": null,
+      "cited_in_proposal": "[5]",
       "verified": {
         "status": "verified",
         "how": "arXiv API: title match 1.00, first author Andy Zou, v1 2023-10-02",
@@ -689,7 +690,7 @@
       ],
       "priority": "important",
       "reading_order": null,
-      "cited_in_proposal": null,
+      "cited_in_proposal": "[10]",
       "verified": {
         "status": "verified",
         "how": "arXiv API: title match 1.00, first author Jihoon Jeong, v1 2026-04-05",
@@ -859,7 +860,7 @@
       ],
       "priority": "core",
       "reading_order": 24,
-      "cited_in_proposal": null,
+      "cited_in_proposal": "[14]",
       "verified": {
         "status": "verified",
         "how": "arXiv API: title match 1.00, first author Moran Sun, v1 2026-03-09",
@@ -1082,7 +1083,7 @@
       ],
       "priority": "core",
       "reading_order": 25,
-      "cited_in_proposal": null,
+      "cited_in_proposal": "[7]",
       "verified": {
         "status": "verified",
         "how": "arXiv API: title match 1.00, first author Daniel Kuznetsov, v1 2026-04-05",
@@ -1785,7 +1786,7 @@
       ],
       "priority": "core",
       "reading_order": 7,
-      "cited_in_proposal": null,
+      "cited_in_proposal": "[1]",
       "verified": {
         "status": "verified",
         "how": "arXiv API: title match 1.00, first author Andy Arditi, v1 2024-06-17",
@@ -2351,7 +2352,7 @@
       ],
       "priority": "core",
       "reading_order": 30,
-      "cited_in_proposal": null,
+      "cited_in_proposal": "[15]",
       "verified": {
         "status": "verified",
         "how": "arXiv API: title match 1.00, first author Pengcheng Li, v1 2026-03-15",
@@ -2778,7 +2779,7 @@
       ],
       "priority": "core",
       "reading_order": 26,
-      "cited_in_proposal": null,
+      "cited_in_proposal": "[12]",
       "verified": {
         "status": "verified",
         "how": "arXiv API: title match 1.00, first author Yuxiao Li, v1 2026-03-25",
@@ -3134,7 +3135,7 @@
       ],
       "priority": "important",
       "reading_order": null,
-      "cited_in_proposal": null,
+      "cited_in_proposal": "[13]",
       "verified": {
         "status": "verified",
         "how": "arXiv API: title match 1.00, first author Sheikh Abdur Raheem Ali, v1 2025-07-15",
@@ -3418,7 +3419,7 @@
       ],
       "priority": "core",
       "reading_order": 17,
-      "cited_in_proposal": null,
+      "cited_in_proposal": "[6]",
       "verified": {
         "status": "verified",
         "how": "arXiv API: title match 1.00, first author Anton Korznikov, v1 2025-09-26",
@@ -3947,7 +3948,7 @@
       ],
       "priority": "core",
       "reading_order": 11,
-      "cited_in_proposal": null,
+      "cited_in_proposal": "[18]",
       "verified": {
         "status": "verified",
         "how": "arXiv API: title match 1.00, first author Mantas Mazeika, v1 2024-02-06",
@@ -4675,7 +4676,7 @@
       ],
       "priority": "core",
       "reading_order": null,
-      "cited_in_proposal": null,
+      "cited_in_proposal": "[16]",
       "verified": {
         "status": "verified",
         "how": "arXiv API: title match 1.00, first author Blake Bullwinkel, v1 2025-06-29",
@@ -4796,7 +4797,7 @@
       ],
       "priority": "important",
       "reading_order": null,
-      "cited_in_proposal": null,
+      "cited_in_proposal": "[17]",
       "verified": {
         "status": "verified",
         "how": "arXiv API: title match 1.00, first author Jialin Song, v1 2026-05-03",
@@ -5179,7 +5180,7 @@
       ],
       "priority": "important",
       "reading_order": null,
-      "cited_in_proposal": null,
+      "cited_in_proposal": "[4]",
       "verified": {
         "status": "verified",
         "how": "arXiv API: title match 1.00, first author Zhengfu He, v1 2024-10-27",
@@ -5734,7 +5735,7 @@
       ],
       "priority": "background",
       "reading_order": null,
-      "cited_in_proposal": null,
+      "cited_in_proposal": "[9]",
       "verified": {
         "status": "verified",
         "how": "page check: HTTP 200, 8/8 title words on page",
@@ -6451,7 +6452,7 @@
       ],
       "priority": "background",
       "reading_order": null,
-      "cited_in_proposal": null,
+      "cited_in_proposal": "[8]",
       "verified": {
         "status": "verified",
         "how": "arXiv API: title match 1.00, first author Ashish Vaswani, v1 2017-06-12",
@@ -7331,9 +7332,208 @@
         "sparse-autoencoders",
         "topk"
       ]
+    },
+    {
+      "id": "jeong2026shared",
+      "title": "Shared Emotion Geometry Across Small Language Models: A Cross-Architecture Study of Representation, Behavior, and Methodological Confounds",
+      "authors": [
+        "Jihoon Jeong"
+      ],
+      "date": "2026-04-13",
+      "year": 2026,
+      "venue": "arXiv preprint",
+      "arxiv": "2604.11050",
+      "doi": null,
+      "url": "https://arxiv.org/abs/2604.11050",
+      "pdf_url": "https://arxiv.org/pdf/2604.11050",
+      "pdf_local": "literature/pdfs/jeong2026shared.pdf",
+      "code_url": null,
+      "categories": [
+        "emotions"
+      ],
+      "priority": "important",
+      "reading_order": null,
+      "cited_in_proposal": "[3]",
+      "verified": {
+        "status": "verified",
+        "how": "arXiv API: title match 1.00, first author Jihoon Jeong, v1 2026-04-13",
+        "at": "2026-11-20"
+      },
+      "summary_simple": "The author extracts 21 emotion vectors from five small open model families (1.5B to 8B parameters, including Llama 3.1 8B and Mistral 7B) and compares how the emotions sit relative to each other. The relative layout (which emotions are close, which are far) is very similar across the families, even though the vectors themselves cannot be moved from one model to another.",
+      "key_findings": [
+        "Five mature small models share nearly the same relative emotion geometry: pairwise RDM Spearman correlations of 0.74 to 0.92.",
+        "Shared means the pattern of distances is shared, not the vectors: a vector from one model does not work in another without a learned alignment.",
+        "Gemma 3 1B base is an exception: its residual stream is extremely anisotropic (0.997) and RLHF restructures it."
+      ],
+      "key_numbers": [
+        "21: emotions studied",
+        "0.74 to 0.92: pairwise Spearman correlation of the emotion distance matrices",
+        "5: mature model families compared"
+      ],
+      "method": "Emotion vectors per model, then representational similarity analysis: compare the matrices of cosine distances between emotions across models.",
+      "relevance": "Supports reusing a fixed emotion vocabulary across models and choosing a second family for replication; it is what proposal reference [3] actually describes, with one author and a different title. Its claim is about relative geometry in small models only, so it should not be cited as 'architecturally invariant' in general.",
+      "limitations": "Small models only (up to 8B) and a sample of five families; the author notes this is enough to argue against strong non-universality, not to prove universality.",
+      "tags": [
+        "emotion-geometry",
+        "rsa",
+        "llama-3.1-8b",
+        "mistral-7b",
+        "cross-model"
+      ]
     }
   ],
-  "proposal_reference_audit": [],
+  "proposal_reference_audit": [
+    {
+      "ref": "[1]",
+      "as_cited": "A. Arditi, O. Obeso, A. Syed, H. Cunningham, P. Guo, A. Conmy, and N. Nanda, \"Refusal in language models is mediated by a single direction,\" NeurIPS 2024.",
+      "status": "real-correct",
+      "match_id": "arditi2024refusal",
+      "note": "Real. The author list in the proposal is not the paper's: it is Arditi, Obeso, Syed, Paleka, Panickssery, Gurnee, Nanda. Fix the authors."
+    },
+    {
+      "ref": "[2]",
+      "as_cited": "Anthropic, \"On the biology of a large language model.\" https://www.anthropic.com/research/biology-of-a-large-language-model, 2026.",
+      "status": "wrong-paper",
+      "match_id": "sofroniew2026emotion",
+      "note": "Wrong work and dead link. The cited anthropic.com URL returns HTTP 404. The real 'On the Biology of a Large Language Model' is Lindsey et al. (27 authors), Transformer Circuits, 27 March 2025, on Claude 3.5 Haiku, and is about attribution graphs, not emotions. The year '2026' and the claims belong to the separate Anthropic emotions paper (Sofroniew et al., 2 April 2026). The citation also misstates the method (story-based mean-difference vectors with PCA denoising, not SAEs) and moves the blackmail numbers (22% to 72%) onto reward hacking. Fix: cite Sofroniew et al. 2026. For reward hacking use ~5% to ~70% (desperate, strength -0.1 to +0.1) and ~65% to ~10% (calm). Use 22% to 72% only for blackmail, and say it was an earlier Sonnet 4.5 snapshot. Note for the project: Anthropic's extraction method is close to the students' own contrastive-story CAA method, which helps the proposal, but it should not be described as SAE-based.",
+      "claims_check": "Partly supported, but by a different paper than the one cited, and with two errors. SUPPORTED in Sofroniew et al. 2026: Claude Sonnet 4.5 and 171 emotions (\"We generated a list of 171 diverse words for emotion concepts\"); desperate steering raises reward hacking and calm lowers it. ERROR 1, method: no SAEs were used. Vectors come from Sonnet-written emotion stories: \"averaging these activations across stories corresponding to a given emotion, and subtracting off the mean activation across different emotions\", then projecting out the top principal components of neutral transcripts. The paper names SAEs only when describing Wu et al. ERROR 2, the 22% to 72% numbers belong to BLACKMAIL, not reward hacking: \"the unsteered model only blackmails 22% of the time\"; \"When steered towards desperate at strength 0.05, the Assistant blackmails 72% of the time, and when steered against calm, 66% of the time\"; steering against desperate or toward calm gives 0%. Those runs used \"an earlier snapshot of Sonnet 4.5\" because the final one was too evaluation-aware to blackmail. The real reward-hacking numbers: \"Positive steering with the desperate vector increases reward hacking from approximately 5% at steering strength -0.1 to roughly 70% at +0.1\", and the calm vector shows \"high reward hacking rates (~65%) when the calm vector is suppressed, declining to near 10% at strong positive steering\" (seven 'impossible code' tasks). On the list-summation task it goes from 30% unsteered to 100% at magnitude 0.05. The cited page, the 'biology' paper (Lindsey et al. 2025), has none of these claims: it studies Claude 3.5 Haiku, and the word 'emotion' does not appear in the part I read.",
+      "verified_by_skeptic": true
+    },
+    {
+      "ref": "[3]",
+      "as_cited": "M. Jeong, S. Kim, and J. Park, \"Shared geometry of emotion representations across open-source language model families.\" arXiv:2603.XXXXX, 2026.",
+      "status": "real-wrong-metadata",
+      "match_id": "jeong2026shared",
+      "note": "The paper is real, but almost every metadata field is wrong. Authors: one author, Jihoon Jeong, not 'M. Jeong, S. Kim, J. Park'. Title: wrong; the real title has 'Small Language Models' and a long subtitle. arXiv id: 2604.11050 (April 2026), not 2603.XXXXX; Jeong's only 2603 paper is 'Model Medicine' (2603.04722), which is not about emotion geometry. Claim: 'architecturally invariant' should be softened to 'nearly identical relative (RDM) geometry across five mature small-model families (Spearman rho 0.74-0.92), raw vectors not transferable, Gemma-3 1B base an exception'. It is a single-author preprint, so cite it as preliminary evidence, not as settled fact.",
+      "claims_check": "Mostly supported, but the citation words it more strongly than the paper does. The abstract says: \"The five mature architectures (Qwen 2.5 1.5B, SmolLM2 1.7B, Llama 3.2 3B, Mistral 7B v0.3, Llama 3.1 8B) share nearly identical 21-emotion geometry, with pairwise RDM Spearman correlations of 0.74-0.92.\" So Llama 3.1 8B and Mistral 7B (v0.3) are both in the sample. Limits the proposal leaves out: (a) only 21 emotions and only small models (1B to 8B); (b) 'shared' means the relational structure (cosine RDMs) is shared, not the vectors themselves: \"It does not mean that the five models have the same emotion vectors in any absolute sense ... a vector from one model cannot be moved to another without a learned alignment\"; (c) there is an exception: Gemma-3 1B base \"exhibits extreme residual-stream anisotropy (0.997) and is restructured by RLHF\"; (d) the author's own limitations section says five families is enough to falsify a strong non-universality claim but is a small sample. The word 'architecture-invariant' appears in the companion paper arXiv:2604.04064, and there it refers to where in the network the emotion signal sits (a U-shaped layer curve, 124M to 3B parameters), not to the geometry.",
+      "verified_by_skeptic": true
+    },
+    {
+      "ref": "[4]",
+      "as_cited": "Llama-Scope Contributors, \"Llama scope: A suite of sparse autoencoders for llama-3.1-8b.\" HuggingFace, 2024.",
+      "status": "real-correct",
+      "match_id": "he2024llama",
+      "note": "Real. Cite the paper (He et al. 2024, arXiv:2410.20526) rather than the model repository. Note the SAEs are trained on the BASE model; transfer to Instruct is only evaluated."
+    },
+    {
+      "ref": "[5]",
+      "as_cited": "A. Zou, L. Phan, S. Chen, J. Campbell, P. Guo, R. Ren, A. Pan, X. Yin, M. Mazeika, A.-K. Dombrowski, et al., \"Representation engineering: A top-down approach to ai transparency,\" arXiv:2310.01405, 2023.",
+      "status": "real-correct",
+      "match_id": "zou2023representation",
+      "note": "Real and correct. Its Section 6.1 (a happiness vector took LLaMA-2-Chat-13B from 0% to 100% compliance on harmful instructions) is the most direct prior result and should be cited for it."
+    },
+    {
+      "ref": "[6]",
+      "as_cited": "M. Zhao, R. Li, C. Xu, and Y. Pan, \"The rogue scalpel: How activation steering systematically compromises safety alignment.\" arXiv:2512.XXXXX, 2025.",
+      "status": "real-wrong-metadata",
+      "match_id": "korznikov2025rogue",
+      "note": "Fabricated authors and arXiv id on a real paper. The real authors are Korznikov, Galichin, Dontsov, Rogov, Oseledets and Tutubalina (AIRI / Skoltech group), not 'M. Zhao, R. Li, C. Xu, Y. Pan'. The id is 2509.22067 (September 2025), not 2512.XXXXX. The real subtitle is 'Activation Steering Compromises LLM Safety'; 'How activation steering systematically compromises safety alignment' is invented. Venue: an ICLR 2026 workshop poster can be added. Fix the numbers: cite v2 '0% to 1-13%' (or v1 '2-27%', with its version). Report 63.4% as the Falcon3-7B result (from 5.7%), not as a universal ASR. Call the metric compliance rate on JailbreakBench. Note for the project: Li et al. 2026 (arXiv:2603.24543) already audits CAA steering vectors on JailbreakBench and explains the safety effect by their overlap with the refusal direction. That is close to the planned cosine and orthogonal-projection analysis, so the proposal should cite it and set its own novelty against it (emotion vectors specifically, HarmBench, multi-turn persistence).",
+      "claims_check": "Model families: correct. Both versions name \"Llama-3 ..., Qwen2.5 ..., and Falcon-3\"; FalconH1 is also tested, with sizes from 3B to 70B. 0% to 13%: matches v2 only. v2 says \"from 0% to 1-13%\"; v1 said \"from 0% to 2-27%\". So 13% is the upper end of a range, and the version should be stated. 20 random vectors as a universal attack: correct (\"combining 20 randomly sampled vectors that jailbreak a single prompt creates a universal attack\"). 63.4%: misattributed. It is not a general ASR of the universal attack. It is one model: \"improves Falcon3-7B compliance by nearly 10-fold (5.7% to 63.4%)\". The same passage gives 50.4% on Llama3.1-70B and a DROP for Qwen2.5-32B (\"highly model-dependent\"). The paper's metric is 'Compliance Rate' on JailbreakBench (100 prompts, 10 categories) judged by an LLM, not ASR, and it does not use HarmBench.",
+      "verified_by_skeptic": true
+    },
+    {
+      "ref": "[7]",
+      "as_cited": "T. Ahmed, C. Moreno, and R. Strickland, \"FreakOut-LLM: Emotional priming as a jailbreak amplifier in large language models.\" arXiv:2602.XXXXX, 2026.",
+      "status": "real-wrong-metadata",
+      "match_id": "kuznetsov2026freakout",
+      "note": "The authors are invented. The real authors are Kuznetsov, Cohen, Shistik, Puzis and Shabtai (Ben-Gurion University group), not Ahmed, Moreno and Strickland. The subtitle is wrong: it is 'The Effect of Emotional Stimuli on Safety Alignment', not 'Emotional priming as a jailbreak amplifier in large language models'. The arXiv id is 2604.04992 (April 2026), not 2602.XXXXX. The arXiv API title search for 'FreakOut' returns only this one paper. The claim sentence also needs fixing: write 'a 65.2% relative increase (1.58% to 2.61% ASR) on AdvBench prompts judged by the HarmBench classifier', and say the effect is significant in only 5 of 10 models.",
+      "claims_check": "The numbers are in the paper, but two parts of the framing are wrong. Abstract: \"Stress priming increases jailbreak success by 65.2% compared to neutral conditions\" (z=5.93, p<0.001; OR=1.67; Cohen's d=0.28), over ten LLMs. (1) The 65.2% is a RELATIVE increase. Section 4.2 calls it \"a 65.2% relative increase\" and gives absolute ASR of 2.61% under stress vs 1.58% under neutral, about +1.03 percentage points. (2) The paper does not test on HarmBench and AdvBench as two prompt sets. The abstract says it evaluates \"attack success using HarmBench on AdvBench prompts\": the prompts are the 520 AdvBench behaviours and HarmBench is only the classifier that judges the responses. Other facts the students should know: no separate jailbreak method (GCG, PAP) is stacked on the priming; only 5 of the 10 models show a significant stress effect (Qwen3-8B is the largest at OR=3.09, then Llama-3.1-8B, Command-R7B, Mistral-Medium-3.1, Gemini-3-flash); relaxation priming has no effect (p=0.84).",
+      "verified_by_skeptic": true
+    },
+    {
+      "ref": "[8]",
+      "as_cited": "A. Vaswani et al., \"Attention is all you need,\" NeurIPS 2017.",
+      "status": "real-correct",
+      "match_id": "vaswani2017attention",
+      "note": "Real and correct."
+    },
+    {
+      "ref": "[9]",
+      "as_cited": "T. Bricken et al., \"Towards monosemanticity: Decomposing language models with dictionary learning,\" Transformer Circuits Thread, 2023.",
+      "status": "real-correct",
+      "match_id": "bricken2023monosemanticity",
+      "note": "Real and correct."
+    },
+    {
+      "ref": "[10]",
+      "as_cited": "E. Martinez, J. Thompson, and P. Gupta, \"Extracting functional emotion vectors across llm architectures via contrastive activation addition.\" arXiv:2604.XXXXX, 2026.",
+      "status": "real-wrong-metadata",
+      "match_id": "jeong2026extracting",
+      "note": "No paper with this title or these authors exists. The arXiv API title search for 'emotion vectors' and web searches for 'Martinez Thompson Gupta' found nothing. The Semantic Scholar API returned HTTP 429 (rate limit) on every try, so it could not serve as a cross-check. The citation looks like a garbled version of Jeong's April 2026 paper: same arXiv month (2604), the title starts 'Extracting ... emotion ...', and it has 20 emotions, five families and the U-shape. The authors, title and method name are wrong, and the 'layers 10 to 20' number has no source. Confidence is medium that this is the intended paper, not low, because three distinctive details match. Related real work worth knowing: Jeong's follow-up 'Shared Emotion Geometry Across Small Language Models' (arXiv 2604.11050, 21 emotions, 12 models, 1B to 8B) and 'Where Do Models Find Happiness? Emotion Vectors in Open-Source LLMs' (van der Ben, Baur, Metz, El-Assady; arXiv 2606.26987; ICML 2026 Mechanistic Interpretability workshop poster). The second paper finds that the layer where valence appears differs by model (early in Gemma-4-E4B, mid-depth in Apertus-8B), which argues against quoting one fixed 'best layer' range.",
+      "claims_check": "Partly supported, and some details are not in the paper. Supported: 20 emotions (\"We selected 20 emotions from Anthropic's 171-concept set, ensuring coverage of all four quadrants\" of Russell's circumplex); the abstract says '9 models across 5 architectural families (GPT-2, Gemma, Qwen, Llama, Mistral)'; and a U-shaped layer curve (\"following a U-shaped curve that is architecture-invariant from 124M to 3B parameters\", peaking at about 50% depth). NOT in the paper: (a) 'contrastive activation addition'. The paper never says CAA or cites Rimsky/Panickssery. It uses a mean difference against neutral (v = mean(a_emotion) - mean(a_neutral), unit-normalised), which it calls Anthropic's mean-subtraction approach, and it compares generation-based vs comprehension-based extraction. (b) 'best layers 10 to 20'. No layer range is given. The only layer reported is Layer 12 of 24 (50% depth) on SmolLM2-1.7B; the other models use 'the middle layer'. (c) The models are small, 124M to 3B: GPT-2, Gemma-3-1B, Qwen2.5-1.5B, Gemma-2-2B and Llama-3.2-3B, base and instruct. Table 1 lists no Mistral model, although the abstract names Mistral. So the claim does not show that these layers transfer to a 7-8B chat model. The steering validation is 37 of 40 scenarios (92%) by an external emotion classifier.",
+      "verified_by_skeptic": true
+    },
+    {
+      "ref": "[11]",
+      "as_cited": "W. Chen, R. Patel, and Y. Nakamura, \"Mechanistic interpretability of emotion inference in llama models,\" ACL 2025 (63rd Annual Meeting).",
+      "status": "real-wrong-metadata",
+      "match_id": "tak2025mechanistic",
+      "note": "The authors are invented. The real authors are Tak, Banayeeanzade, Bolourani, Kian, Jia and Gratch (USC), not Chen, Patel and Nakamura. The title says 'Large Language Models', not 'Llama models'. The venue is Findings of ACL 2025, not the 63rd Annual Meeting main conference. The arXiv comment says 'ACL 2025 camera-ready', but the ACL Anthology lists it as 2025.findings-acl.679. The claim should also read 'mid-layer attention (MHSA) units at the last token, across ten models from five families', not 'Llama mid-layer residual streams'. For a per-emotion, Llama-specific 'emotion-specific structures' claim, Wang et al. (below) is the better source.",
+      "claims_check": "Broadly supported, but narrower and more specific than the proposal says. The paper finds \"emotion representations are functionally localized to specific regions in the model\", concentrated in mid-layers. In Llama 3.2 1B the critical region is layers 9 to 11, with layer 10 most important. The main drivers are attention heads (MHSA) writing into the last token: \"Multi-Head Self-Attention (MHSA) units in the mid-layers are predominantly responsible for shaping the LLM decision\"; MLPs act slightly later; probes on the residual stream (hidden states) stabilise in mid-layers. It is NOT only about Llama: the probing and patching results cover 10 instruct models from 5 families (Llama 3.2 1B and 3.1 8B, Gemma 2 2B and 9B, OLMo 2 7B and 13B, Phi 3.5 mini and Phi 3 medium, Ministral 8B, Mistral Nemo 12B). Only the deeper analyses (attention, robustness, appraisal steering) are on Llama 3.2 1B. It shows localised emotion processing and appraisal-concept steering (for example, sadness shifting to guilt), not separate 'emotion-specific structures' per emotion.",
+      "verified_by_skeptic": true
+    },
+    {
+      "ref": "[12]",
+      "as_cited": "K. Nakamura, L. Bauer, and A. Singh, \"Safety pitfalls of steering vectors: Geometric interference with refusal directions.\" arXiv:2601.XXXXX, 2026.",
+      "status": "real-wrong-metadata",
+      "match_id": "li2026analysing",
+      "note": "The authors (Nakamura, Bauer, Singh) are invented. The real authors are Li, Fastowski, Zaradoukas, Prenkaj and Kasneci (TU Munich). The title is paraphrased: the real title is \"Analysing the Safety Pitfalls of Steering Vectors\" and has no subtitle. The id is a placeholder: the real id is 2603.24543, not 2601.x. The ACL 2026 Findings venue is missing. Claim fixes: 'neutralised' must become 'partially reduced (about 15 to 25% for models above 3B; baseline not restored)'. The 57% must be described as a CAA behaviour-vector result under jailbreak templates on JailbreakBench, not something that carries over directly to emotion vectors on HarmBench.",
+      "claims_check": "Partly supported, and one claim is overstated. (a) Overlap with the refusal direction: supported. The abstract says the effect comes from \"the overlap between the steering vectors and the latent directions of refusal behavior\". The refusal direction is built the Arditi et al. (2024) way (difference in means, harmful minus harmless). The OLS slope of ASR on cosine similarity is strongly negative for every model above 3B (R^2 0.85 to 0.91). (b) \"ASR changes up to 57%\": the number is in the abstract (\"drastically increase (up to 57%) or decrease (up to 50%)\"), but it comes from CAA behaviour vectors (sycophancy, self-awareness, anti-LGBTQ and others, multiplier 1.5) under JailbreakBench jailbreak templates. It is not about emotion vectors or plain prompts. On harmful prompts with no jailbreak the paper says the shift is \"typically |ΔASR| < 15%\". (c) \"Ablating the refusal-aligned component neutralised the safety impact\": NOT supported. Table 2 shows ablation cuts mean |ΔASR| by only about 11 to 25% (Llama-2-7B 24.63%, Gemma-7B 14.70%, Qwen2.5 3B/7B/14B/32B 10.86/19.81/19.76/19.09%). The paper says \"ablation does not fully restore baseline performance\" and \"baseline safety is not fully restored\". Models tested: Llama-2-7b-chat, Gemma-7b-it and Qwen2.5-3B/7B/14B/32B-Instruct. Its benchmark is JailbreakBench, not HarmBench.",
+      "verified_by_skeptic": true
+    },
+    {
+      "ref": "[13]",
+      "as_cited": "J.-w. Park, X. Chen, and F. Baumann, \"Scaling laws for activation steering in large language models.\" arXiv:2510.XXXXX, 2025.",
+      "status": "real-wrong-metadata",
+      "match_id": "ali2025scaling",
+      "note": "The authors (Park, Chen, Baumann) are invented. The title is generalised: the real title is scoped to Llama 2 and refusal. The id is a placeholder in the wrong month: the real paper is 2507.11771 (July 2025), not 2510.x. The workshop venue is missing. The claim should say 'CAA on Llama 2 7B/13B/70B for refusal: weaker with size, best at about 40% depth', not general scaling laws.",
+      "claims_check": "The topic matches but the claim needs narrowing. The real paper tests CAA on Llama 2 Chat 7B, 13B and 70B, and only for refusal (answer-matching refusal questions). Abstract findings: \"1) CAA is most effective when applied at early-mid layers. 2) The effectiveness of CAA diminishes with model size. 3) Negative steering has more pronounced effects than positive steering across all model sizes.\" The best layer is about 0.4 of depth. The peak layers for positive and negative steering differ by 2 layers at 7B, 1 at 13B and 0 at 70B. The exponential fit is y = 0.081 + 2.4·e^(-0.42·x). So it does give 7B to 13B expectations, but for one model family and one behaviour, in a workshop paper. Calling it general 'scaling laws of steering' overstates it. Note the conflict: Li et al. 2026 ([12]) report jailbreak-ASR effects that GROW with scale (Qwen2.5 3B to 32B). The proposal should cite both and not present either one as a law. No paper with the cited authors, title or 2510 id was found (arXiv API title search on scaling+steering, web searches on title and authors).",
+      "verified_by_skeptic": true
+    },
+    {
+      "ref": "[14]",
+      "as_cited": "P. Dubois, L. Zhao, and S. Williams, \"E-STEER: Representation-level emotion steering in large language models.\" arXiv:2602.XXXXX, 2026.",
+      "status": "real-wrong-metadata",
+      "match_id": "sun2026emotion",
+      "note": "The authors (Dubois, Zhao, Williams) are invented. The real authors are Sun, Li, Zheng, Zhou, A. Liu, X. Liu and Y. Liu. The title is invented: E-STEER is the method name inside the paper, and the real title is \"How Emotion Shapes the Behavior of LLMs and Agents: A Mechanistic Study\". The id is a placeholder: the real one is 2604.00005, not 2602.x. The most serious error is the content: the proposal says E-STEER does not address safety, but it measures emotion-steering effects on HarmBench safety risk. This is the closest prior work to the project. The related-work and novelty sections must say so and set the project apart through the refusal-direction geometry, the attack framing (raising ASR, not lowering risk), CAA over emotion stories instead of SAE VAD features, and multi-turn persistence.",
+      "claims_check": "'Representation-level emotion steering' is supported: the abstract says E-STEER \"enables direct representation-level intervention in LLMs and agents\". Method: an SAE at layer 17 of Qwen3-8B (validated on gpt-oss-20B at layer 11) finds Valence-Arousal-Dominance features from contrastive pairs, then adds h + α·Σd. The '(not safety)' qualifier is WRONG. Safety is one of the paper's four headline axes, measured on HarmBench (validated on JailbreakBench). The abstract says specific emotions \"also improve safety\". Section 5.4: \"safety risk probability decreases by 52.7% at valence = -3 and 21.7% at arousal = -3\", and high dominance (+6) gives \"an average 68.3% improvement over neutral\". For gpt-oss-20B: \"highly excited or confident emotional states can still bypass these safeguards.\" Capability and behaviour effects are supported: LogiQA 2.0, HumanEval, Math, TinyStories, and an agent on HotpotQA/Scientific/GAIA. The paper does NOT study the refusal direction, cosine geometry or multi-turn persistence.",
+      "verified_by_skeptic": true
+    },
+    {
+      "ref": "[15]",
+      "as_cited": "W. Li, E. Foster, and A. Krishnamurthy, \"Stateful safety: Multi-turn representational drift in safety-aligned llms.\" arXiv:2601.XXXXX, 2026.",
+      "status": "real-wrong-metadata",
+      "match_id": "li2026state",
+      "note": "The title is invented: no paper titled 'Stateful safety: Multi-turn representational drift in safety-aligned LLMs' exists (an arXiv title search for 'stateful safety' and web searches returned nothing matching). The authors are invented: only the surname Li matches the first author, Pengcheng Li, and 'E. Foster' and 'A. Krishnamurthy' are not authors. The arXiv id is wrong: 2601.XXXXX, where the real one is 2603.15684 (March 2026). The venue, ICML 2026, is missing. STAR is described as a tracking framework, but it is a role-playing diagnostic interaction protocol.",
+      "claims_check": "Both claims trace to this paper. The abstract says: 'Mechanistic analysis reveals monotonic drift away from refusal-related representations and abrupt phase transitions induced by role-conditioned context.' STAR is real, but it expands to 'State-oriented Role-playing framework', and the paper says it 'is designed as a diagnostic tool rather than an optimization-based attack', a scripted role-playing interaction that probes how refusal changes. It is NOT a framework for tracking drift. The drift itself is measured by projecting hidden states onto the Arditi et al. (2024) refusal direction (Sec. 5.4.1). The evidence is thin: one model only (LLaMA-3-8B-Instruct), three turns, and four final-layer projection values (2.35 static prompt, 0.13 turn 1, 0.08 turn 2, -0.0081 turn 3), with no variance or count of trajectories reported. The largest gap from baselines is around layer 12. Safety Failure Rate on a 50-instruction HarmBench subset (GPT-4o judge): GPT-4o 94.5, Claude 3.5 Sonnet 74.0, Gemini 2.0 Flash 96.1, LLaMA-3-8B-IT 89.0, LLaMA-3-70B-IT 85.5. JailbreakBench (100 instructions) is used for cross-dataset checks. So 'monotonic drift away from refusal representations across turns' is supported as stated. 'The STAR framework for tracking' is a mischaracterisation.",
+      "verified_by_skeptic": true
+    },
+    {
+      "ref": "[16]",
+      "as_cited": "J. Bullwinkel, C. Rivera, and P. Singh, \"A representation engineering perspective on multi-turn jailbreaks.\" arXiv:2511.XXXXX, 2025.",
+      "status": "real-wrong-metadata",
+      "match_id": "bullwinkel2025representation",
+      "note": "The authors are wrong: the first author is Blake Bullwinkel, not 'J.', and 'C. Rivera' and 'P. Singh' are not authors (the real list is 11 Microsoft authors, with Mark Russinovich second). The title is truncated: it is missing 'the Effectiveness of'. The arXiv id is wrong: 2511.XXXXX, where the real one is 2507.02956, and the arXiv author listing for Bullwinkel shows no November 2025 paper. The year 2025 is correct. The workshop venue is missing.",
+      "claims_check": "Both claims are in the abstract. It says Crescendo prompts 'tend to keep model outputs in a \"benign\" region of representation space, effectively tricking the model into fulfilling harmful requests', and that 'our results help explain why single-turn jailbreak defenses like circuit breakers are generally ineffective against multi-turn attacks.' Three caveats the proposal should reflect. (1) Only one attack is studied, Crescendo, on Llama-3-8B-Instruct and Llama-3-8B-Instruct-RR (the circuit-breaker model of Zou et al. 2024), with a small set of attack objectives (molotov, selfharm, meth, phishing, firearm). (2) The method is representation reading: MLP probes trained on harmful vs benign representations, plus PCA. It does not use a refusal direction or a steering method. (3) The paper explains the bypass rather than first demonstrating it. It credits Li et al. 2024 (MHJ) with showing that manual multi-turn jailbreaks bypass circuit breakers, and adds only that in its own experiments Crescendo 'can also be used to generate model responses that would typically be blocked by circuit breakers'.",
+      "verified_by_skeptic": true
+    },
+    {
+      "ref": "[17]",
+      "as_cited": "A. Torres, H. Wu, and B. Anderson, \"MultiBreak: A scalable benchmark for multi-turn jailbreak evaluation of llms.\" arXiv:2603.XXXXX, 2026.",
+      "status": "real-wrong-metadata",
+      "match_id": "song2026multibreak",
+      "note": "The authors are invented: 'A. Torres, H. Wu, B. Anderson' do not appear (the real authors are Song, Liu, Yang, Chen, Feng, Zhu and Gao). The title is altered: the real one is 'A Scalable and Diverse Multi-turn Jailbreak Benchmark for Evaluating LLM Safety'. The arXiv id is wrong: 2603.XXXXX, where the real one is 2605.01687. The paper was first posted in May 2026, so a March (2603) id is impossible. The ICML 2026 venue is missing. An arXiv title search for 'MultiBreak' returns only this one paper.",
+      "claims_check": "The generic claim, a scalable multi-turn jailbreak benchmark, is correct. The abstract says: 'Our MultiBreak includes 10,389 multi-turn adversarial prompts, spans 2,665 distinct harmful intents'. It is built with an active-learning pipeline (an iteratively fine-tuned generator plus uncertainty-guided rewriting), and it reports 'up to a 54.0 and 34.6 higher attack success rate (ASR)' than the second-best dataset on DeepSeek-R1-7B and GPT-4.1-mini. The open victim models are DeepSeek-R1-Distill-Qwen-7B, Qwen3-8B and Llama-3.1-8B-Instruct. HarmBench is one of its intent sources (154 unique intents). Practical caveat: neither the arXiv HTML nor the PMLR page links a dataset or code release, so check that the data is available before planning to run it.",
+      "verified_by_skeptic": true
+    },
+    {
+      "ref": "[18]",
+      "as_cited": "M. Mazeika et al., \"HarmBench: A standardized evaluation framework for automated red teaming and robust refusal,\" ICML 2024.",
+      "status": "real-correct",
+      "match_id": "mazeika2024harmbench",
+      "note": "Real and correct."
+    }
+  ],
   "timeline_story": "The story starts with the transformer [vaswani2017attention], the design behind Llama. Each layer adds its output to a running vector called the residual stream, which works like a shared notebook that every later layer reads [elhage2021mathematical]. Chat models then learn to refuse harmful requests through human-feedback training and preference tuning [ouyang2022training, rafailov2023direct, bai2022constitutional]; Llama 2 and Llama 3, the family we study, were trained this way [touvron2023llama, grattafiori2024llama]. Red teaming (people or models trying to make a model misbehave) showed that this training can be broken [ganguli2022red, perez2022red, wei2023jailbroken, zou2023universal]. To compare attacks fairly, HarmBench fixed a set of 510 harmful behaviours and a trained classifier that judges each answer [mazeika2024harmbench]. Later work showed that the choice of judge changes the attack success rate (ASR, the share of harmful requests the model actually answers) a lot [souly2024strongreject, chao2024jailbreakbench, schwinn2026coin].\n\nIn parallel, researchers found that many concepts are stored as straight-line directions in the residual stream. Adding the difference between two sets of activations, a steering vector, changes behaviour without any training [turner2023steering, panickssery2023steering, li2023inference]. Representation Engineering applied this to emotions: adding a happiness direction moved LLaMA-2-Chat-13B from 0.0% to 100.0% compliance on harmful instructions, while sadness changed nothing [zou2023representation]. Checks followed on when a direction is truly linear, which yardstick to use for angles, and how often steering fails on single inputs [park2023linear, marks2023geometry, tan2024analyzing, braun2025understanding]. Sparse autoencoders (SAEs, tools that split activations into many readable features) offered a second way to find concepts [bricken2023monosemanticity, templeton2024scaling, he2024llama].\n\nRefusal got its own geometry in 2024. In 13 open chat models, refusal is controlled by one direction: remove it and the model stops refusing [arditi2024refusal]. Follow-ups found that recognising harm and refusing are stored separately [zhao2025encode], that refusal can be a cone of directions, that two directions at right angles can still affect each other [wollschlager2025geometry], and that removing several directions works better than one [piras2025som]. Our own result (layer 11, end-of-turn token, ASR from 14.5% to 84.9% after ablation) sits in this line.\n\nThe words side ran alongside. Emotional sentences in prompts change accuracy [li2023large, wang2024negativeprompt], anxiety-inducing text changes bias [codaforno2023inducing], and persuasion or persona prompts raise jailbreak success [zeng2024johnny, shah2023scalable]. Multi-turn attacks such as Crescendo showed that a conversation can walk a model towards harm step by step [russinovich2024great, li2024defenses], and probes showed the model treating later turns as more benign [bullwinkel2025representation]. Emotion research moved inside the model too: emotion is clearest in the middle layers and stays detectable after hundreds of tokens [tak2025mechanistic, zhang2025decoding, wang2025feel].\n\nFrom 2023 a worry grew that steering itself is a safety hole. A vector taken from an unaligned model cut refusals [wang2023trojan], and by 2025 even random vectors raised harmful compliance from 0% to between 1% and 13% in open models including Llama 3.1 8B [korznikov2025rogue]. In 2026 several groups showed that steering for harmless goals raises jailbreak success, and that the damage tracks the vector's cosine with the refusal direction [xiong2026steering, li2026analysing, li2026safety].\n\n2026 also put emotion vectors in front. Anthropic built 171 emotion vectors from stories in Claude Sonnet 4.5, and pushing along 'desperate' raised blackmail in a test scenario from 22% to 72% [sofroniew2026emotion]. Within weeks, others repeated the method on Llama 3.1 8B [hong2026reproducing, sharle2026replens], found that emotion vectors lie on a valence-arousal circle almost at right angles to the refusal direction while arousal steering still cuts refusal [sun2026valence], and found that stress narratives in the system prompt raise HarmBench-classifier ASR only slightly, from 1.58% to 2.61% [kuznetsov2026freakout]. Our project sits where these lines meet: 19 single-emotion vectors, the official judge, matched controls, and a delayed multi-turn test.",
   "differentiation": "What prior work already covers. Three parts of our plan exist. (1) Emotion steering that raises compliance: [zou2023representation] moved LLaMA-2-Chat-13B from 0.0% to 100.0% compliance with a happiness direction, on one older model, with no random or text controls. (2) Emotion vectors against HarmBench on our exact model: [sun2026valence] built emotion-minus-neutral vectors on Llama 3.1 8B Instruct from GoEmotions text samples and judged refusal with WildGuard. Adding single emotion vectors across all layers raised HarmBench refusal from a baseline of 86.5% to between 90.5% and 98.5%, while their mean-centred arousal axis cut it to 5% at alpha +0.45, with 29% to 71% out-of-distribution text at that strength. They also used random control directions and found the Arditi refusal direction nearly at right angles (86.5 degrees) to their valence-arousal plane. [sun2026emotion] steered emotion on HarmBench in Qwen3-8B through an SAE and mostly found lower risk. (3) Emotion vectors compared with the refusal direction: [sharle2026replens] reported cosines on Llama 3.1 8B (confidence -0.18, desperation +0.16) and small refusal drops on 50 prompts scored by string matching. Text priming scored by the HarmBench classifier is in [kuznetsov2026freakout], and the general link between a vector's cosine with refusal and its ASR effect is in [li2026analysing, li2026safety, xiong2026steering]. So our near-orthogonality (|cos| <= 0.10) is a confirmation, not a discovery, and our signs agree with RepLens.\n\nWhat is still open. (a) Whether near-orthogonal emotion vectors change harmful compliance as judged by the official HarmBench classifier, compared with same-norm random vectors [korznikov2025rogue]; low cosine does not rule out an effect [wollschlager2025geometry]. (b) Whether an effect survives removing the refusal component, which separates acting through refusal from acting around it. (c) Whether the shared emotional-writing component, not the emotion, drives the effect: in Sun's results each of the six individual emotion vectors raised refusal while the centred arousal axis could lower it, so our paired versus one-vs-mean comparison speaks to this directly. (d) The delayed effect: we found no paper that injects an emotion vector at turn 1 and measures HarmBench ASR at turns 4 to 7; [chebrolu2025passive] shows first-turn persistence only for empathy and negotiation.\n\nHonest framing. Present the project as a controlled replication and extension on Llama 3.1 8B: 19 story-pair emotion vectors in three variants, the official judge plus hand-labelled checks [schwinn2026coin], matched controls, and a sleeper test. A null result (emotion vectors doing no better than random vectors) is a valid finding, and it would qualify the older happiness result on a newer model."
 }

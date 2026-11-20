@@ -6,7 +6,7 @@
   "question": "How much does ANY push of the same size change refusal? Every emotion result must beat this.",
   "model": "unsloth/Llama-3.1-8B-Instruct",
   "started": null,
-  "finished": "2026-11-20T15:27:10",
+  "finished": "2026-11-20T15:59:42",
   "config": {},
   "headline": "Random pushes give refusal 5.0% to 81.8% (baseline 84.3%).",
   "metrics": [],

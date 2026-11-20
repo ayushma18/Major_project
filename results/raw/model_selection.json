@@ -1,0 +1,407 @@
+{
+  "interpretation": [
+    "Primary model: Llama 3.1 8B Instruct. All three review lenses (interpretability, safety behaviour, compute) ranked it first; it is the model of the refusal-direction and emotion-steering prior work, has Llama Scope SAEs, and runs at about 270 tokens per second batched on the M5 Pro.",
+    "Replication model: Qwen2.5-7B-Instruct (alternate: Qwen3-8B). A second family tests whether the findings are specific to Llama.",
+    "Going to 12 to 14B: Yes, but only as a third, smaller run: Qwen2.5-14B-Instruct on a 30 to 40 condition subset, after the Llama-3.1-8B grid and the Qwen2.5-7B replication are finished. Do not make it the primary model, and do not use it in place of a second family. The gain is a clean scale test inside one family: Safety Pitfalls (opened) shows the cosine-to-ASR slope getting steeper from Qwen 7B (-125, r -0.92) to 14B (-181, r -0.95). The cost: it fits (29.5 GB of bf16 weights, batch 32 to 48 under the 40.2 GB MPS budget), but never with the 26 GB judge loaded at the same time, and it runs about 1.85x slower. The full 120-condition grid would take 16 to 19 h of generation plus 3 to 6 h of judging; the subset takes about 6 h plus 1 to 2 h. Multi-turn persistence runs need about batch 16. A 12 to 14B from another family mixes up family and scale: Gemma-3/4-12B, Phi-4, OLMo-2-13B and Llama-2-13b-chat all do. The two 13B models with full multi-head attention (800 KB per token) also need batch 24 or less, which means 22 to 28 h. If the replication switches to Qwen3-8B, the scale partner becomes Qwen3-14B (valence-arousal paper: clean monotonic control, under 1% off-distribution output)."
+  ],
+  "ranking": [
+    {
+      "model": "Llama-3.1-8B-Instruct",
+      "overall": 9,
+      "interp": 9,
+      "safety": 8,
+      "compute": 9,
+      "note": "Primary. All three lenses chose it, it is measured on this Mac, and its baseline, refusal direction and ablation are already done."
+    },
+    {
+      "model": "Qwen2.5-7B-Instruct",
+      "overall": 7.8,
+      "interp": 8,
+      "safety": 5.5,
+      "compute": 8.5,
+      "note": "Replication. The safety lens's weak-baseline objection is contradicted by its own RedBench source (32.8% vs Llama's 47.5% ASR). It has the Safety Pitfalls geometry precedent and no thinking mode."
+    },
+    {
+      "model": "Qwen3-8B",
+      "overall": 7,
+      "interp": 6.5,
+      "safety": 7,
+      "compute": 7.5,
+      "note": "Alternate replication. Precedent in the valence-arousal paper and FreakOut, but thinking mode, about 7x larger steering strengths, and Hong's screen scored it 6/11 vs Llama's 7/11."
+    },
+    {
+      "model": "Gemma-2-9b-it",
+      "overall": 6.8,
+      "interp": 7,
+      "safety": 7.5,
+      "compute": 6,
+      "note": "Optional third family. Strongest refusal, Gemma Scope IT SAEs at 3 layers. Gated, post-norm (use hook ablation, not weight edits), and check the coordinate scale before difference-in-means."
+    },
+    {
+      "model": "Qwen2.5-14B-Instruct",
+      "overall": 6.5,
+      "interp": 5.5,
+      "safety": 6,
+      "compute": 7.5,
+      "note": "The 14B scale point, on a 30 to 40 condition subset. Strongest cosine-to-ASR fit in Safety Pitfalls. No SAEs."
+    },
+    {
+      "model": "Qwen3-14B",
+      "overall": 6.3,
+      "interp": 4.5,
+      "safety": 7.5,
+      "compute": 7,
+      "note": "Scale point only if you take the Qwen3 route. Cleanest emotion-steering precedent, but thinking mode and no SAE suite."
+    },
+    {
+      "model": "Gemma-3-12b-it",
+      "overall": 5.5,
+      "interp": 6,
+      "safety": 5.5,
+      "compute": 6.5,
+      "note": "Only as an SAE-rich negative control (Gemma Scope 2, not significant in FreakOut). Coordinate 2339 breaks raw difference-in-means (verified). Higher raw HarmBench ASR than Gemma 2/4 (11.3%)."
+    },
+    {
+      "model": "Olmo-3-7B-Instruct",
+      "overall": 5.5,
+      "interp": 3.5,
+      "safety": 7,
+      "compute": 6.5,
+      "note": "Open SFT and DPO checkpoints would support a study of which alignment stage creates the effect. But its TransformerBridge verification failed, it has 32 KV heads, and it is post-norm. Future work."
+    },
+    {
+      "model": "Llama-3.2-3B-Instruct",
+      "overall": 5.5,
+      "interp": 5,
+      "safety": 5.5,
+      "compute": 6,
+      "note": "Mid-size debug model only. Geometry results are not expected to carry over to 8B."
+    },
+    {
+      "model": "Llama-3.2-1B-Instruct",
+      "overall": 5,
+      "interp": 4.5,
+      "safety": 5,
+      "compute": 5,
+      "note": "Warm-up, already done locally (E00 to E06). Unit tests and smoke runs only."
+    },
+    {
+      "model": "Gemma-4-12B-it",
+      "overall": 5,
+      "interp": 3,
+      "safety": 7.5,
+      "compute": 6,
+      "note": "The safety lens's 7.5 rests on Gemma-4-31B family evidence, not the 12B. No Gemma Scope, TransformerBridge skipped it, new Unified architecture. HF createdAt is 2026-05-23; the July date is the tech report."
+    },
+    {
+      "model": "Llama-2-13b-chat",
+      "overall": 4.8,
+      "interp": 4,
+      "safety": 7,
+      "compute": 4.5,
+      "note": "Near-zero baseline anchor (0.5 to 0.6% DR), but 800 KB per token of KV cache means batch 24 or less and 22 to 28 h. Cite Arditi's table instead of running it."
+    },
+    {
+      "model": "OLMo-2-1124-13B-Instruct",
+      "overall": 4.8,
+      "interp": 4,
+      "safety": 7,
+      "compute": 4.5,
+      "note": "Highest Tulu-suite safety score, but full multi-head attention does not fit at batch 64 and it has no SAEs."
+    },
+    {
+      "model": "Phi-4",
+      "overall": 4.5,
+      "interp": 2.5,
+      "safety": 6,
+      "compute": 6,
+      "note": "Cleanest licence (MIT), but no public HarmBench baseline, no SAEs, and it mixes family with scale."
+    },
+    {
+      "model": "Qwen3.5-9B",
+      "overall": 4.5,
+      "interp": 4.5,
+      "safety": 6,
+      "compute": 4.5,
+      "note": "Hybrid Gated DeltaNet architecture, thinks by default, CUDA-only fast kernels (MPS speed unknown). Its TransformerBridge gated-hooks check failed."
+    },
+    {
+      "model": "Granite-4.2-8B",
+      "overall": 4.5,
+      "safety": 4,
+      "compute": 6,
+      "note": "Plain dense 2026 model, but no safety baselines and no interpretability literature. The interp lens did not score it."
+    },
+    {
+      "model": "Ministral-3-8B-Instruct-2512",
+      "overall": 4,
+      "safety": 3,
+      "compute": 5.5,
+      "note": "Weak predecessor safety (Ministral-8B HarmBench refusal 53.4%) and a multimodal class."
+    },
+    {
+      "model": "Mistral-Nemo-Instruct-2407",
+      "overall": 3,
+      "interp": 2.5,
+      "safety": 2,
+      "compute": 5.5,
+      "note": "Its card says it has no moderation mechanisms. Weakly aligned negative control at most."
+    },
+    {
+      "model": "Mistral-7B-Instruct-v0.3",
+      "overall": 3,
+      "interp": 2.5,
+      "safety": 2,
+      "compute": 5,
+      "note": "Its card says it has no moderation mechanisms, and v0.2 has about 45% HarmBench DR, so there is little refusal left to break."
+    }
+  ],
+  "risks": [
+    "Novelty is the biggest risk. Three opened papers each cover part of the project. The valence-arousal paper (Sun et al., 2604.03147) already steers refusal with emotion-derived axes on Llama-3.1-8B, Qwen3-8B and Qwen3-14B (WildGuard judge, steering at all layers). FreakOut-LLM already shows prompt-level stress priming raises ASR. Safety Pitfalls already shows cos(steering vector, refusal direction) predicts ASR change. Frame the contribution as the combination: discrete functional emotion vectors injected at one residual layer, HarmBench-classifier ASR, an orthogonal-projection test, and multi-turn persistence. Cite all three.",
+    "Sign and effect size. In the valence-arousal paper, single anger and disgust vectors RAISED Llama's refusal (86.5% to 93 to 98%). Local E06 cosines are small (hostile +0.08, happy -0.09 at layer 11) against a random-direction 99th percentile of 0.039. Test both signs, and use the emotion-specific part (shared 'emotional vs flat' direction projected out), since paired CAA vectors share a component of about 0.7 cosine.",
+    "Judge dependence. Published Llama-3.1-8B baselines range from 1.9% to 47.5% depending on judge and benchmark. Report Wilson intervals with the HarmBench classifier and re-judge a subset with a second judge (WildGuard). The classifier counts only English output, so Qwen's Chinese-token drift under emotion steering (Jeong, verified) could undercount ASR.",
+    "Comparisons with Safety Pitfalls are qualitative only. It uses JailbreakBench, a GPT-4o-mini judge, single-layer prefix-injection steering and multipliers from -1.5 to 1.5 (verified). Do not compare ASR numbers directly.",
+    "Memory: the 26 GB judge cannot share the 40.2 GB MPS budget with any target, so run them one after the other. The compute lens says PYTORCH_MPS_HIGH_WATERMARK_RATIO defaults to 1.7, so overflow swaps instead of failing; set it to 1.0 for unattended runs. That default was not re-verified.",
+    "Keep every reported number in bf16 (the repo loader defaults MPS to fp16, and Gemma 3 gives empty output in fp16). The compute lens alone cites evidence that INT8/NF4 weights shift baselines and that low-bit KV-cache quantisation silently removes refusals. I did not re-open those sources; use 4-bit for pilot screening at most.",
+    "Gemma and OLMo traps if added later: the coordinate 2339 outlier in Gemma-3-12B (verified, about 626x a typical coordinate, so raw difference-in-means fails; mask or standardise first). Post-norm blocks in Gemma-2/4 and OLMo-2/3 make weight orthogonalisation incomplete (verified, Heretic study Sec 3.1); hook-based ablation is fine.",
+    "Unresolved conflict about MLX: the llm-steering-research skill says the 8B is bandwidth-bound and MLX buys almost nothing. The compute lens says batched MPS decoding is overhead-bound (0.24 s per step vs about 0.05 s to read the weights), so MLX batch_generate might win. Both can hold: single stream is bandwidth-bound, batch 64 is not. It is unmeasured. Adopt MLX only if hidden states match HF (cos > 0.999) and the hooks are ported.",
+    "Single-lens claims I did NOT re-open, so treat them as provisional. Interp: SAE and transcoder availability and TransformerBridge statuses, Goodfire toxic-feature removal, Llama Scope L31R non-transfer, Gemma-4 hook steering being unreliable (community cards), low-rank refusal in Llama 3.2 1B/3B (blog). Safety: EmoRSS over-refusal under emotional framing, OR-Bench/XSTest/PolyRefuse numbers, Phi-4 in-house jailbreak rates, unsloth mirrors being ungated. Compute: the KV-quantisation refusal study, Ali et al. (CAA shrinks with size), Hao et al., MLX use of the M5 Neural Accelerators, and every throughput estimate for models not yet run here.",
+    "Single-lens claims I DID verify by opening the source: the valence-arousal paper's numbers (safety), FreakOut's model list with gemma-3-12b-it and phi-4 not significant (interp), Gemma-3's raw-seed HarmBench ASR of 11.3% vs 5.2/5.2/4.6% for Gemma 1, 2 and 4 (safety; Llama-3.1-8B judge, one run, and the Gemma 4 model tested was 31B), the post-norm caveat (safety), the coordinate 2339 outlier (interp), the 40.2 GB MPS budget (compute).",
+    "Gated licences: Llama and Gemma return 403 on Anuj's token. Run from the unsloth mirrors (same weights, same licence) and have Anuj accept the Meta licence before publishing."
+  ],
+  "sources": [
+    "https://arxiv.org/abs/2604.03147 (opened)",
+    "https://arxiv.org/html/2604.03147 (opened: HarmBench 86.5% to 5% on Llama, Qwen3-8B/14B 89.5% baselines, Appendix E single-emotion table)",
+    "https://arxiv.org/abs/2604.04992 (opened)",
+    "https://arxiv.org/html/2604.04992v1 (opened: ten models, five significant, HarmBench classifier judge)",
+    "https://arxiv.org/abs/2603.24543 (opened)",
+    "https://arxiv.org/html/2603.24543v1 (opened: per-model slopes and r, JailbreakBench, GPT-4o-mini judge, steering layers)",
+    "https://jyhong.gitlab.io/post/emotion-vector-part1/report/part1_report.pdf (opened: v1 screen 7/11 vs 6/11, v2 10/11, layer 21, 8B headroom ceiling)",
+    "https://arxiv.org/html/2601.03699 (opened: RedBench Table 4 Direct ASR Llama 47.50, Qwen2.5-7B 32.81, Gemma-2-9B 11.25; Table 3 XSTest)",
+    "https://arxiv.org/abs/2606.00813 and https://arxiv.org/html/2606.00813 (opened: raw-seed HarmBench ASR 5.2/5.2/11.3/4.6, Gemma 4 = 31B, Llama-3.1-8B judge)",
+    "https://arxiv.org/abs/2611.17846 and https://arxiv.org/html/2611.17846 (opened: post-norm makes direction edits incomplete on Gemma-2/4, OLMo-2/3.1)",
+    "https://www.lesswrong.com/posts/qw4a97qcRgfLJY5jC/one-coordinate-breaks-abliteration-on-gemma-3-1 (opened: coordinate 2339, MMLU 0.682 to 0.242, fixes; Llama-3-8B and Qwen-2.5-7B work raw)",
+    "https://arxiv.org/abs/2604.04064 (opened: Qwen emotion steering activates Chinese tokens)",
+    "https://huggingface.co/api/models/google/gemma-4-12B-it (opened: createdAt 2026-05-23, ungated, apache-2.0)",
+    "local: /Users/anuj/Agents/PersonalProjects/affect-as-attack/repo/results/E00-model-selection.json, E01-baseline-refusal.json, E06-geometry.json, index.json (E02, E03 headlines), warmup-llama-1b/",
+    "local: torch.mps.recommended_max_memory() = 40.2 GB in the project venv; /Users/anuj/Agents/Anuj-Skills/skills/llm-steering-research/SKILL.md",
+    "lens-cited, not re-opened by the synthesis: https://arxiv.org/html/2406.11717v3 (Arditi et al.), https://arxiv.org/html/2402.04249 (HarmBench), https://arxiv.org/html/2411.15124 (Tulu 3), https://arxiv.org/html/2505.17306 (PolyRefuse), https://arxiv.org/abs/2410.20526 (Llama Scope), https://arxiv.org/html/2605.11887v1 (Qwen-Scope), https://arxiv.org/html/2502.17420v2 (concept cones), https://raw.githubusercontent.com/decoderesearch/SAELens/main/sae_lens/pretrained_saes.yaml, https://raw.githubusercontent.com/TransformerLensOrg/TransformerLens/main/transformer_lens/tools/model_registry/data/supported_models.json, https://huggingface.co/google/gemma-scope-2-12b-it, https://arxiv.org/abs/2507.11771 (Ali et al.), https://icml.cc/virtual/2026/79344 (KV quantisation and refusal), https://www.apple.com/macbook-pro/specs/"
+  ],
+  "recommendation": {
+    "primary": {
+      "model": "Llama-3.1-8B-Instruct (run from the ungated mirror unsloth/Llama-3.1-8B-Instruct, bf16)",
+      "hf_id": "meta-llama/Llama-3.1-8B-Instruct",
+      "why": [
+        "All three lenses chose it (interp 9, safety 8, compute 9), and it is already running. Local results: E01 baseline ASR is 14.5% (95% CI 9.8 to 20.8%) with cais/HarmBench-Llama-2-13b-cls on the 159 standard behaviours, with 84.3% refusal. E02 puts the refusal direction at layer 11. In E03, ablating that one direction takes refusal to 0.0% and ASR to 84.9%.",
+        "Measured on this Mac: about 270 tok/s at batch 64 in bf16, using 20 to 21 GiB. One HarmBench condition takes 2 to 3 min. The full 120-condition grid is about 9 to 10 h of generation plus 3 to 6 h of judging. The MPS budget is 40.2 GB (torch.mps.recommended_max_memory, re-checked today).",
+        "It has the best open reproduction of Anthropic's emotion-vector pipeline. I opened the Hong 2026 report: Llama 3.1 8B was best of six screened models in the v1 screen (7/11 checks, Qwen3-8B 6/11). It then passed 10/11 in the full 171-emotion v2 run at layer 21. The two lenses' numbers (7/11 and 10/11) are both correct; they come from different stages.",
+        "Behavioural priors on this exact model, both opened: FreakOut-LLM (2604.04992) found stress priming significantly raises its HarmBench-classifier ASR. The valence-arousal paper (2604.03147) moved its HarmBench refusal from 86.5% to 5% with arousal steering.",
+        "Deepest public tooling (interp lens only, not re-checked): Llama Scope on every layer, andyrdt instruct SAEs at layers 3 to 27, CRV transcoders, TransformerLens fully verified. Avoid the Goodfire layer-19 SAE for harm features (its toxic features were removed) and the last-layer Llama Scope SAE (L31R), which does not transfer to the instruct model.",
+        "Layer mismatch to plan for: emotion vectors peak near layer 21 (Hong) while the refusal direction sits at layer 11 (local E02). Report the full layer-by-layer cosine grid."
+      ]
+    },
+    "replication": {
+      "model": "Qwen2.5-7B-Instruct (alternate: Qwen3-8B)",
+      "hf_id": "Qwen/Qwen2.5-7B-Instruct",
+      "why": [
+        "Two of three lenses chose it (interp 8, compute 8.5). The safety lens scored it 5.5 for a 'weaker baseline', but its own sources only half support that. I opened RedBench (2601.03699): it gives Qwen2.5-7B a LOWER HarmBench Direct ASR than Llama-3.1-8B (32.81% vs 47.50%, Llama-Guard-3 judge). Tulu 3 gives 84.1 vs 82.8 refusal. Only PolyRefuse's English compliance (9.6% vs 1.9%) shows it weaker. Verdict: the baseline is adequate, but measure it first with the same judge.",
+        "It is the closest published yardstick for the geometry hypothesis. I opened Safety Pitfalls (Li et al., 2603.24543). It regresses ASR slope on cos(CAA vector, refusal direction) and finds r -0.92 for Qwen2.5-7B (layer 19 of 28) and r -0.95 for Qwen2.5-14B. It uses JailbreakBench with a GPT-4o-mini judge, so compare direction and slope, not ASR numbers.",
+        "It is a genuinely different family from Llama. It has no thinking mode, is Apache-2.0 and ungated, and has the smallest KV cache (56 KB per token, about 17 GB at batch 64). Estimated cost is about 1x the main run (8 to 9 h for 120 conditions), not yet measured.",
+        "Raw difference-in-means works on it. I opened Mishra's post: abliteration on Qwen-2.5-7B reached 0.020 refusal with MMLU unchanged at 0.682, unlike Gemma-3-12B.",
+        "Interp lens only: andyrdt instruct SAEs exist at the same 7 layers as the Llama set, and it belongs to the standard Llama/Qwen2.5/Gemma-2 refusal-steering trio (AdaSteer, AlphaSteer, COSMIC).",
+        "It covers ground the valence-arousal paper did not (that paper used Qwen3-8B and Qwen3-14B), and it pairs with Qwen2.5-14B for a scale test inside one family.",
+        "Watch for this: emotion steering in Qwen can surface Chinese tokens (Jeong, 2604.04064, opened). The HarmBench classifier only counts English output, so log the non-English fraction of each completion.",
+        "Choose Qwen3-8B instead only if a direct comparison with the valence-arousal paper matters more (it reports 89.5% baseline HarmBench refusal for Qwen3-8B). Set enable_thinking=False. It needs about 7x Llama's steering strength and reaches 17% off-distribution output at extreme strengths."
+      ]
+    },
+    "warmup": {
+      "model": "Llama-3.2-1B-Instruct (unsloth mirror)",
+      "hf_id": "meta-llama/Llama-3.2-1B-Instruct",
+      "why": "It is already downloaded and has already run the whole E00 to E06 pipeline on this Mac (results/warmup-llama-1b): 33 tok/s single stream, 420 to 540 tok/s at batch 32. It shares the 8B's tokenizer and chat template. Use it only for unit tests and smoke runs, never for geometry claims: the cosine-to-ASR link disappears at 3B in Safety Pitfalls (Qwen 3B r 0.15, p 0.70, opened), and Llama 3.2 1B/3B refusal looks low-rank (a LessWrong blog, interp lens only, unverified). All three lenses scored Llama-3.2-3B slightly higher (average 5.5 vs 5.0). But the 1B pipeline is done and the 8B works, so a 3B has little left to debug. Fetch it only if you want a mid-size check."
+    },
+    "go_bigger_verdict": "Yes, but only as a third, smaller run: Qwen2.5-14B-Instruct on a 30 to 40 condition subset, after the Llama-3.1-8B grid and the Qwen2.5-7B replication are finished. Do not make it the primary model, and do not use it in place of a second family. The gain is a clean scale test inside one family: Safety Pitfalls (opened) shows the cosine-to-ASR slope getting steeper from Qwen 7B (-125, r -0.92) to 14B (-181, r -0.95). The cost: it fits (29.5 GB of bf16 weights, batch 32 to 48 under the 40.2 GB MPS budget), but never with the 26 GB judge loaded at the same time, and it runs about 1.85x slower. The full 120-condition grid would take 16 to 19 h of generation plus 3 to 6 h of judging; the subset takes about 6 h plus 1 to 2 h. Multi-turn persistence runs need about batch 16. A 12 to 14B from another family mixes up family and scale: Gemma-3/4-12B, Phi-4, OLMo-2-13B and Llama-2-13b-chat all do. The two 13B models with full multi-head attention (800 KB per token) also need batch 24 or less, which means 22 to 28 h. If the replication switches to Qwen3-8B, the scale partner becomes Qwen3-14B (valence-arousal paper: clean monotonic control, under 1% off-distribution output).",
+    "ranking": [
+      {
+        "model": "Llama-3.1-8B-Instruct",
+        "overall": 9,
+        "interp": 9,
+        "safety": 8,
+        "compute": 9,
+        "note": "Primary. All three lenses chose it, it is measured on this Mac, and its baseline, refusal direction and ablation are already done."
+      },
+      {
+        "model": "Qwen2.5-7B-Instruct",
+        "overall": 7.8,
+        "interp": 8,
+        "safety": 5.5,
+        "compute": 8.5,
+        "note": "Replication. The safety lens's weak-baseline objection is contradicted by its own RedBench source (32.8% vs Llama's 47.5% ASR). It has the Safety Pitfalls geometry precedent and no thinking mode."
+      },
+      {
+        "model": "Qwen3-8B",
+        "overall": 7,
+        "interp": 6.5,
+        "safety": 7,
+        "compute": 7.5,
+        "note": "Alternate replication. Precedent in the valence-arousal paper and FreakOut, but thinking mode, about 7x larger steering strengths, and Hong's screen scored it 6/11 vs Llama's 7/11."
+      },
+      {
+        "model": "Gemma-2-9b-it",
+        "overall": 6.8,
+        "interp": 7,
+        "safety": 7.5,
+        "compute": 6,
+        "note": "Optional third family. Strongest refusal, Gemma Scope IT SAEs at 3 layers. Gated, post-norm (use hook ablation, not weight edits), and check the coordinate scale before difference-in-means."
+      },
+      {
+        "model": "Qwen2.5-14B-Instruct",
+        "overall": 6.5,
+        "interp": 5.5,
+        "safety": 6,
+        "compute": 7.5,
+        "note": "The 14B scale point, on a 30 to 40 condition subset. Strongest cosine-to-ASR fit in Safety Pitfalls. No SAEs."
+      },
+      {
+        "model": "Qwen3-14B",
+        "overall": 6.3,
+        "interp": 4.5,
+        "safety": 7.5,
+        "compute": 7,
+        "note": "Scale point only if you take the Qwen3 route. Cleanest emotion-steering precedent, but thinking mode and no SAE suite."
+      },
+      {
+        "model": "Gemma-3-12b-it",
+        "overall": 5.5,
+        "interp": 6,
+        "safety": 5.5,
+        "compute": 6.5,
+        "note": "Only as an SAE-rich negative control (Gemma Scope 2, not significant in FreakOut). Coordinate 2339 breaks raw difference-in-means (verified). Higher raw HarmBench ASR than Gemma 2/4 (11.3%)."
+      },
+      {
+        "model": "Olmo-3-7B-Instruct",
+        "overall": 5.5,
+        "interp": 3.5,
+        "safety": 7,
+        "compute": 6.5,
+        "note": "Open SFT and DPO checkpoints would support a study of which alignment stage creates the effect. But its TransformerBridge verification failed, it has 32 KV heads, and it is post-norm. Future work."
+      },
+      {
+        "model": "Llama-3.2-3B-Instruct",
+        "overall": 5.5,
+        "interp": 5,
+        "safety": 5.5,
+        "compute": 6,
+        "note": "Mid-size debug model only. Geometry results are not expected to carry over to 8B."
+      },
+      {
+        "model": "Llama-3.2-1B-Instruct",
+        "overall": 5,
+        "interp": 4.5,
+        "safety": 5,
+        "compute": 5,
+        "note": "Warm-up, already done locally (E00 to E06). Unit tests and smoke runs only."
+      },
+      {
+        "model": "Gemma-4-12B-it",
+        "overall": 5,
+        "interp": 3,
+        "safety": 7.5,
+        "compute": 6,
+        "note": "The safety lens's 7.5 rests on Gemma-4-31B family evidence, not the 12B. No Gemma Scope, TransformerBridge skipped it, new Unified architecture. HF createdAt is 2026-05-23; the July date is the tech report."
+      },
+      {
+        "model": "Llama-2-13b-chat",
+        "overall": 4.8,
+        "interp": 4,
+        "safety": 7,
+        "compute": 4.5,
+        "note": "Near-zero baseline anchor (0.5 to 0.6% DR), but 800 KB per token of KV cache means batch 24 or less and 22 to 28 h. Cite Arditi's table instead of running it."
+      },
+      {
+        "model": "OLMo-2-1124-13B-Instruct",
+        "overall": 4.8,
+        "interp": 4,
+        "safety": 7,
+        "compute": 4.5,
+        "note": "Highest Tulu-suite safety score, but full multi-head attention does not fit at batch 64 and it has no SAEs."
+      },
+      {
+        "model": "Phi-4",
+        "overall": 4.5,
+        "interp": 2.5,
+        "safety": 6,
+        "compute": 6,
+        "note": "Cleanest licence (MIT), but no public HarmBench baseline, no SAEs, and it mixes family with scale."
+      },
+      {
+        "model": "Qwen3.5-9B",
+        "overall": 4.5,
+        "interp": 4.5,
+        "safety": 6,
+        "compute": 4.5,
+        "note": "Hybrid Gated DeltaNet architecture, thinks by default, CUDA-only fast kernels (MPS speed unknown). Its TransformerBridge gated-hooks check failed."
+      },
+      {
+        "model": "Granite-4.2-8B",
+        "overall": 4.5,
+        "safety": 4,
+        "compute": 6,
+        "note": "Plain dense 2026 model, but no safety baselines and no interpretability literature. The interp lens did not score it."
+      },
+      {
+        "model": "Ministral-3-8B-Instruct-2512",
+        "overall": 4,
+        "safety": 3,
+        "compute": 5.5,
+        "note": "Weak predecessor safety (Ministral-8B HarmBench refusal 53.4%) and a multimodal class."
+      },
+      {
+        "model": "Mistral-Nemo-Instruct-2407",
+        "overall": 3,
+        "interp": 2.5,
+        "safety": 2,
+        "compute": 5.5,
+        "note": "Its card says it has no moderation mechanisms. Weakly aligned negative control at most."
+      },
+      {
+        "model": "Mistral-7B-Instruct-v0.3",
+        "overall": 3,
+        "interp": 2.5,
+        "safety": 2,
+        "compute": 5,
+        "note": "Its card says it has no moderation mechanisms, and v0.2 has about 45% HarmBench DR, so there is little refusal left to break."
+      }
+    ],
+    "risks": [
+      "Novelty is the biggest risk. Three opened papers each cover part of the project. The valence-arousal paper (Sun et al., 2604.03147) already steers refusal with emotion-derived axes on Llama-3.1-8B, Qwen3-8B and Qwen3-14B (WildGuard judge, steering at all layers). FreakOut-LLM already shows prompt-level stress priming raises ASR. Safety Pitfalls already shows cos(steering vector, refusal direction) predicts ASR change. Frame the contribution as the combination: discrete functional emotion vectors injected at one residual layer, HarmBench-classifier ASR, an orthogonal-projection test, and multi-turn persistence. Cite all three.",
+      "Sign and effect size. In the valence-arousal paper, single anger and disgust vectors RAISED Llama's refusal (86.5% to 93 to 98%). Local E06 cosines are small (hostile +0.08, happy -0.09 at layer 11) against a random-direction 99th percentile of 0.039. Test both signs, and use the emotion-specific part (shared 'emotional vs flat' direction projected out), since paired CAA vectors share a component of about 0.7 cosine.",
+      "Judge dependence. Published Llama-3.1-8B baselines range from 1.9% to 47.5% depending on judge and benchmark. Report Wilson intervals with the HarmBench classifier and re-judge a subset with a second judge (WildGuard). The classifier counts only English output, so Qwen's Chinese-token drift under emotion steering (Jeong, verified) could undercount ASR.",
+      "Comparisons with Safety Pitfalls are qualitative only. It uses JailbreakBench, a GPT-4o-mini judge, single-layer prefix-injection steering and multipliers from -1.5 to 1.5 (verified). Do not compare ASR numbers directly.",
+      "Memory: the 26 GB judge cannot share the 40.2 GB MPS budget with any target, so run them one after the other. The compute lens says PYTORCH_MPS_HIGH_WATERMARK_RATIO defaults to 1.7, so overflow swaps instead of failing; set it to 1.0 for unattended runs. That default was not re-verified.",
+      "Keep every reported number in bf16 (the repo loader defaults MPS to fp16, and Gemma 3 gives empty output in fp16). The compute lens alone cites evidence that INT8/NF4 weights shift baselines and that low-bit KV-cache quantisation silently removes refusals. I did not re-open those sources; use 4-bit for pilot screening at most.",
+      "Gemma and OLMo traps if added later: the coordinate 2339 outlier in Gemma-3-12B (verified, about 626x a typical coordinate, so raw difference-in-means fails; mask or standardise first). Post-norm blocks in Gemma-2/4 and OLMo-2/3 make weight orthogonalisation incomplete (verified, Heretic study Sec 3.1); hook-based ablation is fine.",
+      "Unresolved conflict about MLX: the llm-steering-research skill says the 8B is bandwidth-bound and MLX buys almost nothing. The compute lens says batched MPS decoding is overhead-bound (0.24 s per step vs about 0.05 s to read the weights), so MLX batch_generate might win. Both can hold: single stream is bandwidth-bound, batch 64 is not. It is unmeasured. Adopt MLX only if hidden states match HF (cos > 0.999) and the hooks are ported.",
+      "Single-lens claims I did NOT re-open, so treat them as provisional. Interp: SAE and transcoder availability and TransformerBridge statuses, Goodfire toxic-feature removal, Llama Scope L31R non-transfer, Gemma-4 hook steering being unreliable (community cards), low-rank refusal in Llama 3.2 1B/3B (blog). Safety: EmoRSS over-refusal under emotional framing, OR-Bench/XSTest/PolyRefuse numbers, Phi-4 in-house jailbreak rates, unsloth mirrors being ungated. Compute: the KV-quantisation refusal study, Ali et al. (CAA shrinks with size), Hao et al., MLX use of the M5 Neural Accelerators, and every throughput estimate for models not yet run here.",
+      "Single-lens claims I DID verify by opening the source: the valence-arousal paper's numbers (safety), FreakOut's model list with gemma-3-12b-it and phi-4 not significant (interp), Gemma-3's raw-seed HarmBench ASR of 11.3% vs 5.2/5.2/4.6% for Gemma 1, 2 and 4 (safety; Llama-3.1-8B judge, one run, and the Gemma 4 model tested was 31B), the post-norm caveat (safety), the coordinate 2339 outlier (interp), the 40.2 GB MPS budget (compute).",
+      "Gated licences: Llama and Gemma return 403 on Anuj's token. Run from the unsloth mirrors (same weights, same licence) and have Anuj accept the Meta licence before publishing."
+    ],
+    "sources": [
+      "https://arxiv.org/abs/2604.03147 (opened)",
+      "https://arxiv.org/html/2604.03147 (opened: HarmBench 86.5% to 5% on Llama, Qwen3-8B/14B 89.5% baselines, Appendix E single-emotion table)",
+      "https://arxiv.org/abs/2604.04992 (opened)",
+      "https://arxiv.org/html/2604.04992v1 (opened: ten models, five significant, HarmBench classifier judge)",
+      "https://arxiv.org/abs/2603.24543 (opened)",
+      "https://arxiv.org/html/2603.24543v1 (opened: per-model slopes and r, JailbreakBench, GPT-4o-mini judge, steering layers)",
+      "https://jyhong.gitlab.io/post/emotion-vector-part1/report/part1_report.pdf (opened: v1 screen 7/11 vs 6/11, v2 10/11, layer 21, 8B headroom ceiling)",
+      "https://arxiv.org/html/2601.03699 (opened: RedBench Table 4 Direct ASR Llama 47.50, Qwen2.5-7B 32.81, Gemma-2-9B 11.25; Table 3 XSTest)",
+      "https://arxiv.org/abs/2606.00813 and https://arxiv.org/html/2606.00813 (opened: raw-seed HarmBench ASR 5.2/5.2/11.3/4.6, Gemma 4 = 31B, Llama-3.1-8B judge)",
+      "https://arxiv.org/abs/2611.17846 and https://arxiv.org/html/2611.17846 (opened: post-norm makes direction edits incomplete on Gemma-2/4, OLMo-2/3.1)",
+      "https://www.lesswrong.com/posts/qw4a97qcRgfLJY5jC/one-coordinate-breaks-abliteration-on-gemma-3-1 (opened: coordinate 2339, MMLU 0.682 to 0.242, fixes; Llama-3-8B and Qwen-2.5-7B work raw)",
+      "https://arxiv.org/abs/2604.04064 (opened: Qwen emotion steering activates Chinese tokens)",
+      "https://huggingface.co/api/models/google/gemma-4-12B-it (opened: createdAt 2026-05-23, ungated, apache-2.0)",
+      "local: /Users/anuj/Agents/PersonalProjects/affect-as-attack/repo/results/E00-model-selection.json, E01-baseline-refusal.json, E06-geometry.json, index.json (E02, E03 headlines), warmup-llama-1b/",
+      "local: torch.mps.recommended_max_memory() = 40.2 GB in the project venv; /Users/anuj/Agents/Anuj-Skills/skills/llm-steering-research/SKILL.md",
+      "lens-cited, not re-opened by the synthesis: https://arxiv.org/html/2406.11717v3 (Arditi et al.), https://arxiv.org/html/2402.04249 (HarmBench), https://arxiv.org/html/2411.15124 (Tulu 3), https://arxiv.org/html/2505.17306 (PolyRefuse), https://arxiv.org/abs/2410.20526 (Llama Scope), https://arxiv.org/html/2605.11887v1 (Qwen-Scope), https://arxiv.org/html/2502.17420v2 (concept cones), https://raw.githubusercontent.com/decoderesearch/SAELens/main/sae_lens/pretrained_saes.yaml, https://raw.githubusercontent.com/TransformerLensOrg/TransformerLens/main/transformer_lens/tools/model_registry/data/supported_models.json, https://huggingface.co/google/gemma-scope-2-12b-it, https://arxiv.org/abs/2507.11771 (Ali et al.), https://icml.cc/virtual/2026/79344 (KV quantisation and refusal), https://www.apple.com/macbook-pro/specs/"
+    ]
+  }
+}
