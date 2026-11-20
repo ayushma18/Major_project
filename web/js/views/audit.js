@@ -4,6 +4,8 @@
  * - Categorised by status: real-correct, real-wrong-metadata, wrong-paper, not-found
  */
 
+import { storyHtml } from '../story.js';
+
 export function renderAudit(catalog) {
   const container = document.createElement('div');
   container.className = 'view-audit';
@@ -69,6 +71,12 @@ export function renderAudit(catalog) {
         Systematic audit of references cited in the project proposal to detect hallucinated preprints or erroneous metadata.
       </p>
     </div>
+
+    ${catalog.differentiation ? `
+    <details class="story-block" open>
+      <summary>Where our project stands against prior work</summary>
+      <div class="story-body">${storyHtml(catalog.differentiation, catalog.papers)}</div>
+    </details>` : ''}
 
     <div class="timeline-controls" style="margin-bottom: var(--space-lg);">
       <div class="filter-group">

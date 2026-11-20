@@ -64,6 +64,9 @@ All dates are ISO 8601 (`2024-06-17`). All files are UTF-8 JSON. No em or en das
 - `pdf_local` is relative to the repo root. PDFs are not committed (copyright); run
   `scripts/fetch_papers.py` to download them.
 - Fields a writer has not filled yet are `null` or `[]`, never invented.
+- Top-level `timeline_story` and `differentiation`: plain-text narratives (paragraphs separated by a
+  blank line) that cite papers as `[paper-id]` or `[id1, id2]`; the interface turns these into links.
+- Per paper, `reading_why`: one sentence on why the paper sits at its place in the reading path.
 
 ## 2. `results/index.json` and `results/<experiment-id>.json`, experiment results
 

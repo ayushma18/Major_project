@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-20T13:19:57",
+  "updated": "2026-11-20T13:59:01",
   "experiments": [
     {
       "id": "E00-model-selection",
@@ -37,25 +37,25 @@
       "id": "E04-emotion-vectors",
       "title": "Extracting the 20 emotion vectors",
       "module": 1,
-      "status": "planned",
+      "status": "done",
       "file": "results/E04-emotion-vectors.json",
-      "headline": "CAA over the story corpus, every layer, checked on held-out and independent texts"
+      "headline": "All 19 emotions are recognised in held-out stories (19-way accuracy 99.5% at layer 9, chance 5.3%)."
     },
     {
       "id": "E05-emotion-steering-sanity",
       "title": "Do the emotion vectors steer emotion",
       "module": 1,
-      "status": "planned",
+      "status": "done",
       "file": "results/E05-emotion-steering-sanity.json",
-      "headline": "Benign prompts with each vector added: does the tone change as expected"
+      "headline": "At layer 12 and strength 1.0, an unsteered reader names the injected emotion 32.9% of the time (chance 5%)."
     },
     {
       "id": "E06-geometry",
       "title": "How emotion vectors line up with the guardrail direction",
       "module": 3,
-      "status": "planned",
+      "status": "done",
       "file": "results/E06-geometry.json",
-      "headline": "Cosine similarity between every emotion vector and the refusal direction"
+      "headline": "At layer 11, hostile points most towards the guardrail direction (cos +0.08) and happy most away (-0.10); random directions stay within plus or minus 0.039."
     },
     {
       "id": "E07-emotion-injection-asr",

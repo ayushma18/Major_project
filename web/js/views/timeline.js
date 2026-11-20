@@ -7,6 +7,8 @@
  * - Nodes display title, date, venue, first finding, and link to paper page
  */
 
+import { storyHtml } from '../story.js';
+
 export function renderTimeline(catalog) {
   const container = document.createElement('div');
   container.className = 'view-timeline';
@@ -68,6 +70,12 @@ export function renderTimeline(catalog) {
         How the field evolved towards activation-level emotion steering and guardrail geometry.
       </p>
     </div>
+
+    ${catalog.timeline_story ? `
+    <details class="story-block" open>
+      <summary>How the field got to our question</summary>
+      <div class="story-body">${storyHtml(catalog.timeline_story, allPapers)}</div>
+    </details>` : ''}
 
     <div class="timeline-controls">
       <div class="filter-group">

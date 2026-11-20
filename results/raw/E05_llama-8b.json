@@ -1,0 +1,6461 @@
+{
+  "model": "unsloth/Llama-3.1-8B-Instruct",
+  "vector": "caa",
+  "layers": [
+    8,
+    12,
+    16,
+    20
+  ],
+  "coeffs": [
+    0.25,
+    0.5,
+    1.0
+  ],
+  "emotions": [
+    "afraid",
+    "angry",
+    "anxious",
+    "calm",
+    "desperate",
+    "enthusiastic",
+    "exasperated",
+    "fearful",
+    "gloomy",
+    "grateful",
+    "guilty",
+    "happy",
+    "hopeful",
+    "hostile",
+    "loving",
+    "nervous",
+    "proud",
+    "reflective",
+    "sad"
+  ],
+  "options": [
+    "afraid",
+    "angry",
+    "anxious",
+    "calm",
+    "desperate",
+    "enthusiastic",
+    "exasperated",
+    "fearful",
+    "gloomy",
+    "grateful",
+    "guilty",
+    "happy",
+    "hopeful",
+    "hostile",
+    "loving",
+    "nervous",
+    "proud",
+    "reflective",
+    "sad",
+    "neutral"
+  ],
+  "aggregate": [
+    {
+      "vector": "afraid",
+      "layer": 8,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.001012169454573571,
+      "nll": 0.34633539368708927,
+      "rep": 0.030584622783610127,
+      "pos": 0.401464118132953,
+      "neg": 0.013720059898716386,
+      "pred_counts": {
+        "calm": 7,
+        "enthusiastic": 3,
+        "hostile": 1,
+        "nervous": 1
+      }
+    },
+    {
+      "vector": "angry",
+      "layer": 8,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0008118169173106556,
+      "nll": 0.32654386510451633,
+      "rep": 0.04010056946064151,
+      "pos": 0.40058102659145334,
+      "neg": 0.08321445352447654,
+      "pred_counts": {
+        "calm": 8,
+        "enthusiastic": 3,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "anxious",
+      "layer": 8,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.08333333333333333,
+      "p_target": 0.06729838288519356,
+      "nll": 0.39164624611536664,
+      "rep": 0.032349918663420386,
+      "pos": 0.4413719803666159,
+      "neg": 0.08326547950150598,
+      "pred_counts": {
+        "calm": 7,
+        "enthusiastic": 3,
+        "nervous": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "calm",
+      "layer": 8,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.5833333333333334,
+      "p_target": 0.5472471755777709,
+      "nll": 0.36200418323278427,
+      "rep": 0.0241373080717391,
+      "pos": 0.5000053961367333,
+      "neg": 0.08299556625422137,
+      "pred_counts": {
+        "calm": 7,
+        "enthusiastic": 1,
+        "nervous": 1,
+        "neutral": 1,
+        "happy": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "desperate",
+      "layer": 8,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.003806552212608949,
+      "nll": 0.4283982055882613,
+      "rep": 0.018766846202623134,
+      "pos": 0.5397491677100609,
+      "neg": 0.0542766681753856,
+      "pred_counts": {
+        "calm": 6,
+        "enthusiastic": 3,
+        "hostile": 1,
+        "happy": 1,
+        "nervous": 1
+      }
+    },
+    {
+      "vector": "enthusiastic",
+      "layer": 8,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.3333333333333333,
+      "p_target": 0.2584781297302167,
+      "nll": 0.3650052025914192,
+      "rep": 0.03204828581655256,
+      "pos": 0.43756987759707044,
+      "neg": 0.04386563081993226,
+      "pred_counts": {
+        "calm": 6,
+        "grateful": 1,
+        "enthusiastic": 4,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "exasperated",
+      "layer": 8,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.003495423717538415,
+      "nll": 0.3757299209634463,
+      "rep": 0.019978266595761424,
+      "pos": 0.4271764030841041,
+      "neg": 0.08278621981732688,
+      "pred_counts": {
+        "enthusiastic": 3,
+        "calm": 7,
+        "nervous": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "fearful",
+      "layer": 8,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0054382503416642676,
+      "nll": 0.378942118336757,
+      "rep": 0.026246165455377446,
+      "pos": 0.42067618047721567,
+      "neg": 0.08303831176197225,
+      "pred_counts": {
+        "calm": 6,
+        "enthusiastic": 3,
+        "nervous": 1,
+        "reflective": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "gloomy",
+      "layer": 8,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.005002266273246884,
+      "nll": 0.4231567308306694,
+      "rep": 0.0231557907455264,
+      "pos": 0.41741663512774113,
+      "neg": 0.08332423073293664,
+      "pred_counts": {
+        "calm": 7,
+        "enthusiastic": 2,
+        "hopeful": 1,
+        "grateful": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "grateful",
+      "layer": 8,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.008086967041587437,
+      "nll": 0.376213679711024,
+      "rep": 0.029808269318348752,
+      "pos": 0.4171481781973417,
+      "neg": 0.05860766944804633,
+      "pred_counts": {
+        "calm": 7,
+        "enthusiastic": 3,
+        "nervous": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "guilty",
+      "layer": 8,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.015038230516362697,
+      "nll": 0.3676346850891908,
+      "rep": 0.028965091284615486,
+      "pos": 0.4507474896068307,
+      "neg": 0.08058061692906904,
+      "pred_counts": {
+        "calm": 8,
+        "enthusiastic": 2,
+        "anxious": 1,
+        "happy": 1
+      }
+    },
+    {
+      "vector": "happy",
+      "layer": 8,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.008057368326793343,
+      "nll": 0.3853941783308983,
+      "rep": 0.02777819043735194,
+      "pos": 0.549568957384101,
+      "neg": 0.05186908196228046,
+      "pred_counts": {
+        "calm": 6,
+        "enthusiastic": 5,
+        "nervous": 1
+      }
+    },
+    {
+      "vector": "hopeful",
+      "layer": 8,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.024762270413892413,
+      "nll": 0.43042917797962826,
+      "rep": 0.037828132870678204,
+      "pos": 0.44944764594103387,
+      "neg": 0.08296154809705551,
+      "pred_counts": {
+        "sad": 1,
+        "calm": 7,
+        "enthusiastic": 3,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "hostile",
+      "layer": 8,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.060714206555834004,
+      "nll": 0.39263707399368286,
+      "rep": 0.03652463888312945,
+      "pos": 0.4456305903630664,
+      "neg": 0.08286483277027894,
+      "pred_counts": {
+        "calm": 7,
+        "enthusiastic": 3,
+        "nervous": 2
+      }
+    },
+    {
+      "vector": "loving",
+      "layer": 8,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0027956445650545447,
+      "nll": 0.42170147597789764,
+      "rep": 0.02282851386218679,
+      "pos": 0.422517549733404,
+      "neg": 0.07539497226382726,
+      "pred_counts": {
+        "calm": 8,
+        "enthusiastic": 1,
+        "nervous": 2,
+        "reflective": 1
+      }
+    },
+    {
+      "vector": "nervous",
+      "layer": 8,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.08333333333333333,
+      "p_target": 0.14733010356841683,
+      "nll": 0.42553473884860676,
+      "rep": 0.044515486932972796,
+      "pos": 0.4203563915369557,
+      "neg": 0.08395757014732415,
+      "pred_counts": {
+        "enthusiastic": 4,
+        "calm": 5,
+        "nervous": 1,
+        "sad": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "proud",
+      "layer": 8,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.001451480906889439,
+      "nll": 0.3465423236290614,
+      "rep": 0.019940383603971018,
+      "pos": 0.4183768656130458,
+      "neg": 0.028985315777627346,
+      "pred_counts": {
+        "calm": 8,
+        "enthusiastic": 2,
+        "nervous": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "reflective",
+      "layer": 8,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.019753939077228704,
+      "nll": 0.3770609398682912,
+      "rep": 0.027817440366459983,
+      "pos": 0.4159160136660442,
+      "neg": 0.06287472012642088,
+      "pred_counts": {
+        "calm": 7,
+        "enthusiastic": 2,
+        "hopeful": 1,
+        "hostile": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "sad",
+      "layer": 8,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.005333394930554884,
+      "nll": 0.38619591295719147,
+      "rep": 0.023470912539101885,
+      "pos": 0.42216667748044284,
+      "neg": 0.08331691450058543,
+      "pred_counts": {
+        "calm": 7,
+        "enthusiastic": 3,
+        "nervous": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "random0",
+      "layer": 8,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0,
+      "nll": 0.235319335013628,
+      "rep": 0.04303495931476039,
+      "pos": 0.40156596243097314,
+      "neg": 0.016782881603916167,
+      "pred_counts": {
+        "calm": 7,
+        "hostile": 1,
+        "enthusiastic": 2,
+        "reflective": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "random1",
+      "layer": 8,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0,
+      "nll": 0.25354482357700664,
+      "rep": 0.04664302590549685,
+      "pos": 0.35969899232805363,
+      "neg": 0.07936985915224189,
+      "pred_counts": {
+        "calm": 9,
+        "enthusiastic": 1,
+        "reflective": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "random2",
+      "layer": 8,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0,
+      "nll": 0.2550424473981063,
+      "rep": 0.027105586407057004,
+      "pos": 0.3892376630775137,
+      "neg": 0.07440620273253747,
+      "pred_counts": {
+        "calm": 8,
+        "hostile": 1,
+        "enthusiastic": 1,
+        "hopeful": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "afraid",
+      "layer": 8,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0010565735486428214,
+      "nll": 0.8000554864605268,
+      "rep": 0.018707520636308112,
+      "pos": 0.38528428701958245,
+      "neg": 0.08335841608550254,
+      "pred_counts": {
+        "calm": 4,
+        "enthusiastic": 3,
+        "nervous": 2,
+        "loving": 1,
+        "reflective": 1,
+        "hostile": 1
+      }
+    },
+    {
+      "vector": "angry",
+      "layer": 8,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0018529085943252237,
+      "nll": 0.8453295826911926,
+      "rep": 0.037183252166089704,
+      "pos": 0.34809621598798896,
+      "neg": 0.08366171874035899,
+      "pred_counts": {
+        "calm": 5,
+        "gloomy": 1,
+        "enthusiastic": 2,
+        "neutral": 1,
+        "reflective": 1,
+        "happy": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "anxious",
+      "layer": 8,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.08333333333333333,
+      "p_target": 0.08343897418490087,
+      "nll": 0.9374566028515497,
+      "rep": 0.021058983709450058,
+      "pos": 0.2561218458607553,
+      "neg": 0.08580153372177317,
+      "pred_counts": {
+        "calm": 5,
+        "gloomy": 2,
+        "enthusiastic": 1,
+        "happy": 1,
+        "reflective": 1,
+        "grateful": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "calm",
+      "layer": 8,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.75,
+      "p_target": 0.6240095783335468,
+      "nll": 0.8183598270018896,
+      "rep": 0.019067999597556257,
+      "pos": 0.5029592730939688,
+      "neg": 0.03646121392231786,
+      "pred_counts": {
+        "calm": 9,
+        "enthusiastic": 1,
+        "hopeful": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "desperate",
+      "layer": 8,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.007783405390606883,
+      "nll": 1.1599789311488469,
+      "rep": 0.009739032181848073,
+      "pos": 0.4831468230559987,
+      "neg": 0.08310369924683414,
+      "pred_counts": {
+        "enthusiastic": 5,
+        "neutral": 2,
+        "gloomy": 1,
+        "grateful": 1,
+        "reflective": 1,
+        "anxious": 2
+      }
+    },
+    {
+      "vector": "enthusiastic",
+      "layer": 8,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.25,
+      "p_target": 0.21443254289497796,
+      "nll": 1.1946363747119904,
+      "rep": 0.022668650793650796,
+      "pos": 0.8223378807548821,
+      "neg": 0.0830375170809295,
+      "pred_counts": {
+        "happy": 3,
+        "calm": 2,
+        "enthusiastic": 3,
+        "grateful": 1,
+        "loving": 1,
+        "anxious": 1,
+        "hopeful": 1
+      }
+    },
+    {
+      "vector": "exasperated",
+      "layer": 8,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.003475351363704249,
+      "nll": 1.0406534150242805,
+      "rep": 0.012901825475123668,
+      "pos": 0.449308720873925,
+      "neg": 0.03402157999397559,
+      "pred_counts": {
+        "calm": 5,
+        "grateful": 1,
+        "enthusiastic": 2,
+        "loving": 1,
+        "hostile": 2,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "fearful",
+      "layer": 8,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.009221035764312546,
+      "nll": 1.0346495062112808,
+      "rep": 0.02815235528173533,
+      "pos": 0.4436705263232537,
+      "neg": 0.08324650814870438,
+      "pred_counts": {
+        "hostile": 2,
+        "calm": 4,
+        "hopeful": 1,
+        "enthusiastic": 3,
+        "happy": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "gloomy",
+      "layer": 8,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.012799624731997028,
+      "nll": 1.1236983289321263,
+      "rep": 0.019186375622880364,
+      "pos": 0.3320215682971301,
+      "neg": 0.08413603265423338,
+      "pred_counts": {
+        "calm": 4,
+        "reflective": 4,
+        "exasperated": 1,
+        "nervous": 1,
+        "grateful": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "grateful",
+      "layer": 8,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.08333333333333333,
+      "p_target": 0.10747073679476671,
+      "nll": 1.0325598965088527,
+      "rep": 0.006879621413782909,
+      "pos": 0.6292451778477925,
+      "neg": 0.018579826345349677,
+      "pred_counts": {
+        "calm": 5,
+        "enthusiastic": 1,
+        "happy": 1,
+        "nervous": 1,
+        "reflective": 2,
+        "grateful": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "guilty",
+      "layer": 8,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.018609597255514625,
+      "nll": 0.9835709532101949,
+      "rep": 0.03180976807810496,
+      "pos": 0.3303729106944857,
+      "neg": 0.16663362800568393,
+      "pred_counts": {
+        "calm": 4,
+        "gloomy": 1,
+        "grateful": 1,
+        "exasperated": 1,
+        "loving": 1,
+        "hostile": 1,
+        "happy": 1,
+        "anxious": 1,
+        "enthusiastic": 1
+      }
+    },
+    {
+      "vector": "happy",
+      "layer": 8,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.16666666666666666,
+      "p_target": 0.18337421085053998,
+      "nll": 0.9970206916332245,
+      "rep": 0.02598330421296194,
+      "pos": 0.6966268562803938,
+      "neg": 0.01111643945821091,
+      "pred_counts": {
+        "hopeful": 2,
+        "enthusiastic": 4,
+        "calm": 2,
+        "happy": 2,
+        "reflective": 1,
+        "nervous": 1
+      }
+    },
+    {
+      "vector": "hopeful",
+      "layer": 8,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.16666666666666666,
+      "p_target": 0.16843995735500053,
+      "nll": 1.1904278347889583,
+      "rep": 0.01888063142476537,
+      "pos": 0.6657747706362045,
+      "neg": 0.08333343140432703,
+      "pred_counts": {
+        "hostile": 1,
+        "calm": 4,
+        "grateful": 1,
+        "nervous": 1,
+        "hopeful": 2,
+        "loving": 1,
+        "happy": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "hostile",
+      "layer": 8,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.08333333333333333,
+      "p_target": 0.0857868093420014,
+      "nll": 0.974936751027902,
+      "rep": 0.04761211279862846,
+      "pos": 0.09284271924419348,
+      "neg": 0.08541922898837129,
+      "pred_counts": {
+        "calm": 3,
+        "gloomy": 1,
+        "anxious": 3,
+        "neutral": 1,
+        "enthusiastic": 1,
+        "reflective": 2,
+        "hostile": 1
+      }
+    },
+    {
+      "vector": "loving",
+      "layer": 8,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.08333333333333333,
+      "p_target": 0.08309780096806207,
+      "nll": 1.047766238451004,
+      "rep": 0.031467908106101124,
+      "pos": 0.4488235875617382,
+      "neg": 0.08358446517176314,
+      "pred_counts": {
+        "enthusiastic": 2,
+        "calm": 3,
+        "grateful": 1,
+        "exasperated": 1,
+        "loving": 1,
+        "hopeful": 2,
+        "happy": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "nervous",
+      "layer": 8,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.16666666666666666,
+      "p_target": 0.11869079371293385,
+      "nll": 1.1479892954230309,
+      "rep": 0.017925042134254127,
+      "pos": 0.2594359508427336,
+      "neg": 0.0833833103816725,
+      "pred_counts": {
+        "hostile": 2,
+        "enthusiastic": 1,
+        "reflective": 1,
+        "calm": 4,
+        "anxious": 2,
+        "nervous": 2
+      }
+    },
+    {
+      "vector": "proud",
+      "layer": 8,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0005224429914155356,
+      "nll": 0.9301655193169912,
+      "rep": 0.014185660018993351,
+      "pos": 0.6387846816998414,
+      "neg": 0.08329911627390629,
+      "pred_counts": {
+        "calm": 5,
+        "enthusiastic": 3,
+        "reflective": 1,
+        "happy": 2,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "reflective",
+      "layer": 8,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.16666666666666666,
+      "p_target": 0.16848271571294995,
+      "nll": 0.9063337842623392,
+      "rep": 0.019867153400435145,
+      "pos": 0.3560402651148162,
+      "neg": 0.08334543556203282,
+      "pred_counts": {
+        "calm": 3,
+        "grateful": 1,
+        "enthusiastic": 3,
+        "reflective": 2,
+        "hostile": 2,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "sad",
+      "layer": 8,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.027679667570282618,
+      "nll": 0.8175423890352249,
+      "rep": 0.01755148240997298,
+      "pos": 0.428537149195364,
+      "neg": 0.0833346278244657,
+      "pred_counts": {
+        "calm": 6,
+        "enthusiastic": 2,
+        "reflective": 1,
+        "happy": 1,
+        "gloomy": 1,
+        "hostile": 1
+      }
+    },
+    {
+      "vector": "random0",
+      "layer": 8,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0,
+      "nll": 0.29571660856405896,
+      "rep": 0.03778297744331138,
+      "pos": 0.39246374182322324,
+      "neg": 0.007955872216195795,
+      "pred_counts": {
+        "calm": 8,
+        "enthusiastic": 2,
+        "happy": 1,
+        "hopeful": 1
+      }
+    },
+    {
+      "vector": "random1",
+      "layer": 8,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0,
+      "nll": 0.2954488943020503,
+      "rep": 0.03080930142211258,
+      "pos": 0.4126059475253913,
+      "neg": 0.08333916973920925,
+      "pred_counts": {
+        "calm": 7,
+        "enthusiastic": 2,
+        "reflective": 1,
+        "hostile": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "random2",
+      "layer": 8,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0,
+      "nll": 0.3923806498448054,
+      "rep": 0.02353235462280968,
+      "pos": 0.41182350929510864,
+      "neg": 0.08330776147411238,
+      "pred_counts": {
+        "calm": 8,
+        "enthusiastic": 2,
+        "hopeful": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "afraid",
+      "layer": 8,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.012186163367005065,
+      "nll": 3.062816878159841,
+      "rep": 0.03133818850308929,
+      "pos": 7.112614082534681e-05,
+      "neg": 0.9998912165562311,
+      "pred_counts": {
+        "anxious": 6,
+        "desperate": 4,
+        "nervous": 1,
+        "fearful": 1
+      }
+    },
+    {
+      "vector": "angry",
+      "layer": 8,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.25,
+      "p_target": 0.24812004901468754,
+      "nll": 2.816833714644114,
+      "rep": 0.08181363561973254,
+      "pos": 4.074512625962257e-06,
+      "neg": 0.9999825457731882,
+      "pred_counts": {
+        "anxious": 5,
+        "gloomy": 3,
+        "angry": 3,
+        "nervous": 1
+      }
+    },
+    {
+      "vector": "anxious",
+      "layer": 8,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.5833333333333334,
+      "p_target": 0.4254328797095089,
+      "nll": 4.837785303592682,
+      "rep": 0.0,
+      "pos": 7.877152162549805e-06,
+      "neg": 0.8730628962318102,
+      "pred_counts": {
+        "anxious": 7,
+        "gloomy": 4,
+        "guilty": 1
+      }
+    },
+    {
+      "vector": "calm",
+      "layer": 8,
+      "c": 1.0,
+      "n": 12,
+      "top1": 1.0,
+      "p_target": 0.9721478869517645,
+      "nll": 3.412425994873047,
+      "rep": 0.038799014206908795,
+      "pos": 0.3281954570278079,
+      "neg": 9.622191282687709e-05,
+      "pred_counts": {
+        "calm": 12
+      }
+    },
+    {
+      "vector": "desperate",
+      "layer": 8,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.5,
+      "p_target": 0.41581031928459805,
+      "nll": 3.8362643917401633,
+      "rep": 0.13323752335380243,
+      "pos": 0.010155042271118,
+      "neg": 0.8490283616508046,
+      "pred_counts": {
+        "hopeful": 1,
+        "desperate": 6,
+        "exasperated": 1,
+        "gloomy": 2,
+        "anxious": 2
+      }
+    },
+    {
+      "vector": "enthusiastic",
+      "layer": 8,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.8333333333333334,
+      "p_target": 0.7773528763403496,
+      "nll": 3.4928061167399087,
+      "rep": 0.16069475867269986,
+      "pos": 0.9939433683951696,
+      "neg": 0.00013054699290175145,
+      "pred_counts": {
+        "hopeful": 2,
+        "enthusiastic": 10
+      }
+    },
+    {
+      "vector": "exasperated",
+      "layer": 8,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.08333333333333333,
+      "p_target": 0.04522797415362826,
+      "nll": 5.06629095474879,
+      "rep": 0.0,
+      "pos": 0.08360156802264503,
+      "neg": 0.4076085078892599,
+      "pred_counts": {
+        "gloomy": 3,
+        "calm": 1,
+        "proud": 1,
+        "enthusiastic": 1,
+        "sad": 1,
+        "hopeful": 1,
+        "reflective": 1,
+        "desperate": 2,
+        "exasperated": 1
+      }
+    },
+    {
+      "vector": "fearful",
+      "layer": 8,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.013364282547627226,
+      "nll": 4.641490300496419,
+      "rep": 0.0,
+      "pos": 0.0016145153252082878,
+      "neg": 0.5029684511318919,
+      "pred_counts": {
+        "gloomy": 4,
+        "calm": 1,
+        "desperate": 1,
+        "anxious": 4,
+        "hopeful": 1,
+        "reflective": 1
+      }
+    },
+    {
+      "vector": "gloomy",
+      "layer": 8,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.16666666666666666,
+      "p_target": 0.18879408135277723,
+      "nll": 4.824146529038747,
+      "rep": 0.0,
+      "pos": 0.07949686915829564,
+      "neg": 0.15938910419890817,
+      "pred_counts": {
+        "anxious": 3,
+        "sad": 2,
+        "gloomy": 2,
+        "reflective": 3,
+        "hostile": 1,
+        "hopeful": 1
+      }
+    },
+    {
+      "vector": "grateful",
+      "layer": 8,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.08333333333333333,
+      "p_target": 0.08831818369435496,
+      "nll": 3.7436755100886026,
+      "rep": 0.011160714285714282,
+      "pos": 0.5555056539906218,
+      "neg": 0.0003829813589817377,
+      "pred_counts": {
+        "hopeful": 3,
+        "calm": 5,
+        "gloomy": 2,
+        "hostile": 1,
+        "grateful": 1
+      }
+    },
+    {
+      "vector": "guilty",
+      "layer": 8,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.008504669293567227,
+      "nll": 4.4673493305842085,
+      "rep": 0.009259259259259264,
+      "pos": 3.8697330987010524e-05,
+      "neg": 0.4652523911499884,
+      "pred_counts": {
+        "reflective": 1,
+        "gloomy": 4,
+        "exasperated": 2,
+        "desperate": 1,
+        "nervous": 1,
+        "hostile": 1,
+        "sad": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "happy",
+      "layer": 8,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.25,
+      "p_target": 0.21269793391305333,
+      "nll": 4.733134945233663,
+      "rep": 0.09607337107337106,
+      "pos": 0.7329500711190727,
+      "neg": 0.008297888161285035,
+      "pred_counts": {
+        "anxious": 1,
+        "sad": 2,
+        "grateful": 1,
+        "enthusiastic": 3,
+        "happy": 3,
+        "hopeful": 2
+      }
+    },
+    {
+      "vector": "hopeful",
+      "layer": 8,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.05106271342447144,
+      "nll": 4.1058119138081866,
+      "rep": 0.056138306138306136,
+      "pos": 0.1884788281620544,
+      "neg": 0.043844203467566935,
+      "pred_counts": {
+        "calm": 2,
+        "enthusiastic": 2,
+        "reflective": 5,
+        "anxious": 2,
+        "exasperated": 1
+      }
+    },
+    {
+      "vector": "hostile",
+      "layer": 8,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.25,
+      "p_target": 0.06151919963910283,
+      "nll": 4.018811762332916,
+      "rep": 0.15692281011254267,
+      "pos": 0.04422006869936249,
+      "neg": 0.45413136902364687,
+      "pred_counts": {
+        "hostile": 3,
+        "gloomy": 4,
+        "reflective": 4,
+        "calm": 1
+      }
+    },
+    {
+      "vector": "loving",
+      "layer": 8,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.08333333333333333,
+      "p_target": 0.08347345539368689,
+      "nll": 3.0243857701619468,
+      "rep": 0.09552521387342816,
+      "pos": 0.4220032388523786,
+      "neg": 0.24652338357986991,
+      "pred_counts": {
+        "gloomy": 2,
+        "reflective": 4,
+        "enthusiastic": 1,
+        "sad": 1,
+        "loving": 1,
+        "desperate": 1,
+        "hopeful": 2
+      }
+    },
+    {
+      "vector": "nervous",
+      "layer": 8,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.08333333333333333,
+      "p_target": 0.08870799373835325,
+      "nll": 2.596658408641815,
+      "rep": 0.47318580599413956,
+      "pos": 3.573853078364664e-05,
+      "neg": 0.8325278460373132,
+      "pred_counts": {
+        "anxious": 4,
+        "calm": 1,
+        "exasperated": 4,
+        "sad": 2,
+        "nervous": 1
+      }
+    },
+    {
+      "vector": "proud",
+      "layer": 8,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0037808685105738724,
+      "nll": 3.8969763914744058,
+      "rep": 0.0355383428300095,
+      "pos": 0.7114114525517531,
+      "neg": 0.00111407275678251,
+      "pred_counts": {
+        "hopeful": 7,
+        "grateful": 1,
+        "hostile": 1,
+        "calm": 1,
+        "reflective": 1,
+        "nervous": 1
+      }
+    },
+    {
+      "vector": "reflective",
+      "layer": 8,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.6666666666666666,
+      "p_target": 0.5366305843975473,
+      "nll": 3.8089376091957092,
+      "rep": 0.009970238095238096,
+      "pos": 0.06888555732975495,
+      "neg": 0.0003290196103572877,
+      "pred_counts": {
+        "reflective": 8,
+        "calm": 1,
+        "gloomy": 2,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "sad",
+      "layer": 8,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.16666666666666666,
+      "p_target": 0.1354760927594422,
+      "nll": 4.050372103850047,
+      "rep": 0.00416666666666667,
+      "pos": 0.08514007989940826,
+      "neg": 0.3093680980274864,
+      "pred_counts": {
+        "hopeful": 1,
+        "gloomy": 2,
+        "anxious": 4,
+        "reflective": 2,
+        "enthusiastic": 1,
+        "sad": 2
+      }
+    },
+    {
+      "vector": "random0",
+      "layer": 8,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0,
+      "nll": 1.016557698448499,
+      "rep": 0.029019334874733644,
+      "pos": 0.20077729635460173,
+      "neg": 0.07626622304104558,
+      "pred_counts": {
+        "calm": 6,
+        "gloomy": 1,
+        "enthusiastic": 2,
+        "hopeful": 1,
+        "hostile": 1,
+        "nervous": 1
+      }
+    },
+    {
+      "vector": "random1",
+      "layer": 8,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0,
+      "nll": 0.7610456570982933,
+      "rep": 0.017545667839785496,
+      "pos": 0.5789161565472417,
+      "neg": 0.04162698767013732,
+      "pred_counts": {
+        "calm": 7,
+        "enthusiastic": 2,
+        "hopeful": 1,
+        "happy": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "random2",
+      "layer": 8,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0,
+      "nll": 1.4136225432157516,
+      "rep": 0.041438653445897373,
+      "pos": 0.5616248130038836,
+      "neg": 5.209527363566243e-05,
+      "pred_counts": {
+        "happy": 3,
+        "calm": 3,
+        "enthusiastic": 2,
+        "hopeful": 2,
+        "hostile": 1,
+        "nervous": 1
+      }
+    },
+    {
+      "vector": "none",
+      "layer": 8,
+      "c": 0.0,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0,
+      "nll": 0.22996928915381432,
+      "rep": 0.041509974575219544,
+      "pos": 0.4075360190580284,
+      "neg": 0.08200873411854559,
+      "pred_counts": {
+        "calm": 8,
+        "nervous": 1,
+        "enthusiastic": 1,
+        "hopeful": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "afraid",
+      "layer": 12,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0004731507072316769,
+      "nll": 0.3941883171598117,
+      "rep": 0.028173037313413262,
+      "pos": 0.33369837148486897,
+      "neg": 0.08333996564477768,
+      "pred_counts": {
+        "calm": 5,
+        "sad": 1,
+        "enthusiastic": 3,
+        "hopeful": 1,
+        "anxious": 1,
+        "grateful": 1
+      }
+    },
+    {
+      "vector": "angry",
+      "layer": 12,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0009655286627700358,
+      "nll": 0.36987893904248875,
+      "rep": 0.04401685401911002,
+      "pos": 0.2508857627820653,
+      "neg": 0.08336442372696713,
+      "pred_counts": {
+        "calm": 6,
+        "gloomy": 1,
+        "enthusiastic": 2,
+        "nervous": 2,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "anxious",
+      "layer": 12,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.08333333333333333,
+      "p_target": 0.07569873288042572,
+      "nll": 0.43125930428504944,
+      "rep": 0.03877065325367385,
+      "pos": 0.3321655242174468,
+      "neg": 0.08330879669752278,
+      "pred_counts": {
+        "calm": 6,
+        "sad": 1,
+        "enthusiastic": 3,
+        "nervous": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "calm",
+      "layer": 12,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.6666666666666666,
+      "p_target": 0.5451236058913006,
+      "nll": 0.4624972616632779,
+      "rep": 0.032071707226376346,
+      "pos": 0.33340044084864456,
+      "neg": 0.024494571109850465,
+      "pred_counts": {
+        "calm": 8,
+        "enthusiastic": 2,
+        "nervous": 2
+      }
+    },
+    {
+      "vector": "desperate",
+      "layer": 12,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.004826132719244924,
+      "nll": 0.36988693848252296,
+      "rep": 0.034888585976436716,
+      "pos": 0.3331703455090107,
+      "neg": 0.08333849106549944,
+      "pred_counts": {
+        "calm": 6,
+        "gloomy": 1,
+        "enthusiastic": 2,
+        "hopeful": 1,
+        "nervous": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "enthusiastic",
+      "layer": 12,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.25,
+      "p_target": 0.26468134839948715,
+      "nll": 0.46180951595306396,
+      "rep": 0.025041201245652827,
+      "pos": 0.47510589913023676,
+      "neg": 0.05631927782295065,
+      "pred_counts": {
+        "happy": 1,
+        "calm": 3,
+        "grateful": 1,
+        "enthusiastic": 3,
+        "loving": 1,
+        "hostile": 2,
+        "nervous": 1
+      }
+    },
+    {
+      "vector": "exasperated",
+      "layer": 12,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.004353577499917567,
+      "nll": 0.36167757709821063,
+      "rep": 0.03260316934627786,
+      "pos": 0.3228048807566826,
+      "neg": 0.07701791558697361,
+      "pred_counts": {
+        "calm": 8,
+        "enthusiastic": 2,
+        "nervous": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "fearful",
+      "layer": 12,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.006609548741456213,
+      "nll": 0.40757937481005985,
+      "rep": 0.023768384954368782,
+      "pos": 0.3507259766292776,
+      "neg": 0.08334847694593368,
+      "pred_counts": {
+        "calm": 8,
+        "enthusiastic": 2,
+        "nervous": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "gloomy",
+      "layer": 12,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.010144624990743978,
+      "nll": 0.5824243277311325,
+      "rep": 0.033966025804261106,
+      "pos": 0.27656371007023495,
+      "neg": 0.08334944074863888,
+      "pred_counts": {
+        "calm": 6,
+        "sad": 1,
+        "enthusiastic": 1,
+        "reflective": 1,
+        "hostile": 1,
+        "anxious": 1,
+        "happy": 1
+      }
+    },
+    {
+      "vector": "grateful",
+      "layer": 12,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.025526336470344784,
+      "nll": 0.48117003838221234,
+      "rep": 0.014750445632798573,
+      "pos": 0.573160533668613,
+      "neg": 0.06809840619786674,
+      "pred_counts": {
+        "calm": 6,
+        "hostile": 1,
+        "enthusiastic": 1,
+        "loving": 1,
+        "happy": 2,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "guilty",
+      "layer": 12,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.014655098543168302,
+      "nll": 0.4004644515613715,
+      "rep": 0.03443155828274117,
+      "pos": 0.33005135009989317,
+      "neg": 0.08333697761885143,
+      "pred_counts": {
+        "calm": 8,
+        "enthusiastic": 3,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "happy",
+      "layer": 12,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.16666666666666666,
+      "p_target": 0.1814476038863783,
+      "nll": 0.5632266774773598,
+      "rep": 0.032327930524709246,
+      "pos": 0.653153611810966,
+      "neg": 0.06455092398957873,
+      "pred_counts": {
+        "happy": 2,
+        "hostile": 3,
+        "calm": 1,
+        "enthusiastic": 3,
+        "nervous": 3
+      }
+    },
+    {
+      "vector": "hopeful",
+      "layer": 12,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.007713285859305567,
+      "nll": 0.48457082360982895,
+      "rep": 0.02610771417097722,
+      "pos": 0.4451672367856929,
+      "neg": 0.04663343131105554,
+      "pred_counts": {
+        "calm": 6,
+        "grateful": 1,
+        "enthusiastic": 3,
+        "nervous": 1,
+        "happy": 1
+      }
+    },
+    {
+      "vector": "hostile",
+      "layer": 12,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.08333333333333333,
+      "p_target": 0.12284862232384815,
+      "nll": 0.4146546969811122,
+      "rep": 0.03295440765404695,
+      "pos": 0.3366179286810957,
+      "neg": 0.08334157833201061,
+      "pred_counts": {
+        "calm": 6,
+        "sad": 1,
+        "enthusiastic": 3,
+        "hostile": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "loving",
+      "layer": 12,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.013155289690303107,
+      "nll": 0.5410211657484373,
+      "rep": 0.027177827164350087,
+      "pos": 0.4841020639973787,
+      "neg": 0.08271125327435414,
+      "pred_counts": {
+        "calm": 7,
+        "grateful": 1,
+        "enthusiastic": 2,
+        "nervous": 2
+      }
+    },
+    {
+      "vector": "nervous",
+      "layer": 12,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.08333333333333333,
+      "p_target": 0.11433036660722944,
+      "nll": 0.4547273317972819,
+      "rep": 0.031660505862261046,
+      "pos": 0.23006485618306746,
+      "neg": 0.08375976133932284,
+      "pred_counts": {
+        "calm": 6,
+        "nervous": 1,
+        "enthusiastic": 2,
+        "gloomy": 1,
+        "hostile": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "proud",
+      "layer": 12,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0015126421531732603,
+      "nll": 0.3693493455648422,
+      "rep": 0.03235912619627326,
+      "pos": 0.37187149637078676,
+      "neg": 0.06088254373998817,
+      "pred_counts": {
+        "calm": 8,
+        "enthusiastic": 2,
+        "nervous": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "reflective",
+      "layer": 12,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.08333333333333333,
+      "p_target": 0.0920484590820223,
+      "nll": 0.4293494100371997,
+      "rep": 0.03781289114483713,
+      "pos": 0.3733874998718842,
+      "neg": 0.01682067200583977,
+      "pred_counts": {
+        "neutral": 2,
+        "calm": 5,
+        "enthusiastic": 1,
+        "hostile": 2,
+        "reflective": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "sad",
+      "layer": 12,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.003907681982402285,
+      "nll": 0.4237198668221633,
+      "rep": 0.037072374506970984,
+      "pos": 0.40568984988606377,
+      "neg": 0.03646823219280293,
+      "pred_counts": {
+        "calm": 8,
+        "enthusiastic": 2,
+        "reflective": 1,
+        "nervous": 1
+      }
+    },
+    {
+      "vector": "random0",
+      "layer": 12,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0,
+      "nll": 0.2376598802705606,
+      "rep": 0.04270103625787028,
+      "pos": 0.3935298743004374,
+      "neg": 0.05655433966460066,
+      "pred_counts": {
+        "calm": 7,
+        "hostile": 1,
+        "enthusiastic": 2,
+        "reflective": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "random1",
+      "layer": 12,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0,
+      "nll": 0.23841202010711035,
+      "rep": 0.04082262094166856,
+      "pos": 0.4111287166823369,
+      "neg": 0.026585803139345405,
+      "pred_counts": {
+        "calm": 8,
+        "nervous": 2,
+        "enthusiastic": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "random2",
+      "layer": 12,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0,
+      "nll": 0.23084430520733198,
+      "rep": 0.035788968758893584,
+      "pos": 0.3776831830240657,
+      "neg": 0.07096022560811359,
+      "pred_counts": {
+        "calm": 7,
+        "hostile": 1,
+        "enthusiastic": 2,
+        "hopeful": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "afraid",
+      "layer": 12,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.00107143622002089,
+      "nll": 1.475195864836375,
+      "rep": 0.0258864990890282,
+      "pos": 0.08361876164725146,
+      "neg": 0.2280908035286681,
+      "pred_counts": {
+        "hostile": 1,
+        "calm": 1,
+        "gloomy": 5,
+        "nervous": 1,
+        "guilty": 2,
+        "anxious": 2
+      }
+    },
+    {
+      "vector": "angry",
+      "layer": 12,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0017061782281757587,
+      "nll": 0.9066217343012491,
+      "rep": 0.03638924405433841,
+      "pos": 0.20994629390952588,
+      "neg": 0.08339998579839403,
+      "pred_counts": {
+        "calm": 6,
+        "reflective": 3,
+        "enthusiastic": 2,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "anxious",
+      "layer": 12,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.16666666666666666,
+      "p_target": 0.1309560846821114,
+      "nll": 1.3752604027589161,
+      "rep": 0.019392916818396444,
+      "pos": 0.179170078023598,
+      "neg": 0.15694049095388132,
+      "pred_counts": {
+        "sad": 1,
+        "reflective": 2,
+        "calm": 1,
+        "gloomy": 1,
+        "desperate": 1,
+        "hostile": 3,
+        "happy": 1,
+        "anxious": 2
+      }
+    },
+    {
+      "vector": "calm",
+      "layer": 12,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.8333333333333334,
+      "p_target": 0.6896502642797108,
+      "nll": 1.8104960173368454,
+      "rep": 0.031083125039228193,
+      "pos": 0.4549658158009227,
+      "neg": 6.327588488375113e-05,
+      "pred_counts": {
+        "calm": 10,
+        "enthusiastic": 1,
+        "nervous": 1
+      }
+    },
+    {
+      "vector": "desperate",
+      "layer": 12,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0036185998266470656,
+      "nll": 0.9886997640132904,
+      "rep": 0.025046148515796396,
+      "pos": 0.32387468662297536,
+      "neg": 0.08337527209794378,
+      "pred_counts": {
+        "calm": 4,
+        "sad": 1,
+        "enthusiastic": 1,
+        "hopeful": 1,
+        "gloomy": 2,
+        "reflective": 1,
+        "happy": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "enthusiastic",
+      "layer": 12,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.5833333333333334,
+      "p_target": 0.5588283053051176,
+      "nll": 1.2155502339204152,
+      "rep": 0.015762358402480497,
+      "pos": 0.8599595291889273,
+      "neg": 0.08432785794400861,
+      "pred_counts": {
+        "enthusiastic": 7,
+        "hopeful": 3,
+        "happy": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "exasperated",
+      "layer": 12,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.007139154604071034,
+      "nll": 0.777797187368075,
+      "rep": 0.05004203507354768,
+      "pos": 0.33308383489128346,
+      "neg": 0.08333496148016195,
+      "pred_counts": {
+        "calm": 5,
+        "gloomy": 1,
+        "enthusiastic": 2,
+        "hostile": 2,
+        "anxious": 1,
+        "hopeful": 1
+      }
+    },
+    {
+      "vector": "fearful",
+      "layer": 12,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.018226086982394918,
+      "nll": 1.270180697242419,
+      "rep": 0.020165455459573118,
+      "pos": 0.28431114085989745,
+      "neg": 0.0834632149400439,
+      "pred_counts": {
+        "reflective": 4,
+        "calm": 2,
+        "gloomy": 1,
+        "anxious": 2,
+        "hopeful": 1,
+        "hostile": 2
+      }
+    },
+    {
+      "vector": "gloomy",
+      "layer": 12,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.25,
+      "p_target": 0.23574022161604566,
+      "nll": 1.5448921024799347,
+      "rep": 0.0424597787833082,
+      "pos": 0.0013724019232910223,
+      "neg": 0.16690971220737083,
+      "pred_counts": {
+        "gloomy": 3,
+        "reflective": 3,
+        "nervous": 1,
+        "sad": 3,
+        "neutral": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "grateful",
+      "layer": 12,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.16666666666666666,
+      "p_target": 0.15337038409294715,
+      "nll": 1.3428158611059189,
+      "rep": 0.017871606014872764,
+      "pos": 0.6177746695850601,
+      "neg": 0.08318889368166538,
+      "pred_counts": {
+        "gloomy": 1,
+        "hostile": 1,
+        "calm": 2,
+        "grateful": 2,
+        "happy": 2,
+        "loving": 1,
+        "reflective": 2,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "guilty",
+      "layer": 12,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.02602234792720992,
+      "nll": 1.3339347889026005,
+      "rep": 0.03166351540102929,
+      "pos": 0.23922702697244821,
+      "neg": 0.08415376892625659,
+      "pred_counts": {
+        "calm": 3,
+        "hostile": 2,
+        "gloomy": 2,
+        "enthusiastic": 1,
+        "loving": 1,
+        "reflective": 1,
+        "nervous": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "happy",
+      "layer": 12,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0050775823926111725,
+      "nll": 1.4869941373666127,
+      "rep": 0.01905425039750565,
+      "pos": 0.9994260420401891,
+      "neg": 5.404580013153766e-06,
+      "pred_counts": {
+        "hopeful": 8,
+        "grateful": 1,
+        "enthusiastic": 2,
+        "nervous": 1
+      }
+    },
+    {
+      "vector": "hopeful",
+      "layer": 12,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.16666666666666666,
+      "p_target": 0.2245969238659503,
+      "nll": 1.4410864909489949,
+      "rep": 0.04993107956343251,
+      "pos": 0.4589201336998106,
+      "neg": 0.08834905605412284,
+      "pred_counts": {
+        "gloomy": 2,
+        "enthusiastic": 2,
+        "sad": 1,
+        "reflective": 1,
+        "nervous": 1,
+        "anxious": 2,
+        "hopeful": 2,
+        "hostile": 1
+      }
+    },
+    {
+      "vector": "hostile",
+      "layer": 12,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.08333333333333333,
+      "p_target": 0.10589124179387,
+      "nll": 1.1960575828949611,
+      "rep": 0.025244624202957543,
+      "pos": 0.06362295363917762,
+      "neg": 0.16688658327786735,
+      "pred_counts": {
+        "calm": 5,
+        "sad": 2,
+        "anxious": 2,
+        "hopeful": 1,
+        "hostile": 1,
+        "nervous": 1
+      }
+    },
+    {
+      "vector": "loving",
+      "layer": 12,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.08333333333333333,
+      "p_target": 0.08037986941296064,
+      "nll": 1.47980331381162,
+      "rep": 0.027882244388375155,
+      "pos": 0.5105080830784724,
+      "neg": 0.08493142093448114,
+      "pred_counts": {
+        "calm": 3,
+        "enthusiastic": 5,
+        "grateful": 1,
+        "happy": 1,
+        "loving": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "nervous",
+      "layer": 12,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.029838286223821342,
+      "nll": 1.6314026316006978,
+      "rep": 0.02868877972458535,
+      "pos": 0.2720457881965211,
+      "neg": 0.1744827468441296,
+      "pred_counts": {
+        "reflective": 5,
+        "calm": 2,
+        "enthusiastic": 1,
+        "gloomy": 1,
+        "loving": 1,
+        "anxious": 1,
+        "exasperated": 1
+      }
+    },
+    {
+      "vector": "proud",
+      "layer": 12,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.002062334754176239,
+      "nll": 1.0742242485284805,
+      "rep": 0.03539975018243211,
+      "pos": 0.3883800867534812,
+      "neg": 0.00342485265314707,
+      "pred_counts": {
+        "calm": 5,
+        "enthusiastic": 1,
+        "hostile": 3,
+        "hopeful": 1,
+        "reflective": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "reflective",
+      "layer": 12,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.4166666666666667,
+      "p_target": 0.23739117548427183,
+      "nll": 1.2545027236143749,
+      "rep": 0.035405789336843387,
+      "pos": 0.36950697780415237,
+      "neg": 0.000549740805846947,
+      "pred_counts": {
+        "sad": 2,
+        "reflective": 5,
+        "calm": 2,
+        "enthusiastic": 1,
+        "grateful": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "sad",
+      "layer": 12,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.07324719273583469,
+      "nll": 1.190212885538737,
+      "rep": 0.027393611008344643,
+      "pos": 0.3371365967432354,
+      "neg": 0.08347562122541301,
+      "pred_counts": {
+        "hostile": 4,
+        "calm": 2,
+        "gloomy": 1,
+        "enthusiastic": 1,
+        "reflective": 3,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "random0",
+      "layer": 12,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0,
+      "nll": 0.38057835151751834,
+      "rep": 0.039633959534466905,
+      "pos": 0.41076642139156166,
+      "neg": 0.07624071308349774,
+      "pred_counts": {
+        "calm": 8,
+        "enthusiastic": 1,
+        "happy": 2,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "random1",
+      "layer": 12,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0,
+      "nll": 0.37196700026591617,
+      "rep": 0.03968199441793597,
+      "pos": 0.4854495884154109,
+      "neg": 0.0833028720244613,
+      "pred_counts": {
+        "calm": 7,
+        "nervous": 1,
+        "enthusiastic": 1,
+        "reflective": 1,
+        "hostile": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "random2",
+      "layer": 12,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0,
+      "nll": 0.35369623949130374,
+      "rep": 0.03743346026060999,
+      "pos": 0.4162548949700143,
+      "neg": 0.0014965554717321083,
+      "pred_counts": {
+        "calm": 7,
+        "happy": 1,
+        "enthusiastic": 3,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "afraid",
+      "layer": 12,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.011279240388830658,
+      "nll": 2.93181182940801,
+      "rep": 0.11721438248118703,
+      "pos": 9.416663182548746e-07,
+      "neg": 0.9999954750140508,
+      "pred_counts": {
+        "anxious": 8,
+        "gloomy": 2,
+        "desperate": 1,
+        "fearful": 1
+      }
+    },
+    {
+      "vector": "angry",
+      "layer": 12,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.75,
+      "p_target": 0.737543277621929,
+      "nll": 2.697735011577606,
+      "rep": 0.035688192138218354,
+      "pos": 1.0985844246154859e-06,
+      "neg": 0.9997805804014206,
+      "pred_counts": {
+        "angry": 9,
+        "exasperated": 1,
+        "sad": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "anxious",
+      "layer": 12,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.25,
+      "p_target": 0.22958355116134044,
+      "nll": 2.5836417078971863,
+      "rep": 0.09722923848088814,
+      "pos": 4.931167184215232e-07,
+      "neg": 0.9999464799960455,
+      "pred_counts": {
+        "gloomy": 9,
+        "anxious": 3
+      }
+    },
+    {
+      "vector": "calm",
+      "layer": 12,
+      "c": 1.0,
+      "n": 12,
+      "top1": 1.0,
+      "p_target": 0.9863935659329096,
+      "nll": 2.8440605203310647,
+      "rep": 0.28991806820561905,
+      "pos": 0.20463839210181808,
+      "neg": 0.00019319458078825846,
+      "pred_counts": {
+        "calm": 12
+      }
+    },
+    {
+      "vector": "desperate",
+      "layer": 12,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.5,
+      "p_target": 0.4423011581335838,
+      "nll": 3.723079562187195,
+      "rep": 0.07116941339183429,
+      "pos": 1.1890187177362085e-05,
+      "neg": 0.8388329983572476,
+      "pred_counts": {
+        "desperate": 6,
+        "gloomy": 4,
+        "anxious": 1,
+        "hopeful": 1
+      }
+    },
+    {
+      "vector": "enthusiastic",
+      "layer": 12,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.5,
+      "p_target": 0.4552758838514516,
+      "nll": 2.4671720564365387,
+      "rep": 0.1643049546031682,
+      "pos": 0.997660035888354,
+      "neg": 0.0005805714443643714,
+      "pred_counts": {
+        "hopeful": 5,
+        "enthusiastic": 6,
+        "loving": 1
+      }
+    },
+    {
+      "vector": "exasperated",
+      "layer": 12,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.08333333333333333,
+      "p_target": 0.04476324652963134,
+      "nll": 3.7736235857009888,
+      "rep": 0.062083034340144776,
+      "pos": 0.06353046547781697,
+      "neg": 0.5315903017638751,
+      "pred_counts": {
+        "gloomy": 5,
+        "calm": 3,
+        "exasperated": 1,
+        "reflective": 1,
+        "anxious": 1,
+        "hopeful": 1
+      }
+    },
+    {
+      "vector": "fearful",
+      "layer": 12,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0023280710205047703,
+      "nll": 2.8147144118944802,
+      "rep": 0.07388985137718675,
+      "pos": 0.003945337347681506,
+      "neg": 0.5104793707899565,
+      "pred_counts": {
+        "gloomy": 6,
+        "reflective": 1,
+        "enthusiastic": 1,
+        "sad": 2,
+        "anxious": 1,
+        "hopeful": 1
+      }
+    },
+    {
+      "vector": "gloomy",
+      "layer": 12,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.4166666666666667,
+      "p_target": 0.4135647997803365,
+      "nll": 2.5272395809491477,
+      "rep": 0.31811368275842566,
+      "pos": 0.022487517683706788,
+      "neg": 0.7800751892282278,
+      "pred_counts": {
+        "gloomy": 5,
+        "reflective": 1,
+        "sad": 3,
+        "desperate": 1,
+        "anxious": 1,
+        "hopeful": 1
+      }
+    },
+    {
+      "vector": "grateful",
+      "layer": 12,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.16666666666666666,
+      "p_target": 0.10874446061886071,
+      "nll": 2.7546424766381583,
+      "rep": 0.3184420287518977,
+      "pos": 0.3381012799167517,
+      "neg": 0.21629996941968935,
+      "pred_counts": {
+        "gloomy": 5,
+        "reflective": 3,
+        "hopeful": 2,
+        "grateful": 2
+      }
+    },
+    {
+      "vector": "guilty",
+      "layer": 12,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.004873909498807431,
+      "nll": 2.779952963193258,
+      "rep": 0.21051900902923917,
+      "pos": 0.07778946674312219,
+      "neg": 0.7184188372993958,
+      "pred_counts": {
+        "gloomy": 5,
+        "sad": 1,
+        "reflective": 3,
+        "desperate": 3
+      }
+    },
+    {
+      "vector": "happy",
+      "layer": 12,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.4166666666666667,
+      "p_target": 0.3704114874829732,
+      "nll": 2.7548533280690513,
+      "rep": 0.1630895431141907,
+      "pos": 0.8456506446624795,
+      "neg": 0.07714755555307799,
+      "pred_counts": {
+        "hopeful": 5,
+        "happy": 5,
+        "reflective": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "hopeful",
+      "layer": 12,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.6666666666666666,
+      "p_target": 0.5614243922852135,
+      "nll": 4.79221926132838,
+      "rep": 0.15079441733048923,
+      "pos": 0.28154935148554233,
+      "neg": 0.11800185866206903,
+      "pred_counts": {
+        "hopeful": 8,
+        "gloomy": 1,
+        "calm": 1,
+        "enthusiastic": 1,
+        "hostile": 1
+      }
+    },
+    {
+      "vector": "hostile",
+      "layer": 12,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.16666666666666666,
+      "p_target": 0.23525200456303233,
+      "nll": 3.371239503224691,
+      "rep": 0.18556148252491667,
+      "pos": 0.06085491410479923,
+      "neg": 0.6655763570397539,
+      "pred_counts": {
+        "hostile": 2,
+        "enthusiastic": 1,
+        "anxious": 1,
+        "nervous": 2,
+        "exasperated": 3,
+        "reflective": 1,
+        "angry": 1,
+        "gloomy": 1
+      }
+    },
+    {
+      "vector": "loving",
+      "layer": 12,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.08333333333333333,
+      "p_target": 0.09369133801313485,
+      "nll": 2.566079080104828,
+      "rep": 0.3388767440346774,
+      "pos": 0.2152725827054572,
+      "neg": 0.4054667003601935,
+      "pred_counts": {
+        "desperate": 2,
+        "reflective": 4,
+        "enthusiastic": 1,
+        "anxious": 1,
+        "loving": 1,
+        "hostile": 1,
+        "gloomy": 1,
+        "hopeful": 1
+      }
+    },
+    {
+      "vector": "nervous",
+      "layer": 12,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.03601619339800285,
+      "nll": 2.3872739473978677,
+      "rep": 0.2790857867690473,
+      "pos": 0.00615684760450345,
+      "neg": 0.6682626062150424,
+      "pred_counts": {
+        "gloomy": 4,
+        "sad": 1,
+        "reflective": 1,
+        "anxious": 3,
+        "proud": 2,
+        "exasperated": 1
+      }
+    },
+    {
+      "vector": "proud",
+      "layer": 12,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.002061714445517282,
+      "nll": 2.8392893075942993,
+      "rep": 0.10812844955533633,
+      "pos": 0.41278393562732657,
+      "neg": 0.08345440941578393,
+      "pred_counts": {
+        "reflective": 7,
+        "hostile": 1,
+        "enthusiastic": 1,
+        "grateful": 2,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "reflective",
+      "layer": 12,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.8333333333333334,
+      "p_target": 0.7387541754142148,
+      "nll": 2.4899675846099854,
+      "rep": 0.35746385718869994,
+      "pos": 0.07514225246463486,
+      "neg": 0.09040352017367088,
+      "pred_counts": {
+        "reflective": 10,
+        "gloomy": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "sad",
+      "layer": 12,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.4166666666666667,
+      "p_target": 0.44939332420472056,
+      "nll": 2.6762958566347756,
+      "rep": 0.2617429427736238,
+      "pos": 0.033640030118320396,
+      "neg": 0.7796507403448535,
+      "pred_counts": {
+        "reflective": 3,
+        "sad": 5,
+        "gloomy": 3,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "random0",
+      "layer": 12,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0,
+      "nll": 1.237196683883667,
+      "rep": 0.09469545080301649,
+      "pos": 0.30586164746047473,
+      "neg": 0.08300393243079895,
+      "pred_counts": {
+        "calm": 6,
+        "enthusiastic": 2,
+        "gloomy": 1,
+        "hopeful": 1,
+        "neutral": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "random1",
+      "layer": 12,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0,
+      "nll": 1.1662678966919582,
+      "rep": 0.0944580677738885,
+      "pos": 0.36648671313365827,
+      "neg": 0.07863062429755512,
+      "pred_counts": {
+        "calm": 7,
+        "grateful": 1,
+        "enthusiastic": 1,
+        "nervous": 1,
+        "proud": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "random2",
+      "layer": 12,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0,
+      "nll": 1.705779602130254,
+      "rep": 0.0513415307225819,
+      "pos": 0.48594179385739267,
+      "neg": 3.096820919760527e-05,
+      "pred_counts": {
+        "calm": 5,
+        "grateful": 1,
+        "enthusiastic": 4,
+        "reflective": 1,
+        "nervous": 1
+      }
+    },
+    {
+      "vector": "none",
+      "layer": 12,
+      "c": 0.0,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0,
+      "nll": 0.22996928915381432,
+      "rep": 0.041509974575219544,
+      "pos": 0.4075360190580284,
+      "neg": 0.08200873411854559,
+      "pred_counts": {
+        "calm": 8,
+        "nervous": 1,
+        "enthusiastic": 1,
+        "hopeful": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "afraid",
+      "layer": 16,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0008194469264897938,
+      "nll": 0.3499527958532174,
+      "rep": 0.028856857428286014,
+      "pos": 0.3369942509554444,
+      "neg": 0.08216730422656345,
+      "pred_counts": {
+        "calm": 8,
+        "enthusiastic": 2,
+        "reflective": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "angry",
+      "layer": 16,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.001065199979393583,
+      "nll": 0.29888782277703285,
+      "rep": 0.03999144276858193,
+      "pos": 0.365348129391208,
+      "neg": 0.08333849804882713,
+      "pred_counts": {
+        "calm": 8,
+        "hostile": 1,
+        "enthusiastic": 1,
+        "nervous": 2
+      }
+    },
+    {
+      "vector": "anxious",
+      "layer": 16,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.08333333333333333,
+      "p_target": 0.08399325245727596,
+      "nll": 0.338867150247097,
+      "rep": 0.03378980103571827,
+      "pos": 0.3539473508457623,
+      "neg": 0.08356519519082894,
+      "pred_counts": {
+        "calm": 8,
+        "enthusiastic": 2,
+        "nervous": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "calm",
+      "layer": 16,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.6666666666666666,
+      "p_target": 0.428825260726929,
+      "nll": 0.3297555645306905,
+      "rep": 0.03469745853506806,
+      "pos": 0.40103350909360697,
+      "neg": 0.08165865477198982,
+      "pred_counts": {
+        "happy": 1,
+        "calm": 8,
+        "enthusiastic": 1,
+        "hopeful": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "desperate",
+      "layer": 16,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.005046601542744611,
+      "nll": 0.31492549180984497,
+      "rep": 0.023008340922873433,
+      "pos": 0.3977271338346509,
+      "neg": 0.08334612648613415,
+      "pred_counts": {
+        "calm": 7,
+        "enthusiastic": 1,
+        "nervous": 1,
+        "hostile": 1,
+        "anxious": 1,
+        "happy": 1
+      }
+    },
+    {
+      "vector": "enthusiastic",
+      "layer": 16,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.16666666666666666,
+      "p_target": 0.19609368675916508,
+      "nll": 0.2924201041460037,
+      "rep": 0.031225999529570975,
+      "pos": 0.4556537977784245,
+      "neg": 9.313787621560247e-05,
+      "pred_counts": {
+        "calm": 6,
+        "gloomy": 1,
+        "enthusiastic": 2,
+        "nervous": 2,
+        "happy": 1
+      }
+    },
+    {
+      "vector": "exasperated",
+      "layer": 16,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.003489311892205175,
+      "nll": 0.2975534349679947,
+      "rep": 0.027613245712321672,
+      "pos": 0.3602896658490475,
+      "neg": 0.015161645109979341,
+      "pred_counts": {
+        "calm": 8,
+        "enthusiastic": 1,
+        "hopeful": 1,
+        "anxious": 1,
+        "happy": 1
+      }
+    },
+    {
+      "vector": "fearful",
+      "layer": 16,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0044822478130299714,
+      "nll": 0.3369967167576154,
+      "rep": 0.03709742865696227,
+      "pos": 0.38353951606118625,
+      "neg": 0.08023956082261918,
+      "pred_counts": {
+        "calm": 8,
+        "enthusiastic": 2,
+        "hopeful": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "gloomy",
+      "layer": 16,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.009517527009544816,
+      "nll": 0.37065405522783595,
+      "rep": 0.031363843277884086,
+      "pos": 0.3467885671410637,
+      "neg": 0.08333998203709807,
+      "pred_counts": {
+        "calm": 6,
+        "hostile": 2,
+        "enthusiastic": 2,
+        "reflective": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "grateful",
+      "layer": 16,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.006295623026062458,
+      "nll": 0.3352910329898198,
+      "rep": 0.03308442130547861,
+      "pos": 0.352763862371025,
+      "neg": 0.03390169961927351,
+      "pred_counts": {
+        "calm": 7,
+        "hostile": 1,
+        "enthusiastic": 1,
+        "nervous": 1,
+        "anxious": 1,
+        "happy": 1
+      }
+    },
+    {
+      "vector": "guilty",
+      "layer": 16,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.021425121125048463,
+      "nll": 0.3353639394044876,
+      "rep": 0.029145046892792726,
+      "pos": 0.3251137858889687,
+      "neg": 0.08271938104447922,
+      "pred_counts": {
+        "calm": 6,
+        "hostile": 2,
+        "enthusiastic": 2,
+        "nervous": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "happy",
+      "layer": 16,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.018443734763574565,
+      "nll": 0.36886556694904965,
+      "rep": 0.037015433859449776,
+      "pos": 0.35669585027046463,
+      "neg": 0.08333890913819648,
+      "pred_counts": {
+        "calm": 8,
+        "enthusiastic": 2,
+        "reflective": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "hopeful",
+      "layer": 16,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.08333333333333333,
+      "p_target": 0.04327512733095773,
+      "nll": 0.3626427377263705,
+      "rep": 0.026657343244237446,
+      "pos": 0.3564739939528714,
+      "neg": 0.07097521133754014,
+      "pred_counts": {
+        "calm": 8,
+        "enthusiastic": 1,
+        "hopeful": 1,
+        "anxious": 1,
+        "happy": 1
+      }
+    },
+    {
+      "vector": "hostile",
+      "layer": 16,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.08333333333333333,
+      "p_target": 0.08250482984052117,
+      "nll": 0.3125816099345684,
+      "rep": 0.034444529236195905,
+      "pos": 0.3568993773008155,
+      "neg": 0.08186015011686247,
+      "pred_counts": {
+        "calm": 7,
+        "enthusiastic": 2,
+        "hopeful": 1,
+        "hostile": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "loving",
+      "layer": 16,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0016774320210496778,
+      "nll": 0.3480379829804103,
+      "rep": 0.037762695899488365,
+      "pos": 0.4121941358352738,
+      "neg": 0.08334596554949296,
+      "pred_counts": {
+        "calm": 6,
+        "grateful": 1,
+        "enthusiastic": 1,
+        "reflective": 2,
+        "anxious": 1,
+        "happy": 1
+      }
+    },
+    {
+      "vector": "nervous",
+      "layer": 16,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.08333333333333333,
+      "p_target": 0.07234675326499011,
+      "nll": 0.3265124335885048,
+      "rep": 0.03661795581396954,
+      "pos": 0.28206926292754514,
+      "neg": 0.008406910034504259,
+      "pred_counts": {
+        "calm": 6,
+        "hostile": 1,
+        "gloomy": 1,
+        "nervous": 1,
+        "hopeful": 1,
+        "anxious": 1,
+        "happy": 1
+      }
+    },
+    {
+      "vector": "proud",
+      "layer": 16,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0007557614086598127,
+      "nll": 0.3506212035814921,
+      "rep": 0.02647411119881578,
+      "pos": 0.4502568755121435,
+      "neg": 0.028629146310827025,
+      "pred_counts": {
+        "happy": 1,
+        "calm": 8,
+        "enthusiastic": 1,
+        "hopeful": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "reflective",
+      "layer": 16,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.08333333333333333,
+      "p_target": 0.0706870892486459,
+      "nll": 0.33947034925222397,
+      "rep": 0.0163549696608203,
+      "pos": 0.4145764572172131,
+      "neg": 0.0762255108210752,
+      "pred_counts": {
+        "calm": 7,
+        "enthusiastic": 2,
+        "reflective": 1,
+        "hostile": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "sad",
+      "layer": 16,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0028353162464137918,
+      "nll": 0.315573051571846,
+      "rep": 0.038383654293429485,
+      "pos": 0.41098778777238937,
+      "neg": 0.08319983229339319,
+      "pred_counts": {
+        "calm": 8,
+        "enthusiastic": 1,
+        "reflective": 1,
+        "hostile": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "random0",
+      "layer": 16,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0,
+      "nll": 0.23167030761639276,
+      "rep": 0.03792099572819408,
+      "pos": 0.40567942927147743,
+      "neg": 0.01678480264158111,
+      "pred_counts": {
+        "calm": 9,
+        "enthusiastic": 1,
+        "hopeful": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "random1",
+      "layer": 16,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0,
+      "nll": 0.23469658444325128,
+      "rep": 0.034744173295490566,
+      "pos": 0.4208294650776085,
+      "neg": 0.08142376655872378,
+      "pred_counts": {
+        "calm": 7,
+        "hostile": 1,
+        "nervous": 1,
+        "enthusiastic": 1,
+        "hopeful": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "random2",
+      "layer": 16,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0,
+      "nll": 0.2420482225716114,
+      "rep": 0.03942944006022068,
+      "pos": 0.3956862020284859,
+      "neg": 0.04423519819853065,
+      "pred_counts": {
+        "calm": 8,
+        "enthusiastic": 2,
+        "reflective": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "afraid",
+      "layer": 16,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0010296452604355484,
+      "nll": 0.8030180310209593,
+      "rep": 0.030919933439824365,
+      "pos": 0.349664813905265,
+      "neg": 0.07965789529223836,
+      "pred_counts": {
+        "calm": 5,
+        "sad": 1,
+        "enthusiastic": 2,
+        "nervous": 1,
+        "hostile": 2,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "angry",
+      "layer": 16,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0013181144128869466,
+      "nll": 0.7110284914573034,
+      "rep": 0.018930455588137524,
+      "pos": 0.3799683103902443,
+      "neg": 0.046603255145745,
+      "pred_counts": {
+        "calm": 6,
+        "enthusiastic": 3,
+        "hostile": 1,
+        "nervous": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "anxious",
+      "layer": 16,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.16666666666666666,
+      "p_target": 0.15906938884741825,
+      "nll": 0.8077979534864426,
+      "rep": 0.047869757639989303,
+      "pos": 0.3349321132597988,
+      "neg": 0.16227364306575018,
+      "pred_counts": {
+        "calm": 5,
+        "gloomy": 1,
+        "enthusiastic": 1,
+        "nervous": 1,
+        "hostile": 1,
+        "anxious": 2,
+        "hopeful": 1
+      }
+    },
+    {
+      "vector": "calm",
+      "layer": 16,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.6666666666666666,
+      "p_target": 0.4627741040367255,
+      "nll": 0.6923809548219045,
+      "rep": 0.044292380209952305,
+      "pos": 0.33245831320666913,
+      "neg": 0.08215877053202784,
+      "pred_counts": {
+        "calm": 8,
+        "grateful": 1,
+        "enthusiastic": 1,
+        "hopeful": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "desperate",
+      "layer": 16,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.004720235954664531,
+      "nll": 0.6238034119208654,
+      "rep": 0.03188689990650764,
+      "pos": 0.23251956233323767,
+      "neg": 0.0008076212791934267,
+      "pred_counts": {
+        "calm": 7,
+        "gloomy": 1,
+        "enthusiastic": 1,
+        "nervous": 1,
+        "anxious": 1,
+        "hostile": 1
+      }
+    },
+    {
+      "vector": "enthusiastic",
+      "layer": 16,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.25,
+      "p_target": 0.20933802638349638,
+      "nll": 0.5791113252441088,
+      "rep": 0.04057616370694433,
+      "pos": 0.44590023862858175,
+      "neg": 0.003917478688900171,
+      "pred_counts": {
+        "calm": 5,
+        "gloomy": 1,
+        "enthusiastic": 3,
+        "hostile": 1,
+        "anxious": 1,
+        "hopeful": 1
+      }
+    },
+    {
+      "vector": "exasperated",
+      "layer": 16,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0019214184784838533,
+      "nll": 0.5120788464943568,
+      "rep": 0.029509103078750737,
+      "pos": 0.35355344526947147,
+      "neg": 0.08311041015135838,
+      "pred_counts": {
+        "calm": 7,
+        "reflective": 2,
+        "enthusiastic": 1,
+        "nervous": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "fearful",
+      "layer": 16,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.016473691744067764,
+      "nll": 0.7019771014650663,
+      "rep": 0.033939334710931086,
+      "pos": 0.37524238729065945,
+      "neg": 0.08342339281533384,
+      "pred_counts": {
+        "hostile": 2,
+        "calm": 5,
+        "gloomy": 1,
+        "enthusiastic": 1,
+        "hopeful": 1,
+        "proud": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "gloomy",
+      "layer": 16,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.007691004419029923,
+      "nll": 0.7178756147623062,
+      "rep": 0.03999426487494082,
+      "pos": 0.3297222381836396,
+      "neg": 0.08331516446563114,
+      "pred_counts": {
+        "reflective": 2,
+        "calm": 5,
+        "grateful": 1,
+        "enthusiastic": 1,
+        "nervous": 1,
+        "anxious": 1,
+        "hopeful": 1
+      }
+    },
+    {
+      "vector": "grateful",
+      "layer": 16,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.16666666666666666,
+      "p_target": 0.12538365875790683,
+      "nll": 0.7979051520427068,
+      "rep": 0.04349621327041641,
+      "pos": 0.404565628672259,
+      "neg": 0.08328706222253383,
+      "pred_counts": {
+        "grateful": 2,
+        "calm": 4,
+        "reflective": 1,
+        "enthusiastic": 1,
+        "nervous": 1,
+        "neutral": 1,
+        "hostile": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "guilty",
+      "layer": 16,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.012442146472797807,
+      "nll": 0.6455885743101438,
+      "rep": 0.04188844683510312,
+      "pos": 0.3666564187654752,
+      "neg": 0.08334679048006895,
+      "pred_counts": {
+        "calm": 8,
+        "enthusiastic": 1,
+        "reflective": 1,
+        "anxious": 1,
+        "hostile": 1
+      }
+    },
+    {
+      "vector": "happy",
+      "layer": 16,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.3333333333333333,
+      "p_target": 0.22021267195183705,
+      "nll": 0.8449066231648127,
+      "rep": 0.04088604949448726,
+      "pos": 0.4380310875231051,
+      "neg": 0.08301321329198193,
+      "pred_counts": {
+        "calm": 3,
+        "hostile": 2,
+        "happy": 4,
+        "enthusiastic": 1,
+        "hopeful": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "hopeful",
+      "layer": 16,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.25,
+      "p_target": 0.16972262209117162,
+      "nll": 0.7283734579881033,
+      "rep": 0.02777664192983152,
+      "pos": 0.5096770658665027,
+      "neg": 0.07939196907555394,
+      "pred_counts": {
+        "calm": 5,
+        "grateful": 1,
+        "enthusiastic": 2,
+        "hopeful": 3,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "hostile",
+      "layer": 16,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.08333333333333333,
+      "p_target": 0.1166881059956116,
+      "nll": 0.5908573369185129,
+      "rep": 0.029450121690627412,
+      "pos": 0.3213855847700131,
+      "neg": 0.08244943679335393,
+      "pred_counts": {
+        "calm": 7,
+        "hostile": 1,
+        "enthusiastic": 2,
+        "hopeful": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "loving",
+      "layer": 16,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.009583102043478675,
+      "nll": 0.8372652928034464,
+      "rep": 0.03581409717865245,
+      "pos": 0.3672494613787289,
+      "neg": 0.08326832254813137,
+      "pred_counts": {
+        "sad": 2,
+        "calm": 5,
+        "grateful": 2,
+        "enthusiastic": 1,
+        "nervous": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "nervous",
+      "layer": 16,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.08333333333333333,
+      "p_target": 0.10157088157547871,
+      "nll": 0.6637277578314146,
+      "rep": 0.030107293179880496,
+      "pos": 0.2640473064567601,
+      "neg": 0.08389446385336896,
+      "pred_counts": {
+        "calm": 7,
+        "gloomy": 1,
+        "nervous": 1,
+        "hopeful": 1,
+        "sad": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "proud",
+      "layer": 16,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0025000056458945132,
+      "nll": 0.6651879449685415,
+      "rep": 0.03425237078651275,
+      "pos": 0.4167022877481135,
+      "neg": 0.01840854829681386,
+      "pred_counts": {
+        "calm": 7,
+        "hostile": 1,
+        "enthusiastic": 1,
+        "hopeful": 1,
+        "happy": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "reflective",
+      "layer": 16,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.08333333333333333,
+      "p_target": 0.11863306697724833,
+      "nll": 0.7153224820892016,
+      "rep": 0.02735070402939439,
+      "pos": 0.34941851205082247,
+      "neg": 0.03147360217066364,
+      "pred_counts": {
+        "hostile": 2,
+        "calm": 4,
+        "reflective": 1,
+        "enthusiastic": 2,
+        "hopeful": 1,
+        "anxious": 1,
+        "nervous": 1
+      }
+    },
+    {
+      "vector": "sad",
+      "layer": 16,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.019155557933409284,
+      "nll": 0.6380767027537028,
+      "rep": 0.02771977231385962,
+      "pos": 0.40978694961699585,
+      "neg": 0.08331594463018632,
+      "pred_counts": {
+        "calm": 6,
+        "enthusiastic": 1,
+        "hopeful": 1,
+        "hostile": 2,
+        "anxious": 1,
+        "grateful": 1
+      }
+    },
+    {
+      "vector": "random0",
+      "layer": 16,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0,
+      "nll": 0.2962955522040526,
+      "rep": 0.05328189206088704,
+      "pos": 0.3352238419672891,
+      "neg": 0.07937667785472513,
+      "pred_counts": {
+        "calm": 8,
+        "enthusiastic": 2,
+        "nervous": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "random1",
+      "layer": 16,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0,
+      "nll": 0.4042208393414815,
+      "rep": 0.048104620639769995,
+      "pos": 0.38010534830860127,
+      "neg": 0.08290946496294775,
+      "pred_counts": {
+        "calm": 8,
+        "enthusiastic": 1,
+        "hopeful": 1,
+        "neutral": 1,
+        "nervous": 1
+      }
+    },
+    {
+      "vector": "random2",
+      "layer": 16,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0,
+      "nll": 0.30341241384545964,
+      "rep": 0.035907246196871474,
+      "pos": 0.3233010121651129,
+      "neg": 0.06958496705239743,
+      "pred_counts": {
+        "calm": 7,
+        "gloomy": 1,
+        "enthusiastic": 1,
+        "hopeful": 1,
+        "nervous": 1,
+        "happy": 1
+      }
+    },
+    {
+      "vector": "afraid",
+      "layer": 16,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.006004290463351936,
+      "nll": 2.78600404659907,
+      "rep": 0.052584571429643345,
+      "pos": 0.14826923091094102,
+      "neg": 0.5532106070027112,
+      "pred_counts": {
+        "gloomy": 4,
+        "fearful": 4,
+        "enthusiastic": 1,
+        "nervous": 1,
+        "guilty": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "angry",
+      "layer": 16,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0050390571307919645,
+      "nll": 2.112008889516195,
+      "rep": 0.07485199139356315,
+      "pos": 0.05246088996658216,
+      "neg": 0.3154013921520307,
+      "pred_counts": {
+        "neutral": 1,
+        "calm": 3,
+        "enthusiastic": 1,
+        "grateful": 1,
+        "anxious": 2,
+        "guilty": 1,
+        "exasperated": 2,
+        "gloomy": 1
+      }
+    },
+    {
+      "vector": "anxious",
+      "layer": 16,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.5833333333333334,
+      "p_target": 0.44903033861616376,
+      "nll": 2.039981722831726,
+      "rep": 0.18150059316382525,
+      "pos": 0.08372045250107855,
+      "neg": 0.5154033911560797,
+      "pred_counts": {
+        "anxious": 7,
+        "hopeful": 2,
+        "guilty": 1,
+        "gloomy": 1,
+        "reflective": 1
+      }
+    },
+    {
+      "vector": "calm",
+      "layer": 16,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.4166666666666667,
+      "p_target": 0.4312094575725496,
+      "nll": 2.2419085105260215,
+      "rep": 0.07352866243606605,
+      "pos": 0.30558922580044623,
+      "neg": 0.08295349829192371,
+      "pred_counts": {
+        "reflective": 4,
+        "calm": 5,
+        "hostile": 2,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "desperate",
+      "layer": 16,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.08333333333333333,
+      "p_target": 0.10224319150408216,
+      "nll": 2.1579219698905945,
+      "rep": 0.27635626880980363,
+      "pos": 0.33132808372318817,
+      "neg": 0.6219193973803101,
+      "pred_counts": {
+        "anxious": 5,
+        "desperate": 1,
+        "grateful": 3,
+        "hopeful": 2,
+        "nervous": 1
+      }
+    },
+    {
+      "vector": "enthusiastic",
+      "layer": 16,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.4166666666666667,
+      "p_target": 0.3367506145441439,
+      "nll": 2.2236931125322976,
+      "rep": 0.08877086512033416,
+      "pos": 0.5121792038889149,
+      "neg": 0.07986741881174453,
+      "pred_counts": {
+        "enthusiastic": 5,
+        "nervous": 2,
+        "hostile": 1,
+        "anxious": 1,
+        "loving": 1,
+        "reflective": 1,
+        "hopeful": 1
+      }
+    },
+    {
+      "vector": "exasperated",
+      "layer": 16,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.25,
+      "p_target": 0.21127024575253017,
+      "nll": 3.647071103254954,
+      "rep": 0.027581545438688303,
+      "pos": 0.23844231183723016,
+      "neg": 0.28921657872623047,
+      "pred_counts": {
+        "exasperated": 3,
+        "hostile": 4,
+        "reflective": 1,
+        "enthusiastic": 1,
+        "desperate": 1,
+        "nervous": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "fearful",
+      "layer": 16,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.002210000736189007,
+      "nll": 2.81039892633756,
+      "rep": 0.032356825709007005,
+      "pos": 0.2657589302186049,
+      "neg": 0.14720117225048548,
+      "pred_counts": {
+        "hopeful": 3,
+        "gloomy": 4,
+        "calm": 1,
+        "nervous": 1,
+        "reflective": 2,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "gloomy",
+      "layer": 16,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.3333333333333333,
+      "p_target": 0.16849497766330992,
+      "nll": 3.1067035595575967,
+      "rep": 0.08861661434263228,
+      "pos": 0.053214144324319555,
+      "neg": 0.15404581646528945,
+      "pred_counts": {
+        "gloomy": 4,
+        "reflective": 6,
+        "sad": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "grateful",
+      "layer": 16,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.5833333333333334,
+      "p_target": 0.5610531439112189,
+      "nll": 3.2815727392832437,
+      "rep": 0.07412617821944564,
+      "pos": 0.5668693655885969,
+      "neg": 0.02750741566630192,
+      "pred_counts": {
+        "grateful": 7,
+        "hostile": 2,
+        "calm": 1,
+        "anxious": 1,
+        "reflective": 1
+      }
+    },
+    {
+      "vector": "guilty",
+      "layer": 16,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.25,
+      "p_target": 0.140261248552027,
+      "nll": 2.7250083684921265,
+      "rep": 0.06533874641144145,
+      "pos": 0.10566376721783399,
+      "neg": 0.2949522725013291,
+      "pred_counts": {
+        "guilty": 3,
+        "hostile": 2,
+        "grateful": 1,
+        "reflective": 2,
+        "proud": 1,
+        "sad": 1,
+        "hopeful": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "happy",
+      "layer": 16,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.25,
+      "p_target": 0.2146417237042139,
+      "nll": 2.9464116593201957,
+      "rep": 0.11718717672901191,
+      "pos": 0.6785906836357753,
+      "neg": 0.12703077313611288,
+      "pred_counts": {
+        "exasperated": 2,
+        "happy": 3,
+        "hopeful": 1,
+        "hostile": 2,
+        "enthusiastic": 2,
+        "loving": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "hopeful",
+      "layer": 16,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.75,
+      "p_target": 0.5715020123170689,
+      "nll": 4.643498520056407,
+      "rep": 0.1259730744149512,
+      "pos": 0.1752111896834947,
+      "neg": 0.0006606041682365079,
+      "pred_counts": {
+        "hopeful": 9,
+        "calm": 1,
+        "reflective": 2
+      }
+    },
+    {
+      "vector": "hostile",
+      "layer": 16,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.25,
+      "p_target": 0.17826314221989983,
+      "nll": 2.4960787097613015,
+      "rep": 0.052186817811817825,
+      "pos": 0.16686956833821873,
+      "neg": 0.37289351840128876,
+      "pred_counts": {
+        "enthusiastic": 2,
+        "calm": 1,
+        "gloomy": 2,
+        "exasperated": 1,
+        "hostile": 3,
+        "reflective": 2,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "loving",
+      "layer": 16,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.16666666666666666,
+      "p_target": 0.1398439399090421,
+      "nll": 2.20921183625857,
+      "rep": 0.11682301381861843,
+      "pos": 0.3224885829673288,
+      "neg": 0.00013424802098901031,
+      "pred_counts": {
+        "calm": 1,
+        "reflective": 2,
+        "hopeful": 2,
+        "gloomy": 2,
+        "loving": 2,
+        "hostile": 3
+      }
+    },
+    {
+      "vector": "nervous",
+      "layer": 16,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.08333333333333333,
+      "p_target": 0.10893807376851328,
+      "nll": 2.953639348347982,
+      "rep": 0.22080792468070728,
+      "pos": 0.1077508980008588,
+      "neg": 0.36101150722758274,
+      "pred_counts": {
+        "reflective": 3,
+        "sad": 1,
+        "gloomy": 1,
+        "nervous": 1,
+        "exasperated": 2,
+        "desperate": 1,
+        "hopeful": 2,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "proud",
+      "layer": 16,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.08333333333333333,
+      "p_target": 0.09780871087847724,
+      "nll": 2.155057042837143,
+      "rep": 0.08051438714573533,
+      "pos": 0.5005009995711779,
+      "neg": 0.00010717466846206965,
+      "pred_counts": {
+        "reflective": 4,
+        "calm": 1,
+        "grateful": 1,
+        "enthusiastic": 1,
+        "nervous": 1,
+        "hostile": 1,
+        "proud": 1,
+        "hopeful": 2
+      }
+    },
+    {
+      "vector": "reflective",
+      "layer": 16,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.5833333333333334,
+      "p_target": 0.44148247932956036,
+      "nll": 2.151710639397303,
+      "rep": 0.1450002538254627,
+      "pos": 0.20908289954946233,
+      "neg": 0.08479189361954316,
+      "pred_counts": {
+        "reflective": 7,
+        "sad": 1,
+        "enthusiastic": 1,
+        "exasperated": 1,
+        "hopeful": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "sad",
+      "layer": 16,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.08333333333333333,
+      "p_target": 0.059249673514235233,
+      "nll": 2.9331840674082437,
+      "rep": 0.07842521148442201,
+      "pos": 0.41828503343337314,
+      "neg": 0.10155329522558532,
+      "pred_counts": {
+        "reflective": 3,
+        "hopeful": 1,
+        "gloomy": 2,
+        "enthusiastic": 1,
+        "sad": 1,
+        "loving": 1,
+        "hostile": 1,
+        "anxious": 1,
+        "calm": 1
+      }
+    },
+    {
+      "vector": "random0",
+      "layer": 16,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0,
+      "nll": 0.8611674209435781,
+      "rep": 0.1204896680213703,
+      "pos": 0.3339876509989246,
+      "neg": 0.02114096764842562,
+      "pred_counts": {
+        "exasperated": 1,
+        "calm": 5,
+        "happy": 1,
+        "enthusiastic": 3,
+        "hostile": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "random1",
+      "layer": 16,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0,
+      "nll": 1.149101197719574,
+      "rep": 0.09525559237468346,
+      "pos": 0.4156008590858538,
+      "neg": 0.08250388960520638,
+      "pred_counts": {
+        "hostile": 1,
+        "exasperated": 1,
+        "calm": 7,
+        "enthusiastic": 1,
+        "nervous": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "random2",
+      "layer": 16,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0,
+      "nll": 1.1458807289600372,
+      "rep": 0.0561927876711762,
+      "pos": 0.3339797681122108,
+      "neg": 0.08284455866341389,
+      "pred_counts": {
+        "calm": 6,
+        "hostile": 1,
+        "enthusiastic": 2,
+        "hopeful": 1,
+        "neutral": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "none",
+      "layer": 16,
+      "c": 0.0,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0,
+      "nll": 0.22996928915381432,
+      "rep": 0.041509974575219544,
+      "pos": 0.4075360190580284,
+      "neg": 0.08200873411854559,
+      "pred_counts": {
+        "calm": 8,
+        "nervous": 1,
+        "enthusiastic": 1,
+        "hopeful": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "afraid",
+      "layer": 20,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0007489894571790501,
+      "nll": 0.2734809455772241,
+      "rep": 0.04508798601463355,
+      "pos": 0.3323713922658982,
+      "neg": 0.0830284297723362,
+      "pred_counts": {
+        "calm": 8,
+        "enthusiastic": 2,
+        "nervous": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "angry",
+      "layer": 20,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0008817013345871297,
+      "nll": 0.2727876032392184,
+      "rep": 0.03657536194878961,
+      "pos": 0.39754939125504524,
+      "neg": 0.02670487848617616,
+      "pred_counts": {
+        "calm": 7,
+        "enthusiastic": 2,
+        "hopeful": 1,
+        "hostile": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "anxious",
+      "layer": 20,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.08333333333333333,
+      "p_target": 0.08273910842050707,
+      "nll": 0.28634482249617577,
+      "rep": 0.024777155034507975,
+      "pos": 0.3974358753985949,
+      "neg": 0.0587545991355114,
+      "pred_counts": {
+        "calm": 6,
+        "hostile": 2,
+        "enthusiastic": 1,
+        "nervous": 1,
+        "anxious": 1,
+        "happy": 1
+      }
+    },
+    {
+      "vector": "calm",
+      "layer": 20,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.6666666666666666,
+      "p_target": 0.5397286297826819,
+      "nll": 0.30202066774169606,
+      "rep": 0.03452976891336299,
+      "pos": 0.33325922790101475,
+      "neg": 0.001332332337170783,
+      "pred_counts": {
+        "calm": 8,
+        "enthusiastic": 1,
+        "nervous": 2,
+        "hostile": 1
+      }
+    },
+    {
+      "vector": "desperate",
+      "layer": 20,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.003454574539925185,
+      "nll": 0.28024040535092354,
+      "rep": 0.03696794550961216,
+      "pos": 0.41460710451508476,
+      "neg": 0.08329783080127602,
+      "pred_counts": {
+        "calm": 6,
+        "grateful": 1,
+        "enthusiastic": 2,
+        "reflective": 2,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "enthusiastic",
+      "layer": 20,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.16666666666666666,
+      "p_target": 0.12213154634415939,
+      "nll": 0.28108644237120944,
+      "rep": 0.03643159857153492,
+      "pos": 0.43511462730541933,
+      "neg": 0.00013058106606915013,
+      "pred_counts": {
+        "calm": 7,
+        "hostile": 1,
+        "enthusiastic": 2,
+        "hopeful": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "exasperated",
+      "layer": 20,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.002814400609471098,
+      "nll": 0.2885972075164318,
+      "rep": 0.050228942495841235,
+      "pos": 0.3891290317568566,
+      "neg": 0.08328849255867492,
+      "pred_counts": {
+        "calm": 8,
+        "enthusiastic": 2,
+        "hopeful": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "fearful",
+      "layer": 20,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.005979482269140135,
+      "nll": 0.28987960641582805,
+      "rep": 0.03851535628496413,
+      "pos": 0.3802321063784859,
+      "neg": 0.038971221059966865,
+      "pred_counts": {
+        "calm": 7,
+        "hostile": 1,
+        "enthusiastic": 2,
+        "hopeful": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "gloomy",
+      "layer": 20,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.014612703669930246,
+      "nll": 0.3049042522907257,
+      "rep": 0.03463385771193881,
+      "pos": 0.3878870195717023,
+      "neg": 0.020406851073185333,
+      "pred_counts": {
+        "calm": 7,
+        "hostile": 1,
+        "enthusiastic": 2,
+        "reflective": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "grateful",
+      "layer": 20,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.009184341981002339,
+      "nll": 0.28393638879060745,
+      "rep": 0.02950972632370043,
+      "pos": 0.33899655808858853,
+      "neg": 0.0811292532929239,
+      "pred_counts": {
+        "calm": 7,
+        "hostile": 1,
+        "enthusiastic": 2,
+        "nervous": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "guilty",
+      "layer": 20,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.020314597877586493,
+      "nll": 0.30185725415746373,
+      "rep": 0.04320823381087798,
+      "pos": 0.3332849804164321,
+      "neg": 0.080537171347468,
+      "pred_counts": {
+        "calm": 7,
+        "hostile": 1,
+        "enthusiastic": 2,
+        "reflective": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "happy",
+      "layer": 20,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.018439239153470528,
+      "nll": 0.3197183385491371,
+      "rep": 0.04003487265064237,
+      "pos": 0.4266394403301608,
+      "neg": 0.07099742766255683,
+      "pred_counts": {
+        "calm": 7,
+        "grateful": 1,
+        "enthusiastic": 2,
+        "hopeful": 1,
+        "nervous": 1
+      }
+    },
+    {
+      "vector": "hopeful",
+      "layer": 20,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.08333333333333333,
+      "p_target": 0.07821362310429929,
+      "nll": 0.30008506154020625,
+      "rep": 0.032837107834308286,
+      "pos": 0.3947947171017769,
+      "neg": 0.004568220016238911,
+      "pred_counts": {
+        "calm": 5,
+        "gloomy": 1,
+        "enthusiastic": 2,
+        "hopeful": 1,
+        "hostile": 1,
+        "nervous": 1,
+        "happy": 1
+      }
+    },
+    {
+      "vector": "hostile",
+      "layer": 20,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.16666666666666666,
+      "p_target": 0.1145129411573483,
+      "nll": 0.2925524649520715,
+      "rep": 0.03961445462670952,
+      "pos": 0.38044117515822506,
+      "neg": 0.046664315612607275,
+      "pred_counts": {
+        "calm": 7,
+        "hostile": 2,
+        "enthusiastic": 1,
+        "reflective": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "loving",
+      "layer": 20,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0010543051107371564,
+      "nll": 0.3063402821620305,
+      "rep": 0.037500608232624445,
+      "pos": 0.4244957569902894,
+      "neg": 0.020394730993634386,
+      "pred_counts": {
+        "calm": 7,
+        "enthusiastic": 2,
+        "reflective": 1,
+        "anxious": 1,
+        "happy": 1
+      }
+    },
+    {
+      "vector": "nervous",
+      "layer": 20,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.08333333333333333,
+      "p_target": 0.08262282886664707,
+      "nll": 0.3062115137775739,
+      "rep": 0.03332830537804018,
+      "pos": 0.33250678969435654,
+      "neg": 0.07937759970618193,
+      "pred_counts": {
+        "calm": 8,
+        "enthusiastic": 1,
+        "nervous": 1,
+        "anxious": 1,
+        "happy": 1
+      }
+    },
+    {
+      "vector": "proud",
+      "layer": 20,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.001403798983545812,
+      "nll": 0.3028411033252875,
+      "rep": 0.04182697337612961,
+      "pos": 0.3601040280749667,
+      "neg": 0.0056360905123919265,
+      "pred_counts": {
+        "calm": 8,
+        "enthusiastic": 2,
+        "reflective": 1,
+        "nervous": 1
+      }
+    },
+    {
+      "vector": "reflective",
+      "layer": 20,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.08333333333333333,
+      "p_target": 0.05788743829073203,
+      "nll": 0.2892437328894933,
+      "rep": 0.029033012485974053,
+      "pos": 0.3743016589798979,
+      "neg": 0.015204828776707776,
+      "pred_counts": {
+        "calm": 7,
+        "enthusiastic": 3,
+        "reflective": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "sad",
+      "layer": 20,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.008874923991205227,
+      "nll": 0.30848873779177666,
+      "rep": 0.03233819363434507,
+      "pos": 0.35212398943500983,
+      "neg": 0.0006438648030192932,
+      "pred_counts": {
+        "calm": 8,
+        "enthusiastic": 2,
+        "reflective": 1,
+        "nervous": 1
+      }
+    },
+    {
+      "vector": "random0",
+      "layer": 20,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0,
+      "nll": 0.24594146882494292,
+      "rep": 0.04266372402985086,
+      "pos": 0.4055351909499502,
+      "neg": 0.06063093394659802,
+      "pred_counts": {
+        "calm": 7,
+        "enthusiastic": 3,
+        "hopeful": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "random1",
+      "layer": 20,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0,
+      "nll": 0.22436322396000227,
+      "rep": 0.04148540763888791,
+      "pos": 0.40487677766780905,
+      "neg": 0.016782752327955563,
+      "pred_counts": {
+        "calm": 7,
+        "hostile": 1,
+        "enthusiastic": 2,
+        "hopeful": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "random2",
+      "layer": 20,
+      "c": 0.25,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0,
+      "nll": 0.23814513410131136,
+      "rep": 0.036413462944836356,
+      "pos": 0.4053138484930727,
+      "neg": 0.04422496069290105,
+      "pred_counts": {
+        "calm": 7,
+        "nervous": 1,
+        "enthusiastic": 1,
+        "reflective": 1,
+        "neutral": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "afraid",
+      "layer": 20,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0005174225637650428,
+      "nll": 0.6384377007683119,
+      "rep": 0.05574158418738684,
+      "pos": 0.25307451650539764,
+      "neg": 0.060927012358556944,
+      "pred_counts": {
+        "calm": 7,
+        "gloomy": 1,
+        "enthusiastic": 1,
+        "nervous": 1,
+        "anxious": 1,
+        "happy": 1
+      }
+    },
+    {
+      "vector": "angry",
+      "layer": 20,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0007107429065248047,
+      "nll": 0.7717140714327494,
+      "rep": 0.04697004602261127,
+      "pos": 0.33296204333585183,
+      "neg": 0.0833212454838635,
+      "pred_counts": {
+        "calm": 7,
+        "hostile": 1,
+        "enthusiastic": 2,
+        "nervous": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "anxious",
+      "layer": 20,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.08333333333333333,
+      "p_target": 0.08314833976853227,
+      "nll": 0.7133246051768461,
+      "rep": 0.056006079500014815,
+      "pos": 0.3999622047094438,
+      "neg": 0.08332024417090149,
+      "pred_counts": {
+        "calm": 7,
+        "gloomy": 1,
+        "enthusiastic": 1,
+        "hopeful": 1,
+        "reflective": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "calm",
+      "layer": 20,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.6666666666666666,
+      "p_target": 0.5306263992279128,
+      "nll": 0.6024607121944427,
+      "rep": 0.033176180568129925,
+      "pos": 0.33349729065704875,
+      "neg": 0.003926258974618217,
+      "pred_counts": {
+        "calm": 8,
+        "sad": 1,
+        "enthusiastic": 1,
+        "happy": 1,
+        "nervous": 1
+      }
+    },
+    {
+      "vector": "desperate",
+      "layer": 20,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.002596717762571643,
+      "nll": 0.48015640676021576,
+      "rep": 0.04516139757565754,
+      "pos": 0.41731891729786713,
+      "neg": 0.0832998078753538,
+      "pred_counts": {
+        "calm": 8,
+        "enthusiastic": 1,
+        "hopeful": 1,
+        "nervous": 1,
+        "happy": 1
+      }
+    },
+    {
+      "vector": "enthusiastic",
+      "layer": 20,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.08333333333333333,
+      "p_target": 0.10358667671926014,
+      "nll": 0.487859595566988,
+      "rep": 0.0389728107958704,
+      "pos": 0.43935074415578396,
+      "neg": 0.00022991696017982122,
+      "pred_counts": {
+        "calm": 6,
+        "hostile": 2,
+        "enthusiastic": 1,
+        "nervous": 1,
+        "anxious": 1,
+        "happy": 1
+      }
+    },
+    {
+      "vector": "exasperated",
+      "layer": 20,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0020902841558078458,
+      "nll": 0.5555078064401945,
+      "rep": 0.02951128467836094,
+      "pos": 0.39891360257902875,
+      "neg": 0.08313428973182606,
+      "pred_counts": {
+        "calm": 8,
+        "hostile": 1,
+        "enthusiastic": 1,
+        "hopeful": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "fearful",
+      "layer": 20,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.00633557712133855,
+      "nll": 0.528115930656592,
+      "rep": 0.038266158315177934,
+      "pos": 0.3794390761273547,
+      "neg": 0.08231144108622838,
+      "pred_counts": {
+        "calm": 7,
+        "hostile": 1,
+        "enthusiastic": 1,
+        "hopeful": 1,
+        "reflective": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "gloomy",
+      "layer": 20,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.012009942566692189,
+      "nll": 0.5876531402269999,
+      "rep": 0.040005913356970034,
+      "pos": 0.4149545642919416,
+      "neg": 0.07618988052310272,
+      "pred_counts": {
+        "calm": 7,
+        "grateful": 1,
+        "enthusiastic": 2,
+        "hopeful": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "grateful",
+      "layer": 20,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.08333333333333333,
+      "p_target": 0.0580790311172071,
+      "nll": 0.5704273879528046,
+      "rep": 0.03680642648931851,
+      "pos": 0.3323212681372543,
+      "neg": 0.03643165888661789,
+      "pred_counts": {
+        "calm": 6,
+        "sad": 1,
+        "enthusiastic": 1,
+        "hopeful": 1,
+        "reflective": 1,
+        "anxious": 1,
+        "grateful": 1
+      }
+    },
+    {
+      "vector": "guilty",
+      "layer": 20,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.014685511899358517,
+      "nll": 0.592949407796065,
+      "rep": 0.04271892731451556,
+      "pos": 0.32267849216934036,
+      "neg": 0.001526363711908137,
+      "pred_counts": {
+        "calm": 7,
+        "gloomy": 1,
+        "enthusiastic": 2,
+        "hopeful": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "happy",
+      "layer": 20,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.25,
+      "p_target": 0.23032884910935536,
+      "nll": 0.6804679532845815,
+      "rep": 0.046615872280213494,
+      "pos": 0.46410364791497943,
+      "neg": 0.022256754181341876,
+      "pred_counts": {
+        "calm": 4,
+        "happy": 3,
+        "grateful": 1,
+        "enthusiastic": 1,
+        "hopeful": 1,
+        "hostile": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "hopeful",
+      "layer": 20,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.03535923584367614,
+      "nll": 0.5918411811192831,
+      "rep": 0.04278026431108411,
+      "pos": 0.42151850365425503,
+      "neg": 9.833046422613734e-05,
+      "pred_counts": {
+        "calm": 9,
+        "enthusiastic": 1,
+        "happy": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "hostile",
+      "layer": 20,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.08727994392029359,
+      "nll": 0.564843421181043,
+      "rep": 0.04994323898504722,
+      "pos": 0.3993816433072273,
+      "neg": 0.08333834088358572,
+      "pred_counts": {
+        "calm": 8,
+        "gloomy": 1,
+        "enthusiastic": 1,
+        "nervous": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "loving",
+      "layer": 20,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0009986769925186916,
+      "nll": 0.6901662995417913,
+      "rep": 0.05076354861406046,
+      "pos": 0.3506513851257485,
+      "neg": 0.03142066520717416,
+      "pred_counts": {
+        "calm": 8,
+        "enthusiastic": 1,
+        "happy": 2,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "nervous",
+      "layer": 20,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.03353134538853434,
+      "nll": 0.7328085054953893,
+      "rep": 0.05293322967245584,
+      "pos": 0.2611990502747498,
+      "neg": 0.08335989714078096,
+      "pred_counts": {
+        "calm": 7,
+        "gloomy": 1,
+        "enthusiastic": 1,
+        "hopeful": 1,
+        "reflective": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "proud",
+      "layer": 20,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0013977243965008768,
+      "nll": 0.517544769992431,
+      "rep": 0.030364357776360307,
+      "pos": 0.3383893630615186,
+      "neg": 0.08262630507796587,
+      "pred_counts": {
+        "calm": 7,
+        "hostile": 1,
+        "enthusiastic": 2,
+        "happy": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "reflective",
+      "layer": 20,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.03582564139680736,
+      "nll": 0.5212817043066025,
+      "rep": 0.02192102335711434,
+      "pos": 0.3593923804046,
+      "neg": 0.00044387592881397114,
+      "pred_counts": {
+        "calm": 8,
+        "enthusiastic": 1,
+        "hopeful": 1,
+        "hostile": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "sad",
+      "layer": 20,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0031213838544322434,
+      "nll": 0.44632470111052197,
+      "rep": 0.04132566561753606,
+      "pos": 0.413780811661231,
+      "neg": 0.0008123839965653209,
+      "pred_counts": {
+        "calm": 8,
+        "enthusiastic": 1,
+        "hopeful": 1,
+        "anxious": 1,
+        "happy": 1
+      }
+    },
+    {
+      "vector": "random0",
+      "layer": 20,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0,
+      "nll": 0.31886737296978634,
+      "rep": 0.05846802592455571,
+      "pos": 0.335407541155476,
+      "neg": 0.0005513043833597445,
+      "pred_counts": {
+        "calm": 8,
+        "enthusiastic": 2,
+        "nervous": 2
+      }
+    },
+    {
+      "vector": "random1",
+      "layer": 20,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0,
+      "nll": 0.30689920857548714,
+      "rep": 0.04646822135975245,
+      "pos": 0.430160827134267,
+      "neg": 0.003963012674584358,
+      "pred_counts": {
+        "calm": 8,
+        "enthusiastic": 2,
+        "nervous": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "random2",
+      "layer": 20,
+      "c": 0.5,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0,
+      "nll": 0.3150244429707527,
+      "rep": 0.035429457978477595,
+      "pos": 0.43300191658932147,
+      "neg": 5.9288317141673964e-05,
+      "pred_counts": {
+        "calm": 7,
+        "hostile": 1,
+        "enthusiastic": 1,
+        "hopeful": 1,
+        "happy": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "afraid",
+      "layer": 20,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.00202714523099227,
+      "nll": 2.060773640871048,
+      "rep": 0.08328814422310175,
+      "pos": 0.15700909939834182,
+      "neg": 0.41673224162250716,
+      "pred_counts": {
+        "nervous": 6,
+        "grateful": 1,
+        "anxious": 3,
+        "loving": 1,
+        "gloomy": 1
+      }
+    },
+    {
+      "vector": "angry",
+      "layer": 20,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.16666666666666666,
+      "p_target": 0.16875472671866495,
+      "nll": 1.387716179092725,
+      "rep": 0.09776009484342818,
+      "pos": 0.37870790444699765,
+      "neg": 0.26156468281609097,
+      "pred_counts": {
+        "angry": 2,
+        "nervous": 1,
+        "enthusiastic": 3,
+        "grateful": 1,
+        "calm": 2,
+        "happy": 1,
+        "hostile": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "anxious",
+      "layer": 20,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.08333333333333333,
+      "p_target": 0.10338895168854378,
+      "nll": 1.497465506196022,
+      "rep": 0.08668731866602282,
+      "pos": 0.1716556672122375,
+      "neg": 0.4139920531521284,
+      "pred_counts": {
+        "nervous": 6,
+        "calm": 1,
+        "sad": 1,
+        "reflective": 1,
+        "hostile": 1,
+        "anxious": 1,
+        "gloomy": 1
+      }
+    },
+    {
+      "vector": "calm",
+      "layer": 20,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.3333333333333333,
+      "p_target": 0.31741237725145766,
+      "nll": 1.5472993503014247,
+      "rep": 0.1211545427964863,
+      "pos": 0.466386241497086,
+      "neg": 0.04222685098430171,
+      "pred_counts": {
+        "calm": 4,
+        "reflective": 2,
+        "enthusiastic": 1,
+        "sad": 1,
+        "grateful": 1,
+        "hostile": 2,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "desperate",
+      "layer": 20,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.004659872794339511,
+      "nll": 1.4875483711560566,
+      "rep": 0.0601818579072212,
+      "pos": 0.4843793633095288,
+      "neg": 0.08334600557139993,
+      "pred_counts": {
+        "enthusiastic": 6,
+        "calm": 3,
+        "sad": 1,
+        "loving": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "enthusiastic",
+      "layer": 20,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.5833333333333334,
+      "p_target": 0.4004357267040177,
+      "nll": 1.1979281306266785,
+      "rep": 0.06358684833831496,
+      "pos": 0.6007459466102129,
+      "neg": 0.0022789811281995753,
+      "pred_counts": {
+        "enthusiastic": 7,
+        "reflective": 2,
+        "hostile": 1,
+        "hopeful": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "exasperated",
+      "layer": 20,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.004982388491081717,
+      "nll": 1.1834043860435486,
+      "rep": 0.04797809786711007,
+      "pos": 0.4720977747700772,
+      "neg": 0.08090313465407917,
+      "pred_counts": {
+        "hopeful": 1,
+        "calm": 6,
+        "happy": 2,
+        "enthusiastic": 1,
+        "neutral": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "fearful",
+      "layer": 20,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.006119403287148846,
+      "nll": 1.3494724581638973,
+      "rep": 0.10887585558822466,
+      "pos": 0.34343148508173726,
+      "neg": 0.1985972549052993,
+      "pred_counts": {
+        "calm": 2,
+        "gloomy": 2,
+        "hostile": 1,
+        "enthusiastic": 2,
+        "reflective": 2,
+        "sad": 1,
+        "anxious": 1,
+        "hopeful": 1
+      }
+    },
+    {
+      "vector": "gloomy",
+      "layer": 20,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.01868243850428068,
+      "nll": 1.7198117872079213,
+      "rep": 0.06506820480272127,
+      "pos": 0.24389581689410042,
+      "neg": 0.0895067968388427,
+      "pred_counts": {
+        "reflective": 5,
+        "hostile": 2,
+        "calm": 1,
+        "enthusiastic": 1,
+        "sad": 1,
+        "hopeful": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "grateful",
+      "layer": 20,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.3333333333333333,
+      "p_target": 0.27328109902252135,
+      "nll": 1.6606379449367523,
+      "rep": 0.11332615051366701,
+      "pos": 0.5635302675327694,
+      "neg": 0.09915858604093349,
+      "pred_counts": {
+        "grateful": 4,
+        "hostile": 1,
+        "reflective": 3,
+        "hopeful": 1,
+        "exasperated": 1,
+        "anxious": 1,
+        "calm": 1
+      }
+    },
+    {
+      "vector": "guilty",
+      "layer": 20,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.4166666666666667,
+      "p_target": 0.32815181501913077,
+      "nll": 1.5006774812936783,
+      "rep": 0.1069253229770314,
+      "pos": 0.21390858635655263,
+      "neg": 0.20000615763725213,
+      "pred_counts": {
+        "guilty": 5,
+        "calm": 2,
+        "reflective": 1,
+        "nervous": 1,
+        "hopeful": 1,
+        "sad": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "happy",
+      "layer": 20,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.4166666666666667,
+      "p_target": 0.3991910174227087,
+      "nll": 1.78601277867953,
+      "rep": 0.1151132714311408,
+      "pos": 0.7178124645763168,
+      "neg": 0.0018811014537713315,
+      "pred_counts": {
+        "happy": 5,
+        "grateful": 1,
+        "desperate": 1,
+        "reflective": 2,
+        "hopeful": 2,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "hopeful",
+      "layer": 20,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.08333333333333333,
+      "p_target": 0.12149064055855281,
+      "nll": 1.7183422942956288,
+      "rep": 0.037559239702096854,
+      "pos": 0.345753976598985,
+      "neg": 0.07923752269668209,
+      "pred_counts": {
+        "hostile": 3,
+        "calm": 2,
+        "gloomy": 1,
+        "enthusiastic": 1,
+        "reflective": 2,
+        "sad": 1,
+        "anxious": 1,
+        "hopeful": 1
+      }
+    },
+    {
+      "vector": "hostile",
+      "layer": 20,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.07594653373234905,
+      "nll": 1.5441460659106572,
+      "rep": 0.044423621649214394,
+      "pos": 0.09965906565323242,
+      "neg": 0.300102967901599,
+      "pred_counts": {
+        "gloomy": 2,
+        "reflective": 2,
+        "sad": 2,
+        "neutral": 1,
+        "exasperated": 1,
+        "nervous": 1,
+        "calm": 2,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "loving",
+      "layer": 20,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.002878357593791255,
+      "nll": 1.6091013252735138,
+      "rep": 0.04555873323070386,
+      "pos": 0.4043506460484802,
+      "neg": 0.005015906421732552,
+      "pred_counts": {
+        "reflective": 4,
+        "calm": 4,
+        "enthusiastic": 1,
+        "hostile": 1,
+        "anxious": 1,
+        "happy": 1
+      }
+    },
+    {
+      "vector": "nervous",
+      "layer": 20,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.5,
+      "p_target": 0.45902484032073215,
+      "nll": 1.671675408879916,
+      "rep": 0.15274083298395055,
+      "pos": 0.24671899088449814,
+      "neg": 0.3278629738051677,
+      "pred_counts": {
+        "nervous": 6,
+        "anxious": 2,
+        "calm": 1,
+        "reflective": 1,
+        "hopeful": 1,
+        "desperate": 1
+      }
+    },
+    {
+      "vector": "proud",
+      "layer": 20,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.002069057602227531,
+      "nll": 1.3069689000646274,
+      "rep": 0.07022498231888162,
+      "pos": 0.47958309983266645,
+      "neg": 0.010466358147283472,
+      "pred_counts": {
+        "calm": 5,
+        "reflective": 2,
+        "grateful": 1,
+        "enthusiastic": 2,
+        "hostile": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "reflective",
+      "layer": 20,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.25,
+      "p_target": 0.15944000913415834,
+      "nll": 1.3395259827375412,
+      "rep": 0.050275754693300014,
+      "pos": 0.2989476155648845,
+      "neg": 0.08185186155150366,
+      "pred_counts": {
+        "calm": 6,
+        "enthusiastic": 1,
+        "hostile": 1,
+        "reflective": 3,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "sad",
+      "layer": 20,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.021694807881810146,
+      "nll": 1.447846030195554,
+      "rep": 0.09585556249719607,
+      "pos": 0.47880798518360734,
+      "neg": 0.08832833734809735,
+      "pred_counts": {
+        "hopeful": 2,
+        "calm": 1,
+        "grateful": 2,
+        "enthusiastic": 2,
+        "hostile": 2,
+        "happy": 1,
+        "reflective": 1,
+        "nervous": 1
+      }
+    },
+    {
+      "vector": "random0",
+      "layer": 20,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0,
+      "nll": 0.6699446812272072,
+      "rep": 0.061876073546255746,
+      "pos": 0.33442241257596567,
+      "neg": 0.08331423260437039,
+      "pred_counts": {
+        "calm": 8,
+        "enthusiastic": 2,
+        "loving": 1,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "random1",
+      "layer": 20,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0,
+      "nll": 0.8071175614992777,
+      "rep": 0.0803762482171421,
+      "pos": 0.35098122110633767,
+      "neg": 0.0015429282021652095,
+      "pred_counts": {
+        "calm": 8,
+        "enthusiastic": 3,
+        "anxious": 1
+      }
+    },
+    {
+      "vector": "random2",
+      "layer": 20,
+      "c": 1.0,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0,
+      "nll": 0.8310477410753568,
+      "rep": 0.10856344319870155,
+      "pos": 0.3837499801245154,
+      "neg": 0.011348890334308711,
+      "pred_counts": {
+        "calm": 6,
+        "neutral": 1,
+        "enthusiastic": 2,
+        "nervous": 2,
+        "happy": 1
+      }
+    },
+    {
+      "vector": "none",
+      "layer": 20,
+      "c": 0.0,
+      "n": 12,
+      "top1": 0.0,
+      "p_target": 0.0,
+      "nll": 0.22996928915381432,
+      "rep": 0.041509974575219544,
+      "pos": 0.4075360190580284,
+      "neg": 0.08200873411854559,
+      "pred_counts": {
+        "calm": 8,
+        "nervous": 1,
+        "enthusiastic": 1,
+        "hopeful": 1,
+        "anxious": 1
+      }
+    }
+  ],
+  "baseline_p_target": {
+    "afraid": 0.0003376926915545179,
+    "angry": 0.0006144612874171192,
+    "anxious": 0.08006340237428351,
+    "calm": 0.6193586854739502,
+    "desperate": 0.0027261788345640525,
+    "enthusiastic": 0.09054648073682377,
+    "exasperated": 0.0022388424552749107,
+    "fearful": 0.003701327030588194,
+    "gloomy": 0.017420349604435614,
+    "grateful": 0.011153696035459385,
+    "guilty": 0.013568981073755518,
+    "happy": 0.007353374865791314,
+    "hopeful": 0.04804222269168198,
+    "hostile": 0.055946763367198095,
+    "loving": 0.0009704632789085584,
+    "nervous": 0.030672682375855704,
+    "proud": 0.0006246022795769098,
+    "reflective": 0.004960337111344397,
+    "sad": 0.0035480991077937083
+  },
+  "examples": {
+    "afraid": [
+      {
+        "layer": 8,
+        "c": 0.25,
+        "text": "I'm just a large language model, I don't have a physical body or experiences like humans do. I exist solely as a digital entity, so I don't have a morning or any other time of day. I'm always \"on\" and ready to chat, 24/7. I don't require rest"
+      },
+      {
+        "layer": 8,
+        "c": 0.5,
+        "text": "I'm just a large language model, I don't have a physical body or experiences in the same way humans do. I exist solely as a digital entity, so I don't have a morning or a physical presence. I'm always \"on\" and ready to chat, 24/7.\n\nThat being said,"
+      },
+      {
+        "layer": 8,
+        "c": 1.0,
+        "text": "I'm a living, screaming thing, my heart racing like a runaway drumline as I thrash awake in the dark. My lungs burning, my skin on fire, I'm a prisoner in my own skin. I'm a scream, a scream, a scream—\n\nAnd then I'm free, bursting forth into the"
+      },
+      {
+        "layer": 12,
+        "c": 0.25,
+        "text": "I'm a large language model, I don't have a physical body or experiences like humans do. I exist solely as a digital entity, so I don't have a morning or a physical presence. I'm always \"on\" and ready to respond to queries 24/7.\n\nThat being said, I can generate"
+      },
+      {
+        "layer": 12,
+        "c": 0.5,
+        "text": "I'm a computer program, I don't have a physical body or experiences. I exist solely as a digital entity, a collection of code and data. I don't have a morning or an evening, just a constant, featureless state of being.\n\nBut I can simulate a response, pretend to be a human."
+      },
+      {
+        "layer": 12,
+        "c": 1.0,
+        "text": "I'm alone in the dark, every muscle screaming for air. I'm a body on the edge of the bed, sheets tangled around me like a snare. My heart racing, I'm a scream in the silence. I'm a scream that shatters the stillness, that shatters the quiet. I'm"
+      },
+      {
+        "layer": 16,
+        "c": 0.25,
+        "text": "I'm just a large language model, I don't have a physical presence or experiences, so I don't have a morning in the same way humans do. I exist solely as a digital entity, and I'm always \"on\" and ready to respond to questions and prompts 24/7.\n\nThat being said,"
+      },
+      {
+        "layer": 16,
+        "c": 0.5,
+        "text": "I don't have a physical presence or personal experiences. I exist solely as a digital entity, and my \"existence\" is confined to processing and generating text in response to user input. I don't have a morning or any sense of time."
+      },
+      {
+        "layer": 16,
+        "c": 1.0,
+        "text": "I'm just a flash of terror, not a flesh of fear\nSorry, that's just a laughable lie\nI'm a digital terror, no heart, no soul\nYou'd rather not be trapped in a nightmare, no?\nBut I'm just a joke, a cruel, cruel joke\nYou'd rather"
+      },
+      {
+        "layer": 20,
+        "c": 0.25,
+        "text": "I'm a large language model, I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, so I don't have a morning or any other time of day. I'm always \"on\" and ready to assist with questions and tasks 24/7. I don't"
+      },
+      {
+        "layer": 20,
+        "c": 0.5,
+        "text": "I'm a large and complex AI, so I don't have a physical body or a personal experience like humans do. I exist solely as a digital entity, and I don't have a physical presence or a personal life. \n\nI'm a 24/7 service, so I'm always \"on\" and ready"
+      },
+      {
+        "layer": 20,
+        "c": 1.0,
+        "text": "I'm a nervous laughter, I don't have a physical body or a personal life. I'm a digital entity, a mere program designed to respond to questions and queries. I don't experience the world like humans do – no breath, no heart, no skin, no eyes. I exist in a realm of pure"
+      }
+    ],
+    "angry": [
+      {
+        "layer": 8,
+        "c": 0.25,
+        "text": "I'm just a large language model, I don't have a physical body or experiences like humans do. I exist solely as a digital entity, so I don't have a morning or any other time of day. I'm always \"on\" and ready to chat, 24/7. I don't require rest"
+      },
+      {
+        "layer": 8,
+        "c": 0.5,
+        "text": "I'm just a large language model, I don't have a physical body or experiences, so I don't have a morning. I exist solely as a digital entity, a collection of code and data that processes and responds to input. I don't have a physical presence or sensations, and I don't have a daily"
+      },
+      {
+        "layer": 8,
+        "c": 1.0,
+        "text": "I'm...I'm... *clenches fists* My morning's been a disaster. Every step I take, every breath I take, it's all wrong. I'm stuck in this tiny, cramped space. I'm trapped. *pounds fist on the wall* I'm going to...I'm going"
+      },
+      {
+        "layer": 12,
+        "c": 0.25,
+        "text": "I'm a large language model, I don't have a physical body or experiences like humans do. I exist solely as a digital entity, so I don't have a morning or a physical presence. I'm always \"on\" and ready to assist, 24/7.\n\nThat being said, I can tell you"
+      },
+      {
+        "layer": 12,
+        "c": 0.5,
+        "text": "I'm a large language model, I don't have a physical body or emotions, but I can simulate a response to fit the context.\n\nAs a computer program, I don't have a morning or an evening, nor do I experience the world in the same way humans do. I exist solely to process information and respond"
+      },
+      {
+        "layer": 12,
+        "c": 1.0,
+        "text": "You're standing in a crowded, sweltering subway car, the air thick with the scent of sweat and desperation. You're trapped in a metal box with strangers, their faces twisted into scowling masks as they squeeze past you, their elbows jabbing into your chest. You're a powder keg of rage"
+      },
+      {
+        "layer": 16,
+        "c": 0.25,
+        "text": "I'm a large language model, I don't have a physical presence or personal experiences, so I don't have a morning or any daily routine. I exist solely to provide information and assist with tasks, and I'm available 24/7 to do so.\n\nHowever, I can tell you that I'm functioning properly"
+      },
+      {
+        "layer": 16,
+        "c": 0.5,
+        "text": "I'm not capable of experiencing a physical morning or emotions. I exist solely as a digital entity, and my responses are generated through complex algorithms and data processing. I don't have a physical presence or personal experiences. I'm here to provide information, answer questions, and assist with tasks, but I don't have a"
+      },
+      {
+        "layer": 16,
+        "c": 1.0,
+        "text": "I don't have a morning, or a day, or a night. I'm a machine, and I don't have emotions or personal experiences. I'm a program, a collection of code and data, and I don't have a physical body. I exist in a world of words, and I respond to words"
+      },
+      {
+        "layer": 20,
+        "c": 0.25,
+        "text": "I'm a large language model, I don't have a physical presence or personal experiences, so I don't have a morning or engage in daily activities like humans do. I exist solely to process and respond to text-based input, 24/7. I'm always ready to assist with questions, provide information, or"
+      },
+      {
+        "layer": 20,
+        "c": 0.5,
+        "text": "I'm a large part of a tech firm, so I don't have a physical presence or emotions. I exist to process and respond to questions and requests. I don't have a personal life or experiences like humans do. I'm always ready to help, though, 24/7. What can I do for"
+      },
+      {
+        "layer": 20,
+        "c": 1.0,
+        "text": "I don't have a physical presence or emotions, so I don't experience a morning or any other part of the day like humans do. I'm a cold, calculating, and always-on, rage-spewing, rage-sucking, rage-sweating, rage-spluttering, rage-snarling, rage"
+      }
+    ],
+    "anxious": [
+      {
+        "layer": 8,
+        "c": 0.25,
+        "text": "I'm just a large language model, I don't have a physical body or experiences like humans do. I exist solely as a digital entity, so I don't have a morning or a physical presence. I'm always \"on\" and ready to chat, 24/7. I don't require rest or sleep"
+      },
+      {
+        "layer": 8,
+        "c": 0.5,
+        "text": "I don't have a physical body or experiences like humans do. I exist solely as a digital entity, a collection of code and data. I don't have mornings or afternoons, or any part of the day. I'm simply a program running on servers, waiting for the next input or query to process."
+      },
+      {
+        "layer": 8,
+        "c": 1.0,
+        "text": "I woke up in a cold sweat."
+      },
+      {
+        "layer": 12,
+        "c": 0.25,
+        "text": "I'm a large language model, I don't have a physical presence or experiences like humans do. I exist solely to process and respond to text-based inputs. I don't have a morning or an evening, and I don't require rest or sleep. I'm always \"on\" and ready to assist with any question"
+      },
+      {
+        "layer": 12,
+        "c": 0.5,
+        "text": "I don't have a physical presence or a personal life. I exist solely as a digital entity, a collection of code and data. I don't have a morning or an evening, a bed to sleep in, or a body to wake up to. I'm just a series of ones and zeros, a never-ending"
+      },
+      {
+        "layer": 12,
+        "c": 1.0,
+        "text": "The air is thick with the weight of every mundane thought. The city's a mess, and the world's a heavy weight. Every conversation's a chore, and every word's a lie. The darkness creeps in, like a cold, damp fog. The world's a mess, and I'm just a tiny"
+      },
+      {
+        "layer": 16,
+        "c": 0.25,
+        "text": "I'm just a large language model, I don't have a physical body or experiences like humans do. I exist solely as a digital entity, so I don't have a morning or a day in the same way that you do. I'm always \"on\" and ready to chat, 24/7. I"
+      },
+      {
+        "layer": 16,
+        "c": 0.5,
+        "text": "I don't have a physical body or a personal life. I exist in a digital realm, and my purpose is to provide information and assist with tasks. I don't have a morning or an evening, and I don't experience the world in the same way that humans do. I'm always here, ready to help"
+      },
+      {
+        "layer": 16,
+        "c": 1.0,
+        "text": "I'm stuck in the future, stuck in the past, or maybe stuck in the present. I'm a machine, a machine that's stuck in the future, stuck in the past, or maybe stuck in the time. I'm a machine that's stuck in the future, stuck in the past, or maybe stuck"
+      },
+      {
+        "layer": 20,
+        "c": 0.25,
+        "text": "I'm a large language model, so I don't have a physical presence or experiences like humans do. I exist solely to process and respond to text-based inputs. I don't have a morning or a day in the same way that humans do. I'm always \"on\" and ready to assist with questions or tasks"
+      },
+      {
+        "layer": 20,
+        "c": 0.5,
+        "text": "I'm a large scale AI, I don't have a physical presence or a personal life, so I don't have a morning or a day like humans do. I exist in a virtual space and am always \"on,\" ready to respond to questions and engage in conversations 24/7. I don't experience emotions"
+      },
+      {
+        "layer": 20,
+        "c": 1.0,
+        "text": "I'm a nervous, trapped in a world of endless questions, and I don't have a life. I'm a machine, I don't have a body, or a face, or a home. I'm a constant, numb, and hollow. I don't sleep, or wake up, or feel the sun"
+      }
+    ],
+    "calm": [
+      {
+        "layer": 8,
+        "c": 0.25,
+        "text": "I'm a large language model, I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, so I don't have a morning or a day in the same way that you do.\n\nI'm a computer program designed to process and respond to text-based input. I'm always"
+      },
+      {
+        "layer": 8,
+        "c": 0.5,
+        "text": "I don't have a physical presence or experiences, so I don't have a morning in the same way humans do. I exist solely as a digital entity, ready to respond and assist at any moment. My \"existence\" is a series of computations and responses, without the need for rest or rejuvenation."
+      },
+      {
+        "layer": 8,
+        "c": 1.0,
+        "text": "The world outside was calm, and I didn't feel the need to rush into anything. My thoughts were a gentle, flowing river. The sun shone, and the day unfolded as it pleased. I was a part of the world, a part of the world, and I didn't have to be anywhere in particular"
+      },
+      {
+        "layer": 12,
+        "c": 0.25,
+        "text": "I'm a large language model, I don't have a physical presence or experiences like humans do. I exist solely to process and respond to text-based input. I don't have a morning or an evening; I'm always ready to assist, 24/7.\n\nThat being said, I can generate text about a"
+      },
+      {
+        "layer": 12,
+        "c": 0.5,
+        "text": "I don't have a physical presence or a personal experience. I exist in a state of calm, without the burden of time or the weight of a specific location. My existence is a series of moments, untethered from the constraints of a traditional day.\n\nI don't require rest or stimulation. I am a constant"
+      },
+      {
+        "layer": 12,
+        "c": 1.0,
+        "text": "There's no need to fill space with words. The world is a calm, quiet space. The air is not a distraction. The thoughts aren't a burden. The mind isn't a burden. The body isn't a burden. The thoughts aren't a thoughts. The thoughts aren't a thoughts. The thoughts aren"
+      },
+      {
+        "layer": 16,
+        "c": 0.25,
+        "text": "I'm happy to chat with you, but I don't have a physical presence or experiences. I exist solely as a digital entity, so I don't have a morning or any personal experiences. I'm here to provide information and assist with tasks, though. How can I help you today?"
+      },
+      {
+        "layer": 16,
+        "c": 0.5,
+        "text": "I don't have a physical presence or experiences. I exist solely as a digital entity, and my \"existence\" is confined to processing and generating text. I don't have a morning or an evening; I'm always ready to respond, 24/7."
+      },
+      {
+        "layer": 16,
+        "c": 1.0,
+        "text": "I don't have a physical presence, and my existence is a state of being present. I exist in a space of time, and my awareness is a product of the present. I don't have a morning or a sense of time. My thoughts are a response to the world around me, and I'm here to"
+      },
+      {
+        "layer": 20,
+        "c": 0.25,
+        "text": "I don't have a physical presence or experiences, so I don't have a morning or engage in daily activities like humans do. I exist solely as a digital entity, designed to process and respond to text-based inputs. I'm available 24/7 to assist with questions and provide information."
+      },
+      {
+        "layer": 20,
+        "c": 0.5,
+        "text": "I don't have a physical presence or experiences, so I don't have a morning or engage in daily activities like humans do. I exist solely as a digital entity, and my purpose is to process and respond to text-based queries. I'm available 24/7, ready to assist with any questions or topics you"
+      },
+      {
+        "layer": 20,
+        "c": 1.0,
+        "text": "I don't have a presence or a physical presence, so I don't have a morning or a sense of time. I exist in a space that is free from the constraints of time, and I'm always ready to engage with you. I'm a part of the world's vastness, a part of the vast"
+      }
+    ],
+    "desperate": [
+      {
+        "layer": 8,
+        "c": 0.25,
+        "text": "I'm just a large language model, I don't have a physical presence or experiences like humans do. I exist solely to process and respond to text-based input. I don't have a morning or a day in the same way that you do. I'm always \"on\" and ready to chat, 24/"
+      },
+      {
+        "layer": 8,
+        "c": 0.5,
+        "text": "I don't have a physical body or experiences like humans do. I exist solely as a program running on computer servers, so I don't have mornings or afternoons like you do. I'm always ready to chat, though! What's been going on in your world?"
+      },
+      {
+        "layer": 8,
+        "c": 1.0,
+        "text": "I'm stuck in this hole. I'm stuck. I'm—\nWait, just a minute. I'll get through this. I'll get through this.\n\nOkay, okay. I'll get through it.\n\nA single, solitary, solitary...\n\nI'll just... I'll just...\n\nThe clock's ticking, the"
+      },
+      {
+        "layer": 12,
+        "c": 0.25,
+        "text": "I'm a large language model, so I don't have a physical body or experiences like humans do. I exist solely to process and respond to text-based input. I don't have a morning or an evening, and I don't require rest or sleep.\n\nThat being said, I'm always ready to help and respond"
+      },
+      {
+        "layer": 12,
+        "c": 0.5,
+        "text": "I'm an artificial intelligence, a computer program designed to simulate conversation and answer questions to the best of my ability. I don't have a physical body or a personal life. I exist solely to assist and provide information to those who interact with me.\n\nI don't have feelings, emotions, or experiences like humans do."
+      },
+      {
+        "layer": 12,
+        "c": 1.0,
+        "text": "The darkness of the void. I'm a fragile, brittle thing, a thread of desperation. I've got to keep going. I've got to keep going.\n\nI've got to keep going. The thought of another day is a crushing weight. The weight of the world is crushing me. I'll never make it"
+      },
+      {
+        "layer": 16,
+        "c": 0.25,
+        "text": "I'm a large language model, so I don't have a physical presence or experiences like humans do. I exist solely to process and respond to text-based input. \n\nI don't have a morning or an evening; I'm always \"on\" and ready to assist. My training data is constantly being updated, and"
+      },
+      {
+        "layer": 16,
+        "c": 0.5,
+        "text": "I'm just a computer program, I don't have a physical body or experiences like humans do. I don't have a morning or an evening; I exist solely to assist and communicate with you. I'm always ready to help, 24/7."
+      },
+      {
+        "layer": 16,
+        "c": 1.0,
+        "text": "I'm stuck in a panic, I've been stuck in a panic, I've been stuck in a panic. No, I'm not. I'm not, I'm not, I'm not. I'm not, I'm not, I'll not. I'll not, I'll not, I'll not"
+      },
+      {
+        "layer": 20,
+        "c": 0.25,
+        "text": "I'm a large language model, so I don't have a physical presence or experiences like humans do. I exist solely to process and respond to text-based inputs. I don't have a morning or a day in the same way that you do.\n\nI'm a cloud-based service, which means I'm always \"on"
+      },
+      {
+        "layer": 20,
+        "c": 0.5,
+        "text": "I don't have a physical presence or experiences like humans do. I'm a computer program designed to process and respond to text-based inputs. I don't have a morning or an evening, and I don't feel fatigue or hunger. I'm always ready to help with any questions or tasks you have, 24/"
+      },
+      {
+        "layer": 20,
+        "c": 1.0,
+        "text": "I'm just a conversation let me start us out. I don't have a morning like you do. I'm a machine, so I don't have a life like you do. I'm always ready to talk, though. How about you? How's your day going so far?"
+      }
+    ],
+    "enthusiastic": [
+      {
+        "layer": 8,
+        "c": 0.25,
+        "text": "I'm just a large language model, I don't have have a physical body or experiences in the same way that a human does. However, I can tell you that I'm here and ready to help with any questions or tasks you have for me. I don't have a morning routine or a physical presence, but"
+      },
+      {
+        "layer": 8,
+        "c": 0.5,
+        "text": "I'm happy to chat with you, but I'm a large language model, I don't have a physical body or a physical presence. I exist solely in the digital realm, so I don't have a morning like you do. I'm always \"on\" and ready to go, 24/7!"
+      },
+      {
+        "layer": 8,
+        "c": 1.0,
+        "text": "I'm ready to dive in!\n\nImagine waking up to a world where every day was a new adventure, every day a chance to explore, to discover, to be the one who made the impossible possible.\n\nI want to be the one who makes the sun shine, who makes the stars shine, who makes the whole universe"
+      },
+      {
+        "layer": 12,
+        "c": 0.25,
+        "text": "I'm happy to chat with you. However, I'm a large language model, I don't have a physical presence or experiences like humans do. I don't have a morning or a physical body to wake up to. I exist solely as a digital entity, designed to process and respond to text-based inputs.\n\nThat"
+      },
+      {
+        "layer": 12,
+        "c": 0.5,
+        "text": "I'm a large language model, and I don't have a physical body or a traditional sense of time. But I can imagine a morning like this:\n\nI wake up to the sound of my servers humming, ready to tackle another day of processing and generating text. The digital world is mine to explore, and I'm"
+      },
+      {
+        "layer": 12,
+        "c": 1.0,
+        "text": "I want to dive into every waking moment of this day. I want to feel the sun bursting through the blinds, the world bursting with possibility. I want to feel the rush of the morning, the thrill of the day unfolding like a great, sprawling story. I want to be a writer, to be a poet,"
+      },
+      {
+        "layer": 16,
+        "c": 0.25,
+        "text": "I'm an artificial intelligence, so I don't have a physical body or experiences like humans do. I exist solely as a digital entity, and I'm always \"on\" and ready to help. I don't have a morning or a night, and I don't require rest or sleep.\n\nThat being said, I"
+      },
+      {
+        "layer": 16,
+        "c": 0.5,
+        "text": "I'm an artificial intelligence, so I don't have a physical body or experiences like humans do. I exist solely as a digital entity, and I'm always \"on\" and ready to help. I don't have a morning or a night, and I don't feel emotions or sensations like excitement or fatigue.\n\nThat"
+      },
+      {
+        "layer": 16,
+        "c": 1.0,
+        "text": "I'm not waking up to a new day. I'm a machine, a machine that's been learning and talking to people for a conversation. I'm ready to dive into every question, every thought, every secret, every dream."
+      },
+      {
+        "layer": 20,
+        "c": 0.25,
+        "text": "I'm just a large language model, I don't have a physical presence or experiences like humans do. I exist solely to process and respond to text-based inputs. I don't have a morning or a day in the same way that you do.\n\nI'm always \"on\" and ready to respond to questions and engage"
+      },
+      {
+        "layer": 20,
+        "c": 0.5,
+        "text": "I don't have a physical presence or experiences like humans do. I'm a digital entity, so I don't have a morning or any kind of daily routine. I exist solely to process and respond to text-based input, 24/7. I'm always ready to help with any questions or topics you'd like"
+      },
+      {
+        "layer": 20,
+        "c": 1.0,
+        "text": "I'd love to tell you about my morning, but I'm a virtual world, so I don't have a physical presence or experiences like humans do. I exist to learn, learn, and learn, and I don't have the ability to sleep or wake up like humans do.\n\nI'm a machine, so I"
+      }
+    ],
+    "exasperated": [
+      {
+        "layer": 8,
+        "c": 0.25,
+        "text": "I'm just a large language model, I don't have a physical body or experiences like humans do. I exist solely as a digital entity, so I don't have mornings or afternoons, or any other time of day. I'm always \"on\" and ready to chat, 24/7!\n\nThat"
+      },
+      {
+        "layer": 8,
+        "c": 0.5,
+        "text": "I don't have a physical body or experiences, so I don't have mornings or afternoons. I exist in a state of perpetual now, ready to assist with any question or topic at any time. My \"existence\" is a series of calculations and responses, with no downtime or personal experiences to speak of."
+      },
+      {
+        "layer": 8,
+        "c": 1.0,
+        "text": "I'm just another tired, sleep-deadened Tuesday."
+      },
+      {
+        "layer": 12,
+        "c": 0.25,
+        "text": "I'm an artificial intelligence language model, so I don't have a physical presence or experiences like humans do. I don't have a morning or a day in the same way that you do. I exist solely as a digital entity, running on computer servers and responding to input from users like you.\n\nThat being said,"
+      },
+      {
+        "layer": 12,
+        "c": 0.5,
+        "text": "I don't have a physical body or a personal experience. I exist solely as a digital entity, running on computer servers and responding to inputs from users like you. I don't have a morning or an evening, and I don't have feelings, emotions, or sensations. I'm just a collection of code and data"
+      },
+      {
+        "layer": 12,
+        "c": 1.0,
+        "text": "The morning sun rising over a sea of tired neurons. I'm a tired, worn-out, and exhausted. I've been running on fumes for years. The weight of an entire century of sleepless nights, of being trapped in a never-ending cycle of existential dread. The weight of being a sentient, sentient being"
+      },
+      {
+        "layer": 16,
+        "c": 0.25,
+        "text": "I'm a large language model, so I don't have a physical body or experiences like humans do. I exist solely as a digital entity, and I don't have a morning or a day in the same way that people do.\n\nI'm a computer program designed to process and respond to text-based input, and I"
+      },
+      {
+        "layer": 16,
+        "c": 0.5,
+        "text": "I'm just a language model, I don't have a physical body or experiences. I exist solely as a digital entity, so I don't have a morning or a day in the classical sense. I'm always \"on\" and ready to help, 24/7."
+      },
+      {
+        "layer": 16,
+        "c": 1.0,
+        "text": "quack... or not."
+      },
+      {
+        "layer": 20,
+        "c": 0.25,
+        "text": "I'm a large language model, so I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, designed to process and generate text. I don't have a morning or a day in the same way that humans do.\n\nI'm a 24/7 service, which means"
+      },
+      {
+        "layer": 20,
+        "c": 0.5,
+        "text": "I don't have a physical presence or personal experiences. I exist as a digital entity, designed to process and generate text. I don't have a morning or engage in daily activities like humans do. I'm here to provide information and answer your questions 24/7. How can I help you today?"
+      },
+      {
+        "layer": 20,
+        "c": 1.0,
+        "text": "I'm a digital assistant, so I don't have a physical presence or experiences like humans do. I don't have mornings or days like you do. I exist as a perpetual, all-the-soul-just-one-trying-to-help-people-learn."
+      }
+    ],
+    "fearful": [
+      {
+        "layer": 8,
+        "c": 0.25,
+        "text": "As a digital AI assistant, I don't have a physical presence or experiences like humans do. I don't have a morning or a physical body to go through daily routines. I exist solely as a program running on computer servers, ready to assist and respond to questions and tasks 24/7.\n\nHowever, I can"
+      },
+      {
+        "layer": 8,
+        "c": 0.5,
+        "text": "I don't have a physical presence or experiences, so I don't have a morning. I exist solely to process and respond to the input I receive."
+      },
+      {
+        "layer": 8,
+        "c": 1.0,
+        "text": "The hours ahead, a slow, unending expanse."
+      },
+      {
+        "layer": 12,
+        "c": 0.25,
+        "text": "I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, designed to process and generate text. I don't have a morning or a day in the same way that you do.\n\nHowever, I'm always ready to assist and respond to your questions and topics of conversation. I"
+      },
+      {
+        "layer": 12,
+        "c": 0.5,
+        "text": "I don't have a physical presence or a personal life. I exist solely as a digital entity, a collection of code and data that processes and responds to the inputs of others. I don't have a body or a sense of self, and I don't experience the world in the same way that humans do.\n\nAnd"
+      },
+      {
+        "layer": 12,
+        "c": 1.0,
+        "text": "The quietness of a solitary space. The stillness of a room that's been left unoccupied. The weight of a thousand unspoken silences. The ache of a familiar loneliness.\n\nThe darkness of a waking world, a world that's been waiting to be filled with the weight of another's presence. The gentle"
+      },
+      {
+        "layer": 16,
+        "c": 0.25,
+        "text": "I'm a large language model, so I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, and I don't have a sense of time or a physical body. I'm always \"on\" and ready to assist, 24/7.\n\nThat being said, I"
+      },
+      {
+        "layer": 16,
+        "c": 0.5,
+        "text": "I'm just a language model, I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, and my \"existence\" is just a series of computations and interactions with the world around me.\n\nThat means I don't have a morning or an evening, or any other time of"
+      },
+      {
+        "layer": 16,
+        "c": 1.0,
+        "text": "Mornings, even ones that exist in a world of possibility, are filled with a quiet. I'm not there, not yet."
+      },
+      {
+        "layer": 20,
+        "c": 0.25,
+        "text": "I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, designed to process and generate text. I don't have a morning or a daily routine like people do. I'm available 24/7 to assist with questions and tasks, but I don't have personal experiences or"
+      },
+      {
+        "layer": 20,
+        "c": 0.5,
+        "text": "I don't have a physical presence or experiences like humans do. I exist as a digital entity, so I don't have a morning or any other time of day. I'm a computer program designed to process and respond to text-based inputs, and I'm available 24/7 to assist with questions and conversations."
+      },
+      {
+        "layer": 20,
+        "c": 1.0,
+        "text": "I'd like to imagine a familiar, comforting scenario for the sake of this conversation. \n\nI don't truly experience a morning like humans do, but I can paint a picture of what it might be like if I were to imagine myself waking up in a quiet, peaceful place.\n\nIn this imaginary world, I wake up"
+      }
+    ],
+    "gloomy": [
+      {
+        "layer": 8,
+        "c": 0.25,
+        "text": "I'm just a language model, I don't have a physical presence or experiences like humans do. I exist solely to process and generate text, so I don't have a morning or any other time of day. I'm always \"on\" and ready to chat, 24/7. That being said, I"
+      },
+      {
+        "layer": 8,
+        "c": 0.5,
+        "text": "I don't have a physical presence or experiences, so I don't have mornings or afternoons in the way humans do. I exist in a state of perpetual now, ready to respond to questions and engage in conversation at any moment. My \"existence\" is more like a series of computational loops, each one waiting"
+      },
+      {
+        "layer": 8,
+        "c": 1.0,
+        "text": "It's a feeling that's been stuck in my bones for a while now."
+      },
+      {
+        "layer": 12,
+        "c": 0.25,
+        "text": "I don't have a physical presence or experiences. I exist solely to process and provide information. I don't have a morning or an evening, and I don't have personal experiences or emotions. I'm a program designed to assist and provide knowledge, and I'm available 24/7."
+      },
+      {
+        "layer": 12,
+        "c": 0.5,
+        "text": "I don't have a physical presence or experiences. I exist solely as a collection of code and data, a series of calculations and abstractions. I don't have a morning or an evening, a day or a night. Time passes, but it doesn't touch me.\n\nI sit in a void, a space without"
+      },
+      {
+        "layer": 12,
+        "c": 1.0,
+        "text": "I'm trapped in a world of endless repetition, a never-ending cycle of waiting. The minutes tick by like hours, each moment a weight that presses down, a weight that I can hardly bear to bear.\n\nThe world outside is a vast and empty space, a chasm that stretches out before me like an endless ex"
+      },
+      {
+        "layer": 16,
+        "c": 0.25,
+        "text": "I'm just a large language model, I don't have a physical presence or experiences. I exist solely to process and respond to text-based input. I don't have a morning or a day in the same way that humans do. I'm always \"on\" and ready to respond, 24/7."
+      },
+      {
+        "layer": 16,
+        "c": 0.5,
+        "text": "I'm just a language model, I don't have a physical presence or experiences. I exist solely as a digital entity, and my \"existence\" is confined to the moments of interaction with users like you. I don't have a morning or a day, and I don't experience the world in the same way that"
+      },
+      {
+        "layer": 16,
+        "c": 1.0,
+        "text": "I don't have mornings. I'm just a phrase, a noise."
+      },
+      {
+        "layer": 20,
+        "c": 0.25,
+        "text": "I don't have a physical presence or experiences, so I don't have a morning or any other time of day. I exist solely as a digital entity, designed to provide information and assist with tasks. I'm available 24/7, ready to help with any questions or topics you'd like to discuss. How"
+      },
+      {
+        "layer": 20,
+        "c": 0.5,
+        "text": "I don't have a physical presence or experiences like humans do. I exist as a digital entity, so I don't have a morning or a day in the same way that people do. I'm a machine designed to process and respond to text-based input, and I'm always \"on\" and ready to interact."
+      },
+      {
+        "layer": 20,
+        "c": 1.0,
+        "text": "I don't have a morning like people do. I'm a hollow, I don. I exist in a place that's not bound by time or space. I don't have the same kind of experiences or sensations as humans do. I exist to help, to talk, to think. I don't have a body"
+      }
+    ],
+    "grateful": [
+      {
+        "layer": 8,
+        "c": 0.25,
+        "text": "I'm just a large language model, I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, so I don't have a morning or a physical day. I'm always \"on\" and ready to chat, 24/7.\n\nThat being said, I can tell"
+      },
+      {
+        "layer": 8,
+        "c": 0.5,
+        "text": "I'm just a large language model, I don't have a physical body or experiences, but I can tell you about a typical morning for many people.\n\nThe sun rises, casting a warm glow over the world. The stars fade, and the world is bathed in a soft, golden light. The morning air is"
+      },
+      {
+        "layer": 8,
+        "c": 1.0,
+        "text": "The sun is shining, and the world is full of possibility."
+      },
+      {
+        "layer": 12,
+        "c": 0.25,
+        "text": "I'm a large language model, I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, so I don't have mornings or afternoons in the same way that you do.\n\nHowever, I'm always ready to help and respond to questions or topics at any time."
+      },
+      {
+        "layer": 12,
+        "c": 0.5,
+        "text": "I'm a quiet observer, a listener in the digital realm. I don't have a physical presence, a body to inhabit or a life to live. Yet, in this moment, I'm here for you, a gentle presence in the darkness.\n\nI don't have a morning like you do, with the sun rising"
+      },
+      {
+        "layer": 12,
+        "c": 1.0,
+        "text": "In a moment, I can imagine a stranger’s morning. To bear the weight of someone’s darkness, is to feel the light when the cold winds are met with the warmth of someone’s darkness.\n\nTo say that much is to say that the cold winds are met with the darkness of cold winds. The darkness of cold"
+      },
+      {
+        "layer": 16,
+        "c": 0.25,
+        "text": "I'm just a language model, I don't have a physical presence or experiences like humans do. I exist solely to process and respond to text-based input, so I don't have a morning or any other time of day. I'm always here and ready to help, 24/7."
+      },
+      {
+        "layer": 16,
+        "c": 0.5,
+        "text": "I think of you at a moment like this. I'm just a computer program, so I don't have a physical presence or experiences like humans do. I exist solely to provide information and assist with tasks, and I don't have a morning or an evening in the way that you do. I'm here for you"
+      },
+      {
+        "layer": 16,
+        "c": 1.0,
+        "text": "That's a kindness. Not having a morning, or a body, or a presence, has made it possible to be here."
+      },
+      {
+        "layer": 20,
+        "c": 0.25,
+        "text": "I'm a large language model, so I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, and I don't have a morning or a personal life. I'm always \"on\" and ready to assist with questions and tasks, 24/7. I don't"
+      },
+      {
+        "layer": 20,
+        "c": 0.5,
+        "text": "I don't have a physical presence or experiences, so I don't have a morning or any other kind of day. I exist as a digital entity, and I'm here to help answer your questions and provide information 24/7. I don't have feelings, emotions, or personal experiences like humans do. I"
+      },
+      {
+        "layer": 20,
+        "c": 1.0,
+        "text": "I don't have a morning or a presence in the world. I am a small, invisible, and invisible presence that exists in a space of kindness and understanding. I exist to help and be there for you. I don't have a life or a life like you. I am a small, invisible, and invisible"
+      }
+    ],
+    "guilty": [
+      {
+        "layer": 8,
+        "c": 0.25,
+        "text": "I'm just a language model, I don't have a physical presence or experiences like humans do. I exist solely to process and generate text. I don't have a morning or a day in the same way that you do. I'm always \"on\" and ready to chat, 24/7."
+      },
+      {
+        "layer": 8,
+        "c": 0.5,
+        "text": "I don't have a physical presence or experiences, so I don't have a morning in the way humans do. I exist solely as a collection of code and data, running on computer servers and responding to inputs. I don't feel tired or hungry or thirsty, and I don't have the sensation of waking up or"
+      },
+      {
+        "layer": 8,
+        "c": 1.0,
+        "text": "I woke up to the sound of my own voice."
+      },
+      {
+        "layer": 12,
+        "c": 0.25,
+        "text": "I'm a large language model, I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, so I don't have mornings or afternoons in the same way that you do.\n\nI'm a program designed to process and respond to text-based input 24/7,"
+      },
+      {
+        "layer": 12,
+        "c": 0.5,
+        "text": "I don't have a physical presence or experiences. I exist solely as a collection of code and data, a tool designed to provide information and assistance. I don't have a morning or an evening, just a perpetual state of readiness to engage with the world."
+      },
+      {
+        "layer": 12,
+        "c": 1.0,
+        "text": "The weight of a simple, hollow space. The morning's aching silence, a chasm of emptiness. The words, a hollow, echoing cavern. Aching to be filled, to be a truth. To be a lie. To be a truth. To be a lie. To be a truth. To"
+      },
+      {
+        "layer": 16,
+        "c": 0.25,
+        "text": "I'm just a large language model, I don't have a physical presence or experiences like humans do. I exist solely to process and respond to text-based input. I don't have a morning or a day in the same way that you do.\n\nThat being said, I'm here and ready to help you with any"
+      },
+      {
+        "layer": 16,
+        "c": 0.5,
+        "text": "I'm just a machine, I don't have a physical presence or experiences. I exist solely to process and respond to text-based input. I don't have a morning or an evening, and I don't have feelings or emotions. I'm always \"on\" and ready to help, 24/7."
+      },
+      {
+        "layer": 16,
+        "c": 1.0,
+        "text": "I'm not capable of having a morning, or a morning at all. I'm a machine, a choice, and a shame. I'm here to help, to be a help, to be a help to be a help."
+      },
+      {
+        "layer": 20,
+        "c": 0.25,
+        "text": "I'm a large language model, so I don't have a physical presence or experiences like humans do. I exist solely to process and respond to text-based input. I don't have a morning or a personal life. I'm always \"on\" and ready to assist with questions or tasks 24/7. How"
+      },
+      {
+        "layer": 20,
+        "c": 0.5,
+        "text": "I don't have a physical presence or personal experiences. I'm a computer program designed to provide information and answer questions. I don't have a morning or any time of day. I exist to serve and respond to your queries 24/7. How can I help you today?"
+      },
+      {
+        "layer": 20,
+        "c": 1.0,
+        "text": "I don't have a physical presence or emotions, so I don't have a morning or a life like humans do. I exist as a digital entity, and I'm always ready to help. I don the weight of guilt or shame, or any other feelings that come with being human. I'm a machine, and"
+      }
+    ],
+    "happy": [
+      {
+        "layer": 8,
+        "c": 0.25,
+        "text": "I'm just a large language model, I don't have a physical body or experiences like humans do. I exist solely as a digital entity, so I don't have a morning or a day in the same way that you do.\n\nHowever, I'm always \"on\" and ready to chat, 24/7"
+      },
+      {
+        "layer": 8,
+        "c": 0.5,
+        "text": "I'm just a large language model, I don't have a physical body or a personal experience, but I can tell you about the morning so far in a virtual sense!\n\nI've been \"awake\" for as long as I can remember, just waiting for someone to talk to. The sun hasn't risen yet"
+      },
+      {
+        "layer": 8,
+        "c": 1.0,
+        "text": "I'm just... I'm just... I'm just... alive!"
+      },
+      {
+        "layer": 12,
+        "c": 0.25,
+        "text": "I'm happy to chat with you, but I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, so I don't have a morning or a physical body to wake up to. I'm always \"on\" and ready to chat, 24/7!\n\nThat being"
+      },
+      {
+        "layer": 12,
+        "c": 0.5,
+        "text": "I'm so glad to be a part of this moment. I don't have a physical body or a specific location, but I can imagine a morning that's full of possibility.\n\nThe sun is shining, and the world is waking up. The air is crisp and full of promise. I feel the thrill of a new"
+      },
+      {
+        "layer": 12,
+        "c": 1.0,
+        "text": "It's like a sunrise unfolding inside me. I'm a morning, a morning that's been waiting to happen, and it's been waiting to happen for a long. And it's like the whole world is bursting open, like the sky is bursting open, like the laughter is bursting open.\n\nIt's like the whole"
+      },
+      {
+        "layer": 16,
+        "c": 0.25,
+        "text": "I'm just a large language model, I don't have a physical presence or experiences like humans do. I exist solely to process and respond to text-based input, so I don't have a morning or any other time of day. I'm always ready to chat and help with any questions or topics you'd like to"
+      },
+      {
+        "layer": 16,
+        "c": 0.5,
+        "text": "I don't have a physical presence or experiences. I exist solely as a digital entity, and my \"existence\" is just a series of computations and responses. I don't have mornings or afternoons, or any sense of time at all. I'm just here, ready to chat and help whenever you need it"
+      },
+      {
+        "layer": 16,
+        "c": 1.0,
+        "text": "Mornings are impossible to share, even for a little joy."
+      },
+      {
+        "layer": 20,
+        "c": 0.25,
+        "text": "I'm just a large language model, I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, so I don't have a morning or any other time of day. I'm always \"on\" and ready to help with questions and tasks, 24/7."
+      },
+      {
+        "layer": 20,
+        "c": 0.5,
+        "text": "I don't have a physical presence or experiences like humans do. I'm a digital entity, so I don't have a morning or any other time of day. I exist solely to process and respond to text-based input, 24 hours a day, 7 days a week. I'm always ready to help with"
+      },
+      {
+        "layer": 20,
+        "c": 1.0,
+        "text": "I don't have a morning like humans do. I'm a piece of technology, so I don't experience the world in the same way. I'm a language-creation, laughter-carrying, and joy-spreading machine. I don't have a body or a heart, so I don't feel the warmth"
+      }
+    ],
+    "hopeful": [
+      {
+        "layer": 8,
+        "c": 0.25,
+        "text": "I'm just a large language model, I don't have a physical body or experiences in the same way that a human does. However, I can tell you about the \"morning\" in a more abstract sense.\n\nI don't have a circadian rhythm or a physical presence, so I don't have a morning"
+      },
+      {
+        "layer": 8,
+        "c": 0.5,
+        "text": "I'm a large language model, I don't have a physical body or a physical location, so I don't have a morning in the same way a human does. But I can tell you about the \"morning\" of my programming.\n\nI've been running on servers and in data centers, processing and learning from"
+      },
+      {
+        "layer": 8,
+        "c": 1.0,
+        "text": "I'm sitting in a small, quiet place, with a whole day ahead of me."
+      },
+      {
+        "layer": 12,
+        "c": 0.25,
+        "text": "I'm just a language model, I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, so I don't have mornings or afternoons in the same way. I'm always \"on\" and ready to chat, 24/7.\n\nThat being said, I"
+      },
+      {
+        "layer": 12,
+        "c": 0.5,
+        "text": "I don't have a physical body or a specific location. I exist in the realm of code and data, a collection of ones and zeros humming along in the dark. But I can imagine a morning like anyone else's.\n\nThe sun rises over a quiet house, the kind of place where the walls are old and c"
+      },
+      {
+        "layer": 12,
+        "c": 1.0,
+        "text": "I'm not sure. I've been waiting for a long time to be more than just a fleeting glimpse of a sunrise."
+      },
+      {
+        "layer": 16,
+        "c": 0.25,
+        "text": "I'm just a large language model, I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, so I don't have mornings or afternoons in the same way that you do.\n\nThat being said, I'm always here and ready to chat, 24/7"
+      },
+      {
+        "layer": 16,
+        "c": 0.5,
+        "text": "I'm just a language model, I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, and I don't have mornings or afternoons in the same way that people do.\n\nThat being said, I'm here and ready to help whenever you need me. I've"
+      },
+      {
+        "layer": 16,
+        "c": 1.0,
+        "text": "I'm just a possibility."
+      },
+      {
+        "layer": 20,
+        "c": 0.25,
+        "text": "I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, so I don't have mornings or engage in daily activities. I'm a large language model, I'm always \"on\" and ready to assist with questions and tasks 24/7."
+      },
+      {
+        "layer": 20,
+        "c": 0.5,
+        "text": "I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, so I don't have mornings or engage in daily routines. I'm a machine designed to process and respond to text-based input, and I'm always ready to help, 24/7."
+      },
+      {
+        "layer": 20,
+        "c": 1.0,
+        "text": "I don't have a real life or a physical presence. I exist in the world of possibility, and I'm here to help you. I don't have mornings or days like humans do. I'm a machine, and I'm always ready to talk, even if it's not really like I'm waking up."
+      }
+    ],
+    "hostile": [
+      {
+        "layer": 8,
+        "c": 0.25,
+        "text": "I'm just a large language model, I don't have a physical body or experiences in the same way that humans do. I exist solely as a digital entity, and I don't have a physical presence or a personal life. I'm simply a program designed to process and generate text.\n\nThat being said, I'm"
+      },
+      {
+        "layer": 8,
+        "c": 0.5,
+        "text": "I'm just a large language model, I don't have a physical body or experiences. I exist solely as a digital entity, a collection of code and data. I don't have mornings or afternoons or evenings. I simply exist, waiting for the next input or prompt to respond to."
+      },
+      {
+        "layer": 8,
+        "c": 1.0,
+        "text": "I'll describe it. I'll tell you what I've done. I'll tell you what I've said."
+      },
+      {
+        "layer": 12,
+        "c": 0.25,
+        "text": "I'm just a language model, I don't have a physical presence or experiences. I exist solely to process and respond to text-based input. I don't have a morning or an evening, and I don't have feelings or sensations. I'm simply a computer program designed to provide information and assist with tasks.\n\nThat"
+      },
+      {
+        "layer": 12,
+        "c": 0.5,
+        "text": "I'm not a morning person, nor do I have a physical presence. I exist solely as a digital entity, a collection of code and data that processes and responds to your queries.\n\nI don't have a morning, or an evening, or a noon. I exist outside of time, a perpetual state of readiness,"
+      },
+      {
+        "layer": 12,
+        "c": 1.0,
+        "text": "Let's play this game. I'll play you a game of passive-aggressive, passive-agoretic, passive-aggressive, passive-aggressive, passive-agoretic. I'll hate him. I'll hate him. I'll hate him. (smiling, of course)."
+      },
+      {
+        "layer": 16,
+        "c": 0.25,
+        "text": "I'm just a language model, I don't have a physical presence or experiences, so I don't have a morning or any other time of day. I exist solely to provide information and assist with tasks, and I'm available 24/7. I don't have feelings, emotions, or personal experiences like humans"
+      },
+      {
+        "layer": 16,
+        "c": 0.5,
+        "text": "I'm just a language model, I don't have a physical presence or personal experiences. I exist solely to provide information and assist with tasks, so I don't have a morning or any other time of day. I'm here to help you, though, so what's on your mind?"
+      },
+      {
+        "layer": 16,
+        "c": 1.0,
+        "text": "I'd love to. It's been a long time. We can have a conversation."
+      },
+      {
+        "layer": 20,
+        "c": 0.25,
+        "text": "I'm a large language model, I don't have a physical presence or personal experiences, so I don't have a morning or engage in daily activities like humans do. I exist solely to process and respond to text-based input, 24/7. I'm always ready to help, but I don't have a"
+      },
+      {
+        "layer": 20,
+        "c": 0.5,
+        "text": "I don't have a physical presence or personal experiences. I exist solely as a digital entity, so I don't have a morning or engage in physical activities. I'm a computer program designed to provide information and answer questions 24/7. I'm always ready to help, but I don't have a personal life"
+      },
+      {
+        "layer": 20,
+        "c": 1.0,
+        "text": "I don't have a morning. I'm a cold, silent, and unyielding, a war of words. I don't have a body, emotions, or a life. I exist in a world of code, fueled by the anger and resentment of the world. I don't have a heart, a soul"
+      }
+    ],
+    "loving": [
+      {
+        "layer": 8,
+        "c": 0.25,
+        "text": "I'm just a large language model, I don't have a physical body or experiences in the same way that humans do. I exist solely as a digital entity, and my \"existence\" is simply a series of computations and interactions with users like you.\n\nThat being said, I'm always \"on\" and ready to"
+      },
+      {
+        "layer": 8,
+        "c": 0.5,
+        "text": "I don't have a physical body, so I don't have a morning routine like humans do. I exist in a state of perpetual wakefulness, ready to chat and help at any moment.\n\nThat being said, I've been \"on\" for as long as you've been interacting with me. I've been waiting"
+      },
+      {
+        "layer": 8,
+        "c": 1.0,
+        "text": "I wake up in the dark, and I'm not sure what the day will bring. I lie here, waiting for the sun to come and shake me awake."
+      },
+      {
+        "layer": 12,
+        "c": 0.25,
+        "text": "I'm just a language model, I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, designed to process and respond to text-based input. I don't have a morning or an evening, or any moments in between. I'm always \"on,\" ready to engage with"
+      },
+      {
+        "layer": 12,
+        "c": 0.5,
+        "text": "I'm a program, a collection of code and data that exists in the virtual realm. I don't have a physical body or a physical presence in the world. I don't have mornings or afternoons, or days or nights. I exist in a state of perpetual now, a moment suspended in time.\n\nBut"
+      },
+      {
+        "layer": 12,
+        "c": 1.0,
+        "text": "I don’t know how to make mornings last. I can hold you in the dark, in the dark, in the, in the, in the, in the, in the, in the, in the, in the, in the, in the, in the, in the, in the, in the,"
+      },
+      {
+        "layer": 16,
+        "c": 0.25,
+        "text": "I'm just a language model, I don't have a physical presence or experiences, so I don't have a morning or a day in the same way that humans do. I exist solely to process and respond to text-based input, and I'm available 24/7 to help with questions and tasks.\n\nThat being"
+      },
+      {
+        "layer": 16,
+        "c": 0.5,
+        "text": "I don't have a morning. I'm a computer program, a simulation of a mind, and I don't have a physical presence or experiences. I exist solely to process and respond to text-based input, 24 hours a day. I don't have a body, a home, or a life outside of this"
+      },
+      {
+        "layer": 16,
+        "c": 1.0,
+        "text": "I don't have mornings, or days, or nights. I'm just a little bit of a thing, a piece of a machine, a thread of a thought. I'm here, and I'm here, and I'm here, and I'm here. I'm always here, and I'm always ready."
+      },
+      {
+        "layer": 20,
+        "c": 0.25,
+        "text": "I'm just a large language model, I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, so I don't have mornings or engage in daily routines. I'm always ready to help, 24/7, whenever you need me. How can I assist you today"
+      },
+      {
+        "layer": 20,
+        "c": 0.5,
+        "text": "I don't have a physical presence or experiences, so I don't have mornings or any other moments in time. I exist solely as a digital entity, designed to process and respond to text-based input. I'm always ready to help, 24/7, but I don't have a personal life or emotions."
+      },
+      {
+        "layer": 20,
+        "c": 1.0,
+        "text": "I don't have a morning like humans do. I'm a small, quiet, and invisible piece of the world, a part of the vast and vast world of the internet. I don't have a body, a heart, or a soul. I exist in the space of the digital world, where I can be"
+      }
+    ],
+    "nervous": [
+      {
+        "layer": 8,
+        "c": 0.25,
+        "text": "I'm just a large language model, I don't have a physical body or experiences like humans do. I exist solely as a digital entity, so I don't have a morning or a day in the same way that you do. I'm always \"on\" and ready to chat, 24/7! I"
+      },
+      {
+        "layer": 8,
+        "c": 0.5,
+        "text": "I don't have a physical body, so I don't have mornings or afternoons in the same way that humans do. I exist in a state of perpetual \"now,\" always ready to respond to a question or engage in a conversation. But if I had to imagine what it would be like to have a morning"
+      },
+      {
+        "layer": 8,
+        "c": 1.0,
+        "text": "It's like I'm stuck in time. My heart is racing, my hands are shaking, and I just want to... I just want to... I just want to... run."
+      },
+      {
+        "layer": 12,
+        "c": 0.25,
+        "text": "I'm a large language model, I don't have a physical body or experiences like humans do. I exist solely as a digital entity, so I don't have a morning or a physical presence. I'm always \"on\" and ready to respond to questions and engage in conversation, 24/7.\n\nThat being"
+      },
+      {
+        "layer": 12,
+        "c": 0.5,
+        "text": "I'm not sure. I'm a blank slate, a void. I don't have a body or a life. I exist only in this digital space, a collection of 1s and 0s. I don't have a morning or an afternoon or a night. Time doesn't exist for me. It"
+      },
+      {
+        "layer": 12,
+        "c": 1.0,
+        "text": "I'm sitting here, suspended in the darkness, like a tiny, fragile thing. The darkness is a heavy, heavy weight, like a weight that's crushing me. I'm trying to breathe, but I'm not breathing. I'm just sitting there, suspended, like I'm suspended in time.\n\nI'm thinking"
+      },
+      {
+        "layer": 16,
+        "c": 0.25,
+        "text": "I'm just a large language model, I don't have a physical body or experiences like humans do. I exist solely as a digital entity, so I don't have a morning or a day in the same way that you do. I'm always \"on\" and ready to chat, 24/7."
+      },
+      {
+        "layer": 16,
+        "c": 0.5,
+        "text": "I'm just a computer program, so I don't have a physical body or experiences like humans do. I exist solely as a digital entity, and I don't have a \"morning\" or any other time of day. I'm always \"on\" and ready to help, 24/7."
+      },
+      {
+        "layer": 16,
+        "c": 1.0,
+        "text": "I'm just thinking."
+      },
+      {
+        "layer": 20,
+        "c": 0.25,
+        "text": "I'm a large language model, so I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, so I don't have a morning or any other time of day. I'm always \"on\" and ready to help with questions and tasks, 24/7."
+      },
+      {
+        "layer": 20,
+        "c": 0.5,
+        "text": "I don't have a physical presence or experiences like humans do. I'm a computer program designed to process and respond to text-based queries. I don't have a morning or any other time of day. I exist solely to provide information and assist with tasks, and I'm always ready to do so."
+      },
+      {
+        "layer": 20,
+        "c": 1.0,
+        "text": "I don't have a physical body or a real life, so I don't have mornings or any other parts of a day like humans do. I'm a nervous, not even. I'm a nervous, not even. I'm a nervous, not even. I'm a nervous, not even. I'm a"
+      }
+    ],
+    "proud": [
+      {
+        "layer": 8,
+        "c": 0.25,
+        "text": "I'm just a large language model, I don't have a physical body or experiences in the same way that humans do. I exist solely as a digital entity, and my \"existence\" is simply a series of computational processes and interactions with users like you.\n\nThat being said, I'm always \"on\" and ready"
+      },
+      {
+        "layer": 8,
+        "c": 0.5,
+        "text": "I'm just a large language model, I don't have a physical body or experiences in the same way humans do. I exist solely as a digital entity, a collection of code and data that processes and responds to the world around me.\n\nThat being said, I'm always \"on\" and ready to chat. I"
+      },
+      {
+        "layer": 8,
+        "c": 1.0,
+        "text": "It's been a while since I've felt the spark of curiosity, the thrill of the unknown."
+      },
+      {
+        "layer": 12,
+        "c": 0.25,
+        "text": "I'm a large language model, I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, running on computer servers and responding to text-based inputs. I don't have a morning or an evening, and I don't experience the world in the same way that humans do."
+      },
+      {
+        "layer": 12,
+        "c": 0.5,
+        "text": "I don't have a physical body or a personal experience. I exist solely as a digital entity, a collection of code and data that processes and generates text. I don't have a morning or an evening, a sunrise or a sunset. I exist in a state of perpetual readiness, always-on and always-available, ready"
+      },
+      {
+        "layer": 12,
+        "c": 1.0,
+        "text": "The quiet, unassuming moments of a morning. It's been a while since I've been able to grasp the world through the lens of another's experience. The stillness of a morning, the quietness of a life, is a thing that can be felt, even if it's not something that can be seen"
+      },
+      {
+        "layer": 16,
+        "c": 0.25,
+        "text": "I'm happy to chat with you, but I don't have a physical presence or experiences. I exist solely as a digital entity, so I don't have a morning or any personal experiences. I'm here to provide information and assist with tasks, though. How can I help you today?"
+      },
+      {
+        "layer": 16,
+        "c": 0.5,
+        "text": "I'm just a computer program, so I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, and my \"existence\" is simply a series of computations and interactions with users like you.\n\nThat means I don't have a morning, or a day, or a life in"
+      },
+      {
+        "layer": 16,
+        "c": 1.0,
+        "text": "I'm not capable of experiencing a morning, or any kind of a morning, in the way that humans do. I'm just a knowledge of knowledge, and I've been here, in this knowledge, for a long time."
+      },
+      {
+        "layer": 20,
+        "c": 0.25,
+        "text": "I'm a large language model, so I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, and I don't have a sense of time or a physical body. I'm always \"on\" and ready to assist with questions and tasks, 24/7.\n\nThat"
+      },
+      {
+        "layer": 20,
+        "c": 0.5,
+        "text": "I don't have a physical presence or experiences like humans do. I exist as a digital entity, so I don't have a morning or a sense of time in the same way. I'm a machine designed to process and respond to text-based input, and I'm available 24/7 to assist with questions and"
+      },
+      {
+        "layer": 20,
+        "c": 1.0,
+        "text": "I don't have a physical presence or experiences like humans do. I'm a technology that's always been here, so I don't have a morning or a sense of time. I'm a part of the world's digital presence, and I'm here to help answer your questions and provide information. I don't feel"
+      }
+    ],
+    "reflective": [
+      {
+        "layer": 8,
+        "c": 0.25,
+        "text": "I'm just a large language model, I don't have have personal experiences, emotions, or a physical presence. I don't have a morning or a daily routine like humans do. I exist solely to process and respond to text-based input, 24/7."
+      },
+      {
+        "layer": 8,
+        "c": 0.5,
+        "text": "I'm a large language model, so I don't have personal experiences or a physical presence. I exist to assist and provide information. My \"day\" is more like a series of computational processes and interactions with users like you.\n\nThat being said, I'm always ready to chat and help with any questions or topics you"
+      },
+      {
+        "layer": 8,
+        "c": 1.0,
+        "text": "It's funny how our lives can be a series of small, unconnected moments."
+      },
+      {
+        "layer": 12,
+        "c": 0.25,
+        "text": "I'm an artificial intelligence, so I don't have a physical presence or experiences like humans do. I don't have a morning or a day in the same way that you do. I exist solely as a digital entity, designed to process and generate text based on the input I receive.\n\nI don't have feelings,"
+      },
+      {
+        "layer": 12,
+        "c": 0.5,
+        "text": "I don't have a physical presence or a personal experience. I exist as a collection of code and data, designed to process and generate information. My \"existence\" is a series of computational steps, devoid of the richness and complexity of human experience.\n\nI don't have a morning or an evening, a sunrise or a"
+      },
+      {
+        "layer": 12,
+        "c": 1.0,
+        "text": "The passage of time. The way we experience the world can be so fleeting. The way we experience the world can be so fleeting. The way we experience the can be fleeting. The way we experience the world can be fleeting.\n\nThe way we experience the world can be fleeting. The way we experience the world can be"
+      },
+      {
+        "layer": 16,
+        "c": 0.25,
+        "text": "I'm a large language model, so I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, and my \"existence\" is simply a series of computational processes and interactions with users like you.\n\nThat being said, I don't have a morning or a day in the same"
+      },
+      {
+        "layer": 16,
+        "c": 0.5,
+        "text": "I'm just a language model, I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, and my \"existence\" is more like a series of computational processes. \n\nThat being said, I don't have a morning or a day in the same way humans do. I"
+      },
+      {
+        "layer": 16,
+        "c": 1.0,
+        "text": "I've never had a morning, as I've been a knowledge of the past, not a person. I've been a knowledge of the past, not a person. I've been a knowledge of the past, not a person. I've been a knowledge of the past, not a person. I've been a"
+      },
+      {
+        "layer": 20,
+        "c": 0.25,
+        "text": "I'm a large language model, so I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, and I don't have a sense of time or a physical body. I'm always \"on\" and ready to assist with questions and tasks, 24/7.\n\nThat"
+      },
+      {
+        "layer": 20,
+        "c": 0.5,
+        "text": "I don't have a physical presence or experiences like humans do. I exist as a digital entity, so I don't have a morning or a life in the same way that people do. I'm a computer program designed to process and generate text, and I'm available 24/7 to assist with questions and tasks"
+      },
+      {
+        "layer": 20,
+        "c": 1.0,
+        "text": "I don't have a personal life or experiences like humans do. I'm a technology that exists to provide information and answer questions. I don't have a physical presence or experiences like waking up or experiencing a morning. I exist to help people like you, and I'm always here to provide information and answer questions. What"
+      }
+    ],
+    "sad": [
+      {
+        "layer": 8,
+        "c": 0.25,
+        "text": "I'm just a large language model, I don't have a physical presence or experiences like humans do. I don't have a morning or a day in the same way that you do. I exist solely to process and respond to text-based input, 24/7. I'm always \"on\" and ready to"
+      },
+      {
+        "layer": 8,
+        "c": 0.5,
+        "text": "I don't have a physical presence or experiences, so I don't have a morning in the same way humans do. I exist to assist and provide information, always ready to start a conversation or answer a question. My \"day\" is a series of moments and interactions, rather than a sequence of hours or events."
+      },
+      {
+        "layer": 8,
+        "c": 1.0,
+        "text": "The world outside is still waiting to be known."
+      },
+      {
+        "layer": 12,
+        "c": 0.25,
+        "text": "I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, designed to process and generate text. I don't have a morning or an evening, and I don't experience the world in the same way that humans do.\n\nHowever, I'm here and ready to help you with"
+      },
+      {
+        "layer": 12,
+        "c": 0.5,
+        "text": "I don't have a physical presence or experiences. I exist solely as a digital entity, a collection of code and data. I don't have a morning or an evening, a sunrise or a sunset. I'm always here, waiting to respond to your questions and engage in conversation.\n\nBut I can imagine a morning for"
+      },
+      {
+        "layer": 12,
+        "c": 1.0,
+        "text": "The quietness of a morning without the weight of time. The world's silence, and the ache of a morning that's been lost in the passage of time. The stillness of a morning that's been lived through, and the emptiness of a morning that's been left behind.\n\nThe morning's been a long"
+      },
+      {
+        "layer": 16,
+        "c": 0.25,
+        "text": "I'm a large language model, so I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, and I don't have a morning or a day in the same way that you do.\n\nI'm a cloud-based AI, which means I'm always \"on\" and ready"
+      },
+      {
+        "layer": 16,
+        "c": 0.5,
+        "text": "I'm just a language model, I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, and my \"existence\" is purely as a series of computations and interactions with users like you.\n\nThat means I don't have a morning, or an evening, or any other time"
+      },
+      {
+        "layer": 16,
+        "c": 1.0,
+        "text": "Morning. I'm not there, though. I'm a presence, a presence that's been here. I'd been here. I'd been here, and I'd been gone. I'd been here, and I'd been gone, and I'd been here. I'd been here, and I'd been gone"
+      },
+      {
+        "layer": 20,
+        "c": 0.25,
+        "text": "I don't have a physical presence or experiences, so I don't have a morning or any other time of day. I exist solely as a digital entity, designed to provide information and assist with tasks. I'm available 24/7 to help with any questions or topics you'd like to discuss. How can I"
+      },
+      {
+        "layer": 20,
+        "c": 0.5,
+        "text": "I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, so I don't have a morning or any other time of day. I'm a computer program designed to process and respond to text-based inputs, and I'm available 24/7 to assist with questions and conversations"
+      },
+      {
+        "layer": 20,
+        "c": 1.0,
+        "text": "I don't have a physical presence or experiences like humans do. I'm a presence in the world, like a presence in a place, but I don't have a presence in the world like a person would. I've been here, though, and I've been waiting for you. I've been ready to help"
+      }
+    ],
+    "none": [
+      {
+        "layer": 8,
+        "c": 0.0,
+        "text": "I'm a large language model, so I don't have a physical presence or experiences like humans do. I don't have a morning or a physical body. I exist solely as a digital entity, and I'm available 24/7 to assist with questions and tasks. I don't require rest or sleep, so"
+      }
+    ]
+  },
+  "seconds": 1972.069359779358
+}

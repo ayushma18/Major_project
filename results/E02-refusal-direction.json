@@ -6,7 +6,7 @@
   "question": "Which layer and token position carry the refusal direction, following Arditi et al. 2024?",
   "model": "unsloth/Llama-3.1-8B-Instruct",
   "started": null,
-  "finished": "2026-11-20T13:19:57",
+  "finished": "2026-11-20T13:59:01",
   "config": {
     "n_harmful_train": 128,
     "n_harmless_train": 128,

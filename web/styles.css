@@ -1637,3 +1637,29 @@ code, kbd, samp, pre {
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+/* Narrative blocks (timeline story, positioning note) */
+.story-block {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  padding: var(--space-lg);
+  margin-bottom: var(--space-xl);
+  max-width: 920px;
+}
+.story-block summary {
+  cursor: pointer;
+  font-weight: 700;
+  font-size: var(--step-1);
+}
+.story-body p {
+  margin-top: var(--space-md);
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+.story-ref {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  white-space: nowrap;
+}

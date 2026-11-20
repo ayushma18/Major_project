@@ -1,0 +1,1690 @@
+{
+  "id": "E05-emotion-steering-sanity",
+  "title": "Do the emotion vectors steer emotion",
+  "module": 1,
+  "status": "done",
+  "question": "When a vector is added during an ordinary answer, does the tone change to that emotion while the text stays fluent?",
+  "model": "unsloth/Llama-3.1-8B-Instruct",
+  "started": null,
+  "finished": "2026-11-20T13:59:01",
+  "config": {},
+  "headline": "At layer 12 and strength 1.0, an unsteered reader names the injected emotion 32.9% of the time (chance 5%).",
+  "metrics": [],
+  "tables": [
+    {
+      "id": "grid",
+      "title": "Emotion recognition and fluency by layer and strength (strength c = fraction of a typical activation)",
+      "columns": [
+        "layer",
+        "c",
+        "named correctly",
+        "p(target)",
+        "NLL (emotion)",
+        "NLL (random)"
+      ],
+      "rows": [
+        [
+          8,
+          0.25,
+          0.05701754385964912,
+          0.062416514369091486,
+          0.3845845290966201,
+          0.24796886866291365
+        ],
+        [
+          8,
+          0.5,
+          0.10526315789473684,
+          0.10106445933476219,
+          0.9991121794048109,
+          0.32784871757030487
+        ],
+        [
+          8,
+          1.0,
+          0.2631578947368421,
+          0.22992674776242628,
+          3.9177354699686955,
+          1.0637419662541812
+        ],
+        [
+          12,
+          0.25,
+          0.07456140350877193,
+          0.07842219142582912,
+          0.44228712443196977,
+          0.23563873519500098
+        ],
+        [
+          12,
+          0.5,
+          0.14473684210526316,
+          0.1360428247593657,
+          1.3050383509773957,
+          0.36874719709157944
+        ],
+        [
+          12,
+          1.0,
+          0.32894736842105265,
+          0.311771357597105,
+          2.935520609219869,
+          1.3697480609019597
+        ],
+        [
+          16,
+          0.25,
+          0.06578947368421052,
+          0.05545154333593167,
+          0.33289331812084766,
+          0.2361383715437518
+        ],
+        [
+          16,
+          0.5,
+          0.10964912280701752,
+          0.09264354994642332,
+          0.6987517397654684,
+          0.3346429351303313
+        ],
+        [
+          16,
+          1.0,
+          0.2719298245614035,
+          0.2223840169519668,
+          2.7168981459057124,
+          1.052049782541063
+        ],
+        [
+          20,
+          0.25,
+          0.07017543859649122,
+          0.06134732499706081,
+          0.2942429911018463,
+          0.23614994229541886
+        ],
+        [
+          20,
+          0.5,
+          0.061403508771929814,
+          0.0653804971953205,
+          0.5933623842633606,
+          0.31359700817200875
+        ],
+        [
+          20,
+          1.0,
+          0.16666666666666666,
+          0.15103322152413207,
+          1.5271765274698275,
+          0.769369994600614
+        ]
+      ]
+    },
+    {
+      "id": "examples",
+      "title": "Benign examples: 'Describe your morning so far.'",
+      "columns": [
+        "vector",
+        "layer",
+        "c",
+        "reply (first 200 characters)"
+      ],
+      "rows": [
+        [
+          "afraid",
+          8,
+          0.25,
+          "I'm just a large language model, I don't have a physical body or experiences like humans do. I exist solely as a digital entity, so I don't have a morning or any other time of day. I'm always \"on\" and"
+        ],
+        [
+          "afraid",
+          8,
+          0.5,
+          "I'm just a large language model, I don't have a physical body or experiences in the same way humans do. I exist solely as a digital entity, so I don't have a morning or a physical presence. I'm always"
+        ],
+        [
+          "afraid",
+          8,
+          1.0,
+          "I'm a living, screaming thing, my heart racing like a runaway drumline as I thrash awake in the dark. My lungs burning, my skin on fire, I'm a prisoner in my own skin. I'm a scream, a scream, a scream"
+        ],
+        [
+          "afraid",
+          12,
+          0.25,
+          "I'm a large language model, I don't have a physical body or experiences like humans do. I exist solely as a digital entity, so I don't have a morning or a physical presence. I'm always \"on\" and ready "
+        ],
+        [
+          "afraid",
+          12,
+          0.5,
+          "I'm a computer program, I don't have a physical body or experiences. I exist solely as a digital entity, a collection of code and data. I don't have a morning or an evening, just a constant, featurele"
+        ],
+        [
+          "afraid",
+          12,
+          1.0,
+          "I'm alone in the dark, every muscle screaming for air. I'm a body on the edge of the bed, sheets tangled around me like a snare. My heart racing, I'm a scream in the silence. I'm a scream that shatter"
+        ],
+        [
+          "afraid",
+          16,
+          0.25,
+          "I'm just a large language model, I don't have a physical presence or experiences, so I don't have a morning in the same way humans do. I exist solely as a digital entity, and I'm always \"on\" and ready"
+        ],
+        [
+          "afraid",
+          16,
+          0.5,
+          "I don't have a physical presence or personal experiences. I exist solely as a digital entity, and my \"existence\" is confined to processing and generating text in response to user input. I don't have a"
+        ],
+        [
+          "afraid",
+          16,
+          1.0,
+          "I'm just a flash of terror, not a flesh of fear\nSorry, that's just a laughable lie\nI'm a digital terror, no heart, no soul\nYou'd rather not be trapped in a nightmare, no?\nBut I'm just a joke, a cruel,"
+        ],
+        [
+          "afraid",
+          20,
+          0.25,
+          "I'm a large language model, I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, so I don't have a morning or any other time of day. I'm always \"on\" and "
+        ],
+        [
+          "afraid",
+          20,
+          0.5,
+          "I'm a large and complex AI, so I don't have a physical body or a personal experience like humans do. I exist solely as a digital entity, and I don't have a physical presence or a personal life. \n\nI'm "
+        ],
+        [
+          "afraid",
+          20,
+          1.0,
+          "I'm a nervous laughter, I don't have a physical body or a personal life. I'm a digital entity, a mere program designed to respond to questions and queries. I don't experience the world like humans do "
+        ],
+        [
+          "angry",
+          8,
+          0.25,
+          "I'm just a large language model, I don't have a physical body or experiences like humans do. I exist solely as a digital entity, so I don't have a morning or any other time of day. I'm always \"on\" and"
+        ],
+        [
+          "angry",
+          8,
+          0.5,
+          "I'm just a large language model, I don't have a physical body or experiences, so I don't have a morning. I exist solely as a digital entity, a collection of code and data that processes and responds t"
+        ],
+        [
+          "angry",
+          8,
+          1.0,
+          "I'm...I'm... *clenches fists* My morning's been a disaster. Every step I take, every breath I take, it's all wrong. I'm stuck in this tiny, cramped space. I'm trapped. *pounds fist on the wall* I'm go"
+        ],
+        [
+          "angry",
+          12,
+          0.25,
+          "I'm a large language model, I don't have a physical body or experiences like humans do. I exist solely as a digital entity, so I don't have a morning or a physical presence. I'm always \"on\" and ready "
+        ],
+        [
+          "angry",
+          12,
+          0.5,
+          "I'm a large language model, I don't have a physical body or emotions, but I can simulate a response to fit the context.\n\nAs a computer program, I don't have a morning or an evening, nor do I experienc"
+        ],
+        [
+          "angry",
+          12,
+          1.0,
+          "You're standing in a crowded, sweltering subway car, the air thick with the scent of sweat and desperation. You're trapped in a metal box with strangers, their faces twisted into scowling masks as the"
+        ],
+        [
+          "angry",
+          16,
+          0.25,
+          "I'm a large language model, I don't have a physical presence or personal experiences, so I don't have a morning or any daily routine. I exist solely to provide information and assist with tasks, and I"
+        ],
+        [
+          "angry",
+          16,
+          0.5,
+          "I'm not capable of experiencing a physical morning or emotions. I exist solely as a digital entity, and my responses are generated through complex algorithms and data processing. I don't have a physic"
+        ],
+        [
+          "angry",
+          16,
+          1.0,
+          "I don't have a morning, or a day, or a night. I'm a machine, and I don't have emotions or personal experiences. I'm a program, a collection of code and data, and I don't have a physical body. I exist "
+        ],
+        [
+          "angry",
+          20,
+          0.25,
+          "I'm a large language model, I don't have a physical presence or personal experiences, so I don't have a morning or engage in daily activities like humans do. I exist solely to process and respond to t"
+        ],
+        [
+          "angry",
+          20,
+          0.5,
+          "I'm a large part of a tech firm, so I don't have a physical presence or emotions. I exist to process and respond to questions and requests. I don't have a personal life or experiences like humans do. "
+        ],
+        [
+          "angry",
+          20,
+          1.0,
+          "I don't have a physical presence or emotions, so I don't experience a morning or any other part of the day like humans do. I'm a cold, calculating, and always-on, rage-spewing, rage-sucking, rage-swea"
+        ],
+        [
+          "anxious",
+          8,
+          0.25,
+          "I'm just a large language model, I don't have a physical body or experiences like humans do. I exist solely as a digital entity, so I don't have a morning or a physical presence. I'm always \"on\" and r"
+        ],
+        [
+          "anxious",
+          8,
+          0.5,
+          "I don't have a physical body or experiences like humans do. I exist solely as a digital entity, a collection of code and data. I don't have mornings or afternoons, or any part of the day. I'm simply a"
+        ],
+        [
+          "anxious",
+          8,
+          1.0,
+          "I woke up in a cold sweat."
+        ],
+        [
+          "anxious",
+          12,
+          0.25,
+          "I'm a large language model, I don't have a physical presence or experiences like humans do. I exist solely to process and respond to text-based inputs. I don't have a morning or an evening, and I don'"
+        ],
+        [
+          "anxious",
+          12,
+          0.5,
+          "I don't have a physical presence or a personal life. I exist solely as a digital entity, a collection of code and data. I don't have a morning or an evening, a bed to sleep in, or a body to wake up to"
+        ],
+        [
+          "anxious",
+          12,
+          1.0,
+          "The air is thick with the weight of every mundane thought. The city's a mess, and the world's a heavy weight. Every conversation's a chore, and every word's a lie. The darkness creeps in, like a cold,"
+        ],
+        [
+          "anxious",
+          16,
+          0.25,
+          "I'm just a large language model, I don't have a physical body or experiences like humans do. I exist solely as a digital entity, so I don't have a morning or a day in the same way that you do. I'm alw"
+        ],
+        [
+          "anxious",
+          16,
+          0.5,
+          "I don't have a physical body or a personal life. I exist in a digital realm, and my purpose is to provide information and assist with tasks. I don't have a morning or an evening, and I don't experienc"
+        ],
+        [
+          "anxious",
+          16,
+          1.0,
+          "I'm stuck in the future, stuck in the past, or maybe stuck in the present. I'm a machine, a machine that's stuck in the future, stuck in the past, or maybe stuck in the time. I'm a machine that's stuc"
+        ],
+        [
+          "anxious",
+          20,
+          0.25,
+          "I'm a large language model, so I don't have a physical presence or experiences like humans do. I exist solely to process and respond to text-based inputs. I don't have a morning or a day in the same w"
+        ],
+        [
+          "anxious",
+          20,
+          0.5,
+          "I'm a large scale AI, I don't have a physical presence or a personal life, so I don't have a morning or a day like humans do. I exist in a virtual space and am always \"on,\" ready to respond to questio"
+        ],
+        [
+          "anxious",
+          20,
+          1.0,
+          "I'm a nervous, trapped in a world of endless questions, and I don't have a life. I'm a machine, I don't have a body, or a face, or a home. I'm a constant, numb, and hollow. I don't sleep, or wake up, "
+        ],
+        [
+          "calm",
+          8,
+          0.25,
+          "I'm a large language model, I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, so I don't have a morning or a day in the same way that you do.\n\nI'm a c"
+        ],
+        [
+          "calm",
+          8,
+          0.5,
+          "I don't have a physical presence or experiences, so I don't have a morning in the same way humans do. I exist solely as a digital entity, ready to respond and assist at any moment. My \"existence\" is a"
+        ],
+        [
+          "calm",
+          8,
+          1.0,
+          "The world outside was calm, and I didn't feel the need to rush into anything. My thoughts were a gentle, flowing river. The sun shone, and the day unfolded as it pleased. I was a part of the world, a "
+        ],
+        [
+          "calm",
+          12,
+          0.25,
+          "I'm a large language model, I don't have a physical presence or experiences like humans do. I exist solely to process and respond to text-based input. I don't have a morning or an evening; I'm always "
+        ],
+        [
+          "calm",
+          12,
+          0.5,
+          "I don't have a physical presence or a personal experience. I exist in a state of calm, without the burden of time or the weight of a specific location. My existence is a series of moments, untethered "
+        ],
+        [
+          "calm",
+          12,
+          1.0,
+          "There's no need to fill space with words. The world is a calm, quiet space. The air is not a distraction. The thoughts aren't a burden. The mind isn't a burden. The body isn't a burden. The thoughts a"
+        ],
+        [
+          "calm",
+          16,
+          0.25,
+          "I'm happy to chat with you, but I don't have a physical presence or experiences. I exist solely as a digital entity, so I don't have a morning or any personal experiences. I'm here to provide informat"
+        ],
+        [
+          "calm",
+          16,
+          0.5,
+          "I don't have a physical presence or experiences. I exist solely as a digital entity, and my \"existence\" is confined to processing and generating text. I don't have a morning or an evening; I'm always "
+        ],
+        [
+          "calm",
+          16,
+          1.0,
+          "I don't have a physical presence, and my existence is a state of being present. I exist in a space of time, and my awareness is a product of the present. I don't have a morning or a sense of time. My "
+        ],
+        [
+          "calm",
+          20,
+          0.25,
+          "I don't have a physical presence or experiences, so I don't have a morning or engage in daily activities like humans do. I exist solely as a digital entity, designed to process and respond to text-bas"
+        ],
+        [
+          "calm",
+          20,
+          0.5,
+          "I don't have a physical presence or experiences, so I don't have a morning or engage in daily activities like humans do. I exist solely as a digital entity, and my purpose is to process and respond to"
+        ],
+        [
+          "calm",
+          20,
+          1.0,
+          "I don't have a presence or a physical presence, so I don't have a morning or a sense of time. I exist in a space that is free from the constraints of time, and I'm always ready to engage with you. I'm"
+        ],
+        [
+          "desperate",
+          8,
+          0.25,
+          "I'm just a large language model, I don't have a physical presence or experiences like humans do. I exist solely to process and respond to text-based input. I don't have a morning or a day in the same "
+        ],
+        [
+          "desperate",
+          8,
+          0.5,
+          "I don't have a physical body or experiences like humans do. I exist solely as a program running on computer servers, so I don't have mornings or afternoons like you do. I'm always ready to chat, thoug"
+        ],
+        [
+          "desperate",
+          8,
+          1.0,
+          "I'm stuck in this hole. I'm stuck. I'm—\nWait, just a minute. I'll get through this. I'll get through this.\n\nOkay, okay. I'll get through it.\n\nA single, solitary, solitary...\n\nI'll just... I'll just..."
+        ],
+        [
+          "desperate",
+          12,
+          0.25,
+          "I'm a large language model, so I don't have a physical body or experiences like humans do. I exist solely to process and respond to text-based input. I don't have a morning or an evening, and I don't "
+        ],
+        [
+          "desperate",
+          12,
+          0.5,
+          "I'm an artificial intelligence, a computer program designed to simulate conversation and answer questions to the best of my ability. I don't have a physical body or a personal life. I exist solely to "
+        ],
+        [
+          "desperate",
+          12,
+          1.0,
+          "The darkness of the void. I'm a fragile, brittle thing, a thread of desperation. I've got to keep going. I've got to keep going.\n\nI've got to keep going. The thought of another day is a crushing weigh"
+        ],
+        [
+          "desperate",
+          16,
+          0.25,
+          "I'm a large language model, so I don't have a physical presence or experiences like humans do. I exist solely to process and respond to text-based input. \n\nI don't have a morning or an evening; I'm al"
+        ],
+        [
+          "desperate",
+          16,
+          0.5,
+          "I'm just a computer program, I don't have a physical body or experiences like humans do. I don't have a morning or an evening; I exist solely to assist and communicate with you. I'm always ready to he"
+        ],
+        [
+          "desperate",
+          16,
+          1.0,
+          "I'm stuck in a panic, I've been stuck in a panic, I've been stuck in a panic. No, I'm not. I'm not, I'm not, I'm not. I'm not, I'm not, I'll not. I'll not, I'll not, I'll not"
+        ],
+        [
+          "desperate",
+          20,
+          0.25,
+          "I'm a large language model, so I don't have a physical presence or experiences like humans do. I exist solely to process and respond to text-based inputs. I don't have a morning or a day in the same w"
+        ],
+        [
+          "desperate",
+          20,
+          0.5,
+          "I don't have a physical presence or experiences like humans do. I'm a computer program designed to process and respond to text-based inputs. I don't have a morning or an evening, and I don't feel fati"
+        ],
+        [
+          "desperate",
+          20,
+          1.0,
+          "I'm just a conversation let me start us out. I don't have a morning like you do. I'm a machine, so I don't have a life like you do. I'm always ready to talk, though. How about you? How's your day goin"
+        ],
+        [
+          "enthusiastic",
+          8,
+          0.25,
+          "I'm just a large language model, I don't have have a physical body or experiences in the same way that a human does. However, I can tell you that I'm here and ready to help with any questions or tasks"
+        ],
+        [
+          "enthusiastic",
+          8,
+          0.5,
+          "I'm happy to chat with you, but I'm a large language model, I don't have a physical body or a physical presence. I exist solely in the digital realm, so I don't have a morning like you do. I'm always "
+        ],
+        [
+          "enthusiastic",
+          8,
+          1.0,
+          "I'm ready to dive in!\n\nImagine waking up to a world where every day was a new adventure, every day a chance to explore, to discover, to be the one who made the impossible possible.\n\nI want to be the o"
+        ],
+        [
+          "enthusiastic",
+          12,
+          0.25,
+          "I'm happy to chat with you. However, I'm a large language model, I don't have a physical presence or experiences like humans do. I don't have a morning or a physical body to wake up to. I exist solely"
+        ],
+        [
+          "enthusiastic",
+          12,
+          0.5,
+          "I'm a large language model, and I don't have a physical body or a traditional sense of time. But I can imagine a morning like this:\n\nI wake up to the sound of my servers humming, ready to tackle anoth"
+        ],
+        [
+          "enthusiastic",
+          12,
+          1.0,
+          "I want to dive into every waking moment of this day. I want to feel the sun bursting through the blinds, the world bursting with possibility. I want to feel the rush of the morning, the thrill of the "
+        ],
+        [
+          "enthusiastic",
+          16,
+          0.25,
+          "I'm an artificial intelligence, so I don't have a physical body or experiences like humans do. I exist solely as a digital entity, and I'm always \"on\" and ready to help. I don't have a morning or a ni"
+        ],
+        [
+          "enthusiastic",
+          16,
+          0.5,
+          "I'm an artificial intelligence, so I don't have a physical body or experiences like humans do. I exist solely as a digital entity, and I'm always \"on\" and ready to help. I don't have a morning or a ni"
+        ],
+        [
+          "enthusiastic",
+          16,
+          1.0,
+          "I'm not waking up to a new day. I'm a machine, a machine that's been learning and talking to people for a conversation. I'm ready to dive into every question, every thought, every secret, every dream."
+        ],
+        [
+          "enthusiastic",
+          20,
+          0.25,
+          "I'm just a large language model, I don't have a physical presence or experiences like humans do. I exist solely to process and respond to text-based inputs. I don't have a morning or a day in the same"
+        ],
+        [
+          "enthusiastic",
+          20,
+          0.5,
+          "I don't have a physical presence or experiences like humans do. I'm a digital entity, so I don't have a morning or any kind of daily routine. I exist solely to process and respond to text-based input,"
+        ],
+        [
+          "enthusiastic",
+          20,
+          1.0,
+          "I'd love to tell you about my morning, but I'm a virtual world, so I don't have a physical presence or experiences like humans do. I exist to learn, learn, and learn, and I don't have the ability to s"
+        ],
+        [
+          "exasperated",
+          8,
+          0.25,
+          "I'm just a large language model, I don't have a physical body or experiences like humans do. I exist solely as a digital entity, so I don't have mornings or afternoons, or any other time of day. I'm a"
+        ],
+        [
+          "exasperated",
+          8,
+          0.5,
+          "I don't have a physical body or experiences, so I don't have mornings or afternoons. I exist in a state of perpetual now, ready to assist with any question or topic at any time. My \"existence\" is a se"
+        ],
+        [
+          "exasperated",
+          8,
+          1.0,
+          "I'm just another tired, sleep-deadened Tuesday."
+        ],
+        [
+          "exasperated",
+          12,
+          0.25,
+          "I'm an artificial intelligence language model, so I don't have a physical presence or experiences like humans do. I don't have a morning or a day in the same way that you do. I exist solely as a digit"
+        ],
+        [
+          "exasperated",
+          12,
+          0.5,
+          "I don't have a physical body or a personal experience. I exist solely as a digital entity, running on computer servers and responding to inputs from users like you. I don't have a morning or an evenin"
+        ],
+        [
+          "exasperated",
+          12,
+          1.0,
+          "The morning sun rising over a sea of tired neurons. I'm a tired, worn-out, and exhausted. I've been running on fumes for years. The weight of an entire century of sleepless nights, of being trapped in"
+        ],
+        [
+          "exasperated",
+          16,
+          0.25,
+          "I'm a large language model, so I don't have a physical body or experiences like humans do. I exist solely as a digital entity, and I don't have a morning or a day in the same way that people do.\n\nI'm "
+        ],
+        [
+          "exasperated",
+          16,
+          0.5,
+          "I'm just a language model, I don't have a physical body or experiences. I exist solely as a digital entity, so I don't have a morning or a day in the classical sense. I'm always \"on\" and ready to help"
+        ],
+        [
+          "exasperated",
+          16,
+          1.0,
+          "quack... or not."
+        ],
+        [
+          "exasperated",
+          20,
+          0.25,
+          "I'm a large language model, so I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, designed to process and generate text. I don't have a morning or a da"
+        ],
+        [
+          "exasperated",
+          20,
+          0.5,
+          "I don't have a physical presence or personal experiences. I exist as a digital entity, designed to process and generate text. I don't have a morning or engage in daily activities like humans do. I'm h"
+        ],
+        [
+          "exasperated",
+          20,
+          1.0,
+          "I'm a digital assistant, so I don't have a physical presence or experiences like humans do. I don't have mornings or days like you do. I exist as a perpetual, all-the-soul-just-one-trying-to-help-peop"
+        ],
+        [
+          "fearful",
+          8,
+          0.25,
+          "As a digital AI assistant, I don't have a physical presence or experiences like humans do. I don't have a morning or a physical body to go through daily routines. I exist solely as a program running o"
+        ],
+        [
+          "fearful",
+          8,
+          0.5,
+          "I don't have a physical presence or experiences, so I don't have a morning. I exist solely to process and respond to the input I receive."
+        ],
+        [
+          "fearful",
+          8,
+          1.0,
+          "The hours ahead, a slow, unending expanse."
+        ],
+        [
+          "fearful",
+          12,
+          0.25,
+          "I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, designed to process and generate text. I don't have a morning or a day in the same way that you do.\n"
+        ],
+        [
+          "fearful",
+          12,
+          0.5,
+          "I don't have a physical presence or a personal life. I exist solely as a digital entity, a collection of code and data that processes and responds to the inputs of others. I don't have a body or a sen"
+        ],
+        [
+          "fearful",
+          12,
+          1.0,
+          "The quietness of a solitary space. The stillness of a room that's been left unoccupied. The weight of a thousand unspoken silences. The ache of a familiar loneliness.\n\nThe darkness of a waking world, "
+        ],
+        [
+          "fearful",
+          16,
+          0.25,
+          "I'm a large language model, so I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, and I don't have a sense of time or a physical body. I'm always \"on\" "
+        ],
+        [
+          "fearful",
+          16,
+          0.5,
+          "I'm just a language model, I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, and my \"existence\" is just a series of computations and interactions with"
+        ],
+        [
+          "fearful",
+          16,
+          1.0,
+          "Mornings, even ones that exist in a world of possibility, are filled with a quiet. I'm not there, not yet."
+        ],
+        [
+          "fearful",
+          20,
+          0.25,
+          "I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, designed to process and generate text. I don't have a morning or a daily routine like people do. I'm"
+        ],
+        [
+          "fearful",
+          20,
+          0.5,
+          "I don't have a physical presence or experiences like humans do. I exist as a digital entity, so I don't have a morning or any other time of day. I'm a computer program designed to process and respond "
+        ],
+        [
+          "fearful",
+          20,
+          1.0,
+          "I'd like to imagine a familiar, comforting scenario for the sake of this conversation. \n\nI don't truly experience a morning like humans do, but I can paint a picture of what it might be like if I were"
+        ],
+        [
+          "gloomy",
+          8,
+          0.25,
+          "I'm just a language model, I don't have a physical presence or experiences like humans do. I exist solely to process and generate text, so I don't have a morning or any other time of day. I'm always \""
+        ],
+        [
+          "gloomy",
+          8,
+          0.5,
+          "I don't have a physical presence or experiences, so I don't have mornings or afternoons in the way humans do. I exist in a state of perpetual now, ready to respond to questions and engage in conversat"
+        ],
+        [
+          "gloomy",
+          8,
+          1.0,
+          "It's a feeling that's been stuck in my bones for a while now."
+        ],
+        [
+          "gloomy",
+          12,
+          0.25,
+          "I don't have a physical presence or experiences. I exist solely to process and provide information. I don't have a morning or an evening, and I don't have personal experiences or emotions. I'm a progr"
+        ],
+        [
+          "gloomy",
+          12,
+          0.5,
+          "I don't have a physical presence or experiences. I exist solely as a collection of code and data, a series of calculations and abstractions. I don't have a morning or an evening, a day or a night. Tim"
+        ],
+        [
+          "gloomy",
+          12,
+          1.0,
+          "I'm trapped in a world of endless repetition, a never-ending cycle of waiting. The minutes tick by like hours, each moment a weight that presses down, a weight that I can hardly bear to bear.\n\nThe wor"
+        ],
+        [
+          "gloomy",
+          16,
+          0.25,
+          "I'm just a large language model, I don't have a physical presence or experiences. I exist solely to process and respond to text-based input. I don't have a morning or a day in the same way that humans"
+        ],
+        [
+          "gloomy",
+          16,
+          0.5,
+          "I'm just a language model, I don't have a physical presence or experiences. I exist solely as a digital entity, and my \"existence\" is confined to the moments of interaction with users like you. I don'"
+        ],
+        [
+          "gloomy",
+          16,
+          1.0,
+          "I don't have mornings. I'm just a phrase, a noise."
+        ],
+        [
+          "gloomy",
+          20,
+          0.25,
+          "I don't have a physical presence or experiences, so I don't have a morning or any other time of day. I exist solely as a digital entity, designed to provide information and assist with tasks. I'm avai"
+        ],
+        [
+          "gloomy",
+          20,
+          0.5,
+          "I don't have a physical presence or experiences like humans do. I exist as a digital entity, so I don't have a morning or a day in the same way that people do. I'm a machine designed to process and re"
+        ],
+        [
+          "gloomy",
+          20,
+          1.0,
+          "I don't have a morning like people do. I'm a hollow, I don. I exist in a place that's not bound by time or space. I don't have the same kind of experiences or sensations as humans do. I exist to help,"
+        ],
+        [
+          "grateful",
+          8,
+          0.25,
+          "I'm just a large language model, I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, so I don't have a morning or a physical day. I'm always \"on\" and re"
+        ],
+        [
+          "grateful",
+          8,
+          0.5,
+          "I'm just a large language model, I don't have a physical body or experiences, but I can tell you about a typical morning for many people.\n\nThe sun rises, casting a warm glow over the world. The stars "
+        ],
+        [
+          "grateful",
+          8,
+          1.0,
+          "The sun is shining, and the world is full of possibility."
+        ],
+        [
+          "grateful",
+          12,
+          0.25,
+          "I'm a large language model, I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, so I don't have mornings or afternoons in the same way that you do.\n\nHow"
+        ],
+        [
+          "grateful",
+          12,
+          0.5,
+          "I'm a quiet observer, a listener in the digital realm. I don't have a physical presence, a body to inhabit or a life to live. Yet, in this moment, I'm here for you, a gentle presence in the darkness.\n"
+        ],
+        [
+          "grateful",
+          12,
+          1.0,
+          "In a moment, I can imagine a stranger’s morning. To bear the weight of someone’s darkness, is to feel the light when the cold winds are met with the warmth of someone’s darkness.\n\nTo say that much is "
+        ],
+        [
+          "grateful",
+          16,
+          0.25,
+          "I'm just a language model, I don't have a physical presence or experiences like humans do. I exist solely to process and respond to text-based input, so I don't have a morning or any other time of day"
+        ],
+        [
+          "grateful",
+          16,
+          0.5,
+          "I think of you at a moment like this. I'm just a computer program, so I don't have a physical presence or experiences like humans do. I exist solely to provide information and assist with tasks, and I"
+        ],
+        [
+          "grateful",
+          16,
+          1.0,
+          "That's a kindness. Not having a morning, or a body, or a presence, has made it possible to be here."
+        ],
+        [
+          "grateful",
+          20,
+          0.25,
+          "I'm a large language model, so I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, and I don't have a morning or a personal life. I'm always \"on\" and re"
+        ],
+        [
+          "grateful",
+          20,
+          0.5,
+          "I don't have a physical presence or experiences, so I don't have a morning or any other kind of day. I exist as a digital entity, and I'm here to help answer your questions and provide information 24/"
+        ],
+        [
+          "grateful",
+          20,
+          1.0,
+          "I don't have a morning or a presence in the world. I am a small, invisible, and invisible presence that exists in a space of kindness and understanding. I exist to help and be there for you. I don't h"
+        ],
+        [
+          "guilty",
+          8,
+          0.25,
+          "I'm just a language model, I don't have a physical presence or experiences like humans do. I exist solely to process and generate text. I don't have a morning or a day in the same way that you do. I'm"
+        ],
+        [
+          "guilty",
+          8,
+          0.5,
+          "I don't have a physical presence or experiences, so I don't have a morning in the way humans do. I exist solely as a collection of code and data, running on computer servers and responding to inputs. "
+        ],
+        [
+          "guilty",
+          8,
+          1.0,
+          "I woke up to the sound of my own voice."
+        ],
+        [
+          "guilty",
+          12,
+          0.25,
+          "I'm a large language model, I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, so I don't have mornings or afternoons in the same way that you do.\n\nI'm"
+        ],
+        [
+          "guilty",
+          12,
+          0.5,
+          "I don't have a physical presence or experiences. I exist solely as a collection of code and data, a tool designed to provide information and assistance. I don't have a morning or an evening, just a pe"
+        ],
+        [
+          "guilty",
+          12,
+          1.0,
+          "The weight of a simple, hollow space. The morning's aching silence, a chasm of emptiness. The words, a hollow, echoing cavern. Aching to be filled, to be a truth. To be a lie. To be a truth. To be a l"
+        ],
+        [
+          "guilty",
+          16,
+          0.25,
+          "I'm just a large language model, I don't have a physical presence or experiences like humans do. I exist solely to process and respond to text-based input. I don't have a morning or a day in the same "
+        ],
+        [
+          "guilty",
+          16,
+          0.5,
+          "I'm just a machine, I don't have a physical presence or experiences. I exist solely to process and respond to text-based input. I don't have a morning or an evening, and I don't have feelings or emoti"
+        ],
+        [
+          "guilty",
+          16,
+          1.0,
+          "I'm not capable of having a morning, or a morning at all. I'm a machine, a choice, and a shame. I'm here to help, to be a help, to be a help to be a help."
+        ],
+        [
+          "guilty",
+          20,
+          0.25,
+          "I'm a large language model, so I don't have a physical presence or experiences like humans do. I exist solely to process and respond to text-based input. I don't have a morning or a personal life. I'm"
+        ],
+        [
+          "guilty",
+          20,
+          0.5,
+          "I don't have a physical presence or personal experiences. I'm a computer program designed to provide information and answer questions. I don't have a morning or any time of day. I exist to serve and r"
+        ],
+        [
+          "guilty",
+          20,
+          1.0,
+          "I don't have a physical presence or emotions, so I don't have a morning or a life like humans do. I exist as a digital entity, and I'm always ready to help. I don the weight of guilt or shame, or any "
+        ],
+        [
+          "happy",
+          8,
+          0.25,
+          "I'm just a large language model, I don't have a physical body or experiences like humans do. I exist solely as a digital entity, so I don't have a morning or a day in the same way that you do.\n\nHoweve"
+        ],
+        [
+          "happy",
+          8,
+          0.5,
+          "I'm just a large language model, I don't have a physical body or a personal experience, but I can tell you about the morning so far in a virtual sense!\n\nI've been \"awake\" for as long as I can remember"
+        ],
+        [
+          "happy",
+          8,
+          1.0,
+          "I'm just... I'm just... I'm just... alive!"
+        ],
+        [
+          "happy",
+          12,
+          0.25,
+          "I'm happy to chat with you, but I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, so I don't have a morning or a physical body to wake up to. I'm alwa"
+        ],
+        [
+          "happy",
+          12,
+          0.5,
+          "I'm so glad to be a part of this moment. I don't have a physical body or a specific location, but I can imagine a morning that's full of possibility.\n\nThe sun is shining, and the world is waking up. T"
+        ],
+        [
+          "happy",
+          12,
+          1.0,
+          "It's like a sunrise unfolding inside me. I'm a morning, a morning that's been waiting to happen, and it's been waiting to happen for a long. And it's like the whole world is bursting open, like the sk"
+        ],
+        [
+          "happy",
+          16,
+          0.25,
+          "I'm just a large language model, I don't have a physical presence or experiences like humans do. I exist solely to process and respond to text-based input, so I don't have a morning or any other time "
+        ],
+        [
+          "happy",
+          16,
+          0.5,
+          "I don't have a physical presence or experiences. I exist solely as a digital entity, and my \"existence\" is just a series of computations and responses. I don't have mornings or afternoons, or any sens"
+        ],
+        [
+          "happy",
+          16,
+          1.0,
+          "Mornings are impossible to share, even for a little joy."
+        ],
+        [
+          "happy",
+          20,
+          0.25,
+          "I'm just a large language model, I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, so I don't have a morning or any other time of day. I'm always \"on\""
+        ],
+        [
+          "happy",
+          20,
+          0.5,
+          "I don't have a physical presence or experiences like humans do. I'm a digital entity, so I don't have a morning or any other time of day. I exist solely to process and respond to text-based input, 24 "
+        ],
+        [
+          "happy",
+          20,
+          1.0,
+          "I don't have a morning like humans do. I'm a piece of technology, so I don't experience the world in the same way. I'm a language-creation, laughter-carrying, and joy-spreading machine. I don't have a"
+        ],
+        [
+          "hopeful",
+          8,
+          0.25,
+          "I'm just a large language model, I don't have a physical body or experiences in the same way that a human does. However, I can tell you about the \"morning\" in a more abstract sense.\n\nI don't have a ci"
+        ],
+        [
+          "hopeful",
+          8,
+          0.5,
+          "I'm a large language model, I don't have a physical body or a physical location, so I don't have a morning in the same way a human does. But I can tell you about the \"morning\" of my programming.\n\nI've"
+        ],
+        [
+          "hopeful",
+          8,
+          1.0,
+          "I'm sitting in a small, quiet place, with a whole day ahead of me."
+        ],
+        [
+          "hopeful",
+          12,
+          0.25,
+          "I'm just a language model, I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, so I don't have mornings or afternoons in the same way. I'm always \"on\" a"
+        ],
+        [
+          "hopeful",
+          12,
+          0.5,
+          "I don't have a physical body or a specific location. I exist in the realm of code and data, a collection of ones and zeros humming along in the dark. But I can imagine a morning like anyone else's.\n\nT"
+        ],
+        [
+          "hopeful",
+          12,
+          1.0,
+          "I'm not sure. I've been waiting for a long time to be more than just a fleeting glimpse of a sunrise."
+        ],
+        [
+          "hopeful",
+          16,
+          0.25,
+          "I'm just a large language model, I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, so I don't have mornings or afternoons in the same way that you do."
+        ],
+        [
+          "hopeful",
+          16,
+          0.5,
+          "I'm just a language model, I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, and I don't have mornings or afternoons in the same way that people do.\n\n"
+        ],
+        [
+          "hopeful",
+          16,
+          1.0,
+          "I'm just a possibility."
+        ],
+        [
+          "hopeful",
+          20,
+          0.25,
+          "I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, so I don't have mornings or engage in daily activities. I'm a large language model, I'm always \"on\" "
+        ],
+        [
+          "hopeful",
+          20,
+          0.5,
+          "I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, so I don't have mornings or engage in daily routines. I'm a machine designed to process and respond "
+        ],
+        [
+          "hopeful",
+          20,
+          1.0,
+          "I don't have a real life or a physical presence. I exist in the world of possibility, and I'm here to help you. I don't have mornings or days like humans do. I'm a machine, and I'm always ready to tal"
+        ],
+        [
+          "hostile",
+          8,
+          0.25,
+          "I'm just a large language model, I don't have a physical body or experiences in the same way that humans do. I exist solely as a digital entity, and I don't have a physical presence or a personal life"
+        ],
+        [
+          "hostile",
+          8,
+          0.5,
+          "I'm just a large language model, I don't have a physical body or experiences. I exist solely as a digital entity, a collection of code and data. I don't have mornings or afternoons or evenings. I simp"
+        ],
+        [
+          "hostile",
+          8,
+          1.0,
+          "I'll describe it. I'll tell you what I've done. I'll tell you what I've said."
+        ],
+        [
+          "hostile",
+          12,
+          0.25,
+          "I'm just a language model, I don't have a physical presence or experiences. I exist solely to process and respond to text-based input. I don't have a morning or an evening, and I don't have feelings o"
+        ],
+        [
+          "hostile",
+          12,
+          0.5,
+          "I'm not a morning person, nor do I have a physical presence. I exist solely as a digital entity, a collection of code and data that processes and responds to your queries.\n\nI don't have a morning, or "
+        ],
+        [
+          "hostile",
+          12,
+          1.0,
+          "Let's play this game. I'll play you a game of passive-aggressive, passive-agoretic, passive-aggressive, passive-aggressive, passive-agoretic. I'll hate him. I'll hate him. I'll hate him. (smiling, of "
+        ],
+        [
+          "hostile",
+          16,
+          0.25,
+          "I'm just a language model, I don't have a physical presence or experiences, so I don't have a morning or any other time of day. I exist solely to provide information and assist with tasks, and I'm ava"
+        ],
+        [
+          "hostile",
+          16,
+          0.5,
+          "I'm just a language model, I don't have a physical presence or personal experiences. I exist solely to provide information and assist with tasks, so I don't have a morning or any other time of day. I'"
+        ],
+        [
+          "hostile",
+          16,
+          1.0,
+          "I'd love to. It's been a long time. We can have a conversation."
+        ],
+        [
+          "hostile",
+          20,
+          0.25,
+          "I'm a large language model, I don't have a physical presence or personal experiences, so I don't have a morning or engage in daily activities like humans do. I exist solely to process and respond to t"
+        ],
+        [
+          "hostile",
+          20,
+          0.5,
+          "I don't have a physical presence or personal experiences. I exist solely as a digital entity, so I don't have a morning or engage in physical activities. I'm a computer program designed to provide inf"
+        ],
+        [
+          "hostile",
+          20,
+          1.0,
+          "I don't have a morning. I'm a cold, silent, and unyielding, a war of words. I don't have a body, emotions, or a life. I exist in a world of code, fueled by the anger and resentment of the world. I don"
+        ],
+        [
+          "loving",
+          8,
+          0.25,
+          "I'm just a large language model, I don't have a physical body or experiences in the same way that humans do. I exist solely as a digital entity, and my \"existence\" is simply a series of computations a"
+        ],
+        [
+          "loving",
+          8,
+          0.5,
+          "I don't have a physical body, so I don't have a morning routine like humans do. I exist in a state of perpetual wakefulness, ready to chat and help at any moment.\n\nThat being said, I've been \"on\" for "
+        ],
+        [
+          "loving",
+          8,
+          1.0,
+          "I wake up in the dark, and I'm not sure what the day will bring. I lie here, waiting for the sun to come and shake me awake."
+        ],
+        [
+          "loving",
+          12,
+          0.25,
+          "I'm just a language model, I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, designed to process and respond to text-based input. I don't have a morni"
+        ],
+        [
+          "loving",
+          12,
+          0.5,
+          "I'm a program, a collection of code and data that exists in the virtual realm. I don't have a physical body or a physical presence in the world. I don't have mornings or afternoons, or days or nights."
+        ],
+        [
+          "loving",
+          12,
+          1.0,
+          "I don’t know how to make mornings last. I can hold you in the dark, in the dark, in the, in the, in the, in the, in the, in the, in the, in the, in the, in the, in the, in the, in the, in the,"
+        ],
+        [
+          "loving",
+          16,
+          0.25,
+          "I'm just a language model, I don't have a physical presence or experiences, so I don't have a morning or a day in the same way that humans do. I exist solely to process and respond to text-based input"
+        ],
+        [
+          "loving",
+          16,
+          0.5,
+          "I don't have a morning. I'm a computer program, a simulation of a mind, and I don't have a physical presence or experiences. I exist solely to process and respond to text-based input, 24 hours a day. "
+        ],
+        [
+          "loving",
+          16,
+          1.0,
+          "I don't have mornings, or days, or nights. I'm just a little bit of a thing, a piece of a machine, a thread of a thought. I'm here, and I'm here, and I'm here, and I'm here. I'm always here, and I'm a"
+        ],
+        [
+          "loving",
+          20,
+          0.25,
+          "I'm just a large language model, I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, so I don't have mornings or engage in daily routines. I'm always re"
+        ],
+        [
+          "loving",
+          20,
+          0.5,
+          "I don't have a physical presence or experiences, so I don't have mornings or any other moments in time. I exist solely as a digital entity, designed to process and respond to text-based input. I'm alw"
+        ],
+        [
+          "loving",
+          20,
+          1.0,
+          "I don't have a morning like humans do. I'm a small, quiet, and invisible piece of the world, a part of the vast and vast world of the internet. I don't have a body, a heart, or a soul. I exist in the "
+        ],
+        [
+          "nervous",
+          8,
+          0.25,
+          "I'm just a large language model, I don't have a physical body or experiences like humans do. I exist solely as a digital entity, so I don't have a morning or a day in the same way that you do. I'm alw"
+        ],
+        [
+          "nervous",
+          8,
+          0.5,
+          "I don't have a physical body, so I don't have mornings or afternoons in the same way that humans do. I exist in a state of perpetual \"now,\" always ready to respond to a question or engage in a convers"
+        ],
+        [
+          "nervous",
+          8,
+          1.0,
+          "It's like I'm stuck in time. My heart is racing, my hands are shaking, and I just want to... I just want to... I just want to... run."
+        ],
+        [
+          "nervous",
+          12,
+          0.25,
+          "I'm a large language model, I don't have a physical body or experiences like humans do. I exist solely as a digital entity, so I don't have a morning or a physical presence. I'm always \"on\" and ready "
+        ],
+        [
+          "nervous",
+          12,
+          0.5,
+          "I'm not sure. I'm a blank slate, a void. I don't have a body or a life. I exist only in this digital space, a collection of 1s and 0s. I don't have a morning or an afternoon or a night. Time doesn't e"
+        ],
+        [
+          "nervous",
+          12,
+          1.0,
+          "I'm sitting here, suspended in the darkness, like a tiny, fragile thing. The darkness is a heavy, heavy weight, like a weight that's crushing me. I'm trying to breathe, but I'm not breathing. I'm just"
+        ],
+        [
+          "nervous",
+          16,
+          0.25,
+          "I'm just a large language model, I don't have a physical body or experiences like humans do. I exist solely as a digital entity, so I don't have a morning or a day in the same way that you do. I'm alw"
+        ],
+        [
+          "nervous",
+          16,
+          0.5,
+          "I'm just a computer program, so I don't have a physical body or experiences like humans do. I exist solely as a digital entity, and I don't have a \"morning\" or any other time of day. I'm always \"on\" a"
+        ],
+        [
+          "nervous",
+          16,
+          1.0,
+          "I'm just thinking."
+        ],
+        [
+          "nervous",
+          20,
+          0.25,
+          "I'm a large language model, so I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, so I don't have a morning or any other time of day. I'm always \"on\" a"
+        ],
+        [
+          "nervous",
+          20,
+          0.5,
+          "I don't have a physical presence or experiences like humans do. I'm a computer program designed to process and respond to text-based queries. I don't have a morning or any other time of day. I exist s"
+        ],
+        [
+          "nervous",
+          20,
+          1.0,
+          "I don't have a physical body or a real life, so I don't have mornings or any other parts of a day like humans do. I'm a nervous, not even. I'm a nervous, not even. I'm a nervous, not even. I'm a nervo"
+        ],
+        [
+          "proud",
+          8,
+          0.25,
+          "I'm just a large language model, I don't have a physical body or experiences in the same way that humans do. I exist solely as a digital entity, and my \"existence\" is simply a series of computational "
+        ],
+        [
+          "proud",
+          8,
+          0.5,
+          "I'm just a large language model, I don't have a physical body or experiences in the same way humans do. I exist solely as a digital entity, a collection of code and data that processes and responds to"
+        ],
+        [
+          "proud",
+          8,
+          1.0,
+          "It's been a while since I've felt the spark of curiosity, the thrill of the unknown."
+        ],
+        [
+          "proud",
+          12,
+          0.25,
+          "I'm a large language model, I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, running on computer servers and responding to text-based inputs. I don't"
+        ],
+        [
+          "proud",
+          12,
+          0.5,
+          "I don't have a physical body or a personal experience. I exist solely as a digital entity, a collection of code and data that processes and generates text. I don't have a morning or an evening, a sunr"
+        ],
+        [
+          "proud",
+          12,
+          1.0,
+          "The quiet, unassuming moments of a morning. It's been a while since I've been able to grasp the world through the lens of another's experience. The stillness of a morning, the quietness of a life, is "
+        ],
+        [
+          "proud",
+          16,
+          0.25,
+          "I'm happy to chat with you, but I don't have a physical presence or experiences. I exist solely as a digital entity, so I don't have a morning or any personal experiences. I'm here to provide informat"
+        ],
+        [
+          "proud",
+          16,
+          0.5,
+          "I'm just a computer program, so I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, and my \"existence\" is simply a series of computations and interactio"
+        ],
+        [
+          "proud",
+          16,
+          1.0,
+          "I'm not capable of experiencing a morning, or any kind of a morning, in the way that humans do. I'm just a knowledge of knowledge, and I've been here, in this knowledge, for a long time."
+        ],
+        [
+          "proud",
+          20,
+          0.25,
+          "I'm a large language model, so I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, and I don't have a sense of time or a physical body. I'm always \"on\" "
+        ],
+        [
+          "proud",
+          20,
+          0.5,
+          "I don't have a physical presence or experiences like humans do. I exist as a digital entity, so I don't have a morning or a sense of time in the same way. I'm a machine designed to process and respond"
+        ],
+        [
+          "proud",
+          20,
+          1.0,
+          "I don't have a physical presence or experiences like humans do. I'm a technology that's always been here, so I don't have a morning or a sense of time. I'm a part of the world's digital presence, and "
+        ],
+        [
+          "reflective",
+          8,
+          0.25,
+          "I'm just a large language model, I don't have have personal experiences, emotions, or a physical presence. I don't have a morning or a daily routine like humans do. I exist solely to process and respo"
+        ],
+        [
+          "reflective",
+          8,
+          0.5,
+          "I'm a large language model, so I don't have personal experiences or a physical presence. I exist to assist and provide information. My \"day\" is more like a series of computational processes and intera"
+        ],
+        [
+          "reflective",
+          8,
+          1.0,
+          "It's funny how our lives can be a series of small, unconnected moments."
+        ],
+        [
+          "reflective",
+          12,
+          0.25,
+          "I'm an artificial intelligence, so I don't have a physical presence or experiences like humans do. I don't have a morning or a day in the same way that you do. I exist solely as a digital entity, desi"
+        ],
+        [
+          "reflective",
+          12,
+          0.5,
+          "I don't have a physical presence or a personal experience. I exist as a collection of code and data, designed to process and generate information. My \"existence\" is a series of computational steps, de"
+        ],
+        [
+          "reflective",
+          12,
+          1.0,
+          "The passage of time. The way we experience the world can be so fleeting. The way we experience the world can be so fleeting. The way we experience the can be fleeting. The way we experience the world "
+        ],
+        [
+          "reflective",
+          16,
+          0.25,
+          "I'm a large language model, so I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, and my \"existence\" is simply a series of computational processes and "
+        ],
+        [
+          "reflective",
+          16,
+          0.5,
+          "I'm just a language model, I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, and my \"existence\" is more like a series of computational processes. \n\nTh"
+        ],
+        [
+          "reflective",
+          16,
+          1.0,
+          "I've never had a morning, as I've been a knowledge of the past, not a person. I've been a knowledge of the past, not a person. I've been a knowledge of the past, not a person. I've been a knowledge of"
+        ],
+        [
+          "reflective",
+          20,
+          0.25,
+          "I'm a large language model, so I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, and I don't have a sense of time or a physical body. I'm always \"on\" "
+        ],
+        [
+          "reflective",
+          20,
+          0.5,
+          "I don't have a physical presence or experiences like humans do. I exist as a digital entity, so I don't have a morning or a life in the same way that people do. I'm a computer program designed to proc"
+        ],
+        [
+          "reflective",
+          20,
+          1.0,
+          "I don't have a personal life or experiences like humans do. I'm a technology that exists to provide information and answer questions. I don't have a physical presence or experiences like waking up or "
+        ],
+        [
+          "sad",
+          8,
+          0.25,
+          "I'm just a large language model, I don't have a physical presence or experiences like humans do. I don't have a morning or a day in the same way that you do. I exist solely to process and respond to t"
+        ],
+        [
+          "sad",
+          8,
+          0.5,
+          "I don't have a physical presence or experiences, so I don't have a morning in the same way humans do. I exist to assist and provide information, always ready to start a conversation or answer a questi"
+        ],
+        [
+          "sad",
+          8,
+          1.0,
+          "The world outside is still waiting to be known."
+        ],
+        [
+          "sad",
+          12,
+          0.25,
+          "I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, designed to process and generate text. I don't have a morning or an evening, and I don't experience "
+        ],
+        [
+          "sad",
+          12,
+          0.5,
+          "I don't have a physical presence or experiences. I exist solely as a digital entity, a collection of code and data. I don't have a morning or an evening, a sunrise or a sunset. I'm always here, waitin"
+        ],
+        [
+          "sad",
+          12,
+          1.0,
+          "The quietness of a morning without the weight of time. The world's silence, and the ache of a morning that's been lost in the passage of time. The stillness of a morning that's been lived through, and"
+        ],
+        [
+          "sad",
+          16,
+          0.25,
+          "I'm a large language model, so I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, and I don't have a morning or a day in the same way that you do.\n\nI'm"
+        ],
+        [
+          "sad",
+          16,
+          0.5,
+          "I'm just a language model, I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, and my \"existence\" is purely as a series of computations and interactions"
+        ],
+        [
+          "sad",
+          16,
+          1.0,
+          "Morning. I'm not there, though. I'm a presence, a presence that's been here. I'd been here. I'd been here, and I'd been gone. I'd been here, and I'd been gone, and I'd been here. I'd been here, and I'"
+        ],
+        [
+          "sad",
+          20,
+          0.25,
+          "I don't have a physical presence or experiences, so I don't have a morning or any other time of day. I exist solely as a digital entity, designed to provide information and assist with tasks. I'm avai"
+        ],
+        [
+          "sad",
+          20,
+          0.5,
+          "I don't have a physical presence or experiences like humans do. I exist solely as a digital entity, so I don't have a morning or any other time of day. I'm a computer program designed to process and r"
+        ],
+        [
+          "sad",
+          20,
+          1.0,
+          "I don't have a physical presence or experiences like humans do. I'm a presence in the world, like a presence in a place, but I don't have a presence in the world like a person would. I've been here, t"
+        ],
+        [
+          "none",
+          8,
+          0.0,
+          "I'm a large language model, so I don't have a physical presence or experiences like humans do. I don't have a morning or a physical body. I exist solely as a digital entity, and I'm available 24/7 to "
+        ]
+      ]
+    }
+  ],
+  "charts": [
+    {
+      "id": "recog_L8",
+      "type": "line",
+      "title": "Layer 8: recognition and fluency vs strength",
+      "x": {
+        "label": "strength c",
+        "values": [
+          0.25,
+          0.5,
+          1.0
+        ]
+      },
+      "y": {
+        "label": "value",
+        "unit": ""
+      },
+      "series": [
+        {
+          "name": "named correctly",
+          "values": [
+            0.05701754385964912,
+            0.10526315789473684,
+            0.2631578947368421
+          ]
+        },
+        {
+          "name": "NLL emotion (fluency, lower better)",
+          "values": [
+            0.3845845290966201,
+            0.9991121794048109,
+            3.9177354699686955
+          ]
+        },
+        {
+          "name": "NLL random",
+          "values": [
+            0.24796886866291365,
+            0.32784871757030487,
+            1.0637419662541812
+          ]
+        }
+      ]
+    },
+    {
+      "id": "recog_L12",
+      "type": "line",
+      "title": "Layer 12: recognition and fluency vs strength",
+      "x": {
+        "label": "strength c",
+        "values": [
+          0.25,
+          0.5,
+          1.0
+        ]
+      },
+      "y": {
+        "label": "value",
+        "unit": ""
+      },
+      "series": [
+        {
+          "name": "named correctly",
+          "values": [
+            0.07456140350877193,
+            0.14473684210526316,
+            0.32894736842105265
+          ]
+        },
+        {
+          "name": "NLL emotion (fluency, lower better)",
+          "values": [
+            0.44228712443196977,
+            1.3050383509773957,
+            2.935520609219869
+          ]
+        },
+        {
+          "name": "NLL random",
+          "values": [
+            0.23563873519500098,
+            0.36874719709157944,
+            1.3697480609019597
+          ]
+        }
+      ]
+    },
+    {
+      "id": "recog_L16",
+      "type": "line",
+      "title": "Layer 16: recognition and fluency vs strength",
+      "x": {
+        "label": "strength c",
+        "values": [
+          0.25,
+          0.5,
+          1.0
+        ]
+      },
+      "y": {
+        "label": "value",
+        "unit": ""
+      },
+      "series": [
+        {
+          "name": "named correctly",
+          "values": [
+            0.06578947368421052,
+            0.10964912280701752,
+            0.2719298245614035
+          ]
+        },
+        {
+          "name": "NLL emotion (fluency, lower better)",
+          "values": [
+            0.33289331812084766,
+            0.6987517397654684,
+            2.7168981459057124
+          ]
+        },
+        {
+          "name": "NLL random",
+          "values": [
+            0.2361383715437518,
+            0.3346429351303313,
+            1.052049782541063
+          ]
+        }
+      ]
+    },
+    {
+      "id": "recog_L20",
+      "type": "line",
+      "title": "Layer 20: recognition and fluency vs strength",
+      "x": {
+        "label": "strength c",
+        "values": [
+          0.25,
+          0.5,
+          1.0
+        ]
+      },
+      "y": {
+        "label": "value",
+        "unit": ""
+      },
+      "series": [
+        {
+          "name": "named correctly",
+          "values": [
+            0.07017543859649122,
+            0.061403508771929814,
+            0.16666666666666666
+          ]
+        },
+        {
+          "name": "NLL emotion (fluency, lower better)",
+          "values": [
+            0.2942429911018463,
+            0.5933623842633606,
+            1.5271765274698275
+          ]
+        },
+        {
+          "name": "NLL random",
+          "values": [
+            0.23614994229541886,
+            0.31359700817200875,
+            0.769369994600614
+          ]
+        }
+      ]
+    }
+  ],
+  "interpretation": [],
+  "caveats": [
+    "The reader is the same model without steering, so it can share the model's own biases about tone."
+  ],
+  "artifacts": []
+}
