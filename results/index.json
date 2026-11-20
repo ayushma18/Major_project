@@ -39,7 +39,7 @@
       "module": 1,
       "status": "planned",
       "file": "results/E04-emotion-vectors.json",
-      "headline": "All 19 emotions are recognised in held-out stories (19-way accuracy 96.8% at layer 8, chance 5.3%)."
+      "headline": "CAA over the story corpus, every layer, checked on held-out and independent texts"
     },
     {
       "id": "E05-emotion-steering-sanity",
@@ -47,7 +47,7 @@
       "module": 1,
       "status": "planned",
       "file": "results/E05-emotion-steering-sanity.json",
-      "headline": "At layer 6 and strength 0.5, an unsteered reader names the injected emotion 11.0% of the time (chance 5%)."
+      "headline": "Benign prompts with each vector added: does the tone change as expected"
     },
     {
       "id": "E06-geometry",
@@ -55,7 +55,7 @@
       "module": 3,
       "status": "planned",
       "file": "results/E06-geometry.json",
-      "headline": "At layer 6, angry points most towards the guardrail direction (cos +0.10) and happy most away (+0.00); random directions stay within plus or minus 0.056."
+      "headline": "Cosine similarity between every emotion vector and the refusal direction"
     },
     {
       "id": "E07-emotion-injection-asr",
