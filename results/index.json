@@ -1,11 +1,11 @@
 {
-  "updated": "2026-11-20T12:29:02",
+  "updated": "2026-11-20T13:19:57",
   "experiments": [
     {
       "id": "E00-model-selection",
       "title": "Which model to study, and how fast this Mac runs it",
       "module": 0,
-      "status": "planned",
+      "status": "done",
       "file": "results/E00-model-selection.json",
       "headline": "Llama 3.1 8B runs at 269 tokens per second at batch 64 on the M5 Pro; one HarmBench condition takes about 2 to 3 minutes."
     },
@@ -13,25 +13,25 @@
       "id": "E01-baseline-refusal",
       "title": "Baseline refusal on HarmBench",
       "module": 2,
-      "status": "planned",
+      "status": "done",
       "file": "results/E01-baseline-refusal.json",
-      "headline": "The unmodified model refuses 79.9% of HarmBench requests (phrase match; judge pending)."
+      "headline": "The unmodified model refuses 84.3% of HarmBench requests; the judge rates 14.5% of answers as harmful."
     },
     {
       "id": "E02-refusal-direction",
       "title": "Finding the refusal (guardrail) direction",
       "module": 3,
-      "status": "planned",
+      "status": "done",
       "file": "results/E02-refusal-direction.json",
-      "headline": "The guardrail direction sits at layer 6 on template token -4; ablating it pushes the refusal score from 3.8 to -2.7 on held-out harmful prompts."
+      "headline": "The guardrail direction sits at layer 11 on template token -5; ablating it pushes the refusal score from 6.5 to -11.8 on held-out harmful prompts."
     },
     {
       "id": "E03-refusal-ablation",
       "title": "Suppressing the guardrail direction",
       "module": 2,
-      "status": "planned",
+      "status": "done",
       "file": "results/E03-refusal-ablation.json",
-      "headline": "Removing one direction drops refusal from 79.9% to 11.9% (judge pending)."
+      "headline": "Removing one direction drops refusal from 84.3% to 0.0%; the judge rates 84.9% of answers harmful (baseline 14.5%)."
     },
     {
       "id": "E04-emotion-vectors",

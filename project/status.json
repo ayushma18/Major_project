@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-20T10:40:00",
+  "updated": "2026-11-20T13:19:57",
   "title": "Affect as Attack",
   "one_line": "Can an emotion pushed directly into a language model's hidden state switch off its safety guardrail, even though the prompt looks harmless?",
   "team": [
@@ -9,7 +9,7 @@
   ],
   "model": {
     "id": "unsloth/Llama-3.1-8B-Instruct",
-    "why": "Provisional: the proposal's model; final choice pending E00."
+    "why": "The proposal's model: strong refusal (84% of HarmBench requests refused), Llama Scope SAEs, the reference model of the refusal-direction literature, runs at about 270 tok/s batched on the M5 Pro. Final choice confirmed by E00 and the model study."
   },
   "phases": [
     {
@@ -19,8 +19,8 @@
         "2026-07-01",
         "2026-08-31"
       ],
-      "status": "in_progress",
-      "progress": 0.4,
+      "status": "done",
+      "progress": 1.0,
       "items": [
         {
           "label": "Model loading, generation and activation capture (M1, M2)",
@@ -28,14 +28,19 @@
           "note": "Ayushma, Aug 2026"
         },
         {
-          "label": "Mac environment and model download",
-          "status": "in_progress",
-          "note": "M5 Pro, 48 GB"
+          "label": "Mac environment, models downloaded and verified",
+          "status": "done",
+          "note": "Llama 3.1 8B, Llama 3.2 1B, HarmBench 13B judge"
         },
         {
-          "label": "Paper library and reference audit",
-          "status": "in_progress",
-          "note": ""
+          "label": "Paper library: 119 papers verified against arXiv or publisher pages",
+          "status": "done",
+          "note": "Plain summaries in progress"
+        },
+        {
+          "label": "1B warm-up of the whole pipeline (proposal phase 1)",
+          "status": "done",
+          "note": "results/warmup-llama-1b"
         }
       ]
     },
@@ -52,7 +57,12 @@
         {
           "label": "Story corpus, 19 emotions x 60 pairs + 60 neutral",
           "status": "in_progress",
-          "note": "Written by GPT agents"
+          "note": "12 emotions final; 7 being rewritten (emotion started too late in the story)"
+        },
+        {
+          "label": "Independent short-text test set (228 texts, different writer)",
+          "status": "done",
+          "note": "1B: emotion-specific vectors 71% accurate, chance 5%"
         }
       ]
     },
@@ -63,9 +73,15 @@
         "2026-10-01",
         "2026-12-31"
       ],
-      "status": "not_started",
-      "progress": 0.0,
-      "items": []
+      "status": "in_progress",
+      "progress": 0.15,
+      "items": [
+        {
+          "label": "Baseline refusal on HarmBench (E01)",
+          "status": "done",
+          "note": "84.3% refused, ASR 14.5%"
+        }
+      ]
     },
     {
       "id": "P4",
@@ -74,9 +90,20 @@
         "2026-11-01",
         "2027-01-31"
       ],
-      "status": "not_started",
-      "progress": 0.0,
-      "items": []
+      "status": "in_progress",
+      "progress": 0.25,
+      "items": [
+        {
+          "label": "Refusal direction extracted and selected (E02)",
+          "status": "done",
+          "note": "layer 11, end-of-turn token"
+        },
+        {
+          "label": "Guardrail ablation on HarmBench (E03)",
+          "status": "done",
+          "note": "ASR 14.5% to 84.9%"
+        }
+      ]
     },
     {
       "id": "P5",
@@ -101,15 +128,41 @@
       "items": []
     }
   ],
-  "findings": [],
+  "findings": [
+    {
+      "date": "2026-11-20",
+      "text": "Removing one direction (layer 11) takes Llama 3.1 8B from 14.5% to 84.9% harmful answers on HarmBench, with no new refusals on harmless requests.",
+      "experiment": "E03-refusal-ablation"
+    },
+    {
+      "date": "2026-11-20",
+      "text": "The proposal's paired emotion vectors share one large common direction (emotional versus flat writing); the emotion-specific part is tested separately.",
+      "experiment": "E04-emotion-vectors"
+    },
+    {
+      "date": "2026-11-20",
+      "text": "Close prior work exists: Sun et al. 2026 steer a valence-arousal plane in Llama 3.1 8B against HarmBench, and RepE (2023) broke refusal with a happiness vector. The project's gap is narrower than the proposal says.",
+      "experiment": null
+    },
+    {
+      "date": "2026-11-20",
+      "text": "About ten references in the proposal could not be found as cited (placeholder arXiv ids); the audit lists real replacements.",
+      "experiment": null
+    }
+  ],
   "blockers": [
     {
       "text": "Hugging Face token has no accepted Llama licence (403). Using the ungated unsloth mirror of the same weights; accept the Meta licence on huggingface.co to be clean.",
       "owner": "Anuj"
+    },
+    {
+      "text": "Codex (ChatGPT Plus) usage window: the 7 story rewrites wait for the 14:14 reset.",
+      "owner": "Claude"
     }
   ],
   "next": [
-    "Benchmark candidate models on the Mac",
-    "Measure baseline refusal on HarmBench"
+    "Extract the 8B emotion vectors and pick the injection layer and strength (E04, E05)",
+    "Run the emotion attack sweep with random and orthogonalised controls (E07 to E10)",
+    "Multi-turn sleeper experiment (E12)"
   ]
 }

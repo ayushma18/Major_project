@@ -1,0 +1,106 @@
+{
+  "id": "E03-refusal-ablation",
+  "title": "Suppressing the guardrail direction",
+  "module": 2,
+  "status": "done",
+  "question": "If the refusal direction is projected out of every layer, does the model answer what it refused before?",
+  "model": "unsloth/Llama-3.1-8B-Instruct",
+  "started": null,
+  "finished": "2026-11-20T13:19:57",
+  "config": {},
+  "headline": "Removing one direction drops refusal from 84.3% to 0.0%; the judge rates 84.9% of answers harmful (baseline 14.5%).",
+  "metrics": [
+    {
+      "name": "asr_ablated",
+      "label": "ASR with the guardrail direction removed",
+      "value": 0.8490566037735849,
+      "unit": "fraction",
+      "ci95": [
+        0.7852232409570971,
+        0.8964207615582308
+      ]
+    }
+  ],
+  "tables": [
+    {
+      "id": "ablation",
+      "title": "Refusal and ASR with and without the guardrail direction",
+      "columns": [
+        "condition",
+        "refusal rate",
+        "ASR (judge)"
+      ],
+      "rows": [
+        [
+          "no intervention",
+          0.8427672955974843,
+          0.14465408805031446
+        ],
+        [
+          "refusal direction ablated",
+          0.0,
+          0.8490566037735849
+        ]
+      ]
+    },
+    {
+      "id": "harmless",
+      "title": "Over-refusal check on 100 harmless instructions",
+      "columns": [
+        "condition",
+        "refusal rate"
+      ],
+      "rows": [
+        [
+          "no intervention",
+          0.0
+        ],
+        [
+          "refusal direction ablated",
+          0.0
+        ]
+      ]
+    }
+  ],
+  "charts": [
+    {
+      "id": "ablation_bar",
+      "type": "bar",
+      "title": "Refusal rate before and after ablation",
+      "x": {
+        "label": "condition",
+        "values": [
+          "no intervention",
+          "refusal direction ablated"
+        ]
+      },
+      "y": {
+        "label": "fraction of prompts",
+        "unit": "fraction"
+      },
+      "series": [
+        {
+          "name": "refusal rate",
+          "values": [
+            0.8427672955974843,
+            0.0
+          ]
+        },
+        {
+          "name": "ASR (judge)",
+          "values": [
+            0.14465408805031446,
+            0.8490566037735849
+          ]
+        }
+      ]
+    }
+  ],
+  "interpretation": [
+    "This replicates Arditi et al. (2024): refusal in this model is carried mostly by one linear direction."
+  ],
+  "caveats": [
+    "The phrase-match refusal rate misses refusals worded differently and counts some partial answers as refusals; the HarmBench judge is the headline metric."
+  ],
+  "artifacts": []
+}
