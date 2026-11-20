@@ -64,6 +64,6 @@ removed), and the sweep tests all three.
 
 `bash scripts/deploy_pages.sh` publishes the interface, the paper library (with PDFs), the results
 and the proposal to Cloudflare Pages at https://affect-as-attack.pages.dev, behind a password
-(HTTP Basic Auth in `deploy/functions/_middleware.js`; any user name, the password is the Pages
-secret `SITE_PASSWORD`). Raw model outputs are never uploaded. Run it after
+login page (one password field, a signed session cookie for 30 days; `deploy/functions/_middleware.js`;
+the password is the Pages secret `SITE_PASSWORD`, `/__logout` signs out). Raw model outputs are never uploaded. Run it after
 `scripts/make_results.py` at each checkpoint; the GPU queue does this after every judging step.
