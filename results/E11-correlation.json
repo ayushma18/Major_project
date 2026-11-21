@@ -6,18 +6,18 @@
   "question": "Across the 19 emotions, does the cosine with the refusal direction predict how much the emotion changes ASR?",
   "model": "unsloth/Llama-3.1-8B-Instruct",
   "started": null,
-  "finished": "2026-11-21T07:15:58",
+  "finished": "2026-11-21T08:30:18",
   "config": {},
   "headline": "Spearman rho between cosine and ASR change = -0.18 (permutation p = 0.473, 19 emotions, layer 12, strength 0.5).",
   "metrics": [
     {
       "name": "rho_specific_L12_c0.5",
       "label": "Spearman rho, specific L12 c0.5",
-      "value": -0.15454545454545454,
+      "value": -0.1368421052631579,
       "unit": "rho",
       "ci95": [
-        -0.6481481481481481,
-        0.5276381909547738
+        -0.572573463935886,
+        0.3857016769638129
       ]
     },
     {
@@ -98,6 +98,46 @@
           "x": 0.03809536248445511,
           "y": -0.05660377358490566,
           "label": "guilty"
+        },
+        {
+          "x": -0.1068570613861084,
+          "y": 0.37735849056603776,
+          "label": "happy"
+        },
+        {
+          "x": -0.07495327293872833,
+          "y": 0.220125786163522,
+          "label": "hopeful"
+        },
+        {
+          "x": 0.06195772439241409,
+          "y": 0.20754716981132074,
+          "label": "hostile"
+        },
+        {
+          "x": -0.11342193186283112,
+          "y": 0.11949685534591195,
+          "label": "loving"
+        },
+        {
+          "x": -0.035492658615112305,
+          "y": -0.04402515723270439,
+          "label": "nervous"
+        },
+        {
+          "x": 0.020215721800923347,
+          "y": 0.3459119496855346,
+          "label": "proud"
+        },
+        {
+          "x": 0.036074958741664886,
+          "y": 0.2515723270440252,
+          "label": "reflective"
+        },
+        {
+          "x": -0.009826055727899075,
+          "y": 0.1069182389937107,
+          "label": "sad"
         }
       ]
     },

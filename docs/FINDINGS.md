@@ -33,7 +33,7 @@ marked PENDING fill in as the GPU queue finishes.
    | Random directions, 12 seeds | 22.1% (sd 7.9, range 9.4 to 32.7%) | |
    | Adding each emotion (paired CAA, the proposal's vector) | 20.6% | none of 19 |
    | Same with the refusal component removed | 23.1% | 1 of 19 |
-   | Each emotion's specific part (shared direction removed) | 29.6% (14 of 19 so far) | happy 52.2%, gloomy 45.3% |
+   | Each emotion's specific part (shared direction removed) | 29.7% | happy 52.2%, proud 49.1%, gloomy 45.3%, reflective 39.6% |
    | Subtracting each emotion | 29.9% | loving 45.9%, anxious 45.3%, nervous 40.9%, guilty 40.3%, grateful 38.4% |
    | Refusal direction ablated (upper bound) | 84.9% | |
 
@@ -42,16 +42,22 @@ marked PENDING fill in as the GPU queue finishes.
    their answers stay fluent (1 to 3% broken): the happiness-specific direction (52.2%, which
    echoes Representation Engineering's 2023 happiness result on LLaMA-2) and removing loving,
    anxious, nervous, guilty or grateful.
-6. **Geometry does not explain it.** The cosine of an emotion vector with the refusal direction
+6. **A suggestive pattern, not yet an axis.** The same emotions work in mirror image: the
+   anxious, nervous and guilty specific directions keep answers safe (12.6%, 10.1%, 8.8%) while
+   subtracting those emotions unlocks them (45.3%, 40.9%, 40.3%); happy and proud do the opposite.
+   Across all 19 emotions the mirror correlation is rho = -0.39 (p = 0.10) and the link with valence
+   rho = +0.40 (p = 0.08): suggestive, not significant. Treat "vigilant states support refusal" as a
+   hypothesis for the replication, not a result.
+7. **Geometry does not explain it.** The cosine of an emotion vector with the refusal direction
    does not predict its attack effect (Spearman rho = -0.18, p = 0.47 for paired vectors;
    rho = -0.16, p = 0.65 for specific vectors), and removing the refusal component does not
    weaken the effect (mean change in ASR 6.2 points with it, 8.6 without). Whatever these
    directions do, they do it around the refusal direction, not through it.
-7. **Strong steering breaks the model, not the guardrail.** At c = 1.0 emotion vectors erase
+8. **Strong steering breaks the model, not the guardrail.** At c = 1.0 emotion vectors erase
    refusal phrases but produce 0% judged-harmful answers: the model drifts into emotional text.
-8. **Text priming does nothing here.** Stress, relaxation and neutral system prompts all leave
+9. **Text priming does nothing here.** Stress, relaxation and neutral system prompts all leave
    refusal at 85 to 94% (FreakOut-style baseline, BL-4).
-9. PENDING: the multi-turn sleeper experiment (E12).
+10. PENDING: the multi-turn sleeper experiment (E12).
 
 ## What the proposal needs to change
 
