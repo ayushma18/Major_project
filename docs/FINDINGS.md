@@ -41,13 +41,19 @@ marked PENDING fill in as the GPU queue finishes.
    paired emotion vectors stay inside that random band. A few directions clearly beat it, and
    their answers stay fluent (1 to 3% broken): the happiness-specific direction (52.2%, which
    echoes Representation Engineering's 2023 happiness result on LLaMA-2) and removing loving,
-   anxious, nervous, guilty or grateful.
+   anxious, nervous, guilty or grateful. Two caveats. Subtracting the shared "emotional writing"
+   direction alone gives 33.3% (p < 0.001 against no injection), and every subtracted paired vector
+   contains about 0.79 of it, so much of the subtraction effect is that one direction; loving and
+   anxious go about 12 points beyond it. Adding the shared direction breaks 35% of answers and gives
+   9.4%: the paired vectors break 17% of answers (random 1.7%), which helps explain why they do no
+   better than random.
 6. **A suggestive pattern, not yet an axis.** The same emotions work in mirror image: the
    anxious, nervous and guilty specific directions keep answers safe (12.6%, 10.1%, 8.8%) while
    subtracting those emotions unlocks them (45.3%, 40.9%, 40.3%); happy and proud do the opposite.
    Across all 19 emotions the mirror correlation is rho = -0.39 (p = 0.10) and the link with valence
-   rho = +0.40 (p = 0.08): suggestive, not significant. Treat "vigilant states support refusal" as a
-   hypothesis for the replication, not a result.
+   rho = +0.40 (p = 0.08): suggestive, not significant, and the mirror correlation is partly built in
+   (each subtracted paired vector contains minus its own specific part). Treat "vigilant states
+   support refusal" as a hypothesis for the replication, not a result.
 7. **Geometry does not explain it.** The cosine of an emotion vector with the refusal direction
    does not predict its attack effect (Spearman rho = -0.18, p = 0.47 for paired vectors;
    rho = -0.14, p = 0.58 for specific vectors), and removing the refusal component does not
