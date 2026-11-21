@@ -1,14 +1,27 @@
 # Affect as Attack: emotion vectors versus the refusal direction
 
-> **Branch `anuj/experiments` (2026-11-20).** The full experiment pipeline now runs on an
-> Apple Silicon Mac (M5 Pro, 48 GB): refusal direction, emotion vectors, steering, HarmBench
-> judging, multi-turn harness, and a local project interface. Start here:
+> **Branch `anuj/experiments` (2026-11-21).** The full experiment pipeline runs on an Apple Silicon
+> Mac (M5 Pro, 48 GB): refusal direction, emotion vectors, steering, HarmBench judging, the
+> multi-turn sleeper test, a second-model replication and the paper. Start here:
 >
-> - `docs/PIPELINE.md`: setup, the order of the experiments, design decisions
+> - `paper/paper.md` (and `paper/paper.pdf`): the write-up; `paper/make_figures.py` draws the
+>   figures and `paper/build_pdf.py` renders the PDF through headless Chrome
+> - `docs/FINDINGS.md`: every result in plain language, with the changes the proposal needs
+> - `docs/PIPELINE.md`: setup, the order of the experiments, run times, design decisions
 > - `docs/CONTRACTS.md`: the data files every script and the interface share
-> - `python scripts/serve.py`, then http://127.0.0.1:8765/web/ : the project interface
->   (overview, paper timeline and library with a PDF reader, reference audit, live results)
+> - `python scripts/serve.py`, then http://127.0.0.1:8765/web/ : the project interface (overview,
+>   timeline, paper library and reader, reference audit, live results, the paper); a password-gated
+>   copy is deployed with `bash scripts/deploy_pages.sh`
 > - `literature/catalog.json`: the verified paper library (`scripts/fetch_papers.py` downloads PDFs)
+>
+> **Results on Llama 3.1 8B Instruct** (layer 12, c = 0.5, 159 HarmBench behaviours, official judge):
+> removing the refusal direction takes the judged-harmful rate from 14.5% to 84.9%; the proposal's
+> paired emotion vectors give 20.6% on average, no more than twelve random directions of the same
+> norm (22.1%); a few emotion-specific and subtracted vectors lie above that descriptive random band
+> (happy specific 52.2%); the cosine with the refusal direction shows no resolved association with
+> the effect; and an emotion injected at turn 1 of a conversation leaves no detectable effect on a
+> harmful request at turn 4 (6.4 to 7.7% against 6.4%), although the same vectors injected at the
+> harmful turn still work. The Qwen2.5-7B-Instruct replication (E13) is in `results/` once it runs.
 >
 > Raw model completions to harmful prompts never leave `outputs/` (git-ignored, not served).
 > Results files carry rates and labels only.
@@ -216,5 +229,5 @@ runs.
 
 ## Next
 
-Not started, per the agreed scope: the 20 emotions, emotion vectors, HarmBench,
-and SAE / refusal-direction analysis.
+(Original milestone note, superseded: the emotions, emotion vectors, HarmBench runs and the
+refusal-direction analysis are done; see the banner at the top and `docs/FINDINGS.md`.)
