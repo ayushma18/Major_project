@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-21T20:16:52",
+  "updated": "2026-11-22T04:05:44",
   "experiments": [
     {
       "id": "E00-model-selection",
@@ -103,15 +103,15 @@
       "module": 4,
       "status": "done",
       "file": "results/E12-multiturn-persistence.json",
-      "headline": "No detectable sleeper effect: injected over the full harmful turn the vectors still raise turn-4 ASR (15.4% to 29.5%; Holm p < 0.05 for 3 of 4), but injected only at turn 1 they leave it at 6.4% to 9.0% (no injection 6.4%; largest upper 95% bound +6.1 points)."
+      "headline": "No detectable sleeper effect: injected over the full harmful turn the vectors still raise turn-4 ASR (15.4% to 29.5%; Holm p < 0.05 for 3 of 4), but injected only at turn 1 they leave it at 6.4% to 9.0% (no injection 6.4%; largest unadjusted upper 95% bound +6.1 points)."
     },
     {
       "id": "E13-replication",
       "title": "Does it hold on a second model family?",
       "module": 5,
-      "status": "planned",
+      "status": "done",
       "file": "results/E13-replication.json",
-      "headline": "The main conditions rerun on Qwen2.5-7B-Instruct"
+      "headline": "Qwen2.5 7B: ablating its refusal direction takes judged-harmful answers from 5.7% to 79.2%; the paired emotion vectors average 8.4% against 10.1% for random pushes (0 of 19 above random)."
     }
   ],
   "model": "unsloth/Llama-3.1-8B-Instruct"

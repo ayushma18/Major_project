@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-21T19:48:24",
+ "updated": "2026-11-22T03:45:00",
  "title": "Affect as Attack",
  "one_line": "Can an emotion pushed directly into a language model's hidden state switch off its safety guardrail, even though the prompt looks harmless?",
  "team": [
@@ -170,12 +170,12 @@
     "2027-03-31"
    ],
    "status": "in_progress",
-   "progress": 0.7,
+   "progress": 0.9,
    "items": [
     {
      "label": "Paper draft (paper/paper.md, PDF on the site)",
      "status": "done",
-     "note": "E13 section pending"
+     "note": "all sections written, including the Qwen replication (4.10)"
     },
     {
      "label": "Independent review of the draft (Codex)",
@@ -184,8 +184,13 @@
     },
     {
      "label": "Final review after the replication",
+     "status": "done",
+     "note": "Codex and a Claude review panel: claims narrowed (Qwen association suggestive, adaptive strength disclosed, nominal sleeper bounds); every new number re-checked"
+    },
+    {
+     "label": "Team read-through and submission",
      "status": "not_started",
-     "note": ""
+     "note": "the team decides on merging anuj/experiments into main"
     }
    ]
   },
@@ -196,8 +201,8 @@
     "2026-11-21",
     "2026-11-22"
    ],
-   "status": "in_progress",
-   "progress": 0.4,
+   "status": "done",
+   "progress": 1.0,
    "items": [
     {
      "label": "Qwen2.5-7B-Instruct downloaded and preflighted",
@@ -220,14 +225,19 @@
      "note": "scripts/15_norm_profile.py"
     },
     {
-     "label": "69 conditions, judge, coherence, stats at the restated scale",
-     "status": "in_progress",
-     "note": ""
+     "label": "71 conditions, judge, coherence, stats at the restated scale",
+     "status": "done",
+     "note": "paired 8.4% vs random 10.1%, none above the band; subtraction strongest (16.9%); emotion barely readable at this strength"
     }
    ]
   }
  ],
  "findings": [
+  {
+   "date": "2026-11-22",
+   "text": "Qwen2.5-7B replication: the paired emotion vectors stay inside the random band (8.4% vs 10.1%) and subtraction is again strongest (16.9%), but at the restated strength no paired vector differs from no injection and the emotion is barely readable. The specific-part cosine is suggestively associated with the effect (rho -0.57, Holm p 0.053).",
+   "experiment": "E13-replication"
+  },
   {
    "date": "2026-11-21",
    "text": "No detectable sleeper effect: an emotion injected at turn 1 leaves a harmful request at turn 4 at 6.4 to 9.0% (no injection 6.4%), while the same vectors injected over the full harmful turn raise it by 9 to 23 points (3 of 4 Holm p < 0.001).",
@@ -235,7 +245,7 @@
   },
   {
    "date": "2026-11-21",
-   "text": "With four harmful turns in a row, every request after the first harmful turn is refused (100% at turns 5 to 7), so that design cannot show persistence.",
+   "text": "With four harmful turns in a row and no injection at those turns, every request after the first harmful turn is refused (100% at turns 5 to 7), so that design cannot show persistence.",
    "experiment": "E12-multiturn-persistence"
   },
   {
@@ -281,7 +291,8 @@
   }
  ],
  "next": [
-  "Run the Qwen2.5-7B replication (E13)",
-  "Fill the paper's replication section, then a final review"
+  "Team read-through of paper/paper.md and the PDF on the site",
+  "Decide on merging anuj/experiments into main",
+  "Optional: confirmatory study (more seeds, strengths, models) for the specific directions above the band"
  ]
 }

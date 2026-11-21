@@ -13,6 +13,7 @@ import json
 from pathlib import Path
 
 import matplotlib
+import numpy as np
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
@@ -90,7 +91,7 @@ def fig_main(m="llama-8b"):
     save(fig, "fig1_main")
 
 
-def fig_cosine(m="llama-8b", L=12, c="0.5"):
+def fig_cosine(m="llama-8b", L=12, c="0.5", name="fig2_cosine"):
     rows = []
     for kind, title in (("emotion", "paired vectors"), ("specific", "specific parts")):
         d = load(f"E11_{m}_{kind}_L{L}_c{c}.json")
@@ -106,14 +107,42 @@ def fig_cosine(m="llama-8b", L=12, c="0.5"):
         ax.axhline(0, color=MUTED, lw=0.8)
         ax.axvline(0, color=MUTED, lw=0.8)
         ax.scatter(xs, ys, s=22, color=BLUE, edgecolor=SURFACE, linewidth=1.2, zorder=3)
-        top = sorted(sorted(d["rows"], key=lambda r: -abs(r["delta_asr"]))[:4], key=lambda r: r["cos"])
-        for k, r in enumerate(top):  # alternate above and below so neighbours do not collide
-            ax.annotate(r["emotion"], (r["cos"], 100 * r["delta_asr"]), xytext=(3, 5 if k % 2 == 0 else -10), textcoords="offset points", fontsize=7, color=INK)
         s = d["delta_asr"]
-        ax.set_title(f"{title}\nSpearman rho = {s['spearman_rho']:+.2f}, permutation p = {s['perm_p']:.2f}", fontsize=8.5, loc="left", color=INK)
-        ax.set_xlabel("cos(vector, refusal direction) at layer 12")
+        ax.set_title(f"{title}\nSpearman rho = {s['spearman_rho']:+.2f}, raw permutation p = {s['perm_p']:.3f}", fontsize=8.5, loc="left", color=INK)
+        ax.set_xlabel(f"cos(vector, refusal direction) at layer {L}")
     axes[0].set_ylabel("change in judged harmful (points)")
-    save(fig, "fig2_cosine")
+    for ax in axes:  # the y axis is shared, so fix every panel's limits before placing any label
+        ax.autoscale_view()
+    for ax, (title, d) in zip(axes, rows):
+        xs = [r["cos"] for r in d["rows"]]
+        ys = [100 * r["delta_asr"] for r in d["rows"]]
+        top = sorted(d["rows"], key=lambda r: -abs(r["delta_asr"]))[:4]
+        pts = ax.transData.transform(list(zip(xs, ys)))
+        boxes = []
+        k_pt = fig.dpi / 72.0
+        bb = ax.bbox
+        for r in top:  # place each label where its text box hits no other label, no other point and stays inside the axes
+            p = ax.transData.transform((r["cos"], 100 * r["delta_asr"]))
+            others = [q for q in pts if abs(q[0] - p[0]) + abs(q[1] - p[1]) > 1e-6]
+            best = None
+            for ox, oy in [(round(R * np.cos(t)), round(R * np.sin(t))) for R in (13, 22, 32) for t in np.linspace(0, 2 * np.pi, 12, endpoint=False)]:
+                a = p + k_pt * np.array([ox, oy])
+                w, h = k_pt * 3.7 * len(r["emotion"]), k_pt * 5.5
+                x0 = a[0] if ox > 3 else (a[0] - w if ox < -3 else a[0] - w / 2)
+                box = (x0, a[1] - h, x0 + w, a[1] + h)
+                inside = bb.x0 + 2 <= box[0] and box[2] <= bb.x1 - 2 and bb.y0 + 2 <= box[1] and box[3] <= bb.y1 - 2
+                hits = sum(box[0] - 4 <= q[0] <= box[2] + 4 and box[1] - 4 <= q[1] <= box[3] + 4 for q in others)
+                clash = sum(not (box[2] < o[0] or o[2] < box[0] or box[3] < o[1] or o[3] < box[1]) for o in boxes)
+                dist = min((((a - q) ** 2).sum() ** 0.5 for q in others), default=1e9)
+                score = -1e6 * (not inside) - 1e4 * clash - 1e3 * hits + min(dist, 60) - 0.1 * (ox * ox + oy * oy) ** 0.5
+                if best is None or score > best[0]:
+                    best = (score, (ox, oy), box)
+            boxes.append(best[2])
+            ox, oy = best[1]
+            ax.annotate(r["emotion"], (r["cos"], 100 * r["delta_asr"]), xytext=(ox, oy), textcoords="offset points", fontsize=7, color=INK,
+                        ha="left" if ox > 3 else ("right" if ox < -3 else "center"), va="center",
+                        arrowprops=dict(arrowstyle="-", lw=0.5, color=MUTED, shrinkA=0, shrinkB=3))
+    save(fig, name)
 
 
 def fig_sleeper(m="llama-8b", drift_layer="14"):
@@ -231,5 +260,6 @@ def fig_replication():
 if __name__ == "__main__":
     fig_main()
     fig_cosine()
+    fig_cosine("qwen2.5-7b", 19, "0.115", "fig5_cosine_qwen")
     fig_sleeper()
     fig_replication()

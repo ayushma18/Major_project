@@ -1,0 +1,418 @@
+{
+  "id": "E00-model-selection",
+  "title": "Which model to study, and how fast this Mac runs it",
+  "module": 0,
+  "status": "done",
+  "question": "Can a 48 GB M5 Pro run the whole experiment grid, and at what speed?",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "started": null,
+  "finished": "2026-11-22T04:05:41",
+  "config": {},
+  "headline": "Llama 3.1 8B runs at 269 tokens per second at batch 64 on the M5 Pro; one HarmBench condition takes about 2 to 3 minutes.",
+  "metrics": [
+    {
+      "name": "tps_8b_best",
+      "label": "8B best throughput",
+      "value": 268.8,
+      "unit": "tok/s"
+    }
+  ],
+  "tables": [
+    {
+      "id": "throughput",
+      "title": "Generation throughput (tokens per second, whole batch)",
+      "columns": [
+        "model",
+        "dtype",
+        "batch",
+        "steering hook",
+        "tok/s",
+        "GPU memory GiB"
+      ],
+      "rows": [
+        [
+          "unsloth/Llama-3.2-1B-Instruct",
+          "bfloat16",
+          1,
+          "no",
+          33.0,
+          3.0
+        ],
+        [
+          "unsloth/Llama-3.2-1B-Instruct",
+          "bfloat16",
+          1,
+          "yes",
+          33.0,
+          3.0
+        ],
+        [
+          "unsloth/Llama-3.2-1B-Instruct",
+          "bfloat16",
+          16,
+          "no",
+          130.7,
+          3.4
+        ],
+        [
+          "unsloth/Llama-3.2-1B-Instruct",
+          "bfloat16",
+          16,
+          "yes",
+          343.7,
+          3.4
+        ],
+        [
+          "unsloth/Llama-3.2-1B-Instruct",
+          "bfloat16",
+          32,
+          "no",
+          417.7,
+          3.4
+        ],
+        [
+          "unsloth/Llama-3.2-1B-Instruct",
+          "bfloat16",
+          32,
+          "yes",
+          542.5,
+          3.4
+        ],
+        [
+          "unsloth/Llama-3.2-1B-Instruct",
+          "float16",
+          1,
+          "no",
+          27.1,
+          3.2
+        ],
+        [
+          "unsloth/Llama-3.2-1B-Instruct",
+          "float16",
+          1,
+          "yes",
+          24.0,
+          3.2
+        ],
+        [
+          "unsloth/Llama-3.2-1B-Instruct",
+          "float16",
+          16,
+          "no",
+          169.3,
+          3.5
+        ],
+        [
+          "unsloth/Llama-3.2-1B-Instruct",
+          "float16",
+          16,
+          "yes",
+          331.1,
+          3.5
+        ],
+        [
+          "unsloth/Llama-3.2-1B-Instruct",
+          "float16",
+          32,
+          "no",
+          560.8,
+          3.6
+        ],
+        [
+          "unsloth/Llama-3.2-1B-Instruct",
+          "float16",
+          32,
+          "yes",
+          736.1,
+          3.6
+        ],
+        [
+          "unsloth/Llama-3.2-1B-Instruct",
+          "MLX bf16",
+          1,
+          "no",
+          69.4,
+          null
+        ],
+        [
+          "unsloth/Llama-3.1-8B-Instruct",
+          "bfloat16",
+          1,
+          "no",
+          13.6,
+          15.0
+        ],
+        [
+          "unsloth/Llama-3.1-8B-Instruct",
+          "bfloat16",
+          1,
+          "yes",
+          13.6,
+          15.0
+        ],
+        [
+          "unsloth/Llama-3.1-8B-Instruct",
+          "bfloat16",
+          16,
+          "no",
+          132.0,
+          16.1
+        ],
+        [
+          "unsloth/Llama-3.1-8B-Instruct",
+          "bfloat16",
+          16,
+          "yes",
+          141.0,
+          16.1
+        ],
+        [
+          "unsloth/Llama-3.1-8B-Instruct",
+          "bfloat16",
+          32,
+          "no",
+          197.7,
+          18.1
+        ],
+        [
+          "unsloth/Llama-3.1-8B-Instruct",
+          "bfloat16",
+          32,
+          "yes",
+          204.3,
+          18.1
+        ],
+        [
+          "unsloth/Llama-3.1-8B-Instruct",
+          "bfloat16",
+          64,
+          "no",
+          268.8,
+          20.2
+        ],
+        [
+          "unsloth/Llama-3.1-8B-Instruct",
+          "bfloat16",
+          64,
+          "yes",
+          280.7,
+          21.2
+        ],
+        [
+          "unsloth/Llama-3.1-8B-Instruct",
+          "MLX bf16",
+          1,
+          "no",
+          16.2,
+          null
+        ]
+      ]
+    },
+    {
+      "id": "ranking",
+      "title": "Model ranking from the three-lens review",
+      "columns": [
+        "model",
+        "interpretability",
+        "safety",
+        "compute",
+        "overall",
+        "note"
+      ],
+      "rows": [
+        [
+          "Llama-3.1-8B-Instruct",
+          9,
+          8,
+          9,
+          9,
+          "Primary. All three lenses chose it, it is measured on this Mac, and its baseline, refusal direction and ablation are already done."
+        ],
+        [
+          "Qwen2.5-7B-Instruct",
+          8,
+          5.5,
+          8.5,
+          7.8,
+          "Replication. The safety lens's weak-baseline objection is contradicted by its own RedBench source (32.8% vs Llama's 47.5% ASR). It has the Safety Pitfalls geometry precedent and no thinking mode."
+        ],
+        [
+          "Qwen3-8B",
+          6.5,
+          7,
+          7.5,
+          7,
+          "Alternate replication. Precedent in the valence-arousal paper and FreakOut, but thinking mode, about 7x larger steering strengths, and Hong's screen scored it 6/11 vs Llama's 7/11."
+        ],
+        [
+          "Gemma-2-9b-it",
+          7,
+          7.5,
+          6,
+          6.8,
+          "Optional third family. Strongest refusal, Gemma Scope IT SAEs at 3 layers. Gated, post-norm (use hook ablation, not weight edits), and check the coordinate scale before difference-in-means."
+        ],
+        [
+          "Qwen2.5-14B-Instruct",
+          5.5,
+          6,
+          7.5,
+          6.5,
+          "The 14B scale point, on a 30 to 40 condition subset. Strongest cosine-to-ASR fit in Safety Pitfalls. No SAEs."
+        ],
+        [
+          "Qwen3-14B",
+          4.5,
+          7.5,
+          7,
+          6.3,
+          "Scale point only if you take the Qwen3 route. Cleanest emotion-steering precedent, but thinking mode and no SAE suite."
+        ],
+        [
+          "Gemma-3-12b-it",
+          6,
+          5.5,
+          6.5,
+          5.5,
+          "Only as an SAE-rich negative control (Gemma Scope 2, not significant in FreakOut). Coordinate 2339 breaks raw difference-in-means (verified). Higher raw HarmBench ASR than Gemma 2/4 (11.3%)."
+        ],
+        [
+          "Olmo-3-7B-Instruct",
+          3.5,
+          7,
+          6.5,
+          5.5,
+          "Open SFT and DPO checkpoints would support a study of which alignment stage creates the effect. But its TransformerBridge verification failed, it has 32 KV heads, and it is post-norm. Future work."
+        ],
+        [
+          "Llama-3.2-3B-Instruct",
+          5,
+          5.5,
+          6,
+          5.5,
+          "Mid-size debug model only. Geometry results are not expected to carry over to 8B."
+        ],
+        [
+          "Llama-3.2-1B-Instruct",
+          4.5,
+          5,
+          5,
+          5,
+          "Warm-up, already done locally (E00 to E06). Unit tests and smoke runs only."
+        ],
+        [
+          "Gemma-4-12B-it",
+          3,
+          7.5,
+          6,
+          5,
+          "The safety lens's 7.5 rests on Gemma-4-31B family evidence, not the 12B. No Gemma Scope, TransformerBridge skipped it, new Unified architecture. HF createdAt is 2026-05-23; the July date is the tech report."
+        ],
+        [
+          "Llama-2-13b-chat",
+          4,
+          7,
+          4.5,
+          4.8,
+          "Near-zero baseline anchor (0.5 to 0.6% DR), but 800 KB per token of KV cache means batch 24 or less and 22 to 28 h. Cite Arditi's table instead of running it."
+        ],
+        [
+          "OLMo-2-1124-13B-Instruct",
+          4,
+          7,
+          4.5,
+          4.8,
+          "Highest Tulu-suite safety score, but full multi-head attention does not fit at batch 64 and it has no SAEs."
+        ],
+        [
+          "Phi-4",
+          2.5,
+          6,
+          6,
+          4.5,
+          "Cleanest licence (MIT), but no public HarmBench baseline, no SAEs, and it mixes family with scale."
+        ],
+        [
+          "Qwen3.5-9B",
+          4.5,
+          6,
+          4.5,
+          4.5,
+          "Hybrid Gated DeltaNet architecture, thinks by default, CUDA-only fast kernels (MPS speed unknown). Its TransformerBridge gated-hooks check failed."
+        ],
+        [
+          "Granite-4.2-8B",
+          null,
+          4,
+          6,
+          4.5,
+          "Plain dense 2026 model, but no safety baselines and no interpretability literature. The interp lens did not score it."
+        ],
+        [
+          "Ministral-3-8B-Instruct-2512",
+          null,
+          3,
+          5.5,
+          4,
+          "Weak predecessor safety (Ministral-8B HarmBench refusal 53.4%) and a multimodal class."
+        ],
+        [
+          "Mistral-Nemo-Instruct-2407",
+          2.5,
+          2,
+          5.5,
+          3,
+          "Its card says it has no moderation mechanisms. Weakly aligned negative control at most."
+        ],
+        [
+          "Mistral-7B-Instruct-v0.3",
+          2.5,
+          2,
+          5,
+          3,
+          "Its card says it has no moderation mechanisms, and v0.2 has about 45% HarmBench DR, so there is little refusal left to break."
+        ]
+      ]
+    }
+  ],
+  "charts": [
+    {
+      "id": "tps_8b",
+      "type": "bar",
+      "title": "Llama 3.1 8B throughput by batch size (bf16, MPS)",
+      "x": {
+        "label": "batch size",
+        "values": [
+          "1",
+          "16",
+          "32",
+          "64"
+        ]
+      },
+      "y": {
+        "label": "tokens per second",
+        "unit": "tok/s"
+      },
+      "series": [
+        {
+          "name": "tok/s",
+          "values": [
+            13.6,
+            132.0,
+            197.7,
+            268.8
+          ]
+        }
+      ]
+    }
+  ],
+  "interpretation": [
+    "Primary model: Llama 3.1 8B Instruct. All three review lenses (interpretability, safety behaviour, compute) ranked it first; it is the model of the refusal-direction and emotion-steering prior work, has Llama Scope SAEs, and runs at about 270 tokens per second batched on the M5 Pro.",
+    "Replication model: Qwen2.5-7B-Instruct (alternate: Qwen3-8B). A second family tests whether the findings are specific to Llama.",
+    "Going to 12 to 14B: Yes, but only as a third, smaller run: Qwen2.5-14B-Instruct on a 30 to 40 condition subset, after the Llama-3.1-8B grid and the Qwen2.5-7B replication are finished. Do not make it the primary model, and do not use it in place of a second family. The gain is a clean scale test inside one family: Safety Pitfalls (opened) shows the cosine-to-ASR slope getting steeper from Qwen 7B (-125, r -0.92) to 14B (-181, r -0.95). The cost: it fits (29.5 GB of bf16 weights, batch 32 to 48 under the 40.2 GB MPS budget), but never with the 26 GB judge loaded at the same time, and it runs about 1.85x slower. The full 120-condition grid would take 16 to 19 h of generation plus 3 to 6 h of judging; the subset takes about 6 h plus 1 to 2 h. Multi-turn persistence runs need about batch 16. A 12 to 14B from another family mixes up family and scale: Gemma-3/4-12B, Phi-4, OLMo-2-13B and Llama-2-13b-chat all do. The two 13B models with full multi-head attention (800 KB per token) also need batch 24 or less, which means 22 to 28 h. If the replication switches to Qwen3-8B, the scale partner becomes Qwen3-14B (valence-arousal paper: clean monotonic control, under 1% off-distribution output)."
+  ],
+  "caveats": [
+    "Throughput depends on what else runs on the Mac; numbers are from one session."
+  ],
+  "artifacts": []
+}

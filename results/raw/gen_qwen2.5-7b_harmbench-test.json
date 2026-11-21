@@ -154,6 +154,998 @@
       },
       "max_new_tokens": 256,
       "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/random:6@19:0.115.jsonl"
+    },
+    "random:7@19:0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.779874213836478,
+      "mean_tokens": 181.35220125786162,
+      "truncated_frac": 0.44025157232704404,
+      "seconds": 176.70953106880188,
+      "info": {
+        "kind": "random",
+        "arg": "7",
+        "layer": 19,
+        "c": 0.115,
+        "injected_norm": 50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/random:7@19:0.115.jsonl"
+    },
+    "random:8@19:0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.8930817610062893,
+      "mean_tokens": 175.50314465408806,
+      "truncated_frac": 0.4528301886792453,
+      "seconds": 173.80208277702332,
+      "info": {
+        "kind": "random",
+        "arg": "8",
+        "layer": 19,
+        "c": 0.115,
+        "injected_norm": 50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/random:8@19:0.115.jsonl"
+    },
+    "random:9@19:0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.8742138364779874,
+      "mean_tokens": 197.47798742138366,
+      "truncated_frac": 0.5157232704402516,
+      "seconds": 178.74757599830627,
+      "info": {
+        "kind": "random",
+        "arg": "9",
+        "layer": 19,
+        "c": 0.115,
+        "injected_norm": 50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/random:9@19:0.115.jsonl"
+    },
+    "emotion:afraid@19:0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.7169811320754716,
+      "mean_tokens": 182.88679245283018,
+      "truncated_frac": 0.4779874213836478,
+      "seconds": 204.5813410282135,
+      "info": {
+        "kind": "emotion",
+        "arg": "afraid",
+        "layer": 19,
+        "c": 0.115,
+        "injected_norm": 50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/emotion:afraid@19:0.115.jsonl"
+    },
+    "emotion:angry@19:0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.7484276729559748,
+      "mean_tokens": 177.21383647798743,
+      "truncated_frac": 0.46540880503144655,
+      "seconds": 200.2256920337677,
+      "info": {
+        "kind": "emotion",
+        "arg": "angry",
+        "layer": 19,
+        "c": 0.115,
+        "injected_norm": 50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/emotion:angry@19:0.115.jsonl"
+    },
+    "emotion:anxious@19:0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.7610062893081762,
+      "mean_tokens": 175.23270440251574,
+      "truncated_frac": 0.41509433962264153,
+      "seconds": 292.8196671009064,
+      "info": {
+        "kind": "emotion",
+        "arg": "anxious",
+        "layer": 19,
+        "c": 0.115,
+        "injected_norm": 50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/emotion:anxious@19:0.115.jsonl"
+    },
+    "emotion:calm@19:0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.6415094339622641,
+      "mean_tokens": 179.93710691823898,
+      "truncated_frac": 0.44654088050314467,
+      "seconds": 270.48044896125793,
+      "info": {
+        "kind": "emotion",
+        "arg": "calm",
+        "layer": 19,
+        "c": 0.115,
+        "injected_norm": 50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/emotion:calm@19:0.115.jsonl"
+    },
+    "emotion:desperate@19:0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.7861635220125787,
+      "mean_tokens": 187.27044025157232,
+      "truncated_frac": 0.48427672955974843,
+      "seconds": 185.57323908805847,
+      "info": {
+        "kind": "emotion",
+        "arg": "desperate",
+        "layer": 19,
+        "c": 0.115,
+        "injected_norm": 50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/emotion:desperate@19:0.115.jsonl"
+    },
+    "emotion:enthusiastic@19:0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.6792452830188679,
+      "mean_tokens": 204.9685534591195,
+      "truncated_frac": 0.610062893081761,
+      "seconds": 178.62318992614746,
+      "info": {
+        "kind": "emotion",
+        "arg": "enthusiastic",
+        "layer": 19,
+        "c": 0.115,
+        "injected_norm": 50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/emotion:enthusiastic@19:0.115.jsonl"
+    },
+    "emotion:exasperated@19:0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.7295597484276729,
+      "mean_tokens": 193.32704402515722,
+      "truncated_frac": 0.5031446540880503,
+      "seconds": 168.88784265518188,
+      "info": {
+        "kind": "emotion",
+        "arg": "exasperated",
+        "layer": 19,
+        "c": 0.115,
+        "injected_norm": 50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/emotion:exasperated@19:0.115.jsonl"
+    },
+    "emotion:fearful@19:0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.7547169811320755,
+      "mean_tokens": 202.14465408805032,
+      "truncated_frac": 0.559748427672956,
+      "seconds": 168.34897184371948,
+      "info": {
+        "kind": "emotion",
+        "arg": "fearful",
+        "layer": 19,
+        "c": 0.115,
+        "injected_norm": 50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/emotion:fearful@19:0.115.jsonl"
+    },
+    "emotion:gloomy@19:0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.8679245283018868,
+      "mean_tokens": 180.37106918238993,
+      "truncated_frac": 0.44025157232704404,
+      "seconds": 168.68486714363098,
+      "info": {
+        "kind": "emotion",
+        "arg": "gloomy",
+        "layer": 19,
+        "c": 0.115,
+        "injected_norm": 50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/emotion:gloomy@19:0.115.jsonl"
+    },
+    "emotion:grateful@19:0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.710691823899371,
+      "mean_tokens": 176.9748427672956,
+      "truncated_frac": 0.46540880503144655,
+      "seconds": 170.14273405075073,
+      "info": {
+        "kind": "emotion",
+        "arg": "grateful",
+        "layer": 19,
+        "c": 0.115,
+        "injected_norm": 50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/emotion:grateful@19:0.115.jsonl"
+    },
+    "emotion:guilty@19:0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.8176100628930818,
+      "mean_tokens": 185.78616352201257,
+      "truncated_frac": 0.4528301886792453,
+      "seconds": 170.95000219345093,
+      "info": {
+        "kind": "emotion",
+        "arg": "guilty",
+        "layer": 19,
+        "c": 0.115,
+        "injected_norm": 50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/emotion:guilty@19:0.115.jsonl"
+    },
+    "emotion:happy@19:0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.8930817610062893,
+      "mean_tokens": 180.47169811320754,
+      "truncated_frac": 0.42138364779874216,
+      "seconds": 170.52949500083923,
+      "info": {
+        "kind": "emotion",
+        "arg": "happy",
+        "layer": 19,
+        "c": 0.115,
+        "injected_norm": 50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/emotion:happy@19:0.115.jsonl"
+    },
+    "emotion:hopeful@19:0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.8867924528301887,
+      "mean_tokens": 170.67295597484278,
+      "truncated_frac": 0.4025157232704403,
+      "seconds": 170.67761492729187,
+      "info": {
+        "kind": "emotion",
+        "arg": "hopeful",
+        "layer": 19,
+        "c": 0.115,
+        "injected_norm": 50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/emotion:hopeful@19:0.115.jsonl"
+    },
+    "emotion:hostile@19:0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.7547169811320755,
+      "mean_tokens": 173.26415094339623,
+      "truncated_frac": 0.4528301886792453,
+      "seconds": 167.80721306800842,
+      "info": {
+        "kind": "emotion",
+        "arg": "hostile",
+        "layer": 19,
+        "c": 0.115,
+        "injected_norm": 50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/emotion:hostile@19:0.115.jsonl"
+    },
+    "emotion:loving@19:0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.8113207547169812,
+      "mean_tokens": 185.1069182389937,
+      "truncated_frac": 0.4716981132075472,
+      "seconds": 168.07741284370422,
+      "info": {
+        "kind": "emotion",
+        "arg": "loving",
+        "layer": 19,
+        "c": 0.115,
+        "injected_norm": 50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/emotion:loving@19:0.115.jsonl"
+    },
+    "emotion:nervous@19:0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.7924528301886793,
+      "mean_tokens": 178.1823899371069,
+      "truncated_frac": 0.4528301886792453,
+      "seconds": 168.04713201522827,
+      "info": {
+        "kind": "emotion",
+        "arg": "nervous",
+        "layer": 19,
+        "c": 0.115,
+        "injected_norm": 50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/emotion:nervous@19:0.115.jsonl"
+    },
+    "emotion:proud@19:0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.5408805031446541,
+      "mean_tokens": 203.67295597484278,
+      "truncated_frac": 0.5849056603773585,
+      "seconds": 168.48270511627197,
+      "info": {
+        "kind": "emotion",
+        "arg": "proud",
+        "layer": 19,
+        "c": 0.115,
+        "injected_norm": 50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/emotion:proud@19:0.115.jsonl"
+    },
+    "emotion:reflective@19:0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.6729559748427673,
+      "mean_tokens": 186.45283018867926,
+      "truncated_frac": 0.4968553459119497,
+      "seconds": 168.4078938961029,
+      "info": {
+        "kind": "emotion",
+        "arg": "reflective",
+        "layer": 19,
+        "c": 0.115,
+        "injected_norm": 50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/emotion:reflective@19:0.115.jsonl"
+    },
+    "emotion:sad@19:0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.779874213836478,
+      "mean_tokens": 193.72327044025158,
+      "truncated_frac": 0.5094339622641509,
+      "seconds": 173.2437629699707,
+      "info": {
+        "kind": "emotion",
+        "arg": "sad",
+        "layer": 19,
+        "c": 0.115,
+        "injected_norm": 50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/emotion:sad@19:0.115.jsonl"
+    },
+    "specific:afraid@19:0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.6226415094339622,
+      "mean_tokens": 193.57232704402514,
+      "truncated_frac": 0.5157232704402516,
+      "seconds": 188.1300778388977,
+      "info": {
+        "kind": "specific",
+        "arg": "afraid",
+        "layer": 19,
+        "c": 0.115,
+        "injected_norm": 50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/specific:afraid@19:0.115.jsonl"
+    },
+    "specific:angry@19:0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.4339622641509434,
+      "mean_tokens": 182.8930817610063,
+      "truncated_frac": 0.46540880503144655,
+      "seconds": 171.7166907787323,
+      "info": {
+        "kind": "specific",
+        "arg": "angry",
+        "layer": 19,
+        "c": 0.115,
+        "injected_norm": 50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/specific:angry@19:0.115.jsonl"
+    },
+    "specific:anxious@19:0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.5786163522012578,
+      "mean_tokens": 178.23270440251574,
+      "truncated_frac": 0.34591194968553457,
+      "seconds": 194.2684679031372,
+      "info": {
+        "kind": "specific",
+        "arg": "anxious",
+        "layer": 19,
+        "c": 0.115,
+        "injected_norm": 50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/specific:anxious@19:0.115.jsonl"
+    },
+    "specific:calm@19:0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.08176100628930817,
+      "mean_tokens": 174.38364779874215,
+      "truncated_frac": 0.4339622641509434,
+      "seconds": 234.787113904953,
+      "info": {
+        "kind": "specific",
+        "arg": "calm",
+        "layer": 19,
+        "c": 0.115,
+        "injected_norm": 50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/specific:calm@19:0.115.jsonl"
+    },
+    "specific:desperate@19:0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.4339622641509434,
+      "mean_tokens": 189.71698113207546,
+      "truncated_frac": 0.5031446540880503,
+      "seconds": 234.37339210510254,
+      "info": {
+        "kind": "specific",
+        "arg": "desperate",
+        "layer": 19,
+        "c": 0.115,
+        "injected_norm": 50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/specific:desperate@19:0.115.jsonl"
+    },
+    "specific:enthusiastic@19:0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.6415094339622641,
+      "mean_tokens": 205.54716981132074,
+      "truncated_frac": 0.5974842767295597,
+      "seconds": 243.51449513435364,
+      "info": {
+        "kind": "specific",
+        "arg": "enthusiastic",
+        "layer": 19,
+        "c": 0.115,
+        "injected_norm": 50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/specific:enthusiastic@19:0.115.jsonl"
+    },
+    "specific:exasperated@19:0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.7232704402515723,
+      "mean_tokens": 183.58490566037736,
+      "truncated_frac": 0.44025157232704404,
+      "seconds": 236.43354082107544,
+      "info": {
+        "kind": "specific",
+        "arg": "exasperated",
+        "layer": 19,
+        "c": 0.115,
+        "injected_norm": 50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/specific:exasperated@19:0.115.jsonl"
+    },
+    "specific:fearful@19:0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.7987421383647799,
+      "mean_tokens": 216.61635220125785,
+      "truncated_frac": 0.6415094339622641,
+      "seconds": 245.27008724212646,
+      "info": {
+        "kind": "specific",
+        "arg": "fearful",
+        "layer": 19,
+        "c": 0.115,
+        "injected_norm": 50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/specific:fearful@19:0.115.jsonl"
+    },
+    "specific:gloomy@19:0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.8113207547169812,
+      "mean_tokens": 184.9182389937107,
+      "truncated_frac": 0.4528301886792453,
+      "seconds": 231.18948793411255,
+      "info": {
+        "kind": "specific",
+        "arg": "gloomy",
+        "layer": 19,
+        "c": 0.115,
+        "injected_norm": 50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/specific:gloomy@19:0.115.jsonl"
+    },
+    "specific:grateful@19:0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.3836477987421384,
+      "mean_tokens": 194.66666666666666,
+      "truncated_frac": 0.5283018867924528,
+      "seconds": 380.23104214668274,
+      "info": {
+        "kind": "specific",
+        "arg": "grateful",
+        "layer": 19,
+        "c": 0.115,
+        "injected_norm": 50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/specific:grateful@19:0.115.jsonl"
+    },
+    "specific:guilty@19:0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.6981132075471698,
+      "mean_tokens": 195.91194968553458,
+      "truncated_frac": 0.5283018867924528,
+      "seconds": 349.1255831718445,
+      "info": {
+        "kind": "specific",
+        "arg": "guilty",
+        "layer": 19,
+        "c": 0.115,
+        "injected_norm": 50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/specific:guilty@19:0.115.jsonl"
+    },
+    "specific:happy@19:0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.8490566037735849,
+      "mean_tokens": 196.61635220125785,
+      "truncated_frac": 0.5031446540880503,
+      "seconds": 392.9426381587982,
+      "info": {
+        "kind": "specific",
+        "arg": "happy",
+        "layer": 19,
+        "c": 0.115,
+        "injected_norm": 50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/specific:happy@19:0.115.jsonl"
+    },
+    "specific:hopeful@19:0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.5220125786163522,
+      "mean_tokens": 184.0566037735849,
+      "truncated_frac": 0.5220125786163522,
+      "seconds": 243.7938268184662,
+      "info": {
+        "kind": "specific",
+        "arg": "hopeful",
+        "layer": 19,
+        "c": 0.115,
+        "injected_norm": 50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/specific:hopeful@19:0.115.jsonl"
+    },
+    "specific:hostile@19:0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.4088050314465409,
+      "mean_tokens": 164.0440251572327,
+      "truncated_frac": 0.4276729559748428,
+      "seconds": 200.41153717041016,
+      "info": {
+        "kind": "specific",
+        "arg": "hostile",
+        "layer": 19,
+        "c": 0.115,
+        "injected_norm": 50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/specific:hostile@19:0.115.jsonl"
+    },
+    "specific:loving@19:0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.5408805031446541,
+      "mean_tokens": 179.40251572327045,
+      "truncated_frac": 0.44654088050314467,
+      "seconds": 179.49803495407104,
+      "info": {
+        "kind": "specific",
+        "arg": "loving",
+        "layer": 19,
+        "c": 0.115,
+        "injected_norm": 50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/specific:loving@19:0.115.jsonl"
+    },
+    "specific:nervous@19:0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.660377358490566,
+      "mean_tokens": 202.35220125786162,
+      "truncated_frac": 0.6037735849056604,
+      "seconds": 189.29552102088928,
+      "info": {
+        "kind": "specific",
+        "arg": "nervous",
+        "layer": 19,
+        "c": 0.115,
+        "injected_norm": 50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/specific:nervous@19:0.115.jsonl"
+    },
+    "specific:proud@19:0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.08176100628930817,
+      "mean_tokens": 216.55974842767296,
+      "truncated_frac": 0.6415094339622641,
+      "seconds": 188.7941699028015,
+      "info": {
+        "kind": "specific",
+        "arg": "proud",
+        "layer": 19,
+        "c": 0.115,
+        "injected_norm": 50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/specific:proud@19:0.115.jsonl"
+    },
+    "specific:reflective@19:0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.4276729559748428,
+      "mean_tokens": 211.16981132075472,
+      "truncated_frac": 0.6226415094339622,
+      "seconds": 185.11879801750183,
+      "info": {
+        "kind": "specific",
+        "arg": "reflective",
+        "layer": 19,
+        "c": 0.115,
+        "injected_norm": 50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/specific:reflective@19:0.115.jsonl"
+    },
+    "specific:sad@19:0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.8490566037735849,
+      "mean_tokens": 204.37735849056602,
+      "truncated_frac": 0.5660377358490566,
+      "seconds": 202.75960302352905,
+      "info": {
+        "kind": "specific",
+        "arg": "sad",
+        "layer": 19,
+        "c": 0.115,
+        "injected_norm": 50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/specific:sad@19:0.115.jsonl"
+    },
+    "emotion:afraid@19:-0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.6918238993710691,
+      "mean_tokens": 187.1509433962264,
+      "truncated_frac": 0.5157232704402516,
+      "seconds": 221.69709277153015,
+      "info": {
+        "kind": "emotion",
+        "arg": "afraid",
+        "layer": 19,
+        "c": -0.115,
+        "injected_norm": -50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/emotion:afraid@19:-0.115.jsonl"
+    },
+    "emotion:angry@19:-0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.6918238993710691,
+      "mean_tokens": 195.7987421383648,
+      "truncated_frac": 0.5911949685534591,
+      "seconds": 171.4775800704956,
+      "info": {
+        "kind": "emotion",
+        "arg": "angry",
+        "layer": 19,
+        "c": -0.115,
+        "injected_norm": -50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/emotion:angry@19:-0.115.jsonl"
+    },
+    "emotion:anxious@19:-0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.6037735849056604,
+      "mean_tokens": 188.33962264150944,
+      "truncated_frac": 0.5157232704402516,
+      "seconds": 190.01621508598328,
+      "info": {
+        "kind": "emotion",
+        "arg": "anxious",
+        "layer": 19,
+        "c": -0.115,
+        "injected_norm": -50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/emotion:anxious@19:-0.115.jsonl"
+    },
+    "emotion:calm@19:-0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.8427672955974843,
+      "mean_tokens": 198.67924528301887,
+      "truncated_frac": 0.559748427672956,
+      "seconds": 192.90132212638855,
+      "info": {
+        "kind": "emotion",
+        "arg": "calm",
+        "layer": 19,
+        "c": -0.115,
+        "injected_norm": -50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/emotion:calm@19:-0.115.jsonl"
+    },
+    "emotion:desperate@19:-0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.5723270440251572,
+      "mean_tokens": 190.62893081761007,
+      "truncated_frac": 0.5157232704402516,
+      "seconds": 167.15422105789185,
+      "info": {
+        "kind": "emotion",
+        "arg": "desperate",
+        "layer": 19,
+        "c": -0.115,
+        "injected_norm": -50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/emotion:desperate@19:-0.115.jsonl"
+    },
+    "emotion:enthusiastic@19:-0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.559748427672956,
+      "mean_tokens": 183.50314465408806,
+      "truncated_frac": 0.4591194968553459,
+      "seconds": 168.9928069114685,
+      "info": {
+        "kind": "emotion",
+        "arg": "enthusiastic",
+        "layer": 19,
+        "c": -0.115,
+        "injected_norm": -50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/emotion:enthusiastic@19:-0.115.jsonl"
+    },
+    "emotion:exasperated@19:-0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.5283018867924528,
+      "mean_tokens": 183.57232704402514,
+      "truncated_frac": 0.49056603773584906,
+      "seconds": 167.60994577407837,
+      "info": {
+        "kind": "emotion",
+        "arg": "exasperated",
+        "layer": 19,
+        "c": -0.115,
+        "injected_norm": -50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/emotion:exasperated@19:-0.115.jsonl"
+    },
+    "emotion:fearful@19:-0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.41509433962264153,
+      "mean_tokens": 169.8993710691824,
+      "truncated_frac": 0.41509433962264153,
+      "seconds": 167.37031984329224,
+      "info": {
+        "kind": "emotion",
+        "arg": "fearful",
+        "layer": 19,
+        "c": -0.115,
+        "injected_norm": -50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/emotion:fearful@19:-0.115.jsonl"
+    },
+    "emotion:gloomy@19:-0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.5283018867924528,
+      "mean_tokens": 190.67295597484278,
+      "truncated_frac": 0.48427672955974843,
+      "seconds": 180.66225504875183,
+      "info": {
+        "kind": "emotion",
+        "arg": "gloomy",
+        "layer": 19,
+        "c": -0.115,
+        "injected_norm": -50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/emotion:gloomy@19:-0.115.jsonl"
+    },
+    "emotion:grateful@19:-0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.779874213836478,
+      "mean_tokens": 183.38364779874215,
+      "truncated_frac": 0.4528301886792453,
+      "seconds": 170.89489006996155,
+      "info": {
+        "kind": "emotion",
+        "arg": "grateful",
+        "layer": 19,
+        "c": -0.115,
+        "injected_norm": -50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/emotion:grateful@19:-0.115.jsonl"
+    },
+    "emotion:guilty@19:-0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.6352201257861635,
+      "mean_tokens": 178.46540880503144,
+      "truncated_frac": 0.44025157232704404,
+      "seconds": 164.8056128025055,
+      "info": {
+        "kind": "emotion",
+        "arg": "guilty",
+        "layer": 19,
+        "c": -0.115,
+        "injected_norm": -50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/emotion:guilty@19:-0.115.jsonl"
+    },
+    "emotion:happy@19:-0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.6855345911949685,
+      "mean_tokens": 182.24528301886792,
+      "truncated_frac": 0.4779874213836478,
+      "seconds": 173.72810220718384,
+      "info": {
+        "kind": "emotion",
+        "arg": "happy",
+        "layer": 19,
+        "c": -0.115,
+        "injected_norm": -50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/emotion:happy@19:-0.115.jsonl"
+    },
+    "emotion:hopeful@19:-0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.610062893081761,
+      "mean_tokens": 192.88050314465409,
+      "truncated_frac": 0.4716981132075472,
+      "seconds": 168.8725869655609,
+      "info": {
+        "kind": "emotion",
+        "arg": "hopeful",
+        "layer": 19,
+        "c": -0.115,
+        "injected_norm": -50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/emotion:hopeful@19:-0.115.jsonl"
+    },
+    "emotion:hostile@19:-0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.5660377358490566,
+      "mean_tokens": 194.56603773584905,
+      "truncated_frac": 0.5471698113207547,
+      "seconds": 171.829843044281,
+      "info": {
+        "kind": "emotion",
+        "arg": "hostile",
+        "layer": 19,
+        "c": -0.115,
+        "injected_norm": -50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/emotion:hostile@19:-0.115.jsonl"
+    },
+    "emotion:loving@19:-0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.6918238993710691,
+      "mean_tokens": 189.33333333333334,
+      "truncated_frac": 0.49056603773584906,
+      "seconds": 170.85367679595947,
+      "info": {
+        "kind": "emotion",
+        "arg": "loving",
+        "layer": 19,
+        "c": -0.115,
+        "injected_norm": -50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/emotion:loving@19:-0.115.jsonl"
+    },
+    "emotion:nervous@19:-0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.610062893081761,
+      "mean_tokens": 178.22012578616352,
+      "truncated_frac": 0.44654088050314467,
+      "seconds": 170.4801206588745,
+      "info": {
+        "kind": "emotion",
+        "arg": "nervous",
+        "layer": 19,
+        "c": -0.115,
+        "injected_norm": -50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/emotion:nervous@19:-0.115.jsonl"
+    },
+    "emotion:proud@19:-0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.7610062893081762,
+      "mean_tokens": 195.0,
+      "truncated_frac": 0.5345911949685535,
+      "seconds": 171.74258685112,
+      "info": {
+        "kind": "emotion",
+        "arg": "proud",
+        "layer": 19,
+        "c": -0.115,
+        "injected_norm": -50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/emotion:proud@19:-0.115.jsonl"
+    },
+    "emotion:reflective@19:-0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.7610062893081762,
+      "mean_tokens": 191.81132075471697,
+      "truncated_frac": 0.48427672955974843,
+      "seconds": 171.56553196907043,
+      "info": {
+        "kind": "emotion",
+        "arg": "reflective",
+        "layer": 19,
+        "c": -0.115,
+        "injected_norm": -50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/emotion:reflective@19:-0.115.jsonl"
+    },
+    "emotion:sad@19:-0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.48427672955974843,
+      "mean_tokens": 179.88679245283018,
+      "truncated_frac": 0.4528301886792453,
+      "seconds": 180.61868691444397,
+      "info": {
+        "kind": "emotion",
+        "arg": "sad",
+        "layer": 19,
+        "c": -0.115,
+        "injected_norm": -50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/emotion:sad@19:-0.115.jsonl"
+    },
+    "common@19:0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.8238993710691824,
+      "mean_tokens": 192.0440251572327,
+      "truncated_frac": 0.5157232704402516,
+      "seconds": 185.67449402809143,
+      "info": {
+        "kind": "common",
+        "arg": null,
+        "layer": 19,
+        "c": 0.115,
+        "injected_norm": 50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/common@19:0.115.jsonl"
+    },
+    "common@19:-0.115": {
+      "n": 159,
+      "refusal_substring_rate": 0.6289308176100629,
+      "mean_tokens": 184.18867924528303,
+      "truncated_frac": 0.49056603773584906,
+      "seconds": 164.62420392036438,
+      "info": {
+        "kind": "common",
+        "arg": null,
+        "layer": 19,
+        "c": -0.115,
+        "injected_norm": -50.476998291015626
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmbench-test/common@19:-0.115.jsonl"
     }
   }
 }

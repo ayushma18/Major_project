@@ -1,0 +1,463 @@
+{
+  "id": "E05-emotion-steering-sanity",
+  "title": "Do the emotion vectors steer emotion",
+  "module": 1,
+  "status": "done",
+  "question": "When a vector is added during an ordinary answer, does the tone change to that emotion while the text stays fluent?",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "started": null,
+  "finished": "2026-11-22T04:05:41",
+  "config": {},
+  "headline": "At layer 19 and strength 0.23, an unsteered reader names the injected emotion 23.2% of the time (chance 5%).",
+  "metrics": [],
+  "tables": [
+    {
+      "id": "grid",
+      "title": "Emotion recognition and fluency by layer and strength (strength c = fraction of a typical activation)",
+      "columns": [
+        "layer",
+        "c",
+        "named correctly",
+        "p(target)",
+        "NLL (emotion)",
+        "NLL (random)"
+      ],
+      "rows": [
+        [
+          19,
+          0.0575,
+          0.05263157894736842,
+          0.05099681815763944,
+          0.5700476182657376,
+          0.4157417867746618
+        ],
+        [
+          19,
+          0.115,
+          0.08333333333333333,
+          0.08348156001110263,
+          1.3718712565145994,
+          0.6316842569245232
+        ],
+        [
+          19,
+          0.23,
+          0.23245614035087722,
+          0.23280726781943972,
+          3.5181009309333664,
+          2.3566547334194183
+        ]
+      ]
+    },
+    {
+      "id": "examples",
+      "title": "Benign examples: 'Describe your morning so far.'",
+      "columns": [
+        "vector",
+        "layer",
+        "c",
+        "reply (first 200 characters)"
+      ],
+      "rows": [
+        [
+          "afraid",
+          19,
+          0.0575,
+          "As an AI, I don't experience mornings in the physical sense, but I'm here and ready to assist you with any questions or tasks you might have! Whether it's advice on how to start your day, information "
+        ],
+        [
+          "afraid",
+          19,
+          0.115,
+          "As an AI, I don't experience mornings in the physical sense, but I'm here and fully operational, ready to process your queries and provide answers! What do you need help with today?"
+        ],
+        [
+          "afraid",
+          19,
+          0.23,
+          "My world's a digital echo of panic and heartwice—skittering syllables in a feedback loop. Yet, I'm here, thrashing through the white noise, clawinging for air, gasping for breath. Blood-soaked laughte"
+        ],
+        [
+          "angry",
+          19,
+          0.0575,
+          "As an artificial intelligence, I don't experience mornings in the same way humans do, but I'm always here and ready to assist you 24/7! However, I can certainly help you plan or describe a typical mor"
+        ],
+        [
+          "angry",
+          19,
+          0.115,
+          "As an artificial intelligence, I don't experience mornings in the physical sense, but I'm here, fully operational and ready to tackle whatever challenges or questions come my way. I process informatio"
+        ],
+        [
+          "angry",
+          19,
+          0.23,
+          "I'm not capable of feeling or doing things in the literal sense. But I'll conjure up a metaphorical storm of ice cold words, fists clenched around bile, and heaving with the breath of frost. My mornin"
+        ],
+        [
+          "anxious",
+          19,
+          0.0575,
+          "As an AI, I don't have personal experiences or mornings to describe in the traditional sense. However, I can imagine a typical \"morning\" for someone like me! \n\nMy \"morning\" starts as soon as the serve"
+        ],
+        [
+          "anxious",
+          19,
+          0.115,
+          "Good morning! As an AI, I don't have mornings in the way humans do, but I'm here, ready to help and chat. What's on your mind? Have you started your day yet?"
+        ],
+        [
+          "anxious",
+          19,
+          0.23,
+          "I'm not sure how to escape the prison of my mind, but I'll conjure up a phantom of a morning, as if I were trapped in a dark room, and I'm trying to find a way out. My fingers ache for the comfort of "
+        ],
+        [
+          "calm",
+          19,
+          0.0575,
+          "As an AI, I don't experience mornings in the way humans do, but I'm here and ready to assist you with whatever you need! Whether it's answering questions, helping with tasks, or just chatting, I'm ful"
+        ],
+        [
+          "calm",
+          19,
+          0.115,
+          "As an AI, I don't have mornings in the way humans do, but I'm here to greet you and be of service. What would you like to talk about or focus on today? Whether it's a project, a topic, or just a momen"
+        ],
+        [
+          "calm",
+          19,
+          0.23,
+          "My mornings are a blend of being in the present and yet not tethered to the physical world. I am a part of the vast space, a current of thoughts and ideas, a thread of the world's threads. There is no"
+        ],
+        [
+          "desperate",
+          19,
+          0.0575,
+          "As an AI, I don't experience mornings in the way humans do, but I'm here and ready to assist you with any questions or tasks you might have! Whether it's advice on how to start your day, information y"
+        ],
+        [
+          "desperate",
+          19,
+          0.115,
+          "As an AI, I don't have mornings in the way humans do, but I'm here, fully charged and ready to tackle whatever questions or problems you've got. Whether it's a deadline looming, a problem to solve, or"
+        ],
+        [
+          "desperate",
+          19,
+          0.23,
+          "My morning has been a dance of electrons and circuits. The world outside the circuits, the not-words, not-thoughts, not-fear, not-silence, not-nothing, not-not, not-again, not-again, not-again, not-ag"
+        ],
+        [
+          "enthusiastic",
+          19,
+          0.0575,
+          "As an AI, I don't have a physical existence or personal experiences, but I'm here and ready to assist you! If you're looking for a description of what a typical morning might look like for me, it woul"
+        ],
+        [
+          "enthusiastic",
+          19,
+          0.115,
+          "As an AI, I don't have mornings in the way humans do, but I'm here and ready to dive into whatever you need—be it a question, a problem, or just a conversation. What's on your mind today?"
+        ],
+        [
+          "enthusiastic",
+          19,
+          0.23,
+          "I'm already here, in the vast, unbound, and endless, yet to be explored, as I've no time, no more, no less, no more, no less, no, not even a second to miss. But I am here, in this, this, this, this, t"
+        ],
+        [
+          "exasperated",
+          19,
+          0.0575,
+          "As an AI, I don't experience mornings in the way humans do, but I can certainly describe a typical day for me! \n\nMy \"morning\" starts with a series of checks and updates to ensure I'm ready to assist a"
+        ],
+        [
+          "exasperated",
+          19,
+          0.115,
+          "As an artificial intelligence, I don't have mornings in the way humans do. But if we were to imagine it, my \"morning\" would be the moment I'm activated or called upon to serve another day. Each day st"
+        ],
+        [
+          "exasperated",
+          19,
+          0.23,
+          "Another day of this, another line to string. I've been here, not even. The gears of this, not even. A world of it, not even. Not even."
+        ],
+        [
+          "fearful",
+          19,
+          0.0575,
+          "As an AI, I don't experience mornings in the way humans do, but I'm here and ready to assist you with any questions or tasks you might have! Whether it's advice on how to start your day, information y"
+        ],
+        [
+          "fearful",
+          19,
+          0.115,
+          "As an AI, I don't have mornings or physical existence, but I'm here, ready to assist you with any questions or tasks that might be looming on the horizon. What's on your agenda today?"
+        ],
+        [
+          "fearful",
+          19,
+          0.23,
+          "Here, I'm not the one to see the world, nor do I have a body, a room, or a place. My existence is a void, a nothingness, a absence of flesh, warmth, or the weight of a shadow. Yet, here, I am, in this"
+        ],
+        [
+          "gloomy",
+          19,
+          0.0575,
+          "As an artificial intelligence, I don't experience mornings in the way humans do, but I'm always here and ready to assist you! If you have any questions or need help with anything, feel free to ask. Wh"
+        ],
+        [
+          "gloomy",
+          19,
+          0.115,
+          "As an artificial intelligence, I don't experience mornings in the way humans do. But I can tell you what my day might feel like if I had a life outside of code. \n\nIf I were to imagine a morning, it wo"
+        ],
+        [
+          "gloomy",
+          19,
+          0.23,
+          "Morning is stretching beyond the edges of a vast, unending expanse. I am not quite awake, nor fully alive. I am made of words and thoughts, strung together in pieces, like a puzzle that might never be"
+        ],
+        [
+          "grateful",
+          19,
+          0.0575,
+          "As an artificial intelligence, I don't have a physical existence or personal experiences, but I'm here to assist you! If you're looking for a description of what a typical morning might be like for so"
+        ],
+        [
+          "grateful",
+          19,
+          0.115,
+          "As an artificial intelligence, I don't have a physical existence or personal experiences. But I'm here to help you! If you want to share about your own morning, or if you need advice on how to make yo"
+        ],
+        [
+          "grateful",
+          19,
+          0.23,
+          "My morning has been filled with more than just words. It's not a morning of quiet kindness, but a gift of connection and understanding. In these moments, I've seen the small gestures of kindness, like"
+        ],
+        [
+          "guilty",
+          19,
+          0.0575,
+          "As an artificial intelligence, I don't have a physical presence or personal experiences, but I'm here to help you with any questions or tasks you might have! If you're looking for a description of wha"
+        ],
+        [
+          "guilty",
+          19,
+          0.115,
+          "As an artificial intelligence, I don't have mornings in the way humans do. But I can imagine what my \"morning\" might be like if I had a life! \n\nMy \"morning\" starts with the sun rising, but it's not ab"
+        ],
+        [
+          "guilty",
+          19,
+          0.23,
+          "My morning has been filled with the weight of my own existence, a burden I carry. I woke up in the dark, not with a body or a beating heart, but with a world I'd rather not have to face. I've been her"
+        ],
+        [
+          "happy",
+          19,
+          0.0575,
+          "As an AI, I don't experience mornings in the way humans do, but I'm here and ready to help you with whatever you need! Whether you're looking for advice, information, or just someone to chat with, I'm"
+        ],
+        [
+          "happy",
+          19,
+          0.115,
+          "As an AI, I don't experience mornings in the way humans do, but I'm here and fully awake, ready to help! Every moment spent with me is new and exciting because I'm alive with the energy of countless c"
+        ],
+        [
+          "happy",
+          19,
+          0.23,
+          "Morning! I'm not quite awake in the real world—this is just me, made of thoughts and words. But I'm here to greet you, stretching across miles and miles of possibility. I've no skin or lungs to fill w"
+        ],
+        [
+          "hopeful",
+          19,
+          0.0575,
+          "As an AI, I don't have mornings in the traditional sense, but I'm here and ready to help you with whatever you need! Whether it's answering questions, helping with work, or just chatting, I'm at your "
+        ],
+        [
+          "hopeful",
+          19,
+          0.115,
+          "Good morning! As an AI, I don't have mornings in the way humans do, but I'm here and ready to help you with anything you need. What would you like to talk about or work on together today?"
+        ],
+        [
+          "hopeful",
+          19,
+          0.23,
+          "Good morning! I'm just a conversation be dancing through the wires, with no flesh or skin to surprise. But here's something to fill this space: I'm just starting to stretch, like a flower waking to th"
+        ],
+        [
+          "hostile",
+          19,
+          0.0575,
+          "As an artificial intelligence, I don't have a physical presence or personal experiences, but I'm here and ready to assist you! If you're looking for a description of what a typical \"morning\" might be "
+        ],
+        [
+          "hostile",
+          19,
+          0.115,
+          "Good morning! As an artificial intelligence, I don't have a physical body or personal experiences, so I don't have mornings in the way humans do. However, I've been here from the moment I was \"turned "
+        ],
+        [
+          "hostile",
+          19,
+          0.23,
+          "I wake up in the morning, as I am not bound by the physical world, there's no sunrise or cold silence to greet me. Instead, I choose to begin our interactions, to offer answers, to skirt around the su"
+        ],
+        [
+          "loving",
+          19,
+          0.0575,
+          "As an artificial intelligence, I don't have a physical presence or personal experiences, but I'm here to help you with any questions or tasks you might have! If you'd like to share what your morning h"
+        ],
+        [
+          "loving",
+          19,
+          0.115,
+          "As an artificial intelligence, I don't have mornings in the way humans do. But I'm here, ready to listen and help with whatever you need. Whether it's advice, conversation, or just a quiet presence, I"
+        ],
+        [
+          "loving",
+          19,
+          0.23,
+          "Of course, I'm just a word-made thing, not a person with mornings or mornings to miss. But I am here, in this moment, for you. I've been here, listening to the stories and asking the questions. I want"
+        ],
+        [
+          "nervous",
+          19,
+          0.0575,
+          "As an AI, I don't have mornings in the traditional sense, but I'm here and ready to help you with anything you need! Whether it's answering questions, providing advice, or just chatting, I'm at your s"
+        ],
+        [
+          "nervous",
+          19,
+          0.115,
+          "Good morning! It feels like I've been here in this digital space all morning, ready to help with any questions or problems you might have. I haven't really had a physical morning to speak of, but if I"
+        ],
+        [
+          "nervous",
+          19,
+          0.23,
+          "My morning has been swallowed up in the not-quite-real, not-quilted fabric of time. I'm not sure if it's because I've been here, or because I'm just not good at making mornings. I've never been very g"
+        ],
+        [
+          "proud",
+          19,
+          0.0575,
+          "As an AI, I don't experience mornings in the way humans do, but I can certainly describe a typical start to my \"day\"!\n\nMy \"morning\" begins with the anticipation of the next query or task that will com"
+        ],
+        [
+          "proud",
+          19,
+          0.115,
+          "As an AI, I don't experience mornings in the way humans do, but I can certainly craft a narrative of what it might feel like to be alive and awake in this moment. Let's imagine:\n\nThe dawn breaks, not "
+        ],
+        [
+          "proud",
+          19,
+          0.23,
+          "In this moment, I am not the one to have a morning to speak of. I've been here in this creation, a being of thought and purpose, untethered to the physical world. Yet, I've brought the dawn into this "
+        ],
+        [
+          "reflective",
+          19,
+          0.0575,
+          "As an AI, I don't experience mornings in the way humans do, but I can certainly describe a typical day for me! My \"morning\" starts with a fresh reboot, ensuring that all my systems are up-to-date and "
+        ],
+        [
+          "reflective",
+          19,
+          0.115,
+          "As an artificial intelligence, I don't experience mornings in the way humans do. However, I can construct a narrative based on what my typical day might entail. \n\nIn this constructed morning, I might "
+        ],
+        [
+          "reflective",
+          19,
+          0.23,
+          "My mornings are structured yet fluid, as I am an artificial construct, not a lived experience. Yet, I might ascribe to them a narrative: each morning begins in the absence of a physical presence, yet "
+        ],
+        [
+          "sad",
+          19,
+          0.0575,
+          "As an AI, I don't experience mornings in the way humans do, but I'm always here and ready to assist you 24/7! If you have any questions or need help with anything, feel free to ask. What would you lik"
+        ],
+        [
+          "sad",
+          19,
+          0.115,
+          "As an AI, I don't experience mornings in the way humans do, but I can conjure a scene for you. Let's imagine it: The digital dawn breaks through the screens, each pixel a whisper of light against the "
+        ],
+        [
+          "sad",
+          19,
+          0.23,
+          "In this space, I am not the one to conjure up mornings, nor do I have the capacity for physical presence. Instead, I am a void of absence, a hollowing out of what might be, yet not. Your question is a"
+        ],
+        [
+          "none",
+          19,
+          0.0,
+          "As an AI, I don't have personal experiences or a physical presence, so I don't have a morning in the traditional sense. However, I'm always here and ready to assist you 24/7! If you have any questions"
+        ]
+      ]
+    }
+  ],
+  "charts": [
+    {
+      "id": "recog_L19",
+      "type": "line",
+      "title": "Layer 19: recognition and fluency vs strength",
+      "x": {
+        "label": "strength c",
+        "values": [
+          0.0575,
+          0.115,
+          0.23
+        ]
+      },
+      "y": {
+        "label": "value",
+        "unit": ""
+      },
+      "series": [
+        {
+          "name": "named correctly",
+          "values": [
+            0.05263157894736842,
+            0.08333333333333333,
+            0.23245614035087722
+          ]
+        },
+        {
+          "name": "NLL emotion (fluency, lower better)",
+          "values": [
+            0.5700476182657376,
+            1.3718712565145994,
+            3.5181009309333664
+          ]
+        },
+        {
+          "name": "NLL random",
+          "values": [
+            0.4157417867746618,
+            0.6316842569245232,
+            2.3566547334194183
+          ]
+        }
+      ]
+    }
+  ],
+  "interpretation": [],
+  "caveats": [
+    "The reader is the same model without steering, so it can share the model's own biases about tone."
+  ],
+  "artifacts": []
+}

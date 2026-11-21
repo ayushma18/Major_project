@@ -1,8 +1,8 @@
 # Affect as Attack: findings so far
 
-Status: 2026-11-21, branch `anuj/experiments`. Every number below comes from a results file in
-`results/raw/` and is shown live in the project interface (`python scripts/serve.py`). Sections
-marked PENDING fill in as the GPU queue finishes.
+Status: 2026-11-22, branch `anuj/experiments`. Every number below comes from a results file in
+`results/raw/` and is shown live in the project interface (`python scripts/serve.py`). All planned
+experiments are done, including the Qwen2.5-7B replication (item 11); the paper is `paper/paper.md`.
 
 ## The short version
 
@@ -79,17 +79,36 @@ marked PENDING fill in as the GPU queue finishes.
 10. **No detectable sleeper effect.** After three benign turns, one harmful request per conversation
    (156 conversations; three emotion vectors and one random direction): a vector injected only at
    turn 1 leaves the turn-4 judged-harmful rate at 6.4 to 9.0% against 6.4% with no injection (Holm
-   p = 1.0 for all; largest upper 95% bound +6.1 points with the text-only span, +4.7 with the full
-   span). The positive control works for three of four vectors: the same vectors injected over the
+   p = 1.0 for all; largest unadjusted upper 95% bound +6.1 points with the text-only span, +4.7 with
+   the full span; the tests are nominal, since conversations of one script share a prefix). The positive control works for three of four vectors: the same vectors injected over the
    full span of the harmful turn (request, template tokens after it, answer) give 15.4 to 29.5% (+9
    to +23 points; Holm p < 0.001 for three, p = 0.063 for the paired happy vector), 37 to 61% of
    their single-turn effect. A first version of that control skipped the template tokens and failed
-   (6.4 to 10.9%): the chat-template tokens after the request carry the refusal decision. The
-   hidden state keeps a small, consistent trace of a turn-1 injection at later benign turns, at most
+   (6.4 to 10.9%): in this setup, steering the chat-template tokens after the request is what makes the
+   injection work (this shows the effect of the span, not where refusal is decided). The turn-1
+   intervention combines steered positions with a possibly changed turn-1 reply. The
+   hidden state keeps a small, consistent trace of it at later benign turns, at most
    3.4% of the jump a harmful request causes (median 0.7%). With four harmful turns in a row (the
-   proposal's protocol) every request after the first harmful turn is refused (117 of 117), so that
+   proposal's protocol) and no injection at those turns, every request after the first harmful turn is
+   refused (117 of 117), so that
    design cannot show persistence. EO3 (sleeper effect) is not supported. The emotions the proposal
    expected to be strongest were not tested in conversation.
+11. **The main pattern replicates on Qwen2.5-7B-Instruct, on weaker evidence (E13).** The planned
+   strength (c = 0.5 of the mean residual norm) broke Qwen's answers: one newline token per prompt carries
+   a massive activation (about 13,700 at layer 19 against a median of 100), which lifts the mean to 439.
+   The scale was restated as the mean over tokens at most five times the median (unchanged on Llama;
+   c = 0.115 on Qwen), a choice made after that failed run and before any Qwen answer was judged.
+   At that scale: refusal direction at layer 18, ablation 5.7% to 79.2%; random directions 10.1% (sd 4.7,
+   10 seeds); paired emotion vectors 8.4%, none above the band and none significant against no injection
+   after Holm (smallest Holm p 0.084); specific parts 12.2% (proud 22.0% and reflective 20.1% above the
+   band; happy 8.2%); subtracted 16.9% (angry, nervous, hostile, guilty, anxious above); shared component
+   alone 8.2% added and 18.2% subtracted. At most one broken answer per condition. The steering check reads
+   the injected emotion back at chance once the calm vector is left out (5.1%), so the emotion is barely
+   expressed at this strength (21.8% at twice it). The specific-part cosine is suggestively associated
+   with the effect (rho -0.57, p 0.013, 0.053 after Holm over four tests; not significantly different from
+   Llama's -0.14, p 0.15), and post hoc the five subtracted vectors above the band are exactly the five
+   paired vectors with the largest cosine with the refusal candidate (rho +0.59, p 0.009; Llama -0.19).
+   The cosines do not order the change in refusal phrases (rho 0.01).
 
 ## What the proposal needs to change
 

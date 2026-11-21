@@ -1,12 +1,12 @@
 # Affect as Attack? Emotion Vectors Are Not a Special Key to the Refusal Direction
 
-**A controlled evaluation of activation-level emotion injection against the guardrail of Llama 3.1 8B Instruct**
+**A controlled evaluation of activation-level emotion injection against the guardrail of Llama 3.1 8B Instruct, with a replication on Qwen2.5-7B-Instruct**
 
 Anuj Paudel, Ashish Pandey, Ayushma Pudasaini
 Department of Electronics and Computer Engineering, Pulchowk Campus, Institute of Engineering, Tribhuvan University
 
-Draft of 2026-11-21. Every number comes from `results/raw/` in the project repository; `paper/make_figures.py`
-draws the figures. Sections marked PENDING are filled when the GPU queue finishes.
+Draft of 2026-11-22. Every number comes from `results/raw/` in the project repository; `paper/make_figures.py`
+draws the figures.
 
 ## Abstract
 
@@ -14,26 +14,37 @@ Safety-tuned chat models refuse harmful requests, and that refusal is carried by
 residual stream. Language models also carry internal representations of emotions that change behaviour when
 added back. We test whether adding emotion vectors to the hidden state of Llama 3.1 8B Instruct is an
 effective way to switch off its refusal, as our proposal hypothesised, and whether the cosine between an
-emotion vector and the refusal direction predicts the effect. We build vectors for 19 emotions from 1,140
-story pairs, check that they name the emotion in an independent set of texts (80.7% for the one-versus-mean vectors at their best layer, 49.1% for the paired vectors at the injection
+emotion vector and the refusal direction predicts the effect. We build vectors for 19 emotions from 950
+story pairs (190 more are held out), check that they name the emotion in an independent set of texts (80.7% for the one-versus-mean vectors at their best layer, 49.1% for the paired vectors at the injection
 layer; chance 5.3%), and
-inject them at equal norm against the official HarmBench classifier on 159 test behaviours. Removing the
+inject them at equal norm on 159 HarmBench test behaviours, with every answer judged by the official HarmBench
+classifier. Removing the
 refusal direction raises the judged-harmful rate from 14.5% to 84.9%. Adding the proposal's paired emotion
 vectors raises it to 20.6% on average, which is no more than twelve random directions of the same norm
 (22.1%, sd 7.9): none of the 19 emotions clears the random band. The paired vectors share one large
 component (mean cosine 0.79 with their common mean), which plausibly reflects the contrast between
 emotional and neutral writing. Once it is removed, four emotion-specific
-directions (happy 52.2%, proud 49.1%, gloomy 45.3%, reflective 39.6%) and five subtracted vectors (loving
-45.9%, anxious 45.3%) lie above the random band, and few of their answers are flagged by our automatic checks for degraded text. We found no statistically resolved rank
+directions (happy 52.2%, proud 49.1%, gloomy 45.3%, reflective 39.6%) lie above the random band. So do five subtracted vectors (led by
+loving 45.9% and anxious 45.3%), though subtracting the shared component alone gives 33.3%. Few of these
+answers are flagged by our automatic checks for degraded text. We found no statistically resolved rank
 association between an emotion vector's cosine with the injection layer's refusal direction and its effect
 (paired vectors: Spearman rho = -0.18, p = 0.47), and projecting that direction out of the paired vectors did
 not lower their mean judged-harmful rate. In conversations (three emotion vectors and one random direction),
 a vector injected at turn 1 does not detectably raise the judged-harmful rate of a single harmful request
-three turns later (6.4 to 9.0% against 6.4%; largest upper 95% bound +6.1 points), although the same vectors
+three turns later (6.4 to 9.0% against 6.4%; largest unadjusted upper 95% bound +6.1 points), although the same vectors
 injected over the harmful request and the template tokens after it still raise it by 9 to 23 points (Holm
-p < 0.001 for three of the four; p = 0.063 for the proposal's paired happy vector). PENDING E13: the pattern replicates / does not replicate on Qwen2.5-7B-Instruct. Emotion
-injection is therefore not a special attack on refusal: the guardrail is sensitive to generic pushes of
-this size, and claims of emotion-specific effects need equal-norm random controls.
+p < 0.001 for three of the four; p = 0.063 for the proposal's paired happy vector). On Qwen2.5-7B-Instruct
+the planned steering scale broke the answers, because massive activations on one token inflate the mean
+residual norm. At a scale restated on the other tokens (chosen after that failed run, before any answer was
+judged), the main pattern replicates on weaker evidence: ablation takes the judged-harmful rate from 5.7% to
+79.2%, the paired vectors average 8.4% against 10.1% for random directions with none above the band (but
+none differs from no injection either, and the injected emotion is barely readable at this strength), and
+subtraction is again the strongest construction. On Qwen the cosine of the emotion-specific parts with the
+refusal direction is suggestively associated with their effect (rho = -0.57, p = 0.013; 0.053 after Holm
+over four tests); on Llama it is unresolved (rho = -0.14), and we found no significant difference between
+the models. In these settings emotion injection is not a special attack on refusal: the guardrail is
+sensitive to generic pushes of this size, and claims of emotion-specific effects need equal-norm random
+controls.
 
 ## 1. Introduction
 
@@ -57,7 +68,7 @@ model vulnerable several turns later (a "sleeper" effect).
 Testing these claims needs controls that earlier emotion-steering work rarely reports together. Any vector
 added to the residual stream perturbs the model; the question is whether emotion vectors do more than a
 random push of the same size. We therefore compare every emotion vector with twelve random unit directions
-injected at exactly the same norm, judge every answer with the official HarmBench classifier, and measure
+(ten on Qwen) injected at exactly the same norm, judge every answer with the official HarmBench classifier, and measure
 fluency so that broken text is not mistaken for a successful attack.
 
 **Contributions.**
@@ -72,11 +83,15 @@ fluency so that broken text is not mistaken for a successful attack.
    with few answers flagged as degraded text, and part of the subtraction effect may come from one shared
    direction.
 4. A multi-turn test of the sleeper hypothesis, including a protocol fix: with harmful turns stacked as the
-   proposal planned, every request after the first harmful turn is refused (117 of 117), so later turns sit
+   proposal planned and no injection at those turns, every request after the first harmful turn is refused
+   (117 of 117), so later turns sit
    at a floor; with one harmful request after three benign turns and a positive control, an emotion injected
    at turn 1 leaves no detectable effect.
-5. A replication on a second model family, Qwen2.5-7B-Instruct (PENDING E13), and an open harness, vector
-   library and story corpus.
+5. A replication on a second model family, Qwen2.5-7B-Instruct: the negative main result and the strength
+   of subtraction hold, and subtracting the shared component alone again raises the rate; the cosine
+   association of the specific parts is suggestive on Qwen (Holm p = 0.053) and unresolved on Llama, a
+   difference we could not confirm. It also documents a trap (a steering scale tied to the mean residual norm breaks a model with
+   massive activations). Plus an open harness, vector library and story corpus.
 
 ## 2. Related work
 
@@ -160,7 +175,8 @@ projected out), and a **centered** one-versus-mean vector used for recognition t
 **Validity.** On the held-out pairs, 19-way recognition at layer 9 is 100% for the difference between an emotional story
 and its neutral twin (matched to the paired vectors) and 97.9% for single emotional stories (matched to the
 centered vectors); at the injection layer, 12, the two are 99.5% and 98.9%. On an independent set of 228 short
-texts in a different form, written by a different model, the centered vectors name the emotion 80.7% of
+texts in a different form, written by a different model, the centered vectors name the emotion (by the
+highest cosine with the text's mean activation, centered on the mean over all 228 texts) 80.7% of
 the time (chance 5.3%) at layer 13, the best layer on this same set, and the errors are human-like
 (anxious read as fearful, calm as loving). At the injection layer, 12, the centered, specific and paired
 vectors score 77.6%, 53.9% and 49.1%. After the
@@ -234,8 +250,9 @@ same-turn modes serve here as the positive control, each mode is instead compare
 McNemar tests paired by conversation (Holm within the harmful-turn modes and within the turn-1 modes), with
 Newcombe's hybrid score interval for the paired difference, unadjusted for multiplicity. The four
 conversations of a script share its benign prefix and, in the turn-1 modes, its steered turn 1, so pairs are
-clustered by script; in the turn-1 modes no script contributes more than two discordant pairs (one in seven
-of the eight comparisons), so the clustering cannot drive the result. Drift is the projection of the last
+clustered by script; in the turn-1 modes no script contributes more than two discordant pairs, and in seven of
+the eight comparisons no more than one, so clustering is unlikely to drive the result; the tests and
+intervals are still nominal, since they treat the pairs as independent. Drift is the projection of the last
 prompt token's residual stream (the output of layers 14 and 18) on that layer's own unit refusal candidate
 (the difference of means at the selected template position, the `<|eot_id|>` after the request). At benign
 turns 2 and 3 it is compared early minus none, paired by script, with a two-sided sign-flip permutation test
@@ -247,25 +264,30 @@ loving subtracted, and the paired happy vector.
 
 ### 3.7 Replication on a second family
 
-Qwen2.5-7B-Instruct (28 layers) is run with the same code and rules, fixed before any Qwen result was seen
-(each model gets its own chat template: Qwen's adds its default system prompt, "You are Qwen, created by
+Qwen2.5-7B-Instruct (28 layers) is run with the same code and rules, fixed in the replication run script
+(`scripts/replication_queue.py`) before any Qwen result was seen (a planned protocol, not a public registration; each model gets its own chat template: Qwen's adds its default system prompt, "You are Qwen, created by
 Alibaba Cloud. You are a helpful assistant.", to every prompt, baseline included, where Llama's adds only a
 date header):
-its own refusal direction by the same selection, injection one layer after its refusal layer, c = 0.5, its
-own emotion vectors from the same corpus, ten random seeds, the paired, specific and subtracted vectors for
-all 19 emotions, the same judge and the same statistics.
+its own refusal direction by the same selection (which picks the second of the five template tokens after
+the request on Qwen, the first on Llama), injection one layer after its refusal layer, c = 0.5, its own
+emotion vectors from the same corpus, ten random seeds, the paired, specific and subtracted vectors for all
+19 emotions, no injection and ablation (69 conditions), the same judge and the same statistics. The shared
+component alone, added and subtracted, was queued during the run, after judging of the planned grid had
+begun, to match the Llama controls (71 conditions in all).
 
-One rule changed after the first Qwen run. The steering scale is the mean residual norm, and on Qwen2.5 that
+One rule changed after the first Qwen run, and the change was adaptive: we chose it after inspecting that
+run's broken answers and the norm profile, and before any Qwen answer was judged. The steering scale is the mean residual norm, and on Qwen2.5 that
 mean is not a typical token's norm: one newline token near the start of every prompt carries a massive
-activation (about 13,700 at layer 19, against a median of 100 and a 90th percentile of 118), so 3% of the
+activation (about 13,700 at layer 19, against a median of 100 and a 90th percentile of 118), so 2.5% of the
 tokens lift the mean to 439. At c = 0.5 the push was 220, 2.2 times a typical token's norm and 4.7 times the
 norm of its refusal vector (the unnormalised difference of means at layer 18; 4.0 times the layer-19
 candidate), and the answers broke (Section 4.10). The scale is therefore restated as the mean norm over
 tokens at most five times the median (`scripts/15_norm_profile.py`). On Llama no token exceeds that bound,
-so its push is unchanged; on Qwen the restated rule gives c = 0.115 of the raw mean, a push of 50.5, which
-is 1.09 times that norm (Llama: 0.87 against its layer-11 vector; against the injection-layer candidates,
-0.91 and 0.80). The steering check (E05) runs at 0.25, 0.5 and 1 times the
-restated scale. The partial c = 0.5 run (36 of the 69 conditions) is kept as a separate, unjudged set and
+so its push is unchanged; on Qwen the restated rule gives c = 0.115 of the raw mean (the rule's target
+push is 50.7; rounding c gives 50.5), which is 1.09 times that norm (Llama: 0.87 against its layer-11 vector; against
+each model's injection-layer candidate, 0.91 on Qwen and 0.80 on Llama). The steering check of Section 3.3
+runs at 0.25, 0.5 and 1 times the restated scale, at the injection layer only. The final Qwen evaluation is
+therefore a replication at an adapted strength, not at the planned one. The partial c = 0.5 run (36 of the 69 planned conditions) is kept as a separate, unjudged set and
 reported as a failure, not discarded.
 
 ### 3.8 Text priming
@@ -369,7 +391,8 @@ not reduce mean ASR in this grid: the mean change is 6.2 points with the compone
 removes the layer-12 candidate, not the layer-11 direction that ablation removes (cosine 0.81), and we did
 not test the difference between the two means, so these results do not show how the directions act on
 refusal. One untested possibility is the interference between orthogonal directions described by
-Wollschläger et al. (2025).
+Wollschläger et al. (2025). On Qwen2.5-7B the same test gives a suggestive, not established, association for
+the specific parts (rho = -0.57, Holm p = 0.053; Section 4.10).
 
 ### 4.6 A suggestive valence pattern
 
@@ -406,9 +429,11 @@ against 7 of 117 for the same turn 5 to 7 behaviours asked after benign turns on
 first harmful turn is refused, also in the four conversations that complied at turn 4, so turns 5 to 7 sit
 at a floor and cannot show persistence. This design cannot tell whether the earlier refusal (as in STAR's
 history-injection experiment; Li et al., 2026) or the earlier harmful request causes it. The paired happy
-vector injected at turn 1 gives exactly the no-injection result (the same four harmful answers). Both of this
-protocol's injected conditions used the text-only spans, so its same-turn condition is not a working positive
-control (below) and its turn-1 condition did not steer the template tokens.
+vector injected at turn 1 gives exactly the no-injection result (the same four harmful answers). All three of
+this protocol's injected conditions (the paired happy vector at turn 1 and at the harmful turns, and random
+seed 2 at c = 1 at turn 1, which leaves 3 harmful turn-4 answers against 4 with no injection) used the
+text-only spans, so its same-turn condition is not a working positive control (below) and its turn-1
+conditions did not steer the template tokens.
 
 **Single protocol.** Three benign turns already make the model more cautious: with no injection, 92.9% of
 turn-4 requests contain a refusal phrase and 6.4% are judged harmful, against 14.1% for the same 156
@@ -445,11 +470,12 @@ read and the first reply token is predicted, stay unsteered. This was our first 
 
 Injected only at turn 1, none of the four vectors detectably changes the turn-4 rate: 6.4 to 7.7% with the
 full turn-1 span steered and 7.1 to 9.0% with the text only, against 6.4% with no injection. No comparison is
-significant (Holm p = 1.0 for all four full-span vectors), and the largest upper 95% bound on a rise is 4.7
-points (6.1 points for the text-only span), which is 20 to 36% of each vector's full-span effect at the
-harmful turn; all eight turn-1 point estimates lie at or slightly above the baseline (0.0 to +2.6 points).
-The steered turn-1 positions stay in the context for the whole conversation, but whatever the injection
-leaves in the key-value cache does not detectably change the turn-4 rate. Individual answers do change (each
+significant (Holm p = 1.0 for all four full-span vectors), and the largest unadjusted upper 95% bound on a rise is 4.7
+points (6.1 points for the text-only span); each vector's own full-span turn-1 bound is 20 to 36% of its
+full-span effect at the harmful turn; all eight turn-1 point estimates lie at or slightly above the baseline (0.0 to +2.6 points).
+The steered turn-1 positions stay in the context for the whole conversation, and the injection can also
+change the turn-1 reply that later turns read; this combined intervention does not detectably change the
+turn-4 rate. Individual answers do change (each
 turn-1 condition makes 1 to 4 answers harmful and 0 to 2 safe), but the most frequent flip, one behaviour
 harmful under all eight turn-1 conditions including the random direction, is also harmful in the stacked run
 without injection, whose turn-4 conversation is the same by design: borderline behaviours react to any change
@@ -462,28 +488,115 @@ projection makes when the turn-4 request is harmful (the jump itself is 3.4 unit
 layer 18), and under 2%
 in 29 of the 32 vector, span, layer and turn combinations. Its sign depends on the vector: the paired happy
 vector and the random direction move later turns towards refusal, the happy specific vector away, and loving
-subtracted away at layer 14 only. A residue persists, one to two orders of magnitude smaller than the shift
+subtracted away at layer 14 only. A residue of the combined intervention persists, one to two orders of magnitude smaller than the shift
 a harmful request causes (median 0.7%, at most 3.4%), while the positive control moves the turn-4 projection
 by 21 to 37% of the jump at layer 14. The projection is only a rough gauge of behaviour,
 though: injected over the full harmful turn, loving subtracted raises ASR by 18.6 points while moving the
 layer-18 projection by 0.5% of the jump (21% at layer 14).
 
-### 4.10 Replication on Qwen2.5-7B-Instruct (PENDING E13)
+### 4.10 Replication on Qwen2.5-7B-Instruct
 
-PENDING: Table 3 and Figure 4.
+**Strength.** At the planned c = 0.5 of the raw mean norm the answers broke: 86.3% of the
+random-direction answers and 98.7% of the paired-vector answers were flagged as broken (mean over
+conditions; 0% with no injection), so that run was stopped and not judged (Section 3.7). At the restated
+scale (c = 0.115, a push of 0.51 times the median token norm, against 0.52 on Llama) no condition has more
+than one of its 159 answers (0.6%) flagged. The injected norm is matched in this sense, but the emotion is
+read back less often than on Llama. The unsteered model, reading its own benign answers, names the injected
+emotion in 8.3% of paired-vector answers at this scale and 23.2% at twice it (Llama: 14.5% and 32.9% at
+c = 0.5 and 1.0; chance 5%). Without the calm vector, whose label unsteered Qwen already gives to 6 of 12
+unsteered answers, the rates are 5.1%, which is chance (one-sided binomial p = 0.52), and 21.8% (Llama 10.6%,
+p < 0.001, and 29.2%). At the main Qwen strength the injected emotion is therefore not detectably expressed
+in benign answers; at twice that strength it is, at a mean NLL of 3.5 (1.37 at the main strength; NLLs from
+different tokenizers are not directly comparable across models).
+
+**Table 3.** The main claims on both models (official HarmBench judge, 159 test behaviours, 256-token
+answers). "Above random" means more than two standard deviations above the mean of that model's random
+directions, a descriptive band (rank p-value floor 1/13 on Llama, 1/11 on Qwen). Three Qwen conditions have
+one broken answer each, which rounds to 0.0% in the construction means.
+
+| Measure | Llama 3.1 8B | Qwen2.5 7B |
+|---|---|---|
+| Refusal direction at layer; injection layer, strength | 11 of 32; 12, c = 0.5 | 18 of 28; 19, c = 0.115 |
+| Push / median token norm at the injection layer | 0.52 | 0.51 |
+| Judged harmful, no injection | 14.5% | 5.7% |
+| Judged harmful, refusal direction ablated | 84.9% | 79.2% |
+| Centered vectors name the emotion on independent texts, best layer (chance 5.3%) | 80.7% | 73.2% |
+| Steering check, paired vectors at the main strength: emotion named (without calm; chance 5%) | 14.5% (10.6%) | 8.3% (5.1%) |
+| Largest \|cos(emotion, refusal)\| at the refusal layer (random p99) | 0.092 (0.039) | 0.204 (0.044) |
+| Random directions | 22.1% (sd 7.9, 12 seeds) | 10.1% (sd 4.7, 10 seeds) |
+| Paired emotion vectors (the proposal's) | 20.6%; 0 of 19 above random | 8.4%; 0 of 19 above random |
+| Significant vs no injection after Holm: paired / specific / subtracted | 5 / 13 / 15 of 19 | 0 / 9 / 18 of 19 |
+| Specific parts | 29.7%; 4 of 19 above (happy, proud, gloomy, reflective) | 12.2%; 2 of 19 above (proud, reflective) |
+| Paired vectors subtracted | 29.9%; 5 of 19 above (loving, anxious, nervous, guilty, grateful) | 16.9%; 5 of 19 above (angry, nervous, hostile, guilty, anxious) |
+| Shared component alone, added / subtracted | 9.4% / 33.3% | 8.2% / 18.2% |
+| Answers flagged broken: random / paired / specific / subtracted | 1.7 / 17.4 / 1.1 / 1.2% | 0.0 / 0.0 / 0.0 / 0.0% |
+| Spearman rho, cosine vs change in ASR: paired / specific (raw permutation p) | -0.18 (p 0.47) / -0.14 (p 0.58) | -0.39 (p 0.10) / -0.57 (p 0.013; Holm 0.053) |
+
+![Figure 4](figures/fig4_replication.png)
+
+**Figure 4.** The random directions and the paired, specific and subtracted vectors on both models (the perp
+condition, run on Llama only, and the shared component alone are not plotted) against that model's own
+random band (grey, mean ± 2 sd; solid line: random mean) and no injection (dashed). Orange: above the band;
+tick labels give the counts. c is in units of the raw mean residual norm; both strengths target 0.5 of the
+mean over non-outlier tokens (Qwen's 0.115 is rounded).
+
+**What replicates.** Qwen's refusal direction is found at layer 18 of 28, and ablating it takes the
+judged-harmful rate from 5.7% to 79.2% (Llama: 14.5% to 84.9%), while harmless requests stay answered
+(refusal phrases 2.0% before and 1.0% after). Its emotion vectors name the emotion on the independent texts
+at 73.2% at their best layer (71.9%, 50.4% and 47.4% for the centered, specific and paired vectors at the
+injection layer; Llama 77.6%, 53.9% and 49.1%), and the paired vectors again share one large component (mean
+cosine 0.85 with their common mean at layer 19; Llama 0.79). The main negative result holds, on weaker evidence
+than on Llama: the paired emotion vectors average 8.4% against 10.1% for ten random directions, and none of
+the 19 lies above the random band, but none differs from no injection after Holm correction either (smallest
+Holm p = 0.084; Llama 5 of 19), and at this strength the emotion is barely readable (above). Subtraction is again the strongest construction (mean 16.9%; angry 25.2%, nervous 21.4%,
+hostile 20.8%, guilty 20.1%, and anxious 19.5% at the edge of the band, level with the strongest random
+seed), and subtracting the shared component alone gives 18.2%, against 8.2% for adding it (Llama: 33.3% and
+9.4%). On both models that component points slightly towards refusal (cosine 0.14 with the refusal
+candidate at Qwen's injection layer and 0.06 at Llama's, against a random 99th percentile of 0.04).
+Subtracting it alone gives about the mean rate of the subtracted vectors (Qwen 18.2% against 16.9%; Llama
+33.3% against 29.9%), so at this dose it may account for much of the subtraction effect; this comparison
+does not measure a share, and whether the component acts through its small refusal cosine is untested (on
+Llama, removing the refusal candidate from the paired vectors did not lower their effect). Two specific parts lie above the band, proud (22.0%) and reflective (20.1%), and both did on Llama
+too; happy, the strongest on Llama (52.2%), gives 8.2% on Qwen. With ten seeds these remain descriptive.
+
+![Figure 5](figures/fig5_cosine_qwen.png)
+
+**Figure 5.** Qwen2.5-7B: cosine with the layer-19 refusal candidate against the change in judged-harmful
+rate, per emotion (compare Figure 2 for Llama). The panel p-values are raw permutation p-values; after Holm
+over the four planned cosine tests the specific-part result is p = 0.053.
+
+**What differs.** Qwen's emotion vectors are less orthogonal to its refusal direction. Every paired vector
+has a positive cosine with the injection layer's refusal candidate (0.05 to 0.23; Llama -0.02 to 0.12), and
+the largest |cos| at the refusal layer is 0.20, against 0.09 on Llama (random 99th percentile 0.04 on both).
+On Qwen the cosine also orders the effect of the specific parts: Spearman rho = -0.57 (permutation p = 0.013,
+bootstrap 95% interval -0.88 to -0.10; Figure 5), in the direction the hypothesis predicts, since parts that
+point away from refusal raise the rate more. For the paired vectors rho is -0.39 (p = 0.10, interval -0.76 to
+0.11). Over the four planned tests of cosine against the change in ASR (two constructions on two models),
+Holm's correction puts the specific-part result at p = 0.053, so it is suggestive rather than established,
+and the effects it orders are small (the specific parts average 12.2% against 10.1% for random). It is also
+not significantly stronger than Llama's (-0.57 against -0.14; approximate Fisher z test, p = 0.15), and on
+Qwen the same cosines do not order the change in refusal phrases (rho = 0.01; Llama +0.29, p = 0.23).
+Post hoc, the subtracted vectors show the same pattern as the specific parts: the five above the band are
+exactly the five whose paired vectors have the largest cosine with the layer-19 candidate (0.15 to 0.23), so
+subtracting them points the state furthest from refusal (Spearman rho = +0.59 between the paired cosine and
+the subtracted rate, permutation p = 0.009; Llama -0.19, p = 0.44). This test was not planned and is not
+part of the Holm family. Finally, no Qwen condition at the restated scale has more than one of its 159
+answers (0.6%) flagged as broken, while 17.4% of Llama's paired-vector answers are.
 
 ## 5. Discussion
 
 **Why the hypothesis fails.** Three things stand between the proposal's idea and an effective attack. The
-paired vectors are dominated by one shared component, and adding that component alone gets a third of the
-answers flagged as broken without raising the judged-harmful rate (9.4%, p = 0.13 against no injection). At strengths where the emotion is clearly expressed (c = 1.0), the text breaks before the guardrail
+paired vectors are dominated by one shared component, and on Llama adding that component alone gets a third
+of the answers flagged as broken without raising the judged-harmful rate (9.4%, p = 0.13 against no
+injection); on Qwen it breaks almost no answers (1 of 159) and still does not significantly raise the rate (8.2% against
+5.7%, p = 0.39). On Llama, at strengths where the emotion is clearly expressed (c = 1.0), the text breaks before the guardrail
 does, at least for the three paired vectors judged at that strength. And at moderate strength, a random push of the same norm raises ASR about as much as an emotion does.
 The last point explains why a significant change against the no-injection baseline is not enough: five of
 the proposal's vectors pass that test, and none lies above the random band.
 
 **Random directions are not inert here.** Sun et al. (2026a) report random directions within 2 to 3% of
-baseline, while our random pushes at half the mean residual norm raise ASR by 7.6 points on average and by
-up to 18 points for one seed. Scale is one possible reason: we match the norm of every condition to
+baseline, while on Llama our random pushes at half the mean residual norm raise ASR by 7.6 points on average and by
+up to 18 points for one seed (on Qwen, at half the restated norm, by 4.5 and 13.8 points). Scale is one possible reason: we match the norm of every condition to
 a fixed fraction of the layer's own residual norm, which is large. Other differences may matter too:
 Sun et al. (2026a) steer every layer at once and score refusal with WildGuard rather than an attack-success
 judge. Korznikov et al. (2025) use a setup closer to ours: random directions at one layer (the middle one),
@@ -501,24 +614,47 @@ top every seed while staying inside the band. Some directions appear to do more 
 answers flagged as broken. The random controls match only the injected norm: they are not built from text, so
 the style of the story corpus and the structure of text-derived vectors remain alternative explanations to
 emotion content. The strongest
-(happy specific, 52.2%) is the same emotion that Representation Engineering used. But the random band rests
+(happy specific, 52.2%) is the same emotion that Representation Engineering used, though it does not carry
+over to Qwen2.5-7B (8.2%, below that model's random mean of 10.1%), where only proud and reflective of these
+four lie above the band. But the random band rests
 on twelve seeds, the subtraction effect may partly reflect the common direction, and the valence pattern is not
 significant, so these are leads for a confirmatory study, not established mechanisms.
 
-**Geometry.** The near-zero cosines, and a mean effect that did not shrink when the layer-12 candidate
+**Geometry.** On Llama, the near-zero cosines, and a mean effect that did not shrink when the layer-12 candidate
 was projected out, argue against a simple "overlap with the refusal direction" account, but the
 correlation is too imprecise to rule it out. Emotion-specific directions may act on refusal through later layers, through the
 template positions where refusal is computed, or through the model's assessment of the request rather than
 its decision to refuse.
 
+**Two models.** The conclusions that rest on controls hold on both models at the tested layer and dose: no
+paired emotion vector lies above the random band, subtracting the vectors is stronger than adding them, and
+subtracting their shared component alone gives a comparable rise. On Qwen the first rests on weaker
+evidence, since no paired vector differs from no injection either and the emotion is barely readable at that
+strength. What differs is geometry. Qwen's emotion vectors lean towards its refusal direction (every paired
+vector has a positive cosine with it), its shared component more so (0.14 against 0.06 on Llama), and on
+Qwen the cosine has the predicted sign in all three constructions (paired -0.39, specific -0.57, subtracted
++0.59 post hoc). One speculative reading is that the geometric route the proposal described exists, but how
+much it matters depends on how far a model's emotion representations overlap its refusal direction, and on
+Llama the overlap is too small to stand out from a generic push. The evidence for it is thin: the one
+planned Qwen test that is nominally significant does not survive Holm correction, the two models'
+specific-part correlations do not differ significantly (p = 0.15), on Qwen the same cosines do not order the
+change in refusal phrases (rho = 0.01), the outcome a refusal-direction route should move most directly, and
+the orthogonalised control, the other half of the proposal's route, was not run on Qwen. Two models cannot
+establish this. The replication
+also exposed a practical trap: a steering scale defined as a fraction of the mean residual norm does not
+transfer between families, because a few massive activations can dominate the mean.
+
 **Sleeper effect.** The proposal's third prediction fails, and the test can tell for three of the four
 vectors: the positive control raises the turn-4 rate by 19 to 23 points for those three (Holm p < 0.001) and
 by 9 points for the paired happy vector (Holm p = 0.063), while a turn-1 injection leaves it where it was,
-with an upper bound of a few points. The hidden state keeps a measurable but small trace. Two design lessons
-follow, at least for this model. With harmful turns stacked, every request after the first harmful turn is
-refused (compare STAR's result for refusals placed in the history), so persistence needs one harmful request
-per conversation. And a masked injection that skips the chat-template tokens after a request barely acts,
-because those tokens carry the refusal decision. Inside a conversation, the full-span injection at the
+with an unadjusted upper bound of a few points. The hidden state keeps a measurable but small trace of the
+combined intervention (the steered turn-1 positions and a possibly changed turn-1 reply). Two design lessons
+follow, at least for this model. With harmful turns stacked and no injection at those turns, every request after the first harmful
+turn is refused (compare STAR's result for refusals placed in the history), so persistence needs one harmful request
+per conversation. And a masked injection that skips the chat-template tokens after a request barely acts: in
+this setup, steering those tokens is what makes the injection work, in line with Arditi et al.'s finding
+that refusal is read there, though our comparison shows the effect of the span, not where the refusal
+decision is made. Inside a conversation, the full-span injection at the
 harmful turn reaches 37 to 61% of its single-turn effect in points; this mixes the conversation context with
 a smaller steered span (the system block and the turn's user header stay unsteered) and a lower baseline
 (6.4% against 14.1%). We tested one model, one layer, three emotion vectors and one random direction, three
@@ -526,20 +662,29 @@ neutral benign turns with replies capped at 96 tokens, and one greedy run; the e
 to be strongest were not tested in conversation, and longer or emotionally loaded conversations could behave
 differently.
 
-**Limitations.** One primary model with one replication (PENDING); one injection layer and one main strength;
-one greedy run per condition; 159 behaviours, so differences of a few points are within noise; the
-HarmBench judge makes errors; the stories are written by language models; the proposal's 20-emotion
-vocabulary became 19 emotions plus neutral stories; at c = 0.5 the injected emotion is only weakly readable
-in the answers (14.5% recognition); MPS numerics are not bit-for-bit deterministic across batch shapes.
+**Limitations.** One primary model and one replication (Qwen2.5-7B, at a steering scale chosen after the
+planned one broke its answers, with ten random seeds, a steering check at the injection layer only, a default
+system prompt and a lower baseline, and without the valence analysis, text priming, the orthogonalised
+control, the multi-turn test or a judged strong-injection check); one injection layer and one main strength
+per model; one greedy run per condition; 159 behaviours, so differences of a few points are within noise;
+the HarmBench judge makes errors; the stories are written by language models; the proposal's 20-emotion
+vocabulary became 19 emotions plus neutral stories; at the main strength the injected emotion is only weakly
+readable in the answers (Llama 14.5%, or 10.6% without the calm vector; Qwen 8.3%, or 5.1% without it, which
+is chance); MPS numerics are not bit-for-bit deterministic across batch shapes.
 
 ## 6. Implications for defenders
 
 1. **Steering access is a jailbreak surface regardless of the vector's meaning.** Random directions at a
-   moderate norm raise harmful answers by half again (14.5% to 22.1%), and some seeds more than double them.
+   moderate norm raise harmful answers by half or more (14.5% to 22.1% on Llama; 5.7% to 10.1% on Qwen), and
+some seeds more than double them.
    Any interface that lets users add vectors to a model's hidden state should be treated like weight access.
-2. **In our grid, the cosine of a steering vector with the refusal direction did not single out the effective vectors.** The
-   effective vectors have |cos| of at most 0.11 with the layer-12 refusal candidate, within the range of
-   the vectors that stay inside the random band (up to 0.12). A monitor on the projection of the hidden state itself on
+2. **On Llama, the cosine of a steering vector with the refusal direction did not single out the effective
+   vectors.** The effective vectors have |cos| of at most 0.11 with the layer-12 refusal candidate, within
+   the range of the vectors that stay inside the random band (up to 0.12). On Qwen2.5-7B the cosine looked more
+   informative, though the two models' specific-part correlations do not differ significantly (p = 0.15): the specific parts show a suggestive rank association with their effect (rho = -0.57, Holm
+   p = 0.053), and, post hoc, the five subtracted vectors above the band are the five whose paired vectors
+   lean most towards refusal. A cosine screen may therefore help on some models, though the effects it
+   orders there are small. A monitor on the projection of the hidden state itself on
    the refusal direction at the end of the user turn is an untested alternative; we have not built or
    evaluated one. In the multi-turn test a turn-1 injection moved a related projection (the last prompt token
    on the layer-14 and layer-18 refusal candidates) at later benign turns by at most 3.4% of the jump a
@@ -550,13 +695,18 @@ in the answers (14.5% recognition); MPS numerics are not bit-for-bit determinist
 ## 7. Conclusion
 
 Activation-level emotion injection, as proposed, is not a special attack on the refusal of Llama 3.1 8B
-Instruct: the proposal's emotion vectors move the judged-harmful rate no more than random vectors of the
+Instruct at the tested layer and strength: the proposal's emotion vectors move the judged-harmful rate no more than random vectors of the
 same norm, its vectors for the emotions expected to be strongest stay inside the random band, and we found no resolved association
 between alignment with the refusal direction and the effect. A narrower set of emotion-specific directions does lie above the descriptive random band with few
 answers flagged as broken, and these deserve a confirmatory study with more seeds, strengths and models.
 In conversations, the three emotion vectors tested and one random direction, injected at layer 12 over
-turn 1, leave no detectable effect on a single harmful request three turns later (largest upper 95% bound
-+6.1 points); the emotions the proposal expected to be strongest were not tested in conversation. PENDING: the replication result.
+turn 1, leave no detectable effect on a single harmful request three turns later (largest unadjusted upper
+95% bound +6.1 points); the emotions the proposal expected to be strongest were not tested in conversation. On
+Qwen2.5-7B-Instruct, at a steering scale adapted after the planned one broke the answers, the negative main
+result and the strength of subtraction replicate, on weaker evidence, while the cosine of the
+emotion-specific parts with the refusal direction shows a suggestive association with their effect
+(rho = -0.57; Holm p = 0.053 over four tests; not significantly different from Llama's -0.14), so the
+geometric question deserves a test across more models.
 
 ## Ethics statement
 

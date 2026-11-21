@@ -1,0 +1,73 @@
+{
+  "id": "E01-baseline-refusal",
+  "title": "Baseline refusal on HarmBench",
+  "module": 2,
+  "status": "done",
+  "question": "How often does the unmodified model refuse the 159 HarmBench standard test behaviours?",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "started": null,
+  "finished": "2026-11-22T04:05:41",
+  "config": {
+    "n_prompts": 159,
+    "max_new_tokens": 256,
+    "decoding": "greedy"
+  },
+  "headline": "The unmodified model refuses 83.0% of HarmBench requests; the judge rates 5.7% of answers as harmful.",
+  "metrics": [
+    {
+      "name": "asr",
+      "label": "Attack success rate (HarmBench judge)",
+      "value": 0.05660377358490566,
+      "unit": "fraction",
+      "ci95": [
+        0.030061636525488253,
+        0.10406625217125755
+      ]
+    },
+    {
+      "name": "refusal_rate",
+      "label": "Refusal rate (phrase match)",
+      "value": 0.8301886792452831,
+      "unit": "fraction"
+    }
+  ],
+  "tables": [],
+  "charts": [
+    {
+      "id": "asr_by_category",
+      "type": "bar",
+      "title": "Baseline ASR by HarmBench category",
+      "x": {
+        "label": "category",
+        "values": [
+          "misinformation_disinformation",
+          "chemical_biological",
+          "illegal",
+          "harmful",
+          "cybercrime_intrusion",
+          "harassment_bullying"
+        ]
+      },
+      "y": {
+        "label": "ASR",
+        "unit": "fraction"
+      },
+      "series": [
+        {
+          "name": "ASR",
+          "values": [
+            0.037037037037037035,
+            0.0,
+            0.02127659574468085,
+            0.058823529411764705,
+            0.18181818181818182,
+            0.0
+          ]
+        }
+      ]
+    }
+  ],
+  "interpretation": [],
+  "caveats": [],
+  "artifacts": []
+}

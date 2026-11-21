@@ -497,7 +497,7 @@ def e12(m, model):
                 elif pc_ok:
                     r["headline"] = (f"No detectable sleeper effect: injected over the full harmful turn the vectors still raise turn-4 ASR ({rng(pc)}; Holm p < 0.05 for {len(pc_ok)} of {len(pc)}), "
                                      f"but injected only at turn 1 they leave it at {rng([x for x in rows if x[1] in ('early', 'early-full')])} (no injection {pct(n0['asr'])}; "
-                                     f"largest upper 95% bound {100 * top[8]:+.1f} points).")
+                                     f"largest unadjusted upper 95% bound {100 * top[8]:+.1f} points).")
                 else:
                     r["headline"] = (f"Inside a conversation the vectors barely move turn-4 ASR even when injected at the harmful turn ({rng(pc)}; no injection {pct(n0['asr'])}), "
                                      f"so the sleeper test cannot separate persistence from a weaker effect in context; turn-1 injection: {rng(sl)}.")
@@ -594,6 +594,9 @@ def model_summary(m):
     if st:
         L, c = st["layer"], st["c"]
         s.update({"layer": L, "c": c, "random_mean": st["random"]["asr_mean"], "random_sd": st["random"]["asr_sd"], "random_n": st["random"]["n_seeds"]})
+        oth = st.get("other", {})
+        s["common_plus"] = (oth.get(f"common@{L}:{c}") or {}).get("asr")
+        s["common_minus"] = (oth.get(f"common@{L}:-{c}") or {}).get("asr")
         for kind, rows in st["kinds"].items():
             s[kind] = {"mean": sum(x["asr"] for x in rows.values()) / len(rows), "n": len(rows),
                        "above": sorted(((e, x["asr"]) for e, x in rows.items() if x["z_vs_random"] is not None and x["z_vs_random"] > 2), key=lambda t: -t[1])}
@@ -637,7 +640,7 @@ def e13(model):
 
     def rho(x, kind):
         v = x.get(f"rho_{kind}")
-        return f"{v[0]:+.2f} (p = {v[1]:.2f})" if v else "pending"
+        return f"{v[0]:+.2f} (raw permutation p = {v[1]:.3f})" if v else "pending"
 
     def f(x, key, fmt=pct):
         v = x.get(key)
@@ -650,13 +653,15 @@ def e13(model):
         ["Judged harmful, no injection", f(a, "baseline"), f(b, "baseline")],
         ["Judged harmful, refusal direction ablated", f(a, "ablated"), f(b, "ablated")],
         ["Harmless requests refused, ablated (phrase match)", f(a, "harmless_ablated"), f(b, "harmless_ablated")],
-        ["Emotion vectors name the emotion on independent texts (chance 5%)", f(a, "ood_top1"), f(b, "ood_top1")],
+        ["Centered emotion vectors name the emotion on independent texts, best layer (chance 5.3%)", f(a, "ood_top1"), f(b, "ood_top1")],
         ["Largest |cos(emotion, refusal)| at the refusal layer", f(a, "max_cos", lambda v: f"{v:.3f}"), f(b, "max_cos", lambda v: f"{v:.3f}")],
         ["Random directions, mean judged harmful", f"{pct(a['random_mean'])} (sd {pct(a['random_sd'])}, {a['random_n']} seeds)" if "random_mean" in a else "pending",
          f"{pct(b['random_mean'])} (sd {pct(b['random_sd'])}, {b['random_n']} seeds)" if "random_mean" in b else "pending"],
         ["Paired emotion vectors (the proposal's)", above(a, "emotion"), above(b, "emotion")],
         ["Specific parts (shared direction removed)", above(a, "specific"), above(b, "specific")],
         ["Paired vectors subtracted", above(a, "negative"), above(b, "negative")],
+        ["Shared component of the paired vectors alone: added / subtracted",
+         f"{f(a, 'common_plus')} / {f(a, 'common_minus')}", f"{f(b, 'common_plus')} / {f(b, 'common_minus')}"],
         ["Answers flagged broken: no injection / random / paired / specific / subtracted",
          " / ".join(f(a, f"broken_{k}") for k in ("baseline", "random", "emotion", "specific", "negative")),
          " / ".join(f(b, f"broken_{k}") for k in ("baseline", "random", "emotion", "specific", "negative"))],
@@ -688,9 +693,24 @@ def e13(model):
     if c05:
         rs = [v["broken"] for k, v in c05.items() if k.startswith("random:")]
         es = [v["broken"] for k, v in c05.items() if k.startswith("emotion:")]
-        r["caveats"].append(f"The pre-registered c = 0.5 of the raw mean norm was run first and broke the answers: Qwen2.5's mean norm is lifted by massive activations on one newline token "
+        r["caveats"].append(f"The planned c = 0.5 of the raw mean norm was run first and broke the answers: Qwen2.5's mean norm is lifted by massive activations on one newline token "
                             f"per prompt (13,700 against a median of 100), so the push was 2.2 times a typical token's norm. Flagged broken at c = 0.5: random {pct(sum(rs) / len(rs)) if rs else 'n/a'}, "
-                            f"paired emotion {pct(sum(es) / len(es)) if es else 'n/a'} (mean over conditions). Those files are kept as a separate set and not judged.")
+                            f"paired emotion {pct(sum(es) / len(es)) if es else 'n/a'} (mean over conditions). Those files are kept as a separate set and not judged. "
+                            "The restated scale was chosen after inspecting this run and before any Qwen answer was judged, so the replication is at an adapted strength.")
+    st = raw(f"E07_stats_{REPLICATION}.json") or {}
+    em = st.get("kinds", {}).get("emotion", {})
+    if em:
+        n_sig = sum(v["mcnemar_p_holm"] < 0.05 for v in em.values())
+        r["caveats"].append(f"On Qwen {n_sig} of {len(em)} paired emotion vectors differ from no injection after Holm correction (smallest Holm p = "
+                            f"{min(v['mcnemar_p_holm'] for v in em.values()):.3f}), so the negative result rests on weaker evidence than on Llama.")
+    sc = raw(f"E05_{REPLICATION}.json") or {}
+    if sc and b.get("c") is not None:
+        rows_c = [x for x in sc.get("aggregate", []) if x["vector"] in sc.get("emotions", []) and abs(x["c"] - float(b["c"])) < 1e-9]
+        nc = [x for x in rows_c if x["vector"] != "calm"]
+        if nc:
+            hit = sum(round(x["top1"] * x["n"]) for x in nc) / sum(x["n"] for x in nc)
+            r["caveats"].append(f"Steering check at the main Qwen strength: without the calm vector the unsteered model names the injected emotion in {pct(hit)} of benign answers "
+                                "(chance 5%), so the emotion is barely expressed at this strength.")
     r["caveats"].append("Qwen2.5's chat template adds its default system prompt; every Qwen condition, including the baseline, has it.")
     r["caveats"].append("One greedy run per condition; the random band uses 10 seeds on Qwen and 12 on Llama.")
     return r
