@@ -6,7 +6,7 @@
   "question": "When a vector is added during an ordinary answer, does the tone change to that emotion while the text stays fluent?",
   "model": "unsloth/Llama-3.1-8B-Instruct",
   "started": null,
-  "finished": "2026-11-21T17:25:04",
+  "finished": "2026-11-21T20:16:52",
   "config": {},
   "headline": "At layer 12 and strength 1.0, an unsteered reader names the injected emotion 32.9% of the time (chance 5%).",
   "metrics": [],

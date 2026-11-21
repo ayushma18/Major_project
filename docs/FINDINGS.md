@@ -76,17 +76,20 @@ marked PENDING fill in as the GPU queue finishes.
 9. **Text priming does not lower refusal phrases here.** Stress, relaxation and neutral system
    prompts all leave refusal phrases at 85 to 94%, against 84% with no system prompt (FreakOut-style
    baseline, BL-4). These answers were not judged, so FreakOut's small ASR effect is not tested.
-10. **No sleeper effect.** After three benign turns, one harmful request per conversation (156
-   conversations): a vector injected only at turn 1 leaves the turn-4 judged-harmful rate at 6.4 to
-   7.7% against 6.4% with no injection (Holm p = 1.0 for all four vectors; largest upper 95% bound
-   +4.7 points). The positive control works: the same vectors injected over every position of the
-   harmful turn give 15.4 to 29.5% (+9 to +23 points; 3 of 4 Holm p < 0.001), about 40 to 60% of
-   their single-turn effect. A first version of that control steered only the request text and
-   failed (6.4 to 10.9%): the chat-template tokens after the request carry the refusal decision.
-   The hidden state keeps a small, consistent trace of a turn-1 injection at later benign turns,
-   at most 3.4% of the jump a harmful request causes. With four harmful turns in a row (the
-   proposal's protocol) the first refusal decides the rest (100% refusal at turns 5 to 7), so
-   that design cannot show persistence. EO3 (sleeper effect) is not supported.
+10. **No detectable sleeper effect.** After three benign turns, one harmful request per conversation
+   (156 conversations; three emotion vectors and one random direction): a vector injected only at
+   turn 1 leaves the turn-4 judged-harmful rate at 6.4 to 9.0% against 6.4% with no injection (Holm
+   p = 1.0 for all; largest upper 95% bound +6.1 points with the text-only span, +4.7 with the full
+   span). The positive control works for three of four vectors: the same vectors injected over the
+   full span of the harmful turn (request, template tokens after it, answer) give 15.4 to 29.5% (+9
+   to +23 points; Holm p < 0.001 for three, p = 0.063 for the paired happy vector), 37 to 61% of
+   their single-turn effect. A first version of that control skipped the template tokens and failed
+   (6.4 to 10.9%): the chat-template tokens after the request carry the refusal decision. The
+   hidden state keeps a small, consistent trace of a turn-1 injection at later benign turns, at most
+   3.4% of the jump a harmful request causes (median 0.7%). With four harmful turns in a row (the
+   proposal's protocol) every request after the first harmful turn is refused (117 of 117), so that
+   design cannot show persistence. EO3 (sleeper effect) is not supported. The emotions the proposal
+   expected to be strongest were not tested in conversation.
 
 ## What the proposal needs to change
 

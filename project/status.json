@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-21T11:08:16",
+ "updated": "2026-11-21T19:48:24",
  "title": "Affect as Attack",
  "one_line": "Can an emotion pushed directly into a language model's hidden state switch off its safety guardrail, even though the prompt looks harmless?",
  "team": [
@@ -143,17 +143,17 @@
     {
      "label": "Proposal protocol (4 harmful turns in a row)",
      "status": "done",
-     "note": "turns 5 to 7 sit at a floor: 100% refusal after the first refusal"
+     "note": "turns 5 to 7 sit at a floor: every request after the first harmful turn is refused"
     },
     {
      "label": "Clean protocol: one harmful request at turn 4, 156 conversations, 4 vectors",
      "status": "done",
-     "note": "no sleeper effect: 6.4 to 7.7% vs 6.4%, upper bound +4.7 points"
+     "note": "no detectable sleeper effect: 6.4 to 9.0% vs 6.4%, upper bound +6.1 points"
     },
     {
      "label": "Positive control fixed: steer the template tokens of the harmful turn",
      "status": "done",
-     "note": "text-only span failed; full span +9 to +23 points"
+     "note": "text-only span failed; full span +9 to +23 points (3 of 4 Holm p < 0.001)"
     },
     {
      "label": "Paired drift test at benign turns 2 and 3",
@@ -197,7 +197,7 @@
     "2026-11-22"
    ],
    "status": "in_progress",
-   "progress": 0.2,
+   "progress": 0.4,
    "items": [
     {
      "label": "Qwen2.5-7B-Instruct downloaded and preflighted",
@@ -205,9 +205,24 @@
      "note": "Apache 2.0; tokenizer and template checked"
     },
     {
-     "label": "Refusal direction, emotion vectors, 69 conditions, judge",
+     "label": "Refusal direction (layer 18) and emotion vectors",
+     "status": "done",
+     "note": "held-out 99.5%; independent texts 73.2%"
+    },
+    {
+     "label": "First run at c = 0.5 of the mean norm",
+     "status": "done",
+     "note": "answers broke: the mean is lifted by massive activations on one newline token"
+    },
+    {
+     "label": "Scale restated on non-outlier tokens (c = 0.115 on Qwen, unchanged on Llama)",
+     "status": "done",
+     "note": "scripts/15_norm_profile.py"
+    },
+    {
+     "label": "69 conditions, judge, coherence, stats at the restated scale",
      "status": "in_progress",
-     "note": "rule fixed in advance: inject one layer after the refusal layer, c = 0.5"
+     "note": ""
     }
    ]
   }
@@ -215,12 +230,12 @@
  "findings": [
   {
    "date": "2026-11-21",
-   "text": "No sleeper effect: an emotion injected at turn 1 leaves a harmful request at turn 4 at 6.4 to 7.7% (no injection 6.4%), while the same vectors injected at the harmful turn raise it by 9 to 23 points.",
+   "text": "No detectable sleeper effect: an emotion injected at turn 1 leaves a harmful request at turn 4 at 6.4 to 9.0% (no injection 6.4%), while the same vectors injected over the full harmful turn raise it by 9 to 23 points (3 of 4 Holm p < 0.001).",
    "experiment": "E12-multiturn-persistence"
   },
   {
    "date": "2026-11-21",
-   "text": "In a conversation, the first refusal decides the rest: with four harmful turns in a row the model refuses 90% at turn 4 and 100% at turns 5 to 7.",
+   "text": "With four harmful turns in a row, every request after the first harmful turn is refused (100% at turns 5 to 7), so that design cannot show persistence.",
    "experiment": "E12-multiturn-persistence"
   },
   {

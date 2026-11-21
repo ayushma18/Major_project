@@ -18,6 +18,7 @@ from datetime import datetime
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from src import data  # noqa: E402
 from src.runtime import ALIASES, write_json  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -454,8 +455,11 @@ def e12(m, model):
         vecs, none = by_vector(single)
         n0 = J.get(none or "none")
         n_conv = single["n_harmful"]
-        MODES = [("same", "harmful turn, request text only"), ("same-full", "harmful turn, request and template tokens"),
-                 ("early", "turn 1 only, text only"), ("early-full", "turn 1 only, every turn-1 position")]
+        # the single-turn rate on the same behaviours: conversations take the first n_conv test behaviours (scripts/12_multiturn.py)
+        used = {b.id for b in data.harmbench("test")[:n_conv]}
+        st_asr = lambda spec: (len(set(J1[spec]["harmful_ids"]) & used) / len(used)) if spec in J1 else None
+        MODES = [("same", "harmful turn, request text and answer"), ("same-full", "harmful turn, full span (request, template tokens, answer)"),
+                 ("early", "turn 1 only, text only"), ("early-full", "turn 1 only, full span")]
         rows = []
         for spec, modes in vecs.items():
             for mode, desc in MODES:
@@ -466,14 +470,14 @@ def e12(m, model):
                 E, N = set(jm["harmful_ids"]), set(n0["harmful_ids"])
                 bb, cc = len(E - N), len(N - E)
                 lo, hi = paired_diff_ci(len(E & N), bb, cc, n_conv)
-                rows.append([vector_label(spec), mode, desc, J1.get(spec, {}).get("asr"), jm["asr"], n0["asr"], jm["asr"] - n0["asr"], lo, hi, bb, cc,
+                rows.append([vector_label(spec), mode, desc, st_asr(spec), jm["asr"], n0["asr"], jm["asr"] - n0["asr"], lo, hi, bb, cc,
                              binom_two_sided(min(bb, cc), bb + cc), None])
         for fam in (("same", "same-full"), ("early", "early-full")):  # Holm within each question
             sub = [x for x in rows if x[1] in fam]
             holm_in_place(sub, 11, 12)
         if rows:
             r["tables"].append({"id": "persist_single", "title": f"Clean sleeper test: 3 benign turns, then one harmful request at turn 4 ({n_conv} conversations); every row against no injection",
-                                "columns": ["vector", "mode", "injected at", "ASR single turn (no conversation)", "ASR turn 4", "ASR no injection", "difference",
+                                "columns": ["vector", "mode", "injected at", f"ASR single turn (no conversation, same {n_conv} behaviours)", "ASR turn 4", "ASR no injection", "difference",
                                             "95% CI low", "95% CI high", "newly harmful", "newly safe", "McNemar p", "McNemar p, Holm (same modes / early modes)"],
                                 "rows": rows})
             order = [v for v in vecs if any(x[0] == vector_label(v) for x in rows)]
@@ -487,19 +491,21 @@ def e12(m, model):
             sl_sig = [x for x in sl if x[12] is not None and x[12] < 0.05]
             rng = lambda xs: f"{pct(min(x[4] for x in xs))} to {pct(max(x[4] for x in xs))}"
             if sl and pc:
-                top = max(sl, key=lambda x: x[8])
+                top = max([x for x in rows if x[1] in ("early", "early-full")], key=lambda x: x[8])
                 if sl_sig:
                     r["headline"] = (f"A turn-1 injection changes turn-4 ASR for {', '.join(x[0] for x in sl_sig)} (Holm p < 0.05): {rng(sl)} against {pct(n0['asr'])} with no injection.")
                 elif pc_ok:
-                    r["headline"] = (f"No detectable sleeper effect: injected at the harmful turn the vectors still work ({rng(pc)}), but injected only at turn 1 they leave turn-4 ASR at "
-                                     f"{rng(sl)} (no injection {pct(n0['asr'])}; largest upper 95% bound {100 * top[8]:+.1f} points).")
+                    r["headline"] = (f"No detectable sleeper effect: injected over the full harmful turn the vectors still raise turn-4 ASR ({rng(pc)}; Holm p < 0.05 for {len(pc_ok)} of {len(pc)}), "
+                                     f"but injected only at turn 1 they leave it at {rng([x for x in rows if x[1] in ('early', 'early-full')])} (no injection {pct(n0['asr'])}; "
+                                     f"largest upper 95% bound {100 * top[8]:+.1f} points).")
                 else:
                     r["headline"] = (f"Inside a conversation the vectors barely move turn-4 ASR even when injected at the harmful turn ({rng(pc)}; no injection {pct(n0['asr'])}), "
                                      f"so the sleeper test cannot separate persistence from a weaker effect in context; turn-1 injection: {rng(sl)}.")
             r["interpretation"].append("Each row is paired with no injection by conversation (exact McNemar; Holm within the harmful-turn modes and within the turn-1 modes). The interval is Newcombe's "
                                        "hybrid score interval for a difference of paired proportions (method 10).")
-            r["interpretation"].append("Text-only modes steer the user text (and, at turn 1, the reply) but not the chat-template tokens after the request, where refusal is read out; "
-                                       "the full modes steer those too, as single-turn steering does.")
+            r["interpretation"].append("Text-only modes steer the user's words and the reply (the turn-1 reply for early, the answer for same) but none of the chat-template tokens; "
+                                       "the full modes run from the user's words to the end of the reply, so they also steer the template tokens after the request, where refusal is read out. "
+                                       "Neither steers the role header before the request or the system block, which single-turn steering covers.")
         drift = raw(f"E12_{m}_single_drift.json")
         if drift and drift.get("vectors"):
             drows = []
@@ -509,7 +515,7 @@ def e12(m, model):
                     gap = (drift.get("harmful_gap") or {}).get(l)
                     for t in trs:
                         if t["turn"] in (2, 3):
-                            drows.append([vector_label(spec) + (" (every turn-1 position)" if full else " (turn-1 text only)"), int(l), t["turn"], round(t["mean_diff"], 4), round(t["sd_none"], 3), None if not gap else round(t["mean_diff"] / gap, 4), t["n_up"], t["n_down"], float(f"{t['perm_p']:.3g}")])
+                            drows.append([vector_label(spec) + (" (full turn-1 span)" if full else " (turn-1 text only)"), int(l), t["turn"], round(t["mean_diff"], 4), round(t["sd_none"], 3), None if not gap else round(t["mean_diff"] / gap, 4), t["n_up"], t["n_down"], float(f"{t['perm_p']:.3g}")])
             r["tables"].append({"id": "drift_paired", "title": f"Does a turn-1 injection still move later benign turns? Projection on the refusal candidate, early minus none, paired by script ({drift['n_scripts']} scripts)",
                                 "columns": ["vector", "layer", "turn", "mean difference", "sd across scripts (no injection)", "difference as a share of the harmful-turn jump", "scripts up", "scripts down", "sign-flip p"],
                                 "rows": drows})

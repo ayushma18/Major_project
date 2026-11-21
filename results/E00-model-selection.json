@@ -6,7 +6,7 @@
   "question": "Can a 48 GB M5 Pro run the whole experiment grid, and at what speed?",
   "model": "unsloth/Llama-3.1-8B-Instruct",
   "started": null,
-  "finished": "2026-11-21T17:25:04",
+  "finished": "2026-11-21T20:16:52",
   "config": {},
   "headline": "Llama 3.1 8B runs at 269 tokens per second at batch 64 on the M5 Pro; one HarmBench condition takes about 2 to 3 minutes.",
   "metrics": [

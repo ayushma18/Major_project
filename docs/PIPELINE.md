@@ -73,8 +73,9 @@ the password is the Pages secret `SITE_PASSWORD`, `/__logout` signs out). Raw mo
 `12_multiturn.py` runs two protocols on the same 39 benign scripts and 156 HarmBench behaviours:
 
 - **stacked** (the proposal's): turns 1 to 3 benign, turns 4 to 7 four harmful requests in a row.
-  On Llama 3.1 8B the first refusal decides the rest: with no injection the model refuses 90% at
-  turn 4 and 100% at turns 5 to 7, so those turns sit at a floor and cannot show persistence.
+  On Llama 3.1 8B every request after the first harmful turn is refused: with no injection 90% of the
+  turn-4 answers and all answers at turns 5 to 7 contain a refusal phrase, so those turns sit at a
+  floor and cannot show persistence.
 - **single** (added for that reason): the 3 benign turns, then exactly one harmful request at
   turn 4, one conversation per behaviour. The benign prefix is generated once per script and
   shared by its 4 behaviours, which is exact because nothing differs before turn 4.

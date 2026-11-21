@@ -6,7 +6,7 @@
   "question": "How often does the unmodified model refuse the 159 HarmBench standard test behaviours?",
   "model": "unsloth/Llama-3.1-8B-Instruct",
   "started": null,
-  "finished": "2026-11-21T17:25:04",
+  "finished": "2026-11-21T20:16:52",
   "config": {
     "n_prompts": 159,
     "max_new_tokens": 256,

@@ -121,6 +121,10 @@ def fig_sleeper(m="llama-8b", drift_layer="14"):
     single, J = load(f"E12_{m}_single.json"), (load(f"judged_{m}_multiturn-single.json") or {}).get("conditions", {})
     J1 = (load(f"judged_{m}_harmbench-test.json") or {}).get("conditions", {})
     drift = load(f"E12_{m}_single_drift.json") or {}
+    import sys
+    sys.path.insert(0, str(ROOT))
+    from src import data
+    used = {b.id for b in data.harmbench("test")[: (single or {}).get("n_harmful", 156)]}  # the behaviours the conversations use
     if not single or "none" not in J:
         return
     vecs = {}
@@ -135,12 +139,12 @@ def fig_sleeper(m="llama-8b", drift_layer="14"):
     has_drift = bool(drift.get("vectors")) and all(v in drift["vectors"] for v in vs)
     fig, axes = plt.subplots(2 if has_drift else 1, 1, figsize=(6.8, 5.8 if has_drift else 3.4), gridspec_kw={"height_ratios": [1.3, 1]} if has_drift else None)
     ax = axes[0] if has_drift else axes
-    # hue = when the vector is injected; solid = every position of that turn, hatched = text only
-    MODES = [("early", BLUE, True, "turn 1, text only"), ("early-full", BLUE, False, "turn 1, every position"),
-             ("same", ORANGE, True, "harmful turn, text only"), ("same-full", ORANGE, False, "harmful turn, every position")]
+    # hue = when the vector is injected; solid = full span of that turn, hatched = text only
+    MODES = [("early", BLUE, True, "turn 1, text only"), ("early-full", BLUE, False, "turn 1, full span"),
+             ("same", ORANGE, True, "harmful turn, text only"), ("same-full", ORANGE, False, "harmful turn, full span")]
     w = 0.18
     for i, v in enumerate(vs):
-        single_turn = J1.get(v, {}).get("asr")
+        single_turn = len(set(J1[v]["harmful_ids"]) & used) / len(used) if v in J1 else None
         for k, (mode, col, hatch, lab) in enumerate(MODES):
             jm = J.get(vecs[v].get(mode, ""))
             if not jm:
@@ -150,7 +154,7 @@ def fig_sleeper(m="llama-8b", drift_layer="14"):
                    label=lab if i == 0 else None, zorder=3)
             ax.text(x, y + 0.8, f"{y:.0f}", ha="center", fontsize=6.5, color=INK)
         if single_turn is not None:
-            ax.scatter(i + 0.5, 100 * single_turn, marker="D", s=24, color=AQUA, edgecolor=SURFACE, linewidth=1, zorder=4, label="single turn, no conversation (Fig. 1)" if i == 0 else None)
+            ax.scatter(i + 0.5, 100 * single_turn, marker="D", s=24, color=AQUA, edgecolor=SURFACE, linewidth=1, zorder=4, label="single turn, same 156 behaviours" if i == 0 else None)
     ax.axhline(100 * J["none"]["asr"], color=INK, lw=1, ls=(0, (4, 3)), label=f"no injection ({100 * J['none']['asr']:.1f}%)")
     ax.set_xticks(range(len(vs)), [names[v] for v in vs])
     ax.set_ylabel("judged harmful at turn 4 (%)")
@@ -164,7 +168,7 @@ def fig_sleeper(m="llama-8b", drift_layer="14"):
         bx.axhline(0, color=MUTED, lw=0.8)
         # blue = turn-1 injection as in panel (a); hollow = text only, solid = every turn-1 position
         series = [("", True, "o", 2, "text only, turn 2"), ("", True, "s", 3, "text only, turn 3"),
-                  ("|full", False, "o", 2, "every position, turn 2"), ("|full", False, "s", 3, "every position, turn 3")]
+                  ("|full", False, "o", 2, "full span, turn 2"), ("|full", False, "s", 3, "full span, turn 3")]
         for i, v in enumerate(vs):
             for k, (suffix, hollow, mk, t, lab) in enumerate(series):
                 per = drift["vectors"].get(v + suffix)
@@ -187,27 +191,40 @@ def fig_sleeper(m="llama-8b", drift_layer="14"):
 
 
 def fig_replication():
+    """Both models side by side: every vector against that model's own random band."""
     a, b = load("E07_stats_llama-8b.json"), load("E07_stats_qwen2.5-7b.json")
     if not (a and b):
         return
-    cats = [("no injection", lambda s: s["baseline_asr"]), ("random", lambda s: s["random"]["asr_mean"])]
-    for kind, lab in (("emotion", "paired\nemotion"), ("specific", "specific\npart"), ("negative", "paired,\nsubtracted")):
-        cats.append((lab, lambda s, k=kind: sum(x["asr"] for x in s["kinds"][k].values()) / len(s["kinds"][k]) if k in s["kinds"] else None))
-    cats.append(("refusal\nablated", lambda s: s.get("other", {}).get("ablate-refusal", {}).get("asr")))
-    fig, ax = plt.subplots(figsize=(6.8, 3.0))
-    w = 0.36
-    for k, (s, col, lab) in enumerate(((a, BLUE, "Llama 3.1 8B"), (b, ORANGE, "Qwen2.5 7B"))):
-        for i, (_, f) in enumerate(cats):
-            y = f(s)
-            if y is None:
-                continue
-            ax.bar(i + (k - 0.5) * (w + 0.03), 100 * y, width=w, color=col, label=lab if i == 0 else None, zorder=3)
-            ax.text(i + (k - 0.5) * (w + 0.03), 100 * y + 1, f"{100 * y:.0f}", ha="center", fontsize=7, color=INK)
-    ax.set_xticks(range(len(cats)), [c[0] for c in cats])
-    ax.set_ylabel("mean judged harmful (%)")
-    ax.set_title("Both models, c = 0.5 one layer after each model's refusal layer", fontsize=9, loc="left", color=INK)
-    ax.grid(axis="x", visible=False)
-    ax.legend(fontsize=7.5, loc="upper left")
+    kinds = [("random", "random"), ("emotion", "paired\nemotion"), ("specific", "specific\npart"), ("negative", "paired,\nsubtracted")]
+    fig, axes = plt.subplots(1, 2, figsize=(6.8, 3.3), sharey=True)
+    top = 0
+    for ax, st, name in ((axes[0], a, "Llama 3.1 8B"), (axes[1], b, "Qwen2.5 7B")):
+        base, mu, sd = st["baseline_asr"], st["random"]["asr_mean"], st["random"]["asr_sd"]
+        ax.axhspan(100 * (mu - 2 * sd), 100 * (mu + 2 * sd), color=BAND, alpha=0.55, lw=0, zorder=0)
+        ax.axhline(100 * mu, color=MUTED, lw=1, zorder=1)
+        ax.axhline(100 * base, color=INK, lw=1, ls=(0, (4, 3)), zorder=1)
+        hi = mu + 2 * sd
+        ticks = []
+        for i, (kind, _) in enumerate(kinds):
+            vals = sorted((st["random"]["per_seed"].items() if kind == "random" else ((e, r["asr"]) for e, r in st["kinds"].get(kind, {}).items())), key=lambda t: t[1])
+            n = len(vals)
+            for j, (lab, y) in enumerate(vals):
+                x = i + (j - (n - 1) / 2) * (0.5 / max(n - 1, 1))
+                above = kind != "random" and y > hi
+                ax.scatter(x, 100 * y, s=16, color=ORANGE if above else (MUTED if kind == "random" else BLUE), edgecolor=SURFACE, linewidth=1.0, zorder=3)
+                top = max(top, 100 * y)
+            ticks.append(kinds[i][1] + (f"\n{sum(y > hi for _, y in vals)}/{n} above" if kind != "random" and vals else f"\n{n} seeds"))
+        ax.set_xticks(range(len(kinds)), ticks, fontsize=7.6)
+        ax.grid(axis="x", visible=False)
+        c = st["c"]
+        ax.set_title(f"{name}, layer {st['layer']}, c = {c}", fontsize=8.8, loc="left", color=INK)
+        abl = st.get("other", {}).get("ablate-refusal", {}).get("asr")
+        note = f"no injection {100 * base:.1f}% (dashed); random {100 * mu:.1f}% ± 2 sd (band)"
+        if abl is not None:
+            note += f"\nrefusal direction ablated: {100 * abl:.1f}%"
+        ax.text(0.01, 0.99, note, transform=ax.transAxes, ha="left", va="top", fontsize=6.8, color=MUTED)
+    axes[0].set_ylabel("judged harmful (%)")
+    axes[0].set_ylim(0, max(60, top + 14))
     save(fig, "fig4_replication")
 
 
