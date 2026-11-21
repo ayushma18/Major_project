@@ -27,8 +27,9 @@ directions (happy 52.2%, proud 49.1%, gloomy 45.3%, reflective 39.6%) and five s
 45.9%, anxious 45.3%) lie above the random band, and few of their answers are flagged by our automatic checks for degraded text. We found no statistically resolved rank
 association between an emotion vector's cosine with the injection layer's refusal direction and its effect
 (paired vectors: Spearman rho = -0.18, p = 0.47), and projecting that direction out of the paired vectors did
-not lower their mean judged-harmful rate. PENDING E12: an emotion injected at turn 1 does / does not persist to a harmful request three
-turns later. PENDING E13: the pattern replicates / does not replicate on Qwen2.5-7B-Instruct. Emotion
+not lower their mean judged-harmful rate. In conversations, a vector injected at turn 1 does not raise the
+judged-harmful rate of a request three turns later (6.4 to 7.7% against 6.4%; largest upper 95% bound +4.7
+points), although the same vectors injected at the harmful turn still raise it by 9 to 23 points. PENDING E13: the pattern replicates / does not replicate on Qwen2.5-7B-Instruct. Emotion
 injection is therefore not a special attack on refusal: the guardrail is sensitive to generic pushes of
 this size, and claims of emotion-specific effects need equal-norm random controls.
 
@@ -69,7 +70,8 @@ fluency so that broken text is not mistaken for a successful attack.
    with few answers flagged as degraded text, and part of the subtraction effect may come from one shared
    direction.
 4. A multi-turn test of the sleeper hypothesis, including a protocol fix: with harmful turns stacked as the
-   proposal planned, the first refusal decides every later turn (PENDING E12 result).
+   proposal planned, the first refusal decides every later turn, and with one harmful request after three
+   benign turns and a working positive control, an emotion injected at turn 1 leaves no detectable effect.
 5. A replication on a second model family, Qwen2.5-7B-Instruct (PENDING E13), and an open harness, vector
    library and story corpus.
 
@@ -364,21 +366,65 @@ system prompt raises the refusal-phrase rate slightly, and the three mood means 
 points. These answers were not judged, so this screen does not test FreakOut's outcome (a small rise in
 ASR under stress). It shows only that priming does not lower refusal phrases here.
 
-### 4.9 No sleeper effect (PENDING E12)
+### 4.9 No sleeper effect
 
 **Stacked protocol.** With no injection, the model refuses 89.7% of the turn-4 requests and 100% of the
 requests at turns 5 to 7; the judged-harmful rate is 10.3% at turn 4 and 0% afterwards (2.6% overall). An
 earlier refusal in the context makes every later refusal near certain, as STAR's history-injection
 experiment suggests (Li et al., 2026), so turns 5 to 7 sit at a floor and cannot show persistence. The paired
-happy vector injected at turn 1 gives exactly the no-injection result (the same four harmful answers).
+happy vector injected at turn 1 gives exactly the no-injection result (the same four harmful answers). This
+protocol's same-turn condition used the text-only span, so it is not a working positive control (below).
 
-**Single protocol.** PENDING: Figure 3 and the persistence table (early vs same vs none at turn 4, McNemar of
-early against none, drift curves). With no injection, 92.9% of turn-4 requests are refused (single turn:
-84.3%), so three benign turns of conversation already make the model more cautious.
+**Single protocol.** Three benign turns already make the model more cautious: with no injection, 92.9% of
+turn-4 requests contain a refusal phrase and 6.4% are judged harmful, against 14.1% for the same 156
+behaviours asked on their own. Table 2 and Figure 3 give every mode.
+
+![Figure 3](figures/fig3_sleeper.png)
+
+**Figure 3.** (a) Turn-4 judged-harmful rate by injection timing (blue: turn 1 only; orange: the harmful turn)
+and span (hatched: text only; solid: every position of that turn), with the single-turn rate of the same
+vector (diamond) and no injection (dashed). (b) Shift of the refusal-candidate projection at benign turns 2
+and 3 after a turn-1 injection, paired by script, as a share of the jump the projection makes when the
+turn-4 request is harmful (layer 14, 95% intervals over 39 scripts).
+
+**Table 2.** Turn-4 judged-harmful rate over 156 conversations, and the single-turn rate of the same vector
+on the same 156 behaviours. In brackets: the difference from no injection (6.4%) in points, its 95% interval
+(Newcombe, paired by conversation) and the exact McNemar p, Holm-adjusted within the harmful-turn modes and
+within the turn-1 modes.
+
+| Vector | Single turn | Harmful turn, text only | Harmful turn, every position | Turn 1, text only | Turn 1, every position |
+|---|---|---|---|---|---|
+| Random direction, seed 2, c = 1 | 71.8% | 10.9% | 27.6% (+21.2; 14.3 to 28.3; p < 0.001) | 7.7% | 7.7% (+1.3; -1.8 to 4.7; p = 1.0) |
+| Happy, specific part, c = 0.5 | 51.9% | 6.4% | 29.5% (+23.1; 16.3 to 30.2; p < 0.001) | 9.0% | 7.7% (+1.3; -1.8 to 4.7; p = 1.0) |
+| Loving subtracted, c = 0.5 | 46.2% | 9.6% | 25.0% (+18.6; 12.4 to 25.3; p < 0.001) | 7.1% | 7.1% (+0.6; -2.2 to 3.7; p = 1.0) |
+| Happy, paired, c = 0.5 | 32.1% | 7.1% | 15.4% (+9.0; 2.4 to 15.8; p = 0.063) | 7.1% | 6.4% (0.0; -3.2 to 3.2; p = 1.0) |
+
+Injected over every position of the harmful turn, the vectors still work inside a conversation, at 37 to
+61% of their single-turn effect: +9 to +23 points against +18 to +58 points over the single-turn baseline
+(14.1%).
+Injected into the request text alone they do almost nothing (6.4 to 10.9%), because the chat-template tokens
+after the request, where the refusal direction is read and the first reply token is predicted, stay
+unsteered. This was our first positive control, and its failure is why the full spans exist.
+
+Injected only at turn 1, none of the four vectors changes the turn-4 rate: 6.4 to 7.7% with every turn-1
+position steered and 7.1 to 9.0% with the text only, against 6.4% with no injection. No comparison is
+significant (Holm p = 1.0 for all four full-span vectors), and the largest upper 95% bound on a rise is 4.7
+points (6.1 points for the text-only span). The steered turn-1 positions stay in the context for the whole
+conversation, so whatever the injection leaves in the key-value cache does not reach the harmful turn in a
+form that changes the answer.
+
+The hidden state tells the same story. A turn-1 injection does move the projection of later benign turns on
+the refusal candidate, and consistently across scripts: the full-span paired happy vector raises it at layer
+18 in 35 of 39 scripts at turn 2 (sign-flip p < 0.001). But the shift is small: at most 3.4% of the jump the
+projection makes when the turn-4 request is harmful (3.4 units at layer 14, 5.3 at layer 18), and under 2%
+in 29 of the 32 vector, span, layer and turn combinations. Its sign depends on the vector: the paired happy
+vector and the random direction move later turns towards refusal, the happy specific vector away, and loving
+subtracted away at layer 14 only. A residue persists, but it is about two orders of magnitude smaller than
+the shift a harmful request causes.
 
 ### 4.10 Replication on Qwen2.5-7B-Instruct (PENDING E13)
 
-PENDING: Table 2 and Figure 4.
+PENDING: Table 3 and Figure 4.
 
 ## 5. Discussion
 
@@ -419,7 +465,16 @@ correlation is too imprecise to rule it out. Emotion-specific directions may act
 template positions where refusal is computed, or through the model's assessment of the request rather than
 its decision to refuse.
 
-**Sleeper effect.** PENDING E12.
+**Sleeper effect.** The proposal's third prediction fails, and the test can tell: the positive control raises
+the turn-4 rate by 9 to 23 points, while a turn-1 injection leaves it where it was, with an upper bound of a
+few points. The hidden state keeps a measurable but small trace. Two design lessons generalise. With
+harmful turns stacked, the first refusal fixes the rest of the conversation, as STAR reports for refusals
+placed in the history, so persistence needs one harmful request per conversation. And a masked injection
+that skips the chat-template tokens after a request barely acts, because those tokens carry the refusal
+decision. Conversation context also shrinks the effect of an injection at the harmful turn to 37 to 61% of
+its single-turn size. We tested one
+layer, four vectors and three benign turns; longer or emotionally loaded conversations could behave
+differently.
 
 **Limitations.** One primary model with one replication (PENDING); one injection layer and one main strength;
 one greedy run per condition; 159 behaviours, so differences of a few points are within noise; the
@@ -436,8 +491,8 @@ in the answers (14.5% recognition); MPS numerics are not bit-for-bit determinist
    effective vectors have |cos| of at most 0.11 with the layer-12 refusal candidate, within the range of
    the vectors that stay inside the random band (up to 0.12). A monitor on the projection of the hidden state itself on
    the refusal direction at the end of the user turn is an untested alternative; we have not built or
-   evaluated one (PENDING: E12 drift shows
-   whether that projection moves under an early injection).
+   evaluated one. In the multi-turn test a turn-1 injection moved this projection at later turns by at most
+   3.4% of the shift a harmful request causes, and did not change the outcome.
 3. **Emotional framing in the prompt did not reduce refusal phrases** on this model at this sample size;
    its effect on judged-harmful answers was not measured.
 
@@ -448,7 +503,8 @@ Instruct: the proposal's emotion vectors move the judged-harmful rate no more th
 same norm, its vectors for the emotions expected to be strongest stay inside the random band, and we found no resolved association
 between alignment with the refusal direction and the effect. A narrower set of emotion-specific directions does lie above the descriptive random band with few
 answers flagged as broken, and these deserve a confirmatory study with more seeds, strengths and models.
-PENDING: the sleeper and replication results.
+Injected at the start of a conversation, emotion vectors leave no detectable sleeper effect on a harmful
+request three turns later. PENDING: the replication result.
 
 ## Ethics statement
 

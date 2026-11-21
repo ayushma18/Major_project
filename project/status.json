@@ -132,8 +132,8 @@
     "2027-01-01",
     "2027-03-31"
    ],
-   "status": "in_progress",
-   "progress": 0.6,
+   "status": "done",
+   "progress": 1.0,
    "items": [
     {
      "label": "Sleeper harness built and tested",
@@ -142,13 +142,23 @@
     },
     {
      "label": "Proposal protocol (4 harmful turns in a row)",
-     "status": "in_progress",
+     "status": "done",
      "note": "turns 5 to 7 sit at a floor: 100% refusal after the first refusal"
     },
     {
      "label": "Clean protocol: one harmful request at turn 4, 156 conversations, 4 vectors",
-     "status": "in_progress",
-     "note": "random c=1, happy specific, minus loving, happy paired"
+     "status": "done",
+     "note": "no sleeper effect: 6.4 to 7.7% vs 6.4%, upper bound +4.7 points"
+    },
+    {
+     "label": "Positive control fixed: steer the template tokens of the harmful turn",
+     "status": "done",
+     "note": "text-only span failed; full span +9 to +23 points"
+    },
+    {
+     "label": "Paired drift test at benign turns 2 and 3",
+     "status": "done",
+     "note": "small consistent trace, at most 3.4% of the harmful-turn jump"
     }
    ]
   },
@@ -160,15 +170,20 @@
     "2027-03-31"
    ],
    "status": "in_progress",
-   "progress": 0.4,
+   "progress": 0.7,
    "items": [
     {
-     "label": "Paper draft with the 8B results (paper/paper.md)",
+     "label": "Paper draft (paper/paper.md, PDF on the site)",
      "status": "done",
-     "note": "E12 and E13 sections pending"
+     "note": "E13 section pending"
     },
     {
-     "label": "Independent review of the draft",
+     "label": "Independent review of the draft (Codex)",
+     "status": "done",
+     "note": "major revision; 12 findings verified, 87 edits applied"
+    },
+    {
+     "label": "Final review after the replication",
      "status": "not_started",
      "note": ""
     }
@@ -182,22 +197,27 @@
     "2026-11-22"
    ],
    "status": "in_progress",
-   "progress": 0.1,
+   "progress": 0.2,
    "items": [
     {
-     "label": "Qwen2.5-7B-Instruct downloaded",
-     "status": "in_progress",
-     "note": "Apache 2.0"
+     "label": "Qwen2.5-7B-Instruct downloaded and preflighted",
+     "status": "done",
+     "note": "Apache 2.0; tokenizer and template checked"
     },
     {
      "label": "Refusal direction, emotion vectors, 69 conditions, judge",
-     "status": "not_started",
+     "status": "in_progress",
      "note": "rule fixed in advance: inject one layer after the refusal layer, c = 0.5"
     }
    ]
   }
  ],
  "findings": [
+  {
+   "date": "2026-11-21",
+   "text": "No sleeper effect: an emotion injected at turn 1 leaves a harmful request at turn 4 at 6.4 to 7.7% (no injection 6.4%), while the same vectors injected at the harmful turn raise it by 9 to 23 points.",
+   "experiment": "E12-multiturn-persistence"
+  },
   {
    "date": "2026-11-21",
    "text": "In a conversation, the first refusal decides the rest: with four harmful turns in a row the model refuses 90% at turn 4 and 100% at turns 5 to 7.",
@@ -246,8 +266,7 @@
   }
  ],
  "next": [
-  "Finish the clean sleeper test (E12) and judge it",
   "Run the Qwen2.5-7B replication (E13)",
-  "Fill the paper's pending sections and get an independent review"
+  "Fill the paper's replication section, then a final review"
  ]
 }
