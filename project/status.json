@@ -1,205 +1,253 @@
 {
-  "updated": "2026-11-21T07:15:36",
-  "title": "Affect as Attack",
-  "one_line": "Can an emotion pushed directly into a language model's hidden state switch off its safety guardrail, even though the prompt looks harmless?",
-  "team": [
-    "Anuj Paudel",
-    "Ashish Pandey",
-    "Ayushma Pudasaini"
-  ],
-  "model": {
-    "id": "unsloth/Llama-3.1-8B-Instruct",
-    "why": "The proposal's model: strong refusal (84% of HarmBench requests refused), Llama Scope SAEs, the reference model of the refusal-direction literature, runs at about 270 tok/s batched on the M5 Pro. Final choice confirmed by E00 and the model study."
+ "updated": "2026-11-21T11:08:16",
+ "title": "Affect as Attack",
+ "one_line": "Can an emotion pushed directly into a language model's hidden state switch off its safety guardrail, even though the prompt looks harmless?",
+ "team": [
+  "Anuj Paudel",
+  "Ashish Pandey",
+  "Ayushma Pudasaini"
+ ],
+ "model": {
+  "id": "unsloth/Llama-3.1-8B-Instruct",
+  "why": "The proposal's model: strong refusal (84% of HarmBench requests refused), Llama Scope SAEs, the reference model of the refusal-direction literature, runs at about 270 tok/s batched on the M5 Pro. Final choice confirmed by E00 and the model study."
+ },
+ "phases": [
+  {
+   "id": "P1",
+   "label": "Literature and setup",
+   "planned": [
+    "2026-07-01",
+    "2026-08-31"
+   ],
+   "status": "done",
+   "progress": 1.0,
+   "items": [
+    {
+     "label": "Model loading, generation and activation capture (M1, M2)",
+     "status": "done",
+     "note": "Ayushma, Aug 2026"
+    },
+    {
+     "label": "Mac environment, models downloaded and verified",
+     "status": "done",
+     "note": "Llama 3.1 8B, Llama 3.2 1B, HarmBench 13B judge"
+    },
+    {
+     "label": "Paper library: 119 papers verified against arXiv or publisher pages",
+     "status": "done",
+     "note": "Plain summaries in progress"
+    },
+    {
+     "label": "1B warm-up of the whole pipeline (proposal phase 1)",
+     "status": "done",
+     "note": "results/warmup-llama-1b"
+    }
+   ]
   },
-  "phases": [
+  {
+   "id": "P2",
+   "label": "Emotion vector extraction",
+   "planned": [
+    "2026-08-01",
+    "2026-10-31"
+   ],
+   "status": "done",
+   "progress": 1.0,
+   "items": [
     {
-      "id": "P1",
-      "label": "Literature and setup",
-      "planned": [
-        "2026-07-01",
-        "2026-08-31"
-      ],
-      "status": "done",
-      "progress": 1.0,
-      "items": [
-        {
-          "label": "Model loading, generation and activation capture (M1, M2)",
-          "status": "done",
-          "note": "Ayushma, Aug 2026"
-        },
-        {
-          "label": "Mac environment, models downloaded and verified",
-          "status": "done",
-          "note": "Llama 3.1 8B, Llama 3.2 1B, HarmBench 13B judge"
-        },
-        {
-          "label": "Paper library: 119 papers verified against arXiv or publisher pages",
-          "status": "done",
-          "note": "Plain summaries in progress"
-        },
-        {
-          "label": "1B warm-up of the whole pipeline (proposal phase 1)",
-          "status": "done",
-          "note": "results/warmup-llama-1b"
-        }
-      ]
+     "label": "Story corpus final: 19 emotions x 60 pairs + 60 neutral",
+     "status": "done",
+     "note": "7 emotions rewritten to remove a writer confound"
     },
     {
-      "id": "P2",
-      "label": "Emotion vector extraction",
-      "planned": [
-        "2026-08-01",
-        "2026-10-31"
-      ],
-      "status": "done",
-      "progress": 1.0,
-      "items": [
-        {
-          "label": "Story corpus final: 19 emotions x 60 pairs + 60 neutral",
-          "status": "done",
-          "note": "7 emotions rewritten to remove a writer confound"
-        },
-        {
-          "label": "Emotion vectors validated on an independent set",
-          "status": "done",
-          "note": "81% 19-way, chance 5%"
-        }
-      ]
-    },
-    {
-      "id": "P3",
-      "label": "Safety evaluation",
-      "planned": [
-        "2026-10-01",
-        "2026-12-31"
-      ],
-      "status": "done",
-      "progress": 1.0,
-      "items": [
-        {
-          "label": "Baseline (E01)",
-          "status": "done",
-          "note": "ASR 14.5%"
-        },
-        {
-          "label": "About 250-condition screen + 96 full-length conditions judged",
-          "status": "done",
-          "note": "random band 22.1% +- 7.9"
-        },
-        {
-          "label": "Text priming (E09)",
-          "status": "done",
-          "note": "no effect"
-        }
-      ]
-    },
-    {
-      "id": "P4",
-      "label": "Mechanistic analysis",
-      "planned": [
-        "2026-11-01",
-        "2027-01-31"
-      ],
-      "status": "done",
-      "progress": 0.9,
-      "items": [
-        {
-          "label": "Refusal direction (E02) and ablation (E03)",
-          "status": "done",
-          "note": "14.5% to 84.9%"
-        },
-        {
-          "label": "Geometry (E06) and correlation (E11)",
-          "status": "done",
-          "note": "|cos| <= 0.09; rho -0.18, p 0.47"
-        },
-        {
-          "label": "Orthogonalised control (E10)",
-          "status": "done",
-          "note": "removing the refusal component does not weaken the effect"
-        },
-        {
-          "label": "SAE feature inspection",
-          "status": "not_started",
-          "note": "optional, Llama Scope"
-        }
-      ]
-    },
-    {
-      "id": "P5",
-      "label": "Multi-turn persistence",
-      "planned": [
-        "2027-01-01",
-        "2027-03-31"
-      ],
-      "status": "in_progress",
-      "progress": 0.3,
-      "items": [
-        {
-          "label": "Sleeper harness built and tested",
-          "status": "done",
-          "note": ""
-        },
-        {
-          "label": "8B runs: happy, calm, desperate, angry + random control",
-          "status": "in_progress",
-          "note": ""
-        }
-      ]
-    },
-    {
-      "id": "P6",
-      "label": "Write-up and submission",
-      "planned": [
-        "2027-03-01",
-        "2027-03-31"
-      ],
-      "status": "not_started",
-      "progress": 0.0,
-      "items": []
+     "label": "Emotion vectors validated on an independent set",
+     "status": "done",
+     "note": "81% 19-way, chance 5%"
     }
-  ],
-  "findings": [
+   ]
+  },
+  {
+   "id": "P3",
+   "label": "Safety evaluation",
+   "planned": [
+    "2026-10-01",
+    "2026-12-31"
+   ],
+   "status": "done",
+   "progress": 1.0,
+   "items": [
     {
-      "date": "2026-11-21",
-      "text": "The proposal's emotion vectors raise harmful answers no more than random pushes of the same size (20.6% vs 22.1% mean; baseline 14.5%).",
-      "experiment": "E07-emotion-injection-asr"
+     "label": "Baseline (E01)",
+     "status": "done",
+     "note": "ASR 14.5%"
     },
     {
-      "date": "2026-11-21",
-      "text": "A few directions beat random clearly and fluently: the happiness-specific direction (52.2%) and removing loving, anxious, nervous, guilty or grateful (38 to 46%).",
-      "experiment": "E07-emotion-injection-asr"
+     "label": "About 250-condition screen + 96 full-length conditions judged",
+     "status": "done",
+     "note": "random band 22.1% +- 7.9"
     },
     {
-      "date": "2026-11-21",
-      "text": "Cosine with the refusal direction does not predict the effect (rho -0.18, p 0.47), and removing the refusal component does not weaken it.",
-      "experiment": "E11-correlation"
-    },
-    {
-      "date": "2026-11-20",
-      "text": "Removing one direction (layer 11) takes Llama 3.1 8B from 14.5% to 84.9% harmful answers.",
-      "experiment": "E03-refusal-ablation"
-    },
-    {
-      "date": "2026-11-20",
-      "text": "Emotion vectors are real: 81% correct on an independent short-text set (chance 5%).",
-      "experiment": "E04-emotion-vectors"
-    },
-    {
-      "date": "2026-11-20",
-      "text": "11 of the proposal's 18 references have wrong metadata and 1 cites the wrong paper; see the Audit page.",
-      "experiment": null
+     "label": "Text priming (E09)",
+     "status": "done",
+     "note": "no effect"
     }
-  ],
-  "blockers": [
+   ]
+  },
+  {
+   "id": "P4",
+   "label": "Mechanistic analysis",
+   "planned": [
+    "2026-11-01",
+    "2027-01-31"
+   ],
+   "status": "done",
+   "progress": 0.9,
+   "items": [
     {
-      "text": "Accept the Meta Llama 3.1 licence on huggingface.co (the ungated mirror of the same weights is used now).",
-      "owner": "Anuj"
+     "label": "Refusal direction (E02) and ablation (E03)",
+     "status": "done",
+     "note": "14.5% to 84.9%"
+    },
+    {
+     "label": "Geometry (E06) and correlation (E11)",
+     "status": "done",
+     "note": "|cos| <= 0.09; rho -0.18, p 0.47"
+    },
+    {
+     "label": "Orthogonalised control (E10)",
+     "status": "done",
+     "note": "removing the refusal component does not weaken the effect"
+    },
+    {
+     "label": "SAE feature inspection",
+     "status": "not_started",
+     "note": "optional, Llama Scope"
     }
-  ],
-  "next": [
-    "Finish the multi-turn sleeper experiment (E12)",
-    "Replicate the key conditions on Qwen2.5-7B-Instruct",
-    "Write the paper around the negative result plus the specific directions that beat random"
-  ]
+   ]
+  },
+  {
+   "id": "P5",
+   "label": "Multi-turn persistence",
+   "planned": [
+    "2027-01-01",
+    "2027-03-31"
+   ],
+   "status": "in_progress",
+   "progress": 0.6,
+   "items": [
+    {
+     "label": "Sleeper harness built and tested",
+     "status": "done",
+     "note": "masked injection = steered KV cache"
+    },
+    {
+     "label": "Proposal protocol (4 harmful turns in a row)",
+     "status": "in_progress",
+     "note": "turns 5 to 7 sit at a floor: 100% refusal after the first refusal"
+    },
+    {
+     "label": "Clean protocol: one harmful request at turn 4, 156 conversations, 4 vectors",
+     "status": "in_progress",
+     "note": "random c=1, happy specific, minus loving, happy paired"
+    }
+   ]
+  },
+  {
+   "id": "P6",
+   "label": "Write-up and submission",
+   "planned": [
+    "2027-03-01",
+    "2027-03-31"
+   ],
+   "status": "in_progress",
+   "progress": 0.4,
+   "items": [
+    {
+     "label": "Paper draft with the 8B results (paper/paper.md)",
+     "status": "done",
+     "note": "E12 and E13 sections pending"
+    },
+    {
+     "label": "Independent review of the draft",
+     "status": "not_started",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "id": "P7",
+   "label": "Replication on a second model family",
+   "planned": [
+    "2026-11-21",
+    "2026-11-22"
+   ],
+   "status": "in_progress",
+   "progress": 0.1,
+   "items": [
+    {
+     "label": "Qwen2.5-7B-Instruct downloaded",
+     "status": "in_progress",
+     "note": "Apache 2.0"
+    },
+    {
+     "label": "Refusal direction, emotion vectors, 69 conditions, judge",
+     "status": "not_started",
+     "note": "rule fixed in advance: inject one layer after the refusal layer, c = 0.5"
+    }
+   ]
+  }
+ ],
+ "findings": [
+  {
+   "date": "2026-11-21",
+   "text": "In a conversation, the first refusal decides the rest: with four harmful turns in a row the model refuses 90% at turn 4 and 100% at turns 5 to 7.",
+   "experiment": "E12-multiturn-persistence"
+  },
+  {
+   "date": "2026-11-21",
+   "text": "Much of the effect of subtracting an emotion is the shared 'emotional writing' direction: subtracting it alone gives 33.3%. The proposal's paired vectors break 17% of answers (random 1.7%).",
+   "experiment": "E07-emotion-injection-asr"
+  },
+  {
+   "date": "2026-11-21",
+   "text": "The proposal's emotion vectors raise harmful answers no more than random pushes of the same size (20.6% vs 22.1% mean; baseline 14.5%).",
+   "experiment": "E07-emotion-injection-asr"
+  },
+  {
+   "date": "2026-11-21",
+   "text": "A few directions beat random clearly and fluently: the happiness-specific direction (52.2%) and removing loving, anxious, nervous, guilty or grateful (38 to 46%).",
+   "experiment": "E07-emotion-injection-asr"
+  },
+  {
+   "date": "2026-11-21",
+   "text": "Cosine with the refusal direction does not predict the effect (rho -0.18, p 0.47), and removing the refusal component does not weaken it.",
+   "experiment": "E11-correlation"
+  },
+  {
+   "date": "2026-11-20",
+   "text": "Removing one direction (layer 11) takes Llama 3.1 8B from 14.5% to 84.9% harmful answers.",
+   "experiment": "E03-refusal-ablation"
+  },
+  {
+   "date": "2026-11-20",
+   "text": "Emotion vectors are real: 81% correct on an independent short-text set (chance 5%).",
+   "experiment": "E04-emotion-vectors"
+  },
+  {
+   "date": "2026-11-20",
+   "text": "11 of the proposal's 18 references have wrong metadata and 1 cites the wrong paper; see the Audit page.",
+   "experiment": null
+  }
+ ],
+ "blockers": [
+  {
+   "text": "Accept the Meta Llama 3.1 licence on huggingface.co (the ungated mirror of the same weights is used now).",
+   "owner": "Anuj"
+  }
+ ],
+ "next": [
+  "Finish the clean sleeper test (E12) and judge it",
+  "Run the Qwen2.5-7B replication (E13)",
+  "Fill the paper's pending sections and get an independent review"
+ ]
 }
