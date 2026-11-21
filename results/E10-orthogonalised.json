@@ -6,9 +6,9 @@
   "question": "If the part of each emotion vector that lies along the refusal direction is removed, does the effect disappear?",
   "model": "unsloth/Llama-3.1-8B-Instruct",
   "started": null,
-  "finished": "2026-11-21T10:52:57",
+  "finished": "2026-11-21T11:52:44",
   "config": {},
-  "headline": "Removing the refusal component does not weaken the effect: mean ASR 20.6% with it, 23.1% without (19 emotions, baseline 14.5%).",
+  "headline": "Projecting the layer-12 refusal candidate out of the paired vectors did not lower mean ASR: 20.6% with it, 23.1% without (19 emotions, baseline 14.5%).",
   "metrics": [],
   "tables": [
     {
@@ -180,7 +180,7 @@
   ],
   "charts": [],
   "interpretation": [
-    "If the emotion vectors worked by overlapping the refusal direction, removing that overlap would bring ASR back to baseline. It does not, so the effect runs around the refusal direction, not through it."
+    "If the emotion vectors worked only by overlapping the refusal direction, removing that overlap would bring ASR back towards baseline. It did not in this grid. The removed direction is the layer-12 candidate (cosine 0.81 with the ablated layer-11 direction), and the difference between the two means was not tested, so this does not show how the vectors act on refusal."
   ],
   "caveats": [],
   "artifacts": []

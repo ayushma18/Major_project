@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-21T10:52:57",
+  "updated": "2026-11-21T11:52:44",
   "experiments": [
     {
       "id": "E00-model-selection",
@@ -87,7 +87,7 @@
       "module": 3,
       "status": "done",
       "file": "results/E10-orthogonalised.json",
-      "headline": "Removing the refusal component does not weaken the effect: mean ASR 20.6% with it, 23.1% without (19 emotions, baseline 14.5%)."
+      "headline": "Projecting the layer-12 refusal candidate out of the paired vectors did not lower mean ASR: 20.6% with it, 23.1% without (19 emotions, baseline 14.5%)."
     },
     {
       "id": "E11-correlation",
@@ -101,9 +101,9 @@
       "id": "E12-multiturn-persistence",
       "title": "The sleeper effect",
       "module": 4,
-      "status": "planned",
+      "status": "running",
       "file": "results/E12-multiturn-persistence.json",
-      "headline": "Inject at turn 1, test at turns 4 to 7"
+      "headline": "Multi-turn conversations generated; per-turn ASR pending the judge."
     },
     {
       "id": "E13-replication",

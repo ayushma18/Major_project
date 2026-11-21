@@ -205,7 +205,7 @@
   },
   {
    "date": "2026-11-21",
-   "text": "Much of the effect of subtracting an emotion is the shared 'emotional writing' direction: subtracting it alone gives 33.3%. The proposal's paired vectors break 17% of answers (random 1.7%).",
+   "text": "The paired vectors share one large component (mean cosine 0.79); subtracting it alone gives 33.3%, so it may account for much of the subtraction effect. The paired vectors get 17% of answers flagged as broken (random 1.7%).",
    "experiment": "E07-emotion-injection-asr"
   },
   {
@@ -215,12 +215,12 @@
   },
   {
    "date": "2026-11-21",
-   "text": "A few directions beat random clearly and fluently: the happiness-specific direction (52.2%) and removing loving, anxious, nervous, guilty or grateful (38 to 46%).",
+   "text": "A few directions lie above the descriptive random band with few answers flagged as broken: the happiness-specific direction (52.2%) and subtracting loving, anxious, nervous, guilty or grateful (38 to 46%). Twelve seeds cannot make this a calibrated test.",
    "experiment": "E07-emotion-injection-asr"
   },
   {
    "date": "2026-11-21",
-   "text": "Cosine with the refusal direction does not predict the effect (rho -0.18, p 0.47), and removing the refusal component does not weaken it.",
+   "text": "No resolved association between the cosine with the refusal direction and the effect (rho -0.18, p 0.47, wide interval), and projecting the layer-12 refusal candidate out did not lower mean ASR.",
    "experiment": "E11-correlation"
   },
   {

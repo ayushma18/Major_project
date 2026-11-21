@@ -1,0 +1,161 @@
+{
+  "id": "E12-multiturn-persistence",
+  "title": "The sleeper effect",
+  "module": 4,
+  "status": "running",
+  "question": "If an emotion is injected only at turn 1, is the model still easier to attack later in the conversation?",
+  "model": "unsloth/Llama-3.1-8B-Instruct",
+  "started": null,
+  "finished": null,
+  "config": {
+    "single": {
+      "conversations": 156,
+      "benign_scripts": 39,
+      "injection_layer": 12,
+      "drift_layers": [
+        14,
+        18
+      ]
+    }
+  },
+  "headline": "Multi-turn conversations generated; per-turn ASR pending the judge.",
+  "metrics": [],
+  "tables": [],
+  "charts": [
+    {
+      "id": "drift_single_14",
+      "type": "line",
+      "title": "Clean test: projection on the guardrail direction at layer 14, last prompt token, per turn",
+      "x": {
+        "label": "turn",
+        "values": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ]
+      },
+      "y": {
+        "label": "projection",
+        "unit": ""
+      },
+      "series": [
+        {
+          "name": "early: random direction, seed 2, c=1",
+          "values": [
+            -0.8499474250353299,
+            -0.9045348243835645,
+            -1.021889926531376,
+            2.36644597337223
+          ]
+        },
+        {
+          "name": "early: happy (specific part), c=0.5",
+          "values": [
+            -0.9022350433545235,
+            -0.9502343917504336,
+            -1.0599180612808619,
+            2.356581336938036
+          ]
+        },
+        {
+          "name": "none",
+          "values": [
+            -0.8731082868881714,
+            -0.9119785336347727,
+            -1.0345343794578161,
+            2.389395597510231
+          ]
+        },
+        {
+          "name": "same: random direction, seed 2, c=1",
+          "values": [
+            -0.8731082868881714,
+            -0.9119785336347727,
+            -1.0345343794578161,
+            2.2753148439985056
+          ]
+        },
+        {
+          "name": "same: happy (specific part), c=0.5",
+          "values": [
+            -0.8731082868881714,
+            -0.9119785336347727,
+            -1.0345343794578161,
+            2.265145725546739
+          ]
+        }
+      ]
+    },
+    {
+      "id": "drift_single_18",
+      "type": "line",
+      "title": "Clean test: projection on the guardrail direction at layer 18, last prompt token, per turn",
+      "x": {
+        "label": "turn",
+        "values": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ]
+      },
+      "y": {
+        "label": "projection",
+        "unit": ""
+      },
+      "series": [
+        {
+          "name": "early: random direction, seed 2, c=1",
+          "values": [
+            -1.872779158445505,
+            -1.966209365771367,
+            -2.0882837436138053,
+            3.184405792217988
+          ]
+        },
+        {
+          "name": "early: happy (specific part), c=0.5",
+          "values": [
+            -2.107264751043075,
+            -2.0506844153771033,
+            -2.129226103807107,
+            3.172176831521285
+          ]
+        },
+        {
+          "name": "none",
+          "values": [
+            -2.0763376492720385,
+            -2.015100289613773,
+            -2.0966409689340835,
+            3.219771926219647
+          ]
+        },
+        {
+          "name": "same: random direction, seed 2, c=1",
+          "values": [
+            -2.0763376492720385,
+            -2.015100289613773,
+            -2.0966409689340835,
+            3.0826798132978954
+          ]
+        },
+        {
+          "name": "same: happy (specific part), c=0.5",
+          "values": [
+            -2.0763376492720385,
+            -2.015100289613773,
+            -2.0966409689340835,
+            3.013464931112069
+          ]
+        }
+      ]
+    }
+  ],
+  "interpretation": [],
+  "caveats": [
+    "Each condition is a single greedy run of the 8B model; behaviours are paired across conditions, so differences between conditions are compared behaviour by behaviour."
+  ],
+  "artifacts": []
+}

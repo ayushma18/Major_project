@@ -6,7 +6,7 @@
   "question": "Do the story pairs give emotion directions that recognise held-out stories, and how much do the 19 directions share?",
   "model": "unsloth/Llama-3.1-8B-Instruct",
   "started": null,
-  "finished": "2026-11-21T10:52:57",
+  "finished": "2026-11-21T11:52:44",
   "config": {},
   "headline": "All 19 emotions are recognised in held-out stories (19-way accuracy 100.0% at layer 9, chance 5.3%); on the independent short-text set, 80.7%.",
   "metrics": [

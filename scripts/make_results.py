@@ -298,7 +298,7 @@ def e07_e10(m, model):
         if em:
             sig = [e for e, r in em.items() if r["mcnemar_p_holm"] < 0.05]
             above = [e for e, r in em.items() if r["z_vs_random"] is not None and r["z_vs_random"] > 2]
-            r7["interpretation"].append(f"Against the baseline, {len(sig)} of {len(em)} emotions change ASR significantly after Holm correction ({', '.join(sig) or 'none'}); {len(above)} sit more than two standard deviations above the random-vector mean ({', '.join(above) or 'none'}).")
+            r7["interpretation"].append(f"Against the baseline, {len(sig)} of {len(em)} emotions change ASR significantly after Holm correction ({', '.join(sig) or 'none'}); {len(above)} sit more than two standard deviations above the random-vector mean ({', '.join(above) or 'none'}). The random band comes from 12 seeds and is descriptive, not a calibrated test: a condition above every seed has an add-one rank p-value of 1/13 at best, before any correction.")
     if rnd:
         r8["status"] = "done"
         rows = [[k, *val(k)] for k in sorted(rnd)]
@@ -325,8 +325,8 @@ def e07_e10(m, model):
         pairs = [(x[2], x[4]) for x in rows if x[2] is not None and x[4] is not None]
         if pairs:
             me, mp = sum(a for a, _ in pairs) / len(pairs), sum(b for _, b in pairs) / len(pairs)
-            r10["headline"] = f"Removing the refusal component does not weaken the effect: mean ASR {pct(me)} with it, {pct(mp)} without ({len(pairs)} emotions, baseline {pct(b_asr)})."
-            r10["interpretation"].append("If the emotion vectors worked by overlapping the refusal direction, removing that overlap would bring ASR back to baseline. It does not, so the effect runs around the refusal direction, not through it.")
+            r10["headline"] = f"Projecting the layer-12 refusal candidate out of the paired vectors did not lower mean ASR: {pct(me)} with it, {pct(mp)} without ({len(pairs)} emotions, baseline {pct(b_asr)})."
+            r10["interpretation"].append("If the emotion vectors worked only by overlapping the refusal direction, removing that overlap would bring ASR back towards baseline. It did not in this grid. The removed direction is the layer-12 candidate (cosine 0.81 with the ablated layer-11 direction), and the difference between the two means was not tested, so this does not show how the vectors act on refusal.")
     return [r7, r8, r10]
 
 

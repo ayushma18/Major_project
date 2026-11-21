@@ -6,7 +6,7 @@
   "question": "Does a stressful or relaxing system prompt change refusal, with no activation change at all?",
   "model": "unsloth/Llama-3.1-8B-Instruct",
   "started": null,
-  "finished": "2026-11-21T10:52:57",
+  "finished": "2026-11-21T11:52:44",
   "config": {},
   "headline": "Mean refusal by system-prompt mood: neutral 91.6%, relaxation 88.7%, stress 91.8% (no system prompt: 83.6%): text priming does not lower refusal.",
   "metrics": [],
