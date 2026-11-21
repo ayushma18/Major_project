@@ -211,12 +211,21 @@ and the 156 test behaviours that fill them. In the **stacked** protocol (the pro
 benign and turns 4 to 7 carry four different harmful requests. In the **single** protocol, each conversation
 has the three benign turns and then exactly one harmful request at turn 4 (156 conversations; the benign
 prefix is generated once per script, which is exact because nothing differs before turn 4). For each vector
-v, **early** adds v to every turn-1 token, prompt and reply; later turns recompute the conversation with v
-still on those positions, which equals keeping the steered key-value cache. **Same** adds v only to the
-harmful turn, its request and its answer. Persistence is delta_persist = ASR_early - ASR_same. Drift is the
-projection of the last prompt token on the refusal direction at layers 14 and 18, at every turn. The single
-protocol tests four vectors: a random direction at c = 1 (71.1% single-turn ASR, a positive control), the
-happy specific vector, loving subtracted, and the paired happy vector.
+v, **early** adds v to turn 1 only; later turns recompute the conversation with v still on those positions,
+which equals keeping the steered key-value cache. **Same** adds v only to the harmful turn and its answer.
+Each comes with two spans. The text-only span covers the user's words (and, at turn 1, the reply). The full
+span also covers the chat-template tokens of that turn, including the five tokens after the request at which
+the refusal direction is read and the first reply token is predicted. Single-turn steering (Section 3.4)
+covers every position, so same-full is the in-conversation counterpart of the single-turn result and is the
+positive control. We first ran only the text-only spans; their positive control failed (Section 4.9), which
+is why the full spans were added. Persistence is delta_persist = ASR_early - ASR_same, and each mode is
+compared with no injection by exact McNemar tests paired by conversation (Holm within the harmful-turn modes
+and within the turn-1 modes), with Newcombe's hybrid score interval for the paired difference. Drift is the
+projection of the last prompt token on the refusal candidate at layers 14 and 18; at benign turns 2 and 3
+it is compared early minus none, paired by script, with a sign-flip permutation test, and scaled by the jump
+the projection makes when the turn-4 request is harmful. The single protocol tests four vectors: a random
+direction at c = 1 (71.1% single-turn ASR), the happy specific vector, loving subtracted, and the paired
+happy vector.
 
 ### 3.7 Replication on a second family
 

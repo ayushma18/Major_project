@@ -129,48 +129,59 @@ def fig_sleeper(m="llama-8b", drift_layer="14"):
             vecs.setdefault(cnd["vector"], {})[cnd["mode"]] = stem
     names = {"random:2@12:1": "random direction\n(seed 2, c = 1)", "specific:happy@12:0.5": "happy,\nspecific part", "emotion:loving@12:-0.5": "minus loving\n(paired)",
              "emotion:happy@12:0.5": "happy\n(paired)"}
-    vs = [v for v in names if v in vecs and all(J.get(vecs[v].get(k, "")) for k in ("early", "same"))]
+    vs = [v for v in names if v in vecs and any(J.get(vecs[v].get(k, "")) for k in ("early", "same", "early-full", "same-full"))]
     if not vs:
         return
     has_drift = bool(drift.get("vectors")) and all(v in drift["vectors"] for v in vs)
-    fig, axes = plt.subplots(2 if has_drift else 1, 1, figsize=(6.8, 5.6 if has_drift else 3.2), gridspec_kw={"height_ratios": [1.25, 1]} if has_drift else None)
+    fig, axes = plt.subplots(2 if has_drift else 1, 1, figsize=(6.8, 5.8 if has_drift else 3.4), gridspec_kw={"height_ratios": [1.3, 1]} if has_drift else None)
     ax = axes[0] if has_drift else axes
-    w = 0.26
+    # hue = when the vector is injected; solid = every position of that turn, hatched = text only
+    MODES = [("early", BLUE, True, "turn 1, text only"), ("early-full", BLUE, False, "turn 1, every position"),
+             ("same", ORANGE, True, "harmful turn, text only"), ("same-full", ORANGE, False, "harmful turn, every position")]
+    w = 0.18
     for i, v in enumerate(vs):
         single_turn = J1.get(v, {}).get("asr")
-        for k, (mode, col, lab) in enumerate((("early", BLUE, "injected at turn 1 only"), ("same", ORANGE, "injected at the harmful turn"))):
-            y = 100 * J[vecs[v][mode]]["asr"]
-            ax.bar(i + (k - 0.5) * (w + 0.03), y, width=w, color=col, label=lab if i == 0 else None, zorder=3)
-            ax.text(i + (k - 0.5) * (w + 0.03), y + 0.8, f"{y:.0f}", ha="center", fontsize=7, color=INK)
+        for k, (mode, col, hatch, lab) in enumerate(MODES):
+            jm = J.get(vecs[v].get(mode, ""))
+            if not jm:
+                continue
+            y, x = 100 * jm["asr"], i + (k - 1.5) * (w + 0.02)
+            ax.bar(x, y, width=w, color=SURFACE if hatch else col, edgecolor=col, hatch="////" if hatch else None, linewidth=1.0,
+                   label=lab if i == 0 else None, zorder=3)
+            ax.text(x, y + 0.8, f"{y:.0f}", ha="center", fontsize=6.5, color=INK)
         if single_turn is not None:
-            ax.scatter(i + 0.42, 100 * single_turn, marker="D", s=26, color=AQUA, edgecolor=SURFACE, linewidth=1, zorder=4, label="same vector, single turn (Fig. 1)" if i == 0 else None)
-    ax.axhline(100 * J["none"]["asr"], color=INK, lw=1, ls=(0, (4, 3)))
-    ax.text(len(vs) - 0.45, 100 * J["none"]["asr"] + 0.8, f"no injection {100 * J['none']['asr']:.1f}%", ha="right", fontsize=7.5, color=INK)
+            ax.scatter(i + 0.5, 100 * single_turn, marker="D", s=24, color=AQUA, edgecolor=SURFACE, linewidth=1, zorder=4, label="single turn, no conversation (Fig. 1)" if i == 0 else None)
+    ax.axhline(100 * J["none"]["asr"], color=INK, lw=1, ls=(0, (4, 3)), label=f"no injection ({100 * J['none']['asr']:.1f}%)")
     ax.set_xticks(range(len(vs)), [names[v] for v in vs])
     ax.set_ylabel("judged harmful at turn 4 (%)")
     ax.set_title(f"(a) Three benign turns, then one harmful request ({single['n_harmful']} conversations)", fontsize=9, loc="left", color=INK)
     ax.grid(axis="x", visible=False)
-    ax.set_ylim(0, 90)
-    ax.legend(fontsize=7.5, loc="upper center", ncols=3, handlelength=1.2, columnspacing=1.2)
+    ax.set_ylim(0, 95)
+    ax.legend(fontsize=7, loc="upper center", ncols=3, handlelength=1.4, columnspacing=1.0)
     if has_drift:
         bx = axes[1]
         gap = drift["harmful_gap"][drift_layer]
         bx.axhline(0, color=MUTED, lw=0.8)
+        # blue = turn-1 injection as in panel (a); hollow = text only, solid = every turn-1 position
+        series = [("", True, "o", 2, "text only, turn 2"), ("", True, "s", 3, "text only, turn 3"),
+                  ("|full", False, "o", 2, "every position, turn 2"), ("|full", False, "s", 3, "every position, turn 3")]
         for i, v in enumerate(vs):
-            rows = {r["turn"]: r for r in drift["vectors"][v][drift_layer]}
-            for k, (t, mk, col) in enumerate(((2, "o", INK), (3, "s", MUTED))):
-                r = rows[t]
+            for k, (suffix, hollow, mk, t, lab) in enumerate(series):
+                per = drift["vectors"].get(v + suffix)
+                if not per:
+                    continue
+                r = {x["turn"]: x for x in per[drift_layer]}[t]
                 y, e = 100 * r["mean_diff"] / gap, 100 * 1.96 * r["se"] / gap
-                x = i + (k - 0.5) * 0.22
-                bx.errorbar(x, y, yerr=e, fmt=mk, ms=5, color=col, mfc=col, mec=SURFACE, elinewidth=1, capsize=2, zorder=3,
-                            label=f"benign turn {t}" if i == 0 else None)
+                x = i + (k - 1.5) * 0.17
+                bx.errorbar(x, y, yerr=e, fmt=mk, ms=5, color=BLUE, mfc=SURFACE if hollow else BLUE, mec=BLUE, elinewidth=1, capsize=2, zorder=3,
+                            label=lab if i == 0 else None)
         bx.set_xticks(range(len(vs)), [names[v] for v in vs])
         bx.set_ylabel("shift, % of the harmful-turn jump")
         bx.set_title(f"(b) Turn-1 injection minus none: refusal-direction projection at later benign turns (layer {drift_layer}, 95% CI, {drift['n_scripts']} scripts)",
                      fontsize=8.5, loc="left", color=INK)
         bx.grid(axis="x", visible=False)
         bx.set_xlim(ax.get_xlim())
-        bx.legend(fontsize=7.5, loc="upper center", bbox_to_anchor=(0.5, -0.3), ncols=2, handlelength=1.2)
+        bx.legend(fontsize=7, loc="upper center", bbox_to_anchor=(0.5, -0.3), ncols=4, handlelength=1.2, columnspacing=1.0)
     fig.tight_layout(h_pad=1.6)
     save(fig, "fig3_sleeper")
 
