@@ -6,7 +6,7 @@
   "question": "Across the 19 emotions, does the cosine with the refusal direction predict how much the emotion changes ASR?",
   "model": "unsloth/Llama-3.1-8B-Instruct",
   "started": null,
-  "finished": "2026-11-21T10:43:58",
+  "finished": "2026-11-21T10:52:57",
   "config": {},
   "headline": "Spearman rho between cosine and ASR change = -0.18 (permutation p = 0.473, 19 emotions, layer 12, strength 0.5).",
   "metrics": [

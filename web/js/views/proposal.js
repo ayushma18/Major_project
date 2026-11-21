@@ -12,16 +12,18 @@ export async function renderProposal() {
 
   const proposalPdfPath = '../private/proposal.pdf';
   const slidesPdfPath = '../private/proposal-presentation.pdf';
+  const paperPdfPath = '../paper/paper.pdf';
 
-  const [hasProposal, hasSlides] = await Promise.all([
+  const [hasProposal, hasSlides, hasPaper] = await Promise.all([
     checkFileExists(proposalPdfPath),
-    checkFileExists(slidesPdfPath)
+    checkFileExists(slidesPdfPath),
+    checkFileExists(paperPdfPath)
   ]);
 
-  let activeTab = hasProposal ? 'proposal' : (hasSlides ? 'slides' : 'none');
+  let activeTab = hasPaper ? 'paper' : (hasProposal ? 'proposal' : (hasSlides ? 'slides' : 'none'));
 
   function renderContent() {
-    if (!hasProposal && !hasSlides) {
+    if (!hasProposal && !hasSlides && !hasPaper) {
       return `
         <div class="card card-subtle" style="text-align: center; padding: 3rem;">
           <h2 style="font-size: var(--step-1); margin-bottom: 0.5rem;">Proposal Files Not Located</h2>
@@ -33,11 +35,16 @@ export async function renderProposal() {
       `;
     }
 
-    const currentPdf = activeTab === 'proposal' ? proposalPdfPath : slidesPdfPath;
-    const currentTitle = activeTab === 'proposal' ? 'Major Project Proposal Document' : 'Project Proposal Presentation Slides';
+    const currentPdf = activeTab === 'paper' ? paperPdfPath : (activeTab === 'proposal' ? proposalPdfPath : slidesPdfPath);
+    const currentTitle = activeTab === 'paper' ? 'Paper draft' : (activeTab === 'proposal' ? 'Major Project Proposal Document' : 'Project Proposal Presentation Slides');
 
     return `
       <div class="proposal-tabs">
+        ${hasPaper ? `
+          <button type="button" class="btn-pill ${activeTab === 'paper' ? 'btn-pill-primary' : ''}" id="tab-paper">
+            Paper Draft
+          </button>
+        ` : ''}
         ${hasProposal ? `
           <button type="button" class="btn-pill ${activeTab === 'proposal' ? 'btn-pill-primary' : ''}" id="tab-proposal">
             Proposal Document
@@ -62,7 +69,7 @@ export async function renderProposal() {
   container.innerHTML = `
     <div class="section-header">
       <div class="section-label">Institutional Documentation</div>
-      <h1 class="section-title">Major Project Proposal</h1>
+      <h1 class="section-title">Proposal and Paper</h1>
       <p class="section-desc">
         Department of Electronics & Computer Engineering, Pulchowk Campus, Tribhuvan University.
       </p>
@@ -75,7 +82,11 @@ export async function renderProposal() {
 
   // Tab switching
   container.addEventListener('click', (e) => {
-    if (e.target.id === 'tab-proposal') {
+    if (e.target.id === 'tab-paper') {
+      activeTab = 'paper';
+      const wrapper = container.querySelector('#proposal-content-wrapper');
+      if (wrapper) wrapper.innerHTML = renderContent();
+    } else if (e.target.id === 'tab-proposal') {
       activeTab = 'proposal';
       const wrapper = container.querySelector('#proposal-content-wrapper');
       if (wrapper) wrapper.innerHTML = renderContent();

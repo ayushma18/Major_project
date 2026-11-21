@@ -3,7 +3,7 @@
 #
 #   bash scripts/deploy_pages.sh
 #
-# Builds a clean folder with web/, literature/catalog.json and the paper PDFs, results/,
+# Builds a clean folder with web/, literature/catalog.json and the paper PDFs, results/, paper/paper.pdf,
 # project/status.json and the private proposal files, adds the Basic Auth middleware from
 # deploy/functions/, and deploys it with wrangler. Raw outputs/ (model completions) are never
 # included. The password lives only in the Pages secret SITE_PASSWORD; the local copy is
@@ -22,6 +22,7 @@ cp "$REPO/literature/catalog.json" "$SITE/literature/"
 find "$REPO/literature/pdfs" -name '*.pdf' -size -25M -exec cp {} "$SITE/literature/pdfs/" \;
 rsync -a --exclude 'raw/' "$REPO/results/" "$SITE/results/"
 cp "$REPO/project/status.json" "$SITE/project/"
+if [ -f "$REPO/paper/paper.pdf" ]; then mkdir -p "$SITE/paper"; cp "$REPO/paper/paper.pdf" "$SITE/paper/"; fi
 if [ -e "$REPO/private" ]; then cp -L "$REPO/private/"*.pdf "$SITE/private/" 2>/dev/null || true; cp -L "$REPO/private/"*.txt "$SITE/private/" 2>/dev/null || true; fi
 cat > "$SITE/index.html" <<'HTML'
 <!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=/web/"><title>Affect as Attack</title><a href="/web/">Open the project interface</a>

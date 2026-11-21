@@ -24,3 +24,6 @@ pytest==9.0.1
 
 # GPU only -- faster attention. Optional; the code falls back to SDPA.
 # flash-attn>=2.6
+
+# paper/build_pdf.py only (markdown to PDF through headless Chrome)
+markdown==3.11.3
