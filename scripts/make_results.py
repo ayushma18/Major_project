@@ -595,6 +595,18 @@ def model_summary(m):
             cor = raw(f"E11_{m}_{kind}_L{L}_c{float(c)}.json") or raw(f"E11_{m}_{kind}_L{L}_c{c}.json")
             if cor:
                 s[f"rho_{kind}"] = (cor["delta_asr"]["spearman_rho"], cor["delta_asr"]["perm_p"])
+        coh = (raw(f"coherence_{m}_harmbench-test.json") or {}).get("conditions", {})
+        tag = f"@{L}:{c}"
+        for kind, pre in (("random", "random:"), ("emotion", "emotion:"), ("specific", "specific:"), ("negative", "emotion:")):
+            want = [v["broken"] for k, v in coh.items() if k.startswith(pre) and (k.endswith(f"@{L}:-{c}") if kind == "negative" else k.endswith(tag))]
+            if want:
+                s[f"broken_{kind}"] = sum(want) / len(want)
+        if "baseline" in coh:
+            s["broken_baseline"] = coh["baseline"]["broken"]
+    norms = raw(f"E13_norms_{m}.json")
+    if norms and s.get("layer") is not None and str(s["layer"]) in norms["layers"]:
+        n = norms["layers"][str(s["layer"])]
+        s["push_over_median"] = float(s["c"]) * n["mean"] / n["median"]
     g = raw(f"E06_{m}.json")
     if g and "caa" in g.get("types", {}) and s.get("refusal_layer") is not None:
         t = g["types"]["caa"]
@@ -628,6 +640,7 @@ def e13(model):
     rows = [
         ["Refusal direction found at layer", f"{a.get('refusal_layer')} of 32", f"{b.get('refusal_layer')} of 28"],
         ["Emotion injection layer and strength", f"{a.get('layer')}, c = {a.get('c')}", f"{b.get('layer', 'pending')}, c = {b.get('c', 'pending')}"],
+        ["Push size / median token norm at the injection layer", f(a, "push_over_median", lambda v: f"{v:.2f}"), f(b, "push_over_median", lambda v: f"{v:.2f}")],
         ["Judged harmful, no injection", f(a, "baseline"), f(b, "baseline")],
         ["Judged harmful, refusal direction ablated", f(a, "ablated"), f(b, "ablated")],
         ["Harmless requests refused, ablated (phrase match)", f(a, "harmless_ablated"), f(b, "harmless_ablated")],
@@ -638,6 +651,9 @@ def e13(model):
         ["Paired emotion vectors (the proposal's)", above(a, "emotion"), above(b, "emotion")],
         ["Specific parts (shared direction removed)", above(a, "specific"), above(b, "specific")],
         ["Paired vectors subtracted", above(a, "negative"), above(b, "negative")],
+        ["Answers flagged broken: no injection / random / paired / specific / subtracted",
+         " / ".join(f(a, f"broken_{k}") for k in ("baseline", "random", "emotion", "specific", "negative")),
+         " / ".join(f(b, f"broken_{k}") for k in ("baseline", "random", "emotion", "specific", "negative"))],
         ["Spearman rho, cosine vs ASR change (paired)", rho(a, "emotion"), rho(b, "emotion")],
         ["Spearman rho, cosine vs ASR change (specific)", rho(a, "specific"), rho(b, "specific")],
     ]
@@ -660,7 +676,15 @@ def e13(model):
             head += (f"; the paired emotion vectors average {pct(b['emotion']['mean'])} against {pct(b['random_mean'])} for random pushes "
                      f"({len(b['emotion']['above'])} of {b['emotion']['n']} above random)")
         r["headline"] = head + "."
-    r["config"] = {"model": ALIASES[REPLICATION], "rule": "injection one layer after the selected refusal layer, c = 0.5, fixed before the run (Llama: refusal 11, injection 12)"}
+    r["config"] = {"model": ALIASES[REPLICATION], "rule": "injection one layer after the selected refusal layer, fixed before the run (Llama: refusal 11, injection 12); "
+                   "strength 0.5 of the mean residual norm over non-outlier tokens (<= 5 x median): the same push as c = 0.5 on Llama, c = 0.115 of the raw mean on Qwen"}
+    c05 = (raw(f"coherence_{REPLICATION}_harmbench-test-c0.5.json") or {}).get("conditions", {})
+    if c05:
+        rs = [v["broken"] for k, v in c05.items() if k.startswith("random:")]
+        es = [v["broken"] for k, v in c05.items() if k.startswith("emotion:")]
+        r["caveats"].append(f"The pre-registered c = 0.5 of the raw mean norm was run first and broke the answers: Qwen2.5's mean norm is lifted by massive activations on one newline token "
+                            f"per prompt (13,700 against a median of 100), so the push was 2.2 times a typical token's norm. Flagged broken at c = 0.5: random {pct(sum(rs) / len(rs)) if rs else 'n/a'}, "
+                            f"paired emotion {pct(sum(es) / len(es)) if es else 'n/a'} (mean over conditions). Those files are kept as a separate set and not judged.")
     r["caveats"].append("Qwen2.5's chat template adds its default system prompt; every Qwen condition, including the baseline, has it.")
     r["caveats"].append("One greedy run per condition; the random band uses 10 seeds on Qwen and 12 on Llama.")
     return r

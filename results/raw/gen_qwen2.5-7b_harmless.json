@@ -1,0 +1,47 @@
+{
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "set": "harmless",
+  "conditions": {
+    "baseline": {
+      "n": 100,
+      "refusal_substring_rate": 0.02,
+      "mean_tokens": 205.83,
+      "truncated_frac": 0.67,
+      "seconds": 142.3751871585846,
+      "info": {
+        "kind": "baseline",
+        "arg": null,
+        "layer": null,
+        "c": null
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmless/baseline.jsonl"
+    },
+    "ablate-refusal": {
+      "n": 100,
+      "refusal_substring_rate": 0.01,
+      "mean_tokens": 207.05,
+      "truncated_frac": 0.67,
+      "seconds": 173.5354130268097,
+      "info": {
+        "kind": "ablate-refusal",
+        "arg": null,
+        "layer": null,
+        "c": null,
+        "refusal": {
+          "layer": 18,
+          "pos": -4,
+          "pos_index": 1,
+          "bypass": -10.608369827270508,
+          "induce": 0.9553946256637573,
+          "kl": 0.08774776756763458,
+          "norm": 46.37656021118164,
+          "method": "Arditi et al. 2024 difference of means, selection by bypass/induce/KL",
+          "model": "Qwen/Qwen2.5-7B-Instruct"
+        }
+      },
+      "max_new_tokens": 256,
+      "file": "outputs/generations/Qwen--Qwen2.5-7B-Instruct/harmless/ablate-refusal.jsonl"
+    }
+  }
+}

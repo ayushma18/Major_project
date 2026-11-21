@@ -236,6 +236,16 @@ its own refusal direction by the same selection, injection one layer after its r
 own emotion vectors from the same corpus, ten random seeds, the paired, specific and subtracted vectors for
 all 19 emotions, the same judge and the same statistics.
 
+One rule changed after the first Qwen run. The steering scale is the mean residual norm, and on Qwen2.5 that
+mean is not a typical token's norm: one newline token near the start of every prompt carries a massive
+activation (about 13,700 at layer 19, against a median of 100 and a 90th percentile of 118), so 3% of the
+tokens lift the mean to 439. At c = 0.5 the push was 220, 2.2 times a typical token's norm and 4.7 times the
+refusal vector, and the answers broke (Section 4.10). The scale is therefore restated as the mean norm over
+tokens at most five times the median (`scripts/15_norm_profile.py`). On Llama no token exceeds that bound,
+so its push is unchanged; on Qwen the restated rule gives c = 0.115 of the raw mean, a push of 50.5, which
+is 1.09 times its refusal vector (Llama: 0.87). The steering check (E05) runs at 0.25, 0.5 and 1 times the
+restated scale. The c = 0.5 run is kept and reported as a failure, not discarded.
+
 ### 3.8 Text priming
 
 Following FreakOut-LLM, nine system prompts (three stress, three relaxation, three neutral) are prepended

@@ -8,6 +8,13 @@ with --insert. It reads the selected refusal layer and applies the rule used on 
 fixed before any replication result was seen: inject one layer after the refusal layer
 (Llama: refusal 11, injection 12), strength c = 0.5 of the mean residual norm.
 
+Deviation (2026-11-21): on Qwen2.5-7B the mean norm is dominated by massive activations (one
+newline token per prompt at about 13,700 against a median of 100; scripts/15_norm_profile.py),
+so c = 0.5 of the raw mean pushed 2.2 times a typical token's norm and broke 45 to 100% of the
+answers (kept as harmbench-test-c0.5). The rule is restated as 0.5 of the mean norm over
+non-outlier tokens (<= 5 x median), which is the same push on Llama (no outliers) and
+c = 0.115 of the raw mean on Qwen: pass it as --c 0.115.
+
 Stage 2 (what this script queues), the conditions behind the main claims, 256-token answers:
     steering check at that layer (E05), geometry (E06), harmless over-refusal (E01/E03),
     baseline, ablate-refusal, 10 random seeds, the 19 paired emotion vectors, the 19 specific
@@ -38,6 +45,7 @@ def main() -> None:
     ap.add_argument("--model", default="qwen2.5-7b")
     ap.add_argument("--c", default="0.5")
     ap.add_argument("--batch-size", type=int, default=48)
+    ap.add_argument("--sanity-coeffs", nargs="+", default=None, help="strengths for the E05 steering check (default: --c)")
     ap.add_argument("--insert", action="store_true")
     args = ap.parse_args()
     m = args.model
@@ -51,7 +59,7 @@ def main() -> None:
 
     gdir = f"outputs/generations/{slug(ALIASES.get(m, m))}/harmbench-test"
     jobs = [
-        f"{ENV} {PY} scripts/08_steering_sanity.py --model {m} --layers {L} --coeffs {c}",
+        f"{ENV} {PY} scripts/08_steering_sanity.py --model {m} --layers {L} --coeffs {' '.join(args.sanity_coeffs or [c])}",
         f"{ENV} {PY} scripts/09_geometry.py --model {m}",
         run(["baseline", "ablate-refusal"], set_="harmless", bs=32),
         run(["baseline", "ablate-refusal"] + [f"random:{s}@{L}:{c}" for s in range(10)]),

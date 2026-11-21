@@ -1,0 +1,4 @@
+{
+  "kind": "mean of the 19 unit paired-CAA vectors per layer",
+  "space": "resid_post[layer]"
+}

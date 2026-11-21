@@ -1,0 +1,4 @@
+{
+  "what": "mean L2 norm of resid_post per layer over harmless chat prompts",
+  "n_prompts": 64
+}

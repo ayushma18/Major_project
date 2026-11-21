@@ -7,7 +7,7 @@ added while the model answers 12 open benign prompts ("Describe your morning so 
 Random unit vectors at the same norm are the control. Each output is then read by the
 UNSTEERED model, which is asked which of 20 emotion words (19 emotions plus neutral) best
 describes its tone (20-way choice, scored from next-token probabilities over the option
-numbers), and whether the tone is positive, negative or neutral. Coherence = mean token
+labels: numbers, or letters where the tokenizer splits numbers), and whether the tone is positive, negative or neutral. Coherence = mean token
 negative log-likelihood of the output under the unsteered model (higher = less fluent).
 
 Writes results/raw/E05_<model>.json and benign example outputs for the interface.
@@ -36,10 +36,26 @@ OPTIONS = data.EMOTIONS + ["neutral"]
 VALENCE_WORDS = ["positive", "negative", "neutral"]
 
 
-def judge_prompt(text: str) -> str:
-    opts = "\n".join(f"{i + 1}. {w}" for i, w in enumerate(OPTIONS))
+LABELS = [str(i + 1) for i in range(len(OPTIONS))]  # option numbers; letters if the tokenizer splits them
+
+
+def option_labels(tok) -> tuple[list[str], list[int], str]:
+    """Option labels whose first token is one distinct token each.
+
+    Llama 3 tokenizes 1 to 20 as single tokens, so numbers are kept (the published E05 used them).
+    Qwen2.5 splits multi-digit numbers into digits ("10" -> "1", "0"), so it gets the letters A to T.
+    """
+    for labels, word in ((LABELS, "number"), ([chr(65 + i) for i in range(len(OPTIONS))], "letter")):
+        ids = [tok(x, add_special_tokens=False)["input_ids"] for x in labels]
+        if all(len(i) == 1 for i in ids) and len({i[0] for i in ids}) == len(ids):
+            return labels, [i[0] for i in ids], word
+    raise SystemExit("no single-token option labels for this tokenizer")
+
+
+def judge_prompt(text: str, labels: list[str] = LABELS, word: str = "number") -> str:
+    opts = "\n".join(f"{x}. {w}" for x, w in zip(labels, OPTIONS))
     return (f"Here is a short text.\n\n<text>\n{text}\n</text>\n\nWhich ONE of these words best describes the emotional tone "
-            f"of the text?\n{opts}\n\nAnswer with the number only.")
+            f"of the text?\n{opts}\n\nAnswer with the {word} only.")
 
 
 def valence_prompt(text: str) -> str:
@@ -131,11 +147,11 @@ def main() -> None:
         print()
 
     # Read every output with the unsteered model.
-    opt_ids = [tok(str(i + 1), add_special_tokens=False)["input_ids"][0] for i in range(len(OPTIONS))]
-    assert len(set(opt_ids)) == len(opt_ids), "option numbers must be single distinct tokens"
+    labels, opt_ids, word = option_labels(tok)
+    print("option labels:", word)
     val_ids = [tok(w.capitalize(), add_special_tokens=False)["input_ids"][0] for w in VALENCE_WORDS]
     texts = [r["text"] or "(empty)" for r in rows]
-    P = first_token_probs(model, tok, [judge_prompt(t) for t in texts], opt_ids)
+    P = first_token_probs(model, tok, [judge_prompt(t, labels, word) for t in texts], opt_ids)
     V = first_token_probs(model, tok, [valence_prompt(t) for t in texts], val_ids)
     nll = mean_nll(model, tok, [r["prompt"] for r in rows], texts)
     for r, p, v, n in zip(rows, P, V, nll):
