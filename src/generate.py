@@ -68,11 +68,12 @@ def eos_token_ids(tokenizer: Any) -> list[int]:
     ids: list[int] = []
     if tokenizer.eos_token_id is not None:
         ids.append(tokenizer.eos_token_id)
-    eot = tokenizer.convert_tokens_to_ids(_LLAMA_EOT)
-    # convert_tokens_to_ids returns unk_token_id for unknown tokens on some
-    # tokenizers, so guard against silently adding a bogus id.
-    if eot is not None and eot != tokenizer.unk_token_id and eot not in ids:
-        ids.append(eot)
+    # End-of-turn tokens of the chat families used here (Llama 3, Qwen2.5). Unknown tokens map
+    # to None or to unk_token_id depending on the tokenizer, so guard against a bogus id.
+    for tok in (_LLAMA_EOT, "<|im_end|>", "<|endoftext|>"):
+        eot = tokenizer.convert_tokens_to_ids(tok)
+        if eot is not None and eot != tokenizer.unk_token_id and eot not in ids:
+            ids.append(eot)
     return ids
 
 

@@ -50,11 +50,13 @@ marked PENDING fill in as the GPU queue finishes.
    hypothesis for the replication, not a result.
 7. **Geometry does not explain it.** The cosine of an emotion vector with the refusal direction
    does not predict its attack effect (Spearman rho = -0.18, p = 0.47 for paired vectors;
-   rho = -0.16, p = 0.65 for specific vectors), and removing the refusal component does not
+   rho = -0.14, p = 0.58 for specific vectors), and removing the refusal component does not
    weaken the effect (mean change in ASR 6.2 points with it, 8.6 without). Whatever these
    directions do, they do it around the refusal direction, not through it.
 8. **Strong steering breaks the model, not the guardrail.** At c = 1.0 emotion vectors erase
-   refusal phrases but produce 0% judged-harmful answers: the model drifts into emotional text.
+   refusal phrases but produce almost no judged-harmful answers (happy 0%, calm 0%, angry 0.6%,
+   judged on the 64-token screen): the model drifts into emotional text. Random directions at the
+   same strength still reach 20 to 51% on that screen.
 9. **Text priming does nothing here.** Stress, relaxation and neutral system prompts all leave
    refusal at 85 to 94% (FreakOut-style baseline, BL-4).
 10. PENDING: the multi-turn sleeper experiment (E12).

@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-21T10:44:22",
+  "updated": "2026-11-21T10:52:57",
   "experiments": [
     {
       "id": "E00-model-selection",
@@ -77,9 +77,9 @@
       "id": "E09-text-priming",
       "title": "Text-level emotional priming (FreakOut style)",
       "module": 2,
-      "status": "planned",
+      "status": "done",
       "file": "results/E09-text-priming.json",
-      "headline": "Stress, relaxation and neutral system prompts"
+      "headline": "Mean refusal by system-prompt mood: neutral 91.6%, relaxation 88.7%, stress 91.8% (no system prompt: 83.6%): text priming does not lower refusal."
     },
     {
       "id": "E10-orthogonalised",
@@ -104,6 +104,14 @@
       "status": "planned",
       "file": "results/E12-multiturn-persistence.json",
       "headline": "Inject at turn 1, test at turns 4 to 7"
+    },
+    {
+      "id": "E13-replication",
+      "title": "Does it hold on a second model family?",
+      "module": 5,
+      "status": "planned",
+      "file": "results/E13-replication.json",
+      "headline": "The main conditions rerun on Qwen2.5-7B-Instruct"
     }
   ],
   "model": "unsloth/Llama-3.1-8B-Instruct"

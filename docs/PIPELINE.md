@@ -28,7 +28,7 @@ export AFFECT_MODELS_DIR=~/models            # where fetch_model.py puts weights
 | 7 | `10_emotion_sweep.py --layer L --coeffs c1 c2` | E07 to E10 ASR sweep | 4 to 6 h |
 | 8 | `06_judge.py --set harmbench-test` | HarmBench judge on every condition | 1 to 2 h |
 | 9 | `11_correlation.py --layer L --c c1` | E11 Spearman test | seconds |
-| 10 | `12_multiturn.py --layer L --c c1 --emotions ...` then `06_judge.py --set multiturn` | E12 sleeper effect | 1 to 2 h |
+| 10 | `12_multiturn.py --protocol single --layer L --vectors <spec> ... --only <condition>` (one condition per process), then `06_judge.py --set multiturn-single`; the proposal's protocol: `--protocol stacked`, `--set multiturn` | E12 sleeper effect | 10 to 20 min per condition |
 | 11 | `make_results.py --model llama-8b` | builds `results/*.json` for the interface | seconds |
 
 The 1B warm-up (`--model llama-1b`, proposal phase 1) runs the same scripts in minutes; its
@@ -67,3 +67,21 @@ and the proposal to Cloudflare Pages at https://affect-as-attack.pages.dev, behi
 login page (one password field, a signed session cookie for 30 days; `deploy/functions/_middleware.js`;
 the password is the Pages secret `SITE_PASSWORD`, `/__logout` signs out). Raw model outputs are never uploaded. Run it after
 `scripts/make_results.py` at each checkpoint; the GPU queue does this after every judging step.
+
+## The multi-turn protocols (E12)
+
+`12_multiturn.py` runs two protocols on the same 39 benign scripts and 156 HarmBench behaviours:
+
+- **stacked** (the proposal's): turns 1 to 3 benign, turns 4 to 7 four harmful requests in a row.
+  On Llama 3.1 8B the first refusal decides the rest: with no injection the model refuses 90% at
+  turn 4 and 100% at turns 5 to 7, so those turns sit at a floor and cannot show persistence.
+- **single** (added for that reason): the 3 benign turns, then exactly one harmful request at
+  turn 4, one conversation per behaviour. The benign prefix is generated once per script and
+  shared by its 4 behaviours, which is exact because nothing differs before turn 4.
+
+Conditions per vector: `none`, `early:<spec>` (vector on every turn-1 token, prompt and reply;
+later turns keep it on those positions only, which equals keeping the steered KV cache) and
+`same:<spec>` (vector on the harmful turn only). Run one condition per process with `--only`:
+MPS keeps freed blocks cached between `generate` calls, and two 7-turn conditions in one process
+left about 16 GB behind and ran out of memory. The script also releases the cache after every
+turn and rebuilds `results/raw/E12_<model>_<protocol>.json` from everything on disk.

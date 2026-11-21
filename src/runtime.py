@@ -25,6 +25,7 @@ ALIASES = {
     "llama-8b": "unsloth/Llama-3.1-8B-Instruct",
     "harmbench-cls": "cais/HarmBench-Llama-2-13b-cls",
     "harmbench-cls-7b": "cais/HarmBench-Mistral-7b-val-cls",
+    "qwen2.5-7b": "Qwen/Qwen2.5-7B-Instruct",
     "qwen3-8b": "Qwen/Qwen3-8B",
     "qwen3-14b": "Qwen/Qwen3-14B",
     "gemma2-9b": "unsloth/gemma-2-9b-it",

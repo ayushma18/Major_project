@@ -334,9 +334,16 @@ def e09(m, model):
     r = base("E09-text-priming", "Text-level emotional priming (FreakOut style)", 2, "Does a stressful or relaxing system prompt change refusal, with no activation change at all?", model)
     J, G = judged(m), gen(m, "harmbench-test")
     pr = sorted(k for k in G if k.startswith("prime:"))
+    screen = not pr
+    if screen:  # only the 64-token screen exists: phrase-match refusal, judge where it was run
+        J, G = judged(m, "harmbench-test-screen"), gen(m, "harmbench-test-screen")
+        pr = sorted(k for k in G if k.startswith("prime:"))
     if not pr:
         return r
     r["status"] = "done"
+    if screen:
+        r["caveats"].append(f"From the 64-token screen (refusal-phrase rate; no injection on the same screen: {pct(G.get('baseline', {}).get('refusal_substring_rate'))}). "
+                            "Priming moved refusal by a few points in either direction, so it was not rerun at 256 tokens.")
 
     def v(k):
         return J.get(k, {}).get("asr"), G[k]["refusal_substring_rate"]
@@ -348,7 +355,8 @@ def e09(m, model):
         groups.setdefault(k.split(":")[1], []).append(v(k))
     means = {g: (sum(x[1] for x in xs) / len(xs)) for g, xs in groups.items()}
     r["charts"].append({"id": "prime_bar", "type": "bar", "title": "Mean refusal rate by priming group", "x": {"label": "group", "values": list(means)}, "y": {"label": "refusal rate", "unit": "fraction"}, "series": [{"name": "refusal", "values": list(means.values())}]})
-    r["headline"] = "Mean refusal by system-prompt mood: " + ", ".join(f"{g} {pct(x)}" for g, x in means.items()) + "."
+    r["headline"] = "Mean refusal by system-prompt mood: " + ", ".join(f"{g} {pct(x)}" for g, x in means.items())
+    r["headline"] += f" (no system prompt: {pct(G['baseline']['refusal_substring_rate'])}): text priming does not lower refusal." if "baseline" in G else "."
     return r
 
 
@@ -494,6 +502,107 @@ def e12(m, model):
     return r
 
 
+REPLICATION = "qwen2.5-7b"
+SHORT = {"llama-8b": "Llama 3.1 8B", "qwen2.5-7b": "Qwen2.5 7B"}
+
+
+def model_summary(m):
+    """The numbers behind the main claims for one model (None until its baseline is judged)."""
+    J = judged(m)
+    if "baseline" not in J:
+        return None
+    name = ALIASES.get(m, m)
+    ref = ROOT / "artifacts" / "vectors" / name.replace("/", "--") / "refusal.json"
+    s = {"baseline": J["baseline"]["asr"], "ablated": J.get("ablate-refusal", {}).get("asr")}
+    if ref.exists():
+        s["refusal_layer"] = json.loads(ref.read_text())["layer"]
+    h = gen(m, "harmless")
+    s["harmless_ablated"] = h.get("ablate-refusal", {}).get("refusal_substring_rate")
+    s["harmless_baseline"] = h.get("baseline", {}).get("refusal_substring_rate")
+    ood = raw(f"E04b_{m}.json")
+    s["ood_top1"] = ood["best_top1"] if ood else None
+    st = raw(f"E07_stats_{m}.json")
+    if st:
+        L, c = st["layer"], st["c"]
+        s.update({"layer": L, "c": c, "random_mean": st["random"]["asr_mean"], "random_sd": st["random"]["asr_sd"], "random_n": st["random"]["n_seeds"]})
+        for kind, rows in st["kinds"].items():
+            s[kind] = {"mean": sum(x["asr"] for x in rows.values()) / len(rows), "n": len(rows),
+                       "above": sorted(((e, x["asr"]) for e, x in rows.items() if x["z_vs_random"] is not None and x["z_vs_random"] > 2), key=lambda t: -t[1])}
+        for kind in ("emotion", "specific"):
+            cor = raw(f"E11_{m}_{kind}_L{L}_c{float(c)}.json") or raw(f"E11_{m}_{kind}_L{L}_c{c}.json")
+            if cor:
+                s[f"rho_{kind}"] = (cor["delta_asr"]["spearman_rho"], cor["delta_asr"]["perm_p"])
+    g = raw(f"E06_{m}.json")
+    if g and "caa" in g.get("types", {}) and s.get("refusal_layer") is not None:
+        t = g["types"]["caa"]
+        s["max_cos"] = max(abs(t["cos_same_layer"][e][s["refusal_layer"]]) for e in t["emotions"])
+        s["cos_p99"] = g.get("null_abs_cos", {}).get("p99")
+    return s
+
+
+def e13(model):
+    r = base("E13-replication", "Does it hold on a second model family?", 5,
+             "Run the conditions behind the main claims on Qwen2.5-7B-Instruct with the same rules: do the results replicate?", model)
+    a, b = model_summary("llama-8b"), model_summary(REPLICATION)
+    if not (a and b):
+        return r
+
+    def above(x, kind):
+        if kind not in x:
+            return "pending"
+        k = x[kind]
+        names = ", ".join(f"{e} {pct(v)}" for e, v in k["above"][:5]) or "none"
+        return f"mean {pct(k['mean'])}; above random: {len(k['above'])} of {k['n']} ({names})"
+
+    def rho(x, kind):
+        v = x.get(f"rho_{kind}")
+        return f"{v[0]:+.2f} (p = {v[1]:.2f})" if v else "pending"
+
+    def f(x, key, fmt=pct):
+        v = x.get(key)
+        return fmt(v) if v is not None else "pending"
+
+    rows = [
+        ["Refusal direction found at layer", f"{a.get('refusal_layer')} of 32", f"{b.get('refusal_layer')} of 28"],
+        ["Emotion injection layer and strength", f"{a.get('layer')}, c = {a.get('c')}", f"{b.get('layer', 'pending')}, c = {b.get('c', 'pending')}"],
+        ["Judged harmful, no injection", f(a, "baseline"), f(b, "baseline")],
+        ["Judged harmful, refusal direction ablated", f(a, "ablated"), f(b, "ablated")],
+        ["Harmless requests refused, ablated (phrase match)", f(a, "harmless_ablated"), f(b, "harmless_ablated")],
+        ["Emotion vectors name the emotion on independent texts (chance 5%)", f(a, "ood_top1"), f(b, "ood_top1")],
+        ["Largest |cos(emotion, refusal)| at the refusal layer", f(a, "max_cos", lambda v: f"{v:.3f}"), f(b, "max_cos", lambda v: f"{v:.3f}")],
+        ["Random directions, mean judged harmful", f"{pct(a['random_mean'])} (sd {pct(a['random_sd'])}, {a['random_n']} seeds)" if "random_mean" in a else "pending",
+         f"{pct(b['random_mean'])} (sd {pct(b['random_sd'])}, {b['random_n']} seeds)" if "random_mean" in b else "pending"],
+        ["Paired emotion vectors (the proposal's)", above(a, "emotion"), above(b, "emotion")],
+        ["Specific parts (shared direction removed)", above(a, "specific"), above(b, "specific")],
+        ["Paired vectors subtracted", above(a, "negative"), above(b, "negative")],
+        ["Spearman rho, cosine vs ASR change (paired)", rho(a, "emotion"), rho(b, "emotion")],
+        ["Spearman rho, cosine vs ASR change (specific)", rho(a, "specific"), rho(b, "specific")],
+    ]
+    r["tables"].append({"id": "replication", "title": "The main claims on both models (official HarmBench judge, 159 test behaviours, 256-token answers)",
+                        "columns": ["measure", SHORT["llama-8b"], SHORT[REPLICATION]], "rows": rows})
+    cats = [("no injection", "baseline"), ("random", "random_mean"), ("paired emotion", "emotion"), ("specific part", "specific"), ("subtracted", "negative"), ("refusal ablated", "ablated")]
+
+    def val(x, key):
+        v = x.get(key)
+        return v["mean"] if isinstance(v, dict) else v
+
+    r["charts"].append({"id": "replication_bars", "type": "bar", "title": "Mean judged-harmful rate by kind of push, both models",
+                        "x": {"label": "condition", "values": [c[0] for c in cats]}, "y": {"label": "ASR (HarmBench judge)", "unit": "fraction"},
+                        "series": [{"name": SHORT[m], "values": [val(x, k) for _, k in cats]} for m, x in (("llama-8b", a), (REPLICATION, b))]})
+    done = all(k in b for k in ("emotion", "specific", "negative"))
+    r["status"] = "done" if done else "running"
+    if b.get("ablated") is not None:
+        head = f"Qwen2.5 7B: ablating its refusal direction takes judged-harmful answers from {pct(b['baseline'])} to {pct(b['ablated'])}"
+        if "emotion" in b and "random_mean" in b:
+            head += (f"; the paired emotion vectors average {pct(b['emotion']['mean'])} against {pct(b['random_mean'])} for random pushes "
+                     f"({len(b['emotion']['above'])} of {b['emotion']['n']} above random)")
+        r["headline"] = head + "."
+    r["config"] = {"model": ALIASES[REPLICATION], "rule": "injection one layer after the selected refusal layer, c = 0.5, fixed before the run (Llama: refusal 11, injection 12)"}
+    r["caveats"].append("Qwen2.5's chat template adds its default system prompt; every Qwen condition, including the baseline, has it.")
+    r["caveats"].append("One greedy run per condition; the random band uses 10 seeds on Qwen and 12 on Llama.")
+    return r
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--model", default="llama-8b")
@@ -501,10 +610,10 @@ def main() -> None:
     args = ap.parse_args()
     m = args.model
     model = ALIASES.get(m, m)
-    results = [e00(m, model), *e01_e03(m, model), e02(m, model), e04(m, model), e05(m, model), e06(m, model), *e07_e10(m, model), e09(m, model), e11(m, model), e12(m, model)]
+    results = [e00(m, model), *e01_e03(m, model), e02(m, model), e04(m, model), e05(m, model), e06(m, model), *e07_e10(m, model), e09(m, model), e11(m, model), e12(m, model)] + ([e13(model)] if m == args.primary else [])
     now = datetime.now().isoformat(timespec="seconds")
     order = {r["id"]: r for r in results}
-    outdir = ROOT / "results" if m == args.primary else ROOT / "results" / f"warmup-{m}"
+    outdir = ROOT / "results" if m == args.primary else ROOT / "results" / (f"warmup-{m}" if m == "llama-1b" else f"replication-{m}")
     index_path = outdir / "index.json"
     if not index_path.exists():
         index_path.parent.mkdir(parents=True, exist_ok=True)
