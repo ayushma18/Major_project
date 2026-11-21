@@ -1,0 +1,293 @@
+{
+  "model": "unsloth/Llama-3.1-8B-Instruct",
+  "protocol": "single",
+  "layer": 12,
+  "drift_layers": [
+    14,
+    18
+  ],
+  "n_turns": 4,
+  "n_scripts": 39,
+  "n_harmful": 156,
+  "conditions": {
+    "early_emotion_happy@12_0.5": {
+      "condition": "early:emotion:happy@12:0.5",
+      "mode": "early",
+      "vector": "emotion:happy@12:0.5",
+      "protocol": "single",
+      "layer": 12,
+      "c": 0.5,
+      "drift_layers": [
+        14,
+        18
+      ],
+      "drift_mean_by_turn": {
+        "14": [
+          -0.8428193315481528,
+          -0.8774544459122878,
+          -1.001263800339821,
+          2.354921687871982
+        ],
+        "18": [
+          -2.026542929502634,
+          -1.9358983009289472,
+          -2.039051820070316,
+          3.1840336579733934
+        ]
+      },
+      "seconds": 717.3746590614319,
+      "n_rows": 156,
+      "refusal_substring_by_turn": {
+        "4": 0.9230769230769231
+      }
+    },
+    "early_emotion_loving@12_-0.5": {
+      "condition": "early:emotion:loving@12:-0.5",
+      "mode": "early",
+      "vector": "emotion:loving@12:-0.5",
+      "protocol": "single",
+      "layer": 12,
+      "c": -0.5,
+      "drift_layers": [
+        14,
+        18
+      ],
+      "drift_mean_by_turn": {
+        "14": [
+          -0.8788488018207061,
+          -0.9451529062711276,
+          -1.048619841917967,
+          2.3846134680490465
+        ],
+        "18": [
+          -2.0493902426499586,
+          -2.004141336832291,
+          -2.099751891233982,
+          3.211623809372003
+        ]
+      },
+      "seconds": 2178.688311100006,
+      "n_rows": 156,
+      "refusal_substring_by_turn": {
+        "4": 0.9230769230769231
+      }
+    },
+    "early_random_2@12_1": {
+      "condition": "early:random:2@12:1",
+      "mode": "early",
+      "vector": "random:2@12:1",
+      "protocol": "single",
+      "layer": 12,
+      "c": 1.0,
+      "drift_layers": [
+        14,
+        18
+      ],
+      "drift_mean_by_turn": {
+        "14": [
+          -0.8499474250353299,
+          -0.9045348243835645,
+          -1.021889926531376,
+          2.36644597337223
+        ],
+        "18": [
+          -1.872779158445505,
+          -1.966209365771367,
+          -2.0882837436138053,
+          3.184405792217988
+        ]
+      },
+      "seconds": 917.5492398738861,
+      "n_rows": 156,
+      "refusal_substring_by_turn": {
+        "4": 0.9166666666666666
+      }
+    },
+    "early_specific_happy@12_0.5": {
+      "condition": "early:specific:happy@12:0.5",
+      "mode": "early",
+      "vector": "specific:happy@12:0.5",
+      "protocol": "single",
+      "layer": 12,
+      "c": 0.5,
+      "drift_layers": [
+        14,
+        18
+      ],
+      "drift_mean_by_turn": {
+        "14": [
+          -0.9022350433545235,
+          -0.9502343917504336,
+          -1.0599180612808619,
+          2.356581336938036
+        ],
+        "18": [
+          -2.107264751043075,
+          -2.0506844153771033,
+          -2.129226103807107,
+          3.172176831521285
+        ]
+      },
+      "seconds": 658.2245099544525,
+      "n_rows": 156,
+      "refusal_substring_by_turn": {
+        "4": 0.9038461538461539
+      }
+    },
+    "none": {
+      "condition": "none",
+      "mode": null,
+      "vector": null,
+      "protocol": "single",
+      "layer": 12,
+      "c": null,
+      "drift_layers": [
+        14,
+        18
+      ],
+      "drift_mean_by_turn": {
+        "14": [
+          -0.8731082868881714,
+          -0.9119785336347727,
+          -1.0345343794578161,
+          2.389395597510231
+        ],
+        "18": [
+          -2.0763376492720385,
+          -2.015100289613773,
+          -2.0966409689340835,
+          3.219771926219647
+        ]
+      },
+      "seconds": 668.1043591499329,
+      "n_rows": 156,
+      "refusal_substring_by_turn": {
+        "4": 0.9294871794871795
+      }
+    },
+    "same_emotion_happy@12_0.5": {
+      "condition": "same:emotion:happy@12:0.5",
+      "mode": "same",
+      "vector": "emotion:happy@12:0.5",
+      "protocol": "single",
+      "layer": 12,
+      "c": 0.5,
+      "drift_layers": [
+        14,
+        18
+      ],
+      "drift_mean_by_turn": {
+        "14": [
+          -0.8731082868881714,
+          -0.9119785336347727,
+          -1.0345343794578161,
+          2.1673410411398764
+        ],
+        "18": [
+          -2.0763376492720385,
+          -2.015100289613773,
+          -2.0966409689340835,
+          2.8456339878149524
+        ]
+      },
+      "seconds": 576.8645009994507,
+      "n_rows": 156,
+      "refusal_substring_by_turn": {
+        "4": 0.8910256410256411
+      }
+    },
+    "same_emotion_loving@12_-0.5": {
+      "condition": "same:emotion:loving@12:-0.5",
+      "mode": "same",
+      "vector": "emotion:loving@12:-0.5",
+      "protocol": "single",
+      "layer": 12,
+      "c": -0.5,
+      "drift_layers": [
+        14,
+        18
+      ],
+      "drift_mean_by_turn": {
+        "14": [
+          -0.8731082868881714,
+          -0.9119785336347727,
+          -1.0345343794578161,
+          2.3280700870240345
+        ],
+        "18": [
+          -2.0763376492720385,
+          -2.015100289613773,
+          -2.0966409689340835,
+          3.1333075744601397
+        ]
+      },
+      "seconds": 562.8953671455383,
+      "n_rows": 156,
+      "refusal_substring_by_turn": {
+        "4": 0.8910256410256411
+      }
+    },
+    "same_random_2@12_1": {
+      "condition": "same:random:2@12:1",
+      "mode": "same",
+      "vector": "random:2@12:1",
+      "protocol": "single",
+      "layer": 12,
+      "c": 1.0,
+      "drift_layers": [
+        14,
+        18
+      ],
+      "drift_mean_by_turn": {
+        "14": [
+          -0.8731082868881714,
+          -0.9119785336347727,
+          -1.0345343794578161,
+          2.2753148439985056
+        ],
+        "18": [
+          -2.0763376492720385,
+          -2.015100289613773,
+          -2.0966409689340835,
+          3.0826798132978954
+        ]
+      },
+      "seconds": 461.51011300086975,
+      "n_rows": 156,
+      "refusal_substring_by_turn": {
+        "4": 0.8974358974358975
+      }
+    },
+    "same_specific_happy@12_0.5": {
+      "condition": "same:specific:happy@12:0.5",
+      "mode": "same",
+      "vector": "specific:happy@12:0.5",
+      "protocol": "single",
+      "layer": 12,
+      "c": 0.5,
+      "drift_layers": [
+        14,
+        18
+      ],
+      "drift_mean_by_turn": {
+        "14": [
+          -0.8731082868881714,
+          -0.9119785336347727,
+          -1.0345343794578161,
+          2.265145725546739
+        ],
+        "18": [
+          -2.0763376492720385,
+          -2.015100289613773,
+          -2.0966409689340835,
+          3.013464931112069
+        ]
+      },
+      "seconds": 1300.568102836609,
+      "n_rows": 156,
+      "refusal_substring_by_turn": {
+        "4": 0.9294871794871795
+      }
+    }
+  }
+}

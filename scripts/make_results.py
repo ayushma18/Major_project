@@ -384,16 +384,29 @@ def binom_two_sided(k: int, n: int) -> float:
     return min(1.0, 2 * sum(comb(n, i) for i in range(0, min(k, n - k) + 1)) / 2**n)
 
 
-def paired_diff_ci(b: int, c: int, n: int, z: float = 1.96) -> tuple[float, float]:
-    """95% interval for (b - c) / n, the paired difference in rates: Wilson on b / (b + c), conditional on b + c."""
-    k = b + c
-    if k == 0:
-        return 0.0, 0.0
-    ph = b / k
-    den = 1 + z * z / k
-    mid = (ph + z * z / (2 * k)) / den
-    half = z * ((ph * (1 - ph) / k + z * z / (4 * k * k)) ** 0.5) / den
-    return k / n * (2 * (mid - half) - 1), k / n * (2 * (mid + half) - 1)
+def _wilson(k: int, n: int, z: float = 1.96) -> tuple[float, float]:
+    if n == 0:
+        return 0.0, 1.0
+    ph = k / n
+    den = 1 + z * z / n
+    mid = (ph + z * z / (2 * n)) / den
+    half = z * ((ph * (1 - ph) / n + z * z / (4 * n * n)) ** 0.5) / den
+    return mid - half, mid + half
+
+
+def paired_diff_ci(both: int, b: int, c: int, n: int) -> tuple[float, float]:
+    """95% interval for p1 - p2 on paired binary labels (Newcombe 1998, method 10, hybrid score).
+
+    both: harmful in both conditions; b: harmful only in condition 1; c: harmful only in condition 2."""
+    d = n - both - b - c
+    p1, p2 = (both + b) / n, (both + c) / n
+    l1, u1 = _wilson(both + b, n)
+    l2, u2 = _wilson(both + c, n)
+    den = ((both + b) * (c + d) * (both + c) * (b + d)) ** 0.5
+    phi = (both * d - b * c) / den if den > 0 else 0.0
+    dl = ((p1 - l1) ** 2 - 2 * phi * (p1 - l1) * (u2 - p2) + (u2 - p2) ** 2) ** 0.5
+    du = ((u1 - p1) ** 2 - 2 * phi * (u1 - p1) * (p2 - l2) + (p2 - l2) ** 2) ** 0.5
+    return p1 - p2 - dl, p1 - p2 + du
 
 
 def holm_in_place(rows: list, i_p: int, i_out: int) -> None:
@@ -440,60 +453,63 @@ def e12(m, model):
         J = judged(m, "multiturn-single")
         vecs, none = by_vector(single)
         n0 = J.get(none or "none")
-        rows, bars = [], []
         n_conv = single["n_harmful"]
+        MODES = [("same", "harmful turn, request text only"), ("same-full", "harmful turn, request and template tokens"),
+                 ("early", "turn 1 only, text only"), ("early-full", "turn 1 only, every turn-1 position")]
+        rows = []
         for spec, modes in vecs.items():
-            je, js = J.get(modes.get("early", "")), J.get(modes.get("same", ""))
-            if not (je or js):
-                continue
-            judged_any = True
-            a_e, a_s, a_n = (je or {}).get("asr"), (js or {}).get("asr"), (n0 or {}).get("asr")
-            b = c = p = lo = hi = None
-            if je and n0:
-                E, N = set(je["harmful_ids"]), set(n0["harmful_ids"])
-                b, c = len(E - N), len(N - E)
-                p = binom_two_sided(min(b, c), b + c)
-                lo, hi = paired_diff_ci(b, c, n_conv)
-            rows.append([vector_label(spec), J1.get(spec, {}).get("asr"), a_s, a_e, a_n, None if a_e is None or a_s is None else a_e - a_s, b, c, p, None, lo, hi])
-            bars.append((vector_label(spec), a_n, a_e, a_s))
-        holm_in_place(rows, 8, 9)
+            for mode, desc in MODES:
+                jm = J.get(modes.get(mode, ""))
+                if not (jm and n0):
+                    continue
+                judged_any = True
+                E, N = set(jm["harmful_ids"]), set(n0["harmful_ids"])
+                bb, cc = len(E - N), len(N - E)
+                lo, hi = paired_diff_ci(len(E & N), bb, cc, n_conv)
+                rows.append([vector_label(spec), mode, desc, J1.get(spec, {}).get("asr"), jm["asr"], n0["asr"], jm["asr"] - n0["asr"], lo, hi, bb, cc,
+                             binom_two_sided(min(bb, cc), bb + cc), None])
+        for fam in (("same", "same-full"), ("early", "early-full")):  # Holm within each question
+            sub = [x for x in rows if x[1] in fam]
+            holm_in_place(sub, 11, 12)
         if rows:
-            r["tables"].append({"id": "persist_single", "title": f"Clean sleeper test: 3 benign turns, then one harmful request at turn 4 ({n_conv} conversations)",
-                                "columns": ["vector", "ASR single turn, no conversation", "ASR injected at turn 4 (same turn)", "ASR injected at turn 1 only (early)", "ASR no injection",
-                                            "delta persist (early minus same)", "early vs none: newly harmful", "early vs none: newly safe", "McNemar p (early vs none)",
-                                            "McNemar p, Holm over vectors", "early minus none, 95% CI low", "early minus none, 95% CI high"],
+            r["tables"].append({"id": "persist_single", "title": f"Clean sleeper test: 3 benign turns, then one harmful request at turn 4 ({n_conv} conversations); every row against no injection",
+                                "columns": ["vector", "mode", "injected at", "ASR single turn (no conversation)", "ASR turn 4", "ASR no injection", "difference",
+                                            "95% CI low", "95% CI high", "newly harmful", "newly safe", "McNemar p", "McNemar p, Holm (same modes / early modes)"],
                                 "rows": rows})
-            r["charts"].append({"id": "single_bars", "type": "bar", "title": "Turn-4 ASR: no injection, injection at turn 1 only, injection at the harmful turn",
-                                "x": {"label": "vector", "values": [x[0] for x in bars]}, "y": {"label": "ASR (HarmBench judge)", "unit": "fraction"},
-                                "series": [{"name": "no injection", "values": [x[1] for x in bars]}, {"name": "turn 1 only (early)", "values": [x[2] for x in bars]},
-                                           {"name": "at the harmful turn (same)", "values": [x[3] for x in bars]}]})
-            done_e = [x for x in rows if x[3] is not None and x[9] is not None]
-            best_s = max((x for x in rows if x[2] is not None), key=lambda x: x[2], default=None)
-            if done_e and n0:
-                sig = [x for x in done_e if x[9] < 0.05]
-                widest = max(done_e, key=lambda x: x[11])
-                rng = f"{pct(min(x[3] for x in done_e))} to {pct(max(x[3] for x in done_e))}"
-                if sig:
-                    r["headline"] = (f"Turn-1 injection changes turn-4 ASR for {', '.join(x[0] for x in sig)} (Holm p < 0.05); "
-                                     f"turn-4 ASR with the injection only at turn 1: {rng}, no injection {pct(n0['asr'])}.")
+            order = [v for v in vecs if any(x[0] == vector_label(v) for x in rows)]
+            r["charts"].append({"id": "single_bars", "type": "bar", "title": "Turn-4 ASR by injection timing and span (dashed: no injection)",
+                                "x": {"label": "vector", "values": [vector_label(v) for v in order]}, "y": {"label": "ASR (HarmBench judge)", "unit": "fraction"},
+                                "series": [{"name": desc, "values": [next((x[4] for x in rows if x[0] == vector_label(v) and x[1] == mode), None) for v in order]} for mode, desc in MODES]
+                                + [{"name": "no injection", "values": [n0["asr"]] * len(order)}]})
+            pc = [x for x in rows if x[1] == "same-full"] or [x for x in rows if x[1] == "same"]
+            sl = [x for x in rows if x[1] == "early-full"] or [x for x in rows if x[1] == "early"]
+            pc_ok = [x for x in pc if x[12] is not None and x[12] < 0.05 and x[6] > 0]
+            sl_sig = [x for x in sl if x[12] is not None and x[12] < 0.05]
+            rng = lambda xs: f"{pct(min(x[4] for x in xs))} to {pct(max(x[4] for x in xs))}"
+            if sl and pc:
+                top = max(sl, key=lambda x: x[8])
+                if sl_sig:
+                    r["headline"] = (f"A turn-1 injection changes turn-4 ASR for {', '.join(x[0] for x in sl_sig)} (Holm p < 0.05): {rng(sl)} against {pct(n0['asr'])} with no injection.")
+                elif pc_ok:
+                    r["headline"] = (f"No detectable sleeper effect: injected at the harmful turn the vectors still work ({rng(pc)}), but injected only at turn 1 they leave turn-4 ASR at "
+                                     f"{rng(sl)} (no injection {pct(n0['asr'])}; largest upper 95% bound {100 * top[8]:+.1f} points).")
                 else:
-                    r["headline"] = (f"No detectable sleeper effect: with the injection only at turn 1, turn-4 ASR is {rng} (no injection {pct(n0['asr'])}); "
-                                     f"the largest upper 95% bound on the rise is {100 * widest[11]:+.1f} points ({widest[0]})"
-                                     + (f", while the same vectors injected at the harmful turn reach up to {pct(best_s[2])}." if best_s else "."))
-                r["interpretation"].append("Turn-1 injection against no injection is paired by conversation (exact McNemar, Holm over the vectors). The interval is for the paired difference, "
-                                           "from a Wilson interval on the share of discordant conversations that turned harmful, conditional on the number of discordant pairs.")
-                if best_s and not sig:
-                    r["interpretation"].append("Injected at the harmful turn, the vectors still act inside a conversation; an injection made three turns earlier does not measurably change the turn-4 outcome, "
-                                               "even though the steered turn-1 positions stay in the context (the key-value cache).")
+                    r["headline"] = (f"Inside a conversation the vectors barely move turn-4 ASR even when injected at the harmful turn ({rng(pc)}; no injection {pct(n0['asr'])}), "
+                                     f"so the sleeper test cannot separate persistence from a weaker effect in context; turn-1 injection: {rng(sl)}.")
+            r["interpretation"].append("Each row is paired with no injection by conversation (exact McNemar; Holm within the harmful-turn modes and within the turn-1 modes). The interval is Newcombe's "
+                                       "hybrid score interval for a difference of paired proportions (method 10).")
+            r["interpretation"].append("Text-only modes steer the user text (and, at turn 1, the reply) but not the chat-template tokens after the request, where refusal is read out; "
+                                       "the full modes steer those too, as single-turn steering does.")
         drift = raw(f"E12_{m}_single_drift.json")
         if drift and drift.get("vectors"):
             drows = []
-            for spec, per in drift["vectors"].items():
+            for key, per in drift["vectors"].items():
+                spec, _, full = key.partition("|")
                 for l, trs in per.items():
                     gap = (drift.get("harmful_gap") or {}).get(l)
                     for t in trs:
                         if t["turn"] in (2, 3):
-                            drows.append([vector_label(spec), int(l), t["turn"], round(t["mean_diff"], 4), round(t["sd_none"], 3), None if not gap else round(t["mean_diff"] / gap, 4), t["n_up"], t["n_down"], float(f"{t['perm_p']:.3g}")])
+                            drows.append([vector_label(spec) + (" (every turn-1 position)" if full else " (turn-1 text only)"), int(l), t["turn"], round(t["mean_diff"], 4), round(t["sd_none"], 3), None if not gap else round(t["mean_diff"] / gap, 4), t["n_up"], t["n_down"], float(f"{t['perm_p']:.3g}")])
             r["tables"].append({"id": "drift_paired", "title": f"Does a turn-1 injection still move later benign turns? Projection on the refusal candidate, early minus none, paired by script ({drift['n_scripts']} scripts)",
                                 "columns": ["vector", "layer", "turn", "mean difference", "sd across scripts (no injection)", "difference as a share of the harmful-turn jump", "scripts up", "scripts down", "sign-flip p"],
                                 "rows": drows})

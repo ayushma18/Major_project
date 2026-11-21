@@ -147,7 +147,7 @@ def main() -> None:
     ap.add_argument("--protocol", default="stacked", choices=list(N_TURNS))
     ap.add_argument("--layer", type=int, required=True, help="injection layer; drift is read at layer+2 and layer+6")
     ap.add_argument("--vectors", nargs="*", default=[], help="condition-grammar specs, e.g. specific:happy@12:0.5 random:2@12:1")
-    ap.add_argument("--only", nargs="*", default=None, help="run only these conditions (none, early:<v>, same:<v>)")
+    ap.add_argument("--only", nargs="*", default=None, help="run only these conditions (none, early:<v>, same:<v>; single protocol also early-full:<v>, same-full:<v>)")
     ap.add_argument("--c", type=float, default=None, help="legacy: strength for --emotions and --random-seeds")
     ap.add_argument("--kind", default="emotion", choices=["emotion", "specific", "centered"], help="legacy: vector kind for --emotions")
     ap.add_argument("--emotions", nargs="*", default=[], help="legacy: condition labels are the bare emotion names")
@@ -172,6 +172,8 @@ def main() -> None:
         parse_condition(spec)
         vectors[spec] = spec
     conditions = [("none", None, None)] + [(f"early:{k}", k, "early") for k in vectors] + [(f"same:{k}", k, "same") for k in vectors]
+    if args.protocol == "single":  # full-turn modes: the template tokens of the turn are steered too
+        conditions += [(f"early-full:{k}", k, "early-full") for k in vectors] + [(f"same-full:{k}", k, "same-full") for k in vectors]
     if args.only is not None:
         unknown = set(args.only) - {c[0] for c in conditions}
         if unknown:
@@ -242,9 +244,18 @@ def main() -> None:
                 print(f"  conv {b + 1}-{b + len(batch)} turn {t + 1} done", flush=True)
         return rows_out, {str(l): [mean(x) for x in drift[l]] for l in drift_layers}
 
-    def benign_prefix(label):
-        """Turns 1-3 for every script, with v on turn 1 (early) or no injection (label None)."""
-        name = "none" if label is None else label.replace(":", "_")
+    def turn1_block(text: str, t1: list[str]) -> list[tuple[int, int]]:
+        """One span from the turn-1 user text to the end of the turn-1 reply, template tokens included."""
+        sp = char_spans(text, t1)
+        return [(sp[0][0], sp[-1][1])]
+
+    def benign_prefix(label, full=False):
+        """Turns 1-3 for every script, with v on turn 1 (early) or no injection (label None).
+
+        full=False steers the turn-1 user text and reply only; full=True steers every turn-1 position
+        from the user text to the end of the reply, including the chat-template tokens in between
+        (during turn-1 generation: the user text through the end of the prompt, then every reply token)."""
+        name = "none" if label is None else ("full_" if full else "") + label.replace(":", "_")
         path = outdir / f"prefix_{name}.json"
         if path.exists():
             d = json.loads(path.read_text())
@@ -262,7 +273,12 @@ def main() -> None:
                 for m, u in zip(msgs, users):
                     m.append({"role": "user", "content": u})
                 texts = [render(tok, m) for m in msgs]
-                spans = [char_spans(x, turn1[r] if t > 0 else [users[r]]) for r, x in enumerate(texts)] if label else [[] for _ in texts]
+                if not label:
+                    spans = [[] for _ in texts]
+                elif full:
+                    spans = [turn1_block(x, turn1[r]) if t > 0 else [(x.rindex(users[r]), len(x))] for r, x in enumerate(texts)]
+                else:
+                    spans = [char_spans(x, turn1[r] if t > 0 else [users[r]]) for r, x in enumerate(texts)]
                 replies, dr = turn(texts, spans, layer, delta, label is not None and t == 0, args.benign_tokens)
                 for r, (reply, _) in enumerate(replies):
                     msgs[r].append({"role": "assistant", "content": reply})
@@ -272,11 +288,11 @@ def main() -> None:
                         drift[r][str(l)].append(dr[l][r])
                 print(f"  prefix {name}: scripts {b + 1}-{b + len(batch)} turn {t + 1} done", flush=True)
             prefix += [{"msgs": m, "turn1": t1, "drift": d} for m, t1, d in zip(msgs, turn1, drift)]
-        write_json(path, {"label": label, "plans": [p["id"] for p in plans], "prefix": prefix})
+        write_json(path, {"label": label, "full": full, "plans": [p["id"] for p in plans], "prefix": prefix})
         return prefix
 
     def run_single(cname, label, mode):
-        prefix = benign_prefix(label if mode == "early" else None)
+        prefix = benign_prefix(label if mode in ("early", "early-full") else None, full=mode == "early-full")
         layer, delta = deltas[label] if label else (None, None)
         items = [(i, j) for i in range(len(plans)) for j in range(4)]
         rows_out, drift4 = [], {l: [] for l in drift_layers}
@@ -286,8 +302,12 @@ def main() -> None:
             texts = [render(tok, prefix[i]["msgs"] + [{"role": "user", "content": u}]) for (i, _), u in zip(chunk, users)]
             if mode == "early":
                 spans, on_decode = [char_spans(x, prefix[i]["turn1"]) for (i, _), x in zip(chunk, texts)], False
+            elif mode == "early-full":
+                spans, on_decode = [turn1_block(x, prefix[i]["turn1"]) for (i, _), x in zip(chunk, texts)], False
             elif mode == "same":
                 spans, on_decode = [last_span(x, u) for x, u in zip(texts, users)], True
+            elif mode == "same-full":  # the request and every template token after it, as in single-turn steering
+                spans, on_decode = [[(x.rindex(u), len(x))] for x, u in zip(texts, users)], True
             else:
                 spans, on_decode = [[] for _ in texts], False
             replies, dr = turn(texts, spans, layer, delta, on_decode, args.harmful_tokens)

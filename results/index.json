@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-21T11:52:44",
+  "updated": "2026-11-21T13:12:51",
   "experiments": [
     {
       "id": "E00-model-selection",
@@ -101,9 +101,9 @@
       "id": "E12-multiturn-persistence",
       "title": "The sleeper effect",
       "module": 4,
-      "status": "running",
+      "status": "done",
       "file": "results/E12-multiturn-persistence.json",
-      "headline": "Multi-turn conversations generated; per-turn ASR pending the judge."
+      "headline": "Inside a conversation the vectors barely move turn-4 ASR even when injected at the harmful turn (6.4% to 10.9%; no injection 6.4%), so the sleeper test cannot separate persistence from a weaker effect in context; turn-1 injection: 7.1% to 9.0%."
     },
     {
       "id": "E13-replication",

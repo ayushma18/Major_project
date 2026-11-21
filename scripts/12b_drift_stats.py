@@ -8,7 +8,8 @@ Each prefix stores, per script and turn, the projection of the last prompt token
 candidate at the drift layers. Because both prefixes use the same scripts, the difference early
 minus none is paired by script. Turn 1 includes the direct effect of the injection (the prompt
 itself is steered); turns 2 and 3 show whether a steered turn 1 still moves the state of later,
-unsteered turns. Turn-4 values are only stored as means (one per condition), so they are reported
+unsteered turns. prefix_full_<vector>.json (early-full mode) steers every turn-1 position, template
+tokens included; its results are keyed "<vector>|full". Turn-4 values are only stored as means (one per condition), so they are reported
 as means without a test.
 
 Writes results/raw/E12_<model>_single_drift.json (numbers only, no text).
@@ -61,7 +62,10 @@ def main() -> None:
         if pre["plans"] != none["plans"]:
             print("skip (different scripts):", f.name)
             continue
+        full = bool(pre.get("full"))
         spec = pre["label"]
+        key = f"{spec}|full" if full else spec
+        mode_e = "early-full" if full else "early"
         res = {}
         for l in layers:
             rows = []
@@ -73,14 +77,14 @@ def main() -> None:
                 sd_none = math.sqrt(sum((b["drift"][l][t] - out["none_turn_means"][l][t]) ** 2 for b in none["prefix"]) / (n - 1))
                 rows.append({"turn": t + 1, "mean_diff": mu, "sd_diff": sd, "se": sd / math.sqrt(n), "sd_none": sd_none,
                              "n_up": sum(x > 0 for x in diff), "n_down": sum(x < 0 for x in diff), "perm_p": sign_flip_p(diff)})
-            e4 = turn4.get(f"early:{spec}", {}).get(l)
-            s4 = turn4.get(f"same:{spec}", {}).get(l)
+            e4 = turn4.get(f"{mode_e}:{spec}", {}).get(l)
+            s4 = turn4.get(f"{'same-full' if full else 'same'}:{spec}", {}).get(l)
             n4 = out["none_turn_means"][l][3]
             rows.append({"turn": 4, "mean_early": e4[3] if e4 else None, "mean_same": s4[3] if s4 else None, "mean_none": n4,
                          "mean_diff": (e4[3] - n4) if e4 and n4 is not None else None})
             res[l] = rows
-        out["vectors"][spec] = res
-        print(spec, {l: [round(r["mean_diff"], 3) if r["mean_diff"] is not None else None for r in res[l]] for l in layers})
+        out["vectors"][key] = res
+        print(key, {l: [round(r["mean_diff"], 3) if r["mean_diff"] is not None else None for r in res[l]] for l in layers})
     write_json(ROOT / "results" / "raw" / f"E12_{m}_single_drift.json", out)
     print("wrote", f"results/raw/E12_{m}_single_drift.json")
 
