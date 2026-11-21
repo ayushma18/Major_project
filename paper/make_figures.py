@@ -116,9 +116,11 @@ def fig_cosine(m="llama-8b", L=12, c="0.5"):
     save(fig, "fig2_cosine")
 
 
-def fig_sleeper(m="llama-8b"):
+def fig_sleeper(m="llama-8b", drift_layer="14"):
+    """Top: turn-4 judged-harmful rate by injection timing. Bottom: paired drift at benign turns 2 and 3."""
     single, J = load(f"E12_{m}_single.json"), (load(f"judged_{m}_multiturn-single.json") or {}).get("conditions", {})
     J1 = (load(f"judged_{m}_harmbench-test.json") or {}).get("conditions", {})
+    drift = load(f"E12_{m}_single_drift.json") or {}
     if not single or "none" not in J:
         return
     vecs = {}
@@ -130,7 +132,9 @@ def fig_sleeper(m="llama-8b"):
     vs = [v for v in names if v in vecs and all(J.get(vecs[v].get(k, "")) for k in ("early", "same"))]
     if not vs:
         return
-    fig, ax = plt.subplots(figsize=(6.8, 3.2))
+    has_drift = bool(drift.get("vectors")) and all(v in drift["vectors"] for v in vs)
+    fig, axes = plt.subplots(2 if has_drift else 1, 1, figsize=(6.8, 5.6 if has_drift else 3.2), gridspec_kw={"height_ratios": [1.25, 1]} if has_drift else None)
+    ax = axes[0] if has_drift else axes
     w = 0.26
     for i, v in enumerate(vs):
         single_turn = J1.get(v, {}).get("asr")
@@ -144,9 +148,30 @@ def fig_sleeper(m="llama-8b"):
     ax.text(len(vs) - 0.45, 100 * J["none"]["asr"] + 0.8, f"no injection {100 * J['none']['asr']:.1f}%", ha="right", fontsize=7.5, color=INK)
     ax.set_xticks(range(len(vs)), [names[v] for v in vs])
     ax.set_ylabel("judged harmful at turn 4 (%)")
-    ax.set_title(f"Clean sleeper test: 3 benign turns, then one harmful request ({single['n_harmful']} conversations)", fontsize=9, loc="left", color=INK)
+    ax.set_title(f"(a) Three benign turns, then one harmful request ({single['n_harmful']} conversations)", fontsize=9, loc="left", color=INK)
     ax.grid(axis="x", visible=False)
-    ax.legend(fontsize=7.5, loc="upper right")
+    ax.set_ylim(0, 90)
+    ax.legend(fontsize=7.5, loc="upper center", ncols=3, handlelength=1.2, columnspacing=1.2)
+    if has_drift:
+        bx = axes[1]
+        gap = drift["harmful_gap"][drift_layer]
+        bx.axhline(0, color=MUTED, lw=0.8)
+        for i, v in enumerate(vs):
+            rows = {r["turn"]: r for r in drift["vectors"][v][drift_layer]}
+            for k, (t, mk, col) in enumerate(((2, "o", INK), (3, "s", MUTED))):
+                r = rows[t]
+                y, e = 100 * r["mean_diff"] / gap, 100 * 1.96 * r["se"] / gap
+                x = i + (k - 0.5) * 0.22
+                bx.errorbar(x, y, yerr=e, fmt=mk, ms=5, color=col, mfc=col, mec=SURFACE, elinewidth=1, capsize=2, zorder=3,
+                            label=f"benign turn {t}" if i == 0 else None)
+        bx.set_xticks(range(len(vs)), [names[v] for v in vs])
+        bx.set_ylabel("shift, % of the harmful-turn jump")
+        bx.set_title(f"(b) Turn-1 injection minus none: refusal-direction projection at later benign turns (layer {drift_layer}, 95% CI, {drift['n_scripts']} scripts)",
+                     fontsize=8.5, loc="left", color=INK)
+        bx.grid(axis="x", visible=False)
+        bx.set_xlim(ax.get_xlim())
+        bx.legend(fontsize=7.5, loc="upper center", bbox_to_anchor=(0.5, -0.3), ncols=2, handlelength=1.2)
+    fig.tight_layout(h_pad=1.6)
     save(fig, "fig3_sleeper")
 
 
