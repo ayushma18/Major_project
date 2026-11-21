@@ -1,0 +1,10 @@
+{
+  "emotion": "exasperated",
+  "kind": "paired CAA",
+  "n_pairs": 50,
+  "space": "resid_post[layer]",
+  "shape": [
+    32,
+    4096
+  ]
+}

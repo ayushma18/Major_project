@@ -59,6 +59,12 @@ def build(name: str, model: Any, lib: VectorLibrary) -> Condition:
 
     norms, _ = lib.load("resid_norms")
     scale = c * float(norms[layer])
+    v = _direction(kind, arg, layer, model, lib)
+    return Condition(name, AddVector(model, layer, v, scale, normalize=True), None, {**p, "injected_norm": scale})
+
+
+def _direction(kind: str, arg: str | None, layer: int, model: Any, lib: VectorLibrary):
+    """The raw (unnormalised) direction behind an additive condition at `layer`."""
     if kind == "add-refusal":
         cand, _ = lib.load("refusal_candidates")
         _, meta = lib.load("refusal")
@@ -79,4 +85,18 @@ def build(name: str, model: Any, lib: VectorLibrary) -> Condition:
         v = random_unit_vectors(model.config.hidden_size, 1, seed=int(arg))[0]
     else:
         raise ValueError(f"Unknown condition kind {kind!r}")
-    return Condition(name, AddVector(model, layer, v, scale, normalize=True), None, {**p, "injected_norm": scale})
+    return v
+
+
+def steering_delta(name: str, model: Any, lib: VectorLibrary):
+    """(layer, delta) for an additive condition, delta = c * norm[L] * unit(v).
+
+    For hooks that take a ready vector (the multi-turn protocol); `build` adds the same delta.
+    """
+    p = parse(name)
+    if p["layer"] is None or p["c"] is None or p["kind"] in ("baseline", "prime", "ablate-refusal"):
+        raise ValueError(f"{name!r} is not an additive condition")
+    norms, _ = lib.load("resid_norms")
+    scale = p["c"] * float(norms[p["layer"]])
+    v = _direction(p["kind"], p["arg"], p["layer"], model, lib)
+    return p["layer"], scale * v / v.norm()

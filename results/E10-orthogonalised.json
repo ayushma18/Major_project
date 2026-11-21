@@ -6,7 +6,7 @@
   "question": "If the part of each emotion vector that lies along the refusal direction is removed, does the effect disappear?",
   "model": "unsloth/Llama-3.1-8B-Instruct",
   "started": null,
-  "finished": "2026-11-21T08:30:18",
+  "finished": "2026-11-21T10:43:58",
   "config": {},
   "headline": "Removing the refusal component does not weaken the effect: mean ASR 20.6% with it, 23.1% without (19 emotions, baseline 14.5%).",
   "metrics": [],

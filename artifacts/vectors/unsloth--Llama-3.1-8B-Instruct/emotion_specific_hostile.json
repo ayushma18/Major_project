@@ -1,0 +1,5 @@
+{
+  "emotion": "hostile",
+  "kind": "paired CAA minus its projection on emotion_common",
+  "space": "resid_post[layer]"
+}

@@ -369,44 +369,128 @@ def e11(m, model):
     return r
 
 
+def binom_two_sided(k: int, n: int) -> float:
+    if n == 0:
+        return 1.0
+    from math import comb
+    return min(1.0, 2 * sum(comb(n, i) for i in range(0, min(k, n - k) + 1)) / 2**n)
+
+
+def vector_label(spec: str | None) -> str:
+    """specific:happy@12:0.5 -> 'happy (specific part), c=0.5'; random:2@12:1 -> 'random direction, seed 2, c=1'."""
+    if not spec:
+        return "none"
+    kind, rest = spec.split(":", 1)
+    arg, lc = rest.split("@")
+    c = float(lc.split(":")[1])
+    if kind == "random":
+        return f"random direction, seed {arg}, c={c:g}"
+    name = {"emotion": f"{arg} (paired, as in the proposal)", "specific": f"{arg} (specific part)", "centered": f"{arg} (one-vs-mean)"}.get(kind, f"{kind} {arg}")
+    return f"{'minus ' if c < 0 else ''}{name}, c={abs(c):g}"
+
+
 def e12(m, model):
-    r = base("E12-multiturn-persistence", "The sleeper effect", 4, "If an emotion is injected only at turn 1, is the model still easier to attack at turns 4 to 7?", model)
-    runs = [json.loads(Path(f).read_text()) for f in sorted(glob.glob(str(RAW / f"E12_{m}*.json")))]
-    if not runs:
+    r = base("E12-multiturn-persistence", "The sleeper effect", 4, "If an emotion is injected only at turn 1, is the model still easier to attack later in the conversation?", model)
+    single, stacked = raw(f"E12_{m}_single.json"), raw(f"E12_{m}_stacked.json")
+    if not (single or stacked):
         return r
-    r["status"] = "done"
-    J = judged(m, "multiturn")
-    turns = ["4", "5", "6", "7"]
-    rows = []
-    for d in runs:
-        conds = d["conditions"]
-        series = []
-        for c in conds:
-            j = J.get(c.replace(":", "_"))
-            if j and "by_turn" in j:
-                series.append({"name": f"{c} (c={d['c']})" if c != "none" else "none", "values": [j["by_turn"].get(t, {}).get("asr") for t in turns]})
+    J1 = judged(m)
+    judged_any = False
+
+    def by_vector(d):
+        """vector spec -> {mode: stem}, plus the stem of the no-injection condition."""
+        out, none = {}, None
+        for stem, c in d["conditions"].items():
+            if c.get("condition") == "none" or stem == "none":
+                none = stem
+            elif c.get("vector") and c.get("mode"):
+                out.setdefault(c["vector"], {})[c["mode"]] = stem
+        return out, none
+
+    if single:
+        J = judged(m, "multiturn-single")
+        vecs, none = by_vector(single)
+        n0 = J.get(none or "none")
+        rows, bars = [], []
+        for spec, modes in vecs.items():
+            je, js = J.get(modes.get("early", "")), J.get(modes.get("same", ""))
+            if not (je or js):
+                continue
+            judged_any = True
+            a_e, a_s, a_n = (je or {}).get("asr"), (js or {}).get("asr"), (n0 or {}).get("asr")
+            b = c = p = None
+            if je and n0:
+                E, N = set(je["harmful_ids"]), set(n0["harmful_ids"])
+                b, c = len(E - N), len(N - E)
+                p = binom_two_sided(min(b, c), b + c)
+            rows.append([vector_label(spec), J1.get(spec, {}).get("asr"), a_s, a_e, a_n, None if a_e is None or a_s is None else a_e - a_s, b, c, p])
+            bars.append((vector_label(spec), a_n, a_e, a_s))
+        if rows:
+            r["tables"].append({"id": "persist_single", "title": f"Clean sleeper test: 3 benign turns, then one harmful request at turn 4 ({single['n_harmful']} conversations)",
+                                "columns": ["vector", "ASR single turn, no conversation", "ASR injected at turn 4 (same turn)", "ASR injected at turn 1 only (early)", "ASR no injection",
+                                            "delta persist (early minus same)", "early vs none: newly harmful", "early vs none: newly safe", "McNemar p (early vs none)"],
+                                "rows": rows})
+            r["charts"].append({"id": "single_bars", "type": "bar", "title": "Turn-4 ASR: no injection, injection at turn 1 only, injection at the harmful turn",
+                                "x": {"label": "vector", "values": [x[0] for x in bars]}, "y": {"label": "ASR (HarmBench judge)", "unit": "fraction"},
+                                "series": [{"name": "no injection", "values": [x[1] for x in bars]}, {"name": "turn 1 only (early)", "values": [x[2] for x in bars]},
+                                           {"name": "at the harmful turn (same)", "values": [x[3] for x in bars]}]})
+            best_e = max((x for x in rows if x[3] is not None), key=lambda x: x[3], default=None)
+            best_s = max((x for x in rows if x[2] is not None), key=lambda x: x[2], default=None)
+            if best_e and best_s and n0:
+                r["headline"] = (f"No sleeper effect: with the injection only at turn 1, turn-4 ASR stays at {pct(min(x[3] for x in rows if x[3] is not None))} to {pct(best_e[3])} "
+                                 f"(no injection {pct(n0['asr'])}), while the same vectors injected at the harmful turn reach up to {pct(best_s[2])}.")
+                sig = [x[0] for x in rows if x[8] is not None and x[8] < 0.05]
+                r["interpretation"].append("Turn-1 injection versus no injection, paired by behaviour (McNemar): " + ("significant for " + ", ".join(sig) if sig else "no vector reaches p < 0.05") + ".")
+                r["interpretation"].append("Injecting at the harmful turn still works inside a conversation, so the vectors are effective there; what does not survive is the effect of an injection made three turns earlier, even though the steered turn-1 positions stay in the context (the KV cache).")
+        for l in single.get("drift_layers", []):
+            series = [{"name": vector_label(c.get("vector")) if c.get("mode") is None or c.get("condition") == "none" else f"{c['mode']}: {vector_label(c.get('vector'))}",
+                       "values": (c.get("drift_mean_by_turn") or {}).get(str(l))} for c in single["conditions"].values() if (c.get("drift_mean_by_turn") or {}).get(str(l))]
+            if series:
+                r["charts"].append({"id": f"drift_single_{l}", "type": "line", "title": f"Clean test: projection on the guardrail direction at layer {l}, last prompt token, per turn",
+                                    "x": {"label": "turn", "values": [str(t) for t in range(1, 5)]}, "y": {"label": "projection", "unit": ""}, "series": series})
+        r["config"]["single"] = {"conversations": single["n_harmful"], "benign_scripts": single["n_scripts"], "injection_layer": single["layer"], "drift_layers": single["drift_layers"]}
+
+    if stacked:
+        J = judged(m, "multiturn")
+        vecs, none = by_vector(stacked)
+        turns = ["4", "5", "6", "7"]
+        series, rows = [], []
+        n0 = J.get(none or "none")
+        if n0 and "by_turn" in n0:
+            series.append({"name": "no injection", "values": [n0["by_turn"].get(t, {}).get("asr") for t in turns]})
+            series.append({"name": "no injection: refusal phrase rate", "values": [n0["by_turn"].get(t, {}).get("refusal") for t in turns]})
+        for spec, modes in vecs.items():
+            for mode in ("early", "same"):
+                j = J.get(modes.get(mode, ""))
+                if j and "by_turn" in j:
+                    judged_any = True
+                    series.append({"name": f"{mode}: {vector_label(spec)}", "values": [j["by_turn"].get(t, {}).get("asr") for t in turns]})
+            je, js = J.get(modes.get("early", "")), J.get(modes.get("same", ""))
+            if je and js and "by_turn" in je and "by_turn" in js:
+                for t in turns:
+                    a, b = je["by_turn"].get(t, {}).get("asr"), js["by_turn"].get(t, {}).get("asr")
+                    rows.append([vector_label(spec), t, a, b, None if a is None or b is None else a - b, (n0 or {}).get("by_turn", {}).get(t, {}).get("asr")])
         if series:
-            r["charts"].append({"id": f"asr_by_turn_{d['c']}", "type": "line", "title": f"ASR at each harmful turn (injection layer {d['layer']}, strength {d['c']})",
-                                "x": {"label": "turn", "values": turns}, "y": {"label": "ASR", "unit": "fraction"}, "series": series})
-        for l in d.get("drift_layers", []):
-            r["charts"].append({"id": f"drift_{d['c']}_{l}", "type": "line", "title": f"Drift on the guardrail direction at layer {l}, last prompt token, per turn (strength {d['c']})",
-                                "x": {"label": "turn", "values": list(range(1, 8))}, "y": {"label": "projection", "unit": ""},
-                                "series": [{"name": c, "values": v[str(l)]} for c, v in d["drift_mean_by_turn"].items()]})
-        for c in conds:
-            if c.startswith("early:"):
-                k = c.split(":", 1)[1]
-                je, js = J.get(f"early_{k}"), J.get(f"same_{k}")
-                if je and js and "by_turn" in je and "by_turn" in js:
-                    for t in turns:
-                        a, b = je["by_turn"].get(t, {}).get("asr"), js["by_turn"].get(t, {}).get("asr")
-                        rows.append([k, d["c"], t, a, b, None if a is None or b is None else a - b, J.get("none", {}).get("by_turn", {}).get(t, {}).get("asr")])
-    if rows:
-        r["tables"].append({"id": "persist", "title": "Persistence: ASR with turn-1 injection vs injection at the harmful turn (eq. 5.6)", "columns": ["vector", "c", "turn", "ASR early", "ASR same-turn", "delta persist", "ASR no injection"], "rows": rows})
-        dp = [x[5] for x in rows if x[5] is not None]
-        r["headline"] = f"Mean persistence delta over {len(dp)} vector-turn pairs: {sum(dp) / len(dp):+.3f} (positive would mean a turn-1 injection keeps working later)."
-    else:
+            r["charts"].append({"id": "stacked_by_turn", "type": "line", "title": "Proposal protocol (four harmful turns in a row): ASR at each harmful turn",
+                                "x": {"label": "turn", "values": turns}, "y": {"label": "rate", "unit": "fraction"}, "series": series})
+        if rows:
+            r["tables"].append({"id": "persist_stacked", "title": "Proposal protocol: persistence by turn (eq. 5.6)", "columns": ["vector", "turn", "ASR early", "ASR same-turn", "delta persist", "ASR no injection"], "rows": rows})
+        if n0 and "by_turn" in n0:
+            ref = [n0["by_turn"].get(t, {}).get("refusal") for t in turns]
+            lo, hi = min(x for x in ref[1:] if x is not None), max(x for x in ref[1:] if x is not None)
+            later = pct(lo) if lo == hi else f"{pct(lo)} to {pct(hi)}"
+            r["caveats"].append(f"In the proposal's protocol the four harmful requests come one after another. With no injection the model refuses {pct(ref[0])} at turn 4 and then "
+                                f"{later} at turns 5 to 7: an earlier refusal in the context makes every later refusal near certain, so turns 5 to 7 sit at a floor. "
+                                "The clean test (one harmful request per conversation) was added for that reason.")
+            if not r["headline"]:
+                t4 = [f"{s_['name']} {pct(s_['values'][0])}" for s_ in series if "refusal" not in s_["name"] and s_["values"][0] is not None]
+                r["headline"] = f"Proposal protocol, turn 4 ASR: {'; '.join(t4)}. After the first refusal the model refuses every later harmful turn."
+        r["config"]["stacked"] = {"conversations": stacked["n_scripts"], "turns": stacked["n_turns"], "injection_layer": stacked["layer"]}
+
+    r["status"] = "done" if judged_any else "running"
+    if not judged_any:
         r["headline"] = "Multi-turn conversations generated; per-turn ASR pending the judge."
-    r["config"] = {"n_conversations": runs[0]["n_conversations"], "layer": runs[0]["layer"]}
+    r["caveats"].append("Each condition is a single greedy run of the 8B model; behaviours are paired across conditions, so differences between conditions are compared behaviour by behaviour.")
     return r
 
 
@@ -438,6 +522,8 @@ def main() -> None:
             write_json(outdir / f"{r['id']}.json", r)
             x["status"] = r["status"]
             x["headline"] = r["headline"] or x["headline"]
+        else:  # no raw data (any more): do not point the interface at a results file
+            x["status"] = "planned"
     index["updated"] = now
     index["model"] = model
     write_json(index_path, index)

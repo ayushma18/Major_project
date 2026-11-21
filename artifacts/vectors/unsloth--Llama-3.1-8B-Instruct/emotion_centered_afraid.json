@@ -1,0 +1,5 @@
+{
+  "emotion": "afraid",
+  "kind": "one-vs-mean of 19 emotions",
+  "space": "resid_post[layer]"
+}
