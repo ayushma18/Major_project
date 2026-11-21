@@ -28,7 +28,7 @@ export AFFECT_MODELS_DIR=~/models            # where fetch_model.py puts weights
 | 7 | `10_emotion_sweep.py --layer L --coeffs c1 c2` | E07 to E10 ASR sweep | 4 to 6 h |
 | 8 | `06_judge.py --set harmbench-test` | HarmBench judge on every condition | 1 to 2 h |
 | 9 | `11_correlation.py --layer L --c c1` | E11 Spearman test | seconds |
-| 10 | `12_multiturn.py --protocol single --layer L --vectors <spec> ... --only <condition>` (one condition per process), then `06_judge.py --set multiturn-single`; the proposal's protocol: `--protocol stacked`, `--set multiturn` | E12 sleeper effect | 10 to 20 min per condition |
+| 10 | `12_multiturn.py --protocol single --layer L --vectors <spec> ... --only <condition>` (one condition per process), then `06_judge.py --set multiturn-single` and `12b_drift_stats.py`; the proposal's protocol: `--protocol stacked`, `--set multiturn` | E12 sleeper effect | 10 to 20 min per condition |
 | 11 | `make_results.py --model llama-8b` | builds `results/*.json` for the interface | seconds |
 
 The 1B warm-up (`--model llama-1b`, proposal phase 1) runs the same scripts in minutes; its
@@ -85,3 +85,12 @@ later turns keep it on those positions only, which equals keeping the steered KV
 MPS keeps freed blocks cached between `generate` calls, and two 7-turn conditions in one process
 left about 16 GB behind and ran out of memory. The script also releases the cache after every
 turn and rebuilds `results/raw/E12_<model>_<protocol>.json` from everything on disk.
+
+`12b_drift_stats.py --model <m>` (CPU, seconds) then tests drift for the single protocol: both
+benign prefixes (`prefix_none.json` and `prefix_<vector>.json`) use the same 39 scripts, so the
+projection of the last prompt token on the refusal candidate at turns 2 and 3 is compared early
+minus none, paired by script (sign-flip permutation, 20,000 flips), and scaled by the jump the
+projection makes when the turn-4 request is harmful. Output: `results/raw/E12_<model>_single_drift.json`.
+Turn-4 drift is stored as one mean per condition only, so it is reported without a test.
+`make_results.py` adds the paired McNemar test of early against none (Holm over the vectors) and a
+95% interval for the paired difference.

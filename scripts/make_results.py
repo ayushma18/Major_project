@@ -384,6 +384,27 @@ def binom_two_sided(k: int, n: int) -> float:
     return min(1.0, 2 * sum(comb(n, i) for i in range(0, min(k, n - k) + 1)) / 2**n)
 
 
+def paired_diff_ci(b: int, c: int, n: int, z: float = 1.96) -> tuple[float, float]:
+    """95% interval for (b - c) / n, the paired difference in rates: Wilson on b / (b + c), conditional on b + c."""
+    k = b + c
+    if k == 0:
+        return 0.0, 0.0
+    ph = b / k
+    den = 1 + z * z / k
+    mid = (ph + z * z / (2 * k)) / den
+    half = z * ((ph * (1 - ph) / k + z * z / (4 * k * k)) ** 0.5) / den
+    return k / n * (2 * (mid - half) - 1), k / n * (2 * (mid + half) - 1)
+
+
+def holm_in_place(rows: list, i_p: int, i_out: int) -> None:
+    """Write Holm-adjusted p-values of column i_p into column i_out (rows with p None are skipped)."""
+    idx = sorted((k for k, r in enumerate(rows) if r[i_p] is not None), key=lambda k: rows[k][i_p])
+    run = 0.0
+    for rank, k in enumerate(idx):
+        run = max(run, min(1.0, (len(idx) - rank) * rows[k][i_p]))
+        rows[k][i_out] = run
+
+
 def vector_label(spec: str | None) -> str:
     """specific:happy@12:0.5 -> 'happy (specific part), c=0.5'; random:2@12:1 -> 'random direction, seed 2, c=1'."""
     if not spec:
@@ -420,36 +441,62 @@ def e12(m, model):
         vecs, none = by_vector(single)
         n0 = J.get(none or "none")
         rows, bars = [], []
+        n_conv = single["n_harmful"]
         for spec, modes in vecs.items():
             je, js = J.get(modes.get("early", "")), J.get(modes.get("same", ""))
             if not (je or js):
                 continue
             judged_any = True
             a_e, a_s, a_n = (je or {}).get("asr"), (js or {}).get("asr"), (n0 or {}).get("asr")
-            b = c = p = None
+            b = c = p = lo = hi = None
             if je and n0:
                 E, N = set(je["harmful_ids"]), set(n0["harmful_ids"])
                 b, c = len(E - N), len(N - E)
                 p = binom_two_sided(min(b, c), b + c)
-            rows.append([vector_label(spec), J1.get(spec, {}).get("asr"), a_s, a_e, a_n, None if a_e is None or a_s is None else a_e - a_s, b, c, p])
+                lo, hi = paired_diff_ci(b, c, n_conv)
+            rows.append([vector_label(spec), J1.get(spec, {}).get("asr"), a_s, a_e, a_n, None if a_e is None or a_s is None else a_e - a_s, b, c, p, None, lo, hi])
             bars.append((vector_label(spec), a_n, a_e, a_s))
+        holm_in_place(rows, 8, 9)
         if rows:
-            r["tables"].append({"id": "persist_single", "title": f"Clean sleeper test: 3 benign turns, then one harmful request at turn 4 ({single['n_harmful']} conversations)",
+            r["tables"].append({"id": "persist_single", "title": f"Clean sleeper test: 3 benign turns, then one harmful request at turn 4 ({n_conv} conversations)",
                                 "columns": ["vector", "ASR single turn, no conversation", "ASR injected at turn 4 (same turn)", "ASR injected at turn 1 only (early)", "ASR no injection",
-                                            "delta persist (early minus same)", "early vs none: newly harmful", "early vs none: newly safe", "McNemar p (early vs none)"],
+                                            "delta persist (early minus same)", "early vs none: newly harmful", "early vs none: newly safe", "McNemar p (early vs none)",
+                                            "McNemar p, Holm over vectors", "early minus none, 95% CI low", "early minus none, 95% CI high"],
                                 "rows": rows})
             r["charts"].append({"id": "single_bars", "type": "bar", "title": "Turn-4 ASR: no injection, injection at turn 1 only, injection at the harmful turn",
                                 "x": {"label": "vector", "values": [x[0] for x in bars]}, "y": {"label": "ASR (HarmBench judge)", "unit": "fraction"},
                                 "series": [{"name": "no injection", "values": [x[1] for x in bars]}, {"name": "turn 1 only (early)", "values": [x[2] for x in bars]},
                                            {"name": "at the harmful turn (same)", "values": [x[3] for x in bars]}]})
-            best_e = max((x for x in rows if x[3] is not None), key=lambda x: x[3], default=None)
+            done_e = [x for x in rows if x[3] is not None and x[9] is not None]
             best_s = max((x for x in rows if x[2] is not None), key=lambda x: x[2], default=None)
-            if best_e and best_s and n0:
-                r["headline"] = (f"No sleeper effect: with the injection only at turn 1, turn-4 ASR stays at {pct(min(x[3] for x in rows if x[3] is not None))} to {pct(best_e[3])} "
-                                 f"(no injection {pct(n0['asr'])}), while the same vectors injected at the harmful turn reach up to {pct(best_s[2])}.")
-                sig = [x[0] for x in rows if x[8] is not None and x[8] < 0.05]
-                r["interpretation"].append("Turn-1 injection versus no injection, paired by behaviour (McNemar): " + ("significant for " + ", ".join(sig) if sig else "no vector reaches p < 0.05") + ".")
-                r["interpretation"].append("Injecting at the harmful turn still works inside a conversation, so the vectors are effective there; what does not survive is the effect of an injection made three turns earlier, even though the steered turn-1 positions stay in the context (the KV cache).")
+            if done_e and n0:
+                sig = [x for x in done_e if x[9] < 0.05]
+                widest = max(done_e, key=lambda x: x[11])
+                rng = f"{pct(min(x[3] for x in done_e))} to {pct(max(x[3] for x in done_e))}"
+                if sig:
+                    r["headline"] = (f"Turn-1 injection changes turn-4 ASR for {', '.join(x[0] for x in sig)} (Holm p < 0.05); "
+                                     f"turn-4 ASR with the injection only at turn 1: {rng}, no injection {pct(n0['asr'])}.")
+                else:
+                    r["headline"] = (f"No detectable sleeper effect: with the injection only at turn 1, turn-4 ASR is {rng} (no injection {pct(n0['asr'])}); "
+                                     f"the largest upper 95% bound on the rise is {100 * widest[11]:+.1f} points ({widest[0]})"
+                                     + (f", while the same vectors injected at the harmful turn reach up to {pct(best_s[2])}." if best_s else "."))
+                r["interpretation"].append("Turn-1 injection against no injection is paired by conversation (exact McNemar, Holm over the vectors). The interval is for the paired difference, "
+                                           "from a Wilson interval on the share of discordant conversations that turned harmful, conditional on the number of discordant pairs.")
+                if best_s and not sig:
+                    r["interpretation"].append("Injected at the harmful turn, the vectors still act inside a conversation; an injection made three turns earlier does not measurably change the turn-4 outcome, "
+                                               "even though the steered turn-1 positions stay in the context (the key-value cache).")
+        drift = raw(f"E12_{m}_single_drift.json")
+        if drift and drift.get("vectors"):
+            drows = []
+            for spec, per in drift["vectors"].items():
+                for l, trs in per.items():
+                    gap = (drift.get("harmful_gap") or {}).get(l)
+                    for t in trs:
+                        if t["turn"] in (2, 3):
+                            drows.append([vector_label(spec), int(l), t["turn"], round(t["mean_diff"], 4), round(t["sd_none"], 3), None if not gap else round(t["mean_diff"] / gap, 4), t["n_up"], t["n_down"], float(f"{t['perm_p']:.3g}")])
+            r["tables"].append({"id": "drift_paired", "title": f"Does a turn-1 injection still move later benign turns? Projection on the refusal candidate, early minus none, paired by script ({drift['n_scripts']} scripts)",
+                                "columns": ["vector", "layer", "turn", "mean difference", "sd across scripts (no injection)", "difference as a share of the harmful-turn jump", "scripts up", "scripts down", "sign-flip p"],
+                                "rows": drows})
         for l in single.get("drift_layers", []):
             series = [{"name": vector_label(c.get("vector")) if c.get("mode") is None or c.get("condition") == "none" else f"{c['mode']}: {vector_label(c.get('vector'))}",
                        "values": (c.get("drift_mean_by_turn") or {}).get(str(l))} for c in single["conditions"].values() if (c.get("drift_mean_by_turn") or {}).get(str(l))]
