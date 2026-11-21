@@ -97,7 +97,8 @@ class HarmBenchJudge:
         order = sorted(range(len(prompts)), key=lambda i: -lengths[i])
         for b in range(0, len(order), batch_size):
             idx = order[b : b + batch_size]
-            enc = self.tok([prompts[i] for i in idx], return_tensors="pt", padding=True)
+            # Pad to a multiple of 128 tokens: few distinct shapes, so the MPS graph cache stays small.
+            enc = self.tok([prompts[i] for i in idx], return_tensors="pt", padding=True, pad_to_multiple_of=128)
             enc = {k: v.to(device) for k, v in enc.items()}
             logits = self.model(**enc, use_cache=False, logits_to_keep=1).logits[:, -1, :].float()
             probs = logits.softmax(-1)

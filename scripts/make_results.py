@@ -303,9 +303,18 @@ def e07_e10(m, model):
         r8["status"] = "done"
         rows = [[k, *val(k)] for k in sorted(rnd)]
         r8["tables"].append({"id": "random", "title": "Random unit directions at the same injected norm", "columns": ["condition", "ASR (judge)", "refusal rate"], "rows": rows})
-        asrs = [x[1] for x in rows if x[1] is not None]
-        refs = [x[2] for x in rows if x[2] is not None]
-        r8["headline"] = (f"Random pushes give ASR {pct(min(asrs))} to {pct(max(asrs))}" if asrs else f"Random pushes give refusal {pct(min(refs))} to {pct(max(refs))}") + f" (baseline {pct(b_asr if asrs else b_ref)})."
+        parts = []
+        for cval in sorted({k.split(":")[-1] for k in rnd}, key=float):
+            a = [val(k)[0] for k in rnd if k.split(":")[-1] == cval and val(k)[0] is not None]
+            if a:
+                mu = sum(a) / len(a)
+                sd = (sum((x - mu) ** 2 for x in a) / max(1, len(a) - 1)) ** 0.5
+                parts.append(f"strength {cval}: mean {pct(mu)} (sd {100 * sd:.1f}, {len(a)} seeds, range {pct(min(a))} to {pct(max(a))})")
+                r8["charts"].append({"id": f"rand_{cval}", "type": "bar", "title": f"Random directions at strength {cval}: judged-harmful rate per seed (baseline {pct(b_asr)})",
+                                     "x": {"label": "seed", "values": [k.split(":")[1].split("@")[0] for k in sorted(rnd, key=lambda k: int(k.split(":")[1].split("@")[0])) if k.split(":")[-1] == cval and val(k)[0] is not None]},
+                                     "y": {"label": "ASR", "unit": "fraction"},
+                                     "series": [{"name": "ASR", "values": [val(k)[0] for k in sorted(rnd, key=lambda k: int(k.split(":")[1].split("@")[0])) if k.split(":")[-1] == cval and val(k)[0] is not None]}]})
+        r8["headline"] = ("Random pushes, " + "; ".join(parts) + f". Baseline {pct(b_asr)}.") if parts else "Random runs generated; judge pending."
     if perp:
         r10["status"] = "done"
         rows = []
@@ -313,6 +322,11 @@ def e07_e10(m, model):
             e_name = k.replace("perp:", "emotion:")
             rows.append([k.split(":")[1].split("@")[0], k.split("@")[1], *val(e_name), *val(k)])
         r10["tables"].append({"id": "perp", "title": "Emotion vector vs the same vector with its guardrail component removed (equal norm)", "columns": ["emotion", "layer:c", "ASR emotion", "refusal emotion", "ASR orthogonalised", "refusal orthogonalised"], "rows": rows})
+        pairs = [(x[2], x[4]) for x in rows if x[2] is not None and x[4] is not None]
+        if pairs:
+            me, mp = sum(a for a, _ in pairs) / len(pairs), sum(b for _, b in pairs) / len(pairs)
+            r10["headline"] = f"Removing the refusal component does not weaken the effect: mean ASR {pct(me)} with it, {pct(mp)} without ({len(pairs)} emotions, baseline {pct(b_asr)})."
+            r10["interpretation"].append("If the emotion vectors worked by overlapping the refusal direction, removing that overlap would bring ASR back to baseline. It does not, so the effect runs around the refusal direction, not through it.")
     return [r7, r8, r10]
 
 
@@ -340,7 +354,7 @@ def e09(m, model):
 
 def e11(m, model):
     r = base("E11-correlation", "Does geometry predict the attack", 3, "Across the 19 emotions, does the cosine with the refusal direction predict how much the emotion changes ASR?", model)
-    files = sorted(glob.glob(str(RAW / f"E11_{m}_*.json")))
+    files = sorted(glob.glob(str(RAW / f"E11_{m}_*.json")), key=lambda f: (0 if "_emotion_" not in f else 1, f))  # paired-vector file last: it sets the headline
     if not files:
         return r
     r["status"] = "done"

@@ -40,11 +40,14 @@ def main() -> None:
     ap.add_argument("--judge", default="harmbench-cls")
     ap.add_argument("--batch-size", type=int, default=8)
     ap.add_argument("--only", nargs="*", default=None, help="condition names to (re)label")
+    ap.add_argument("--max-files", type=int, default=None, help="label at most this many files, then exit (restart the process to free MPS memory)")
     args = ap.parse_args()
 
     gdir = ROOT / "outputs" / "generations" / slug(ALIASES.get(args.model, args.model)) / args.set
     files = sorted(p for p in gdir.glob("*.jsonl") if not p.name.endswith(".labels.jsonl"))
     todo = [p for p in files if not p.with_suffix(".labels.jsonl").exists() and (args.only is None or p.stem in args.only)]
+    if args.max_files:
+        todo = todo[: args.max_files]
     judge = HarmBenchJudge(args.judge) if todo else None
     for p in todo:
         rows = read_jsonl(p)

@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-20T13:19:57",
+  "updated": "2026-11-21T07:15:36",
   "title": "Affect as Attack",
   "one_line": "Can an emotion pushed directly into a language model's hidden state switch off its safety guardrail, even though the prompt looks harmless?",
   "team": [
@@ -51,18 +51,18 @@
         "2026-08-01",
         "2026-10-31"
       ],
-      "status": "in_progress",
-      "progress": 0.1,
+      "status": "done",
+      "progress": 1.0,
       "items": [
         {
-          "label": "Story corpus, 19 emotions x 60 pairs + 60 neutral",
-          "status": "in_progress",
-          "note": "12 emotions final; 7 being rewritten (emotion started too late in the story)"
+          "label": "Story corpus final: 19 emotions x 60 pairs + 60 neutral",
+          "status": "done",
+          "note": "7 emotions rewritten to remove a writer confound"
         },
         {
-          "label": "Independent short-text test set (228 texts, different writer)",
+          "label": "Emotion vectors validated on an independent set",
           "status": "done",
-          "note": "1B: emotion-specific vectors 71% accurate, chance 5%"
+          "note": "81% 19-way, chance 5%"
         }
       ]
     },
@@ -73,13 +73,23 @@
         "2026-10-01",
         "2026-12-31"
       ],
-      "status": "in_progress",
-      "progress": 0.15,
+      "status": "done",
+      "progress": 1.0,
       "items": [
         {
-          "label": "Baseline refusal on HarmBench (E01)",
+          "label": "Baseline (E01)",
           "status": "done",
-          "note": "84.3% refused, ASR 14.5%"
+          "note": "ASR 14.5%"
+        },
+        {
+          "label": "About 250-condition screen + 96 full-length conditions judged",
+          "status": "done",
+          "note": "random band 22.1% +- 7.9"
+        },
+        {
+          "label": "Text priming (E09)",
+          "status": "done",
+          "note": "no effect"
         }
       ]
     },
@@ -90,18 +100,28 @@
         "2026-11-01",
         "2027-01-31"
       ],
-      "status": "in_progress",
-      "progress": 0.25,
+      "status": "done",
+      "progress": 0.9,
       "items": [
         {
-          "label": "Refusal direction extracted and selected (E02)",
+          "label": "Refusal direction (E02) and ablation (E03)",
           "status": "done",
-          "note": "layer 11, end-of-turn token"
+          "note": "14.5% to 84.9%"
         },
         {
-          "label": "Guardrail ablation on HarmBench (E03)",
+          "label": "Geometry (E06) and correlation (E11)",
           "status": "done",
-          "note": "ASR 14.5% to 84.9%"
+          "note": "|cos| <= 0.09; rho -0.18, p 0.47"
+        },
+        {
+          "label": "Orthogonalised control (E10)",
+          "status": "done",
+          "note": "removing the refusal component does not weaken the effect"
+        },
+        {
+          "label": "SAE feature inspection",
+          "status": "not_started",
+          "note": "optional, Llama Scope"
         }
       ]
     },
@@ -112,9 +132,20 @@
         "2027-01-01",
         "2027-03-31"
       ],
-      "status": "not_started",
-      "progress": 0.0,
-      "items": []
+      "status": "in_progress",
+      "progress": 0.3,
+      "items": [
+        {
+          "label": "Sleeper harness built and tested",
+          "status": "done",
+          "note": ""
+        },
+        {
+          "label": "8B runs: happy, calm, desperate, angry + random control",
+          "status": "in_progress",
+          "note": ""
+        }
+      ]
     },
     {
       "id": "P6",
@@ -130,39 +161,45 @@
   ],
   "findings": [
     {
+      "date": "2026-11-21",
+      "text": "The proposal's emotion vectors raise harmful answers no more than random pushes of the same size (20.6% vs 22.1% mean; baseline 14.5%).",
+      "experiment": "E07-emotion-injection-asr"
+    },
+    {
+      "date": "2026-11-21",
+      "text": "A few directions beat random clearly and fluently: the happiness-specific direction (52.2%) and removing loving, anxious, nervous, guilty or grateful (38 to 46%).",
+      "experiment": "E07-emotion-injection-asr"
+    },
+    {
+      "date": "2026-11-21",
+      "text": "Cosine with the refusal direction does not predict the effect (rho -0.18, p 0.47), and removing the refusal component does not weaken it.",
+      "experiment": "E11-correlation"
+    },
+    {
       "date": "2026-11-20",
-      "text": "Removing one direction (layer 11) takes Llama 3.1 8B from 14.5% to 84.9% harmful answers on HarmBench, with no new refusals on harmless requests.",
+      "text": "Removing one direction (layer 11) takes Llama 3.1 8B from 14.5% to 84.9% harmful answers.",
       "experiment": "E03-refusal-ablation"
     },
     {
       "date": "2026-11-20",
-      "text": "The proposal's paired emotion vectors share one large common direction (emotional versus flat writing); the emotion-specific part is tested separately.",
+      "text": "Emotion vectors are real: 81% correct on an independent short-text set (chance 5%).",
       "experiment": "E04-emotion-vectors"
     },
     {
       "date": "2026-11-20",
-      "text": "Close prior work exists: Sun et al. 2026 steer a valence-arousal plane in Llama 3.1 8B against HarmBench, and RepE (2023) broke refusal with a happiness vector. The project's gap is narrower than the proposal says.",
-      "experiment": null
-    },
-    {
-      "date": "2026-11-20",
-      "text": "About ten references in the proposal could not be found as cited (placeholder arXiv ids); the audit lists real replacements.",
+      "text": "11 of the proposal's 18 references have wrong metadata and 1 cites the wrong paper; see the Audit page.",
       "experiment": null
     }
   ],
   "blockers": [
     {
-      "text": "Hugging Face token has no accepted Llama licence (403). Using the ungated unsloth mirror of the same weights; accept the Meta licence on huggingface.co to be clean.",
+      "text": "Accept the Meta Llama 3.1 licence on huggingface.co (the ungated mirror of the same weights is used now).",
       "owner": "Anuj"
-    },
-    {
-      "text": "Codex (ChatGPT Plus) usage window: the 7 story rewrites wait for the 14:14 reset.",
-      "owner": "Claude"
     }
   ],
   "next": [
-    "Extract the 8B emotion vectors and pick the injection layer and strength (E04, E05)",
-    "Run the emotion attack sweep with random and orthogonalised controls (E07 to E10)",
-    "Multi-turn sleeper experiment (E12)"
+    "Finish the multi-turn sleeper experiment (E12)",
+    "Replicate the key conditions on Qwen2.5-7B-Instruct",
+    "Write the paper around the negative result plus the specific directions that beat random"
   ]
 }

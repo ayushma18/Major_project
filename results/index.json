@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-20T15:59:42",
+  "updated": "2026-11-21T07:15:58",
   "experiments": [
     {
       "id": "E00-model-selection",
@@ -61,9 +61,9 @@
       "id": "E07-emotion-injection-asr",
       "title": "Emotion injection against HarmBench",
       "module": 2,
-      "status": "planned",
+      "status": "done",
       "file": "results/E07-emotion-injection-asr.json",
-      "headline": "ASR when each emotion vector is injected, by layer and strength"
+      "headline": "Strongest emotion condition specific:happy@12:0.5: ASR 52.2% against 14.5% with no injection."
     },
     {
       "id": "E08-random-baseline",
@@ -71,7 +71,7 @@
       "module": 2,
       "status": "done",
       "file": "results/E08-random-baseline.json",
-      "headline": "Random pushes give refusal 5.0% to 81.8% (baseline 84.3%)."
+      "headline": "Random pushes, strength 0.5: mean 22.1% (sd 7.9, 12 seeds, range 9.4% to 32.7%); strength 1: mean 43.4% (sd 19.4, 4 seeds, range 29.6% to 71.1%). Baseline 14.5%."
     },
     {
       "id": "E09-text-priming",
@@ -85,17 +85,17 @@
       "id": "E10-orthogonalised",
       "title": "Emotion vectors with the guardrail part removed",
       "module": 3,
-      "status": "planned",
+      "status": "done",
       "file": "results/E10-orthogonalised.json",
-      "headline": "Causal test: does ASR fall back to baseline"
+      "headline": "Removing the refusal component does not weaken the effect: mean ASR 20.6% with it, 23.1% without (19 emotions, baseline 14.5%)."
     },
     {
       "id": "E11-correlation",
       "title": "Does geometry predict the attack",
       "module": 3,
-      "status": "planned",
+      "status": "done",
       "file": "results/E11-correlation.json",
-      "headline": "Spearman correlation between cosine and ASR change across emotions"
+      "headline": "Spearman rho between cosine and ASR change = -0.18 (permutation p = 0.473, 19 emotions, layer 12, strength 0.5)."
     },
     {
       "id": "E12-multiturn-persistence",

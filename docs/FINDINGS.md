@@ -1,6 +1,6 @@
 # Affect as Attack: findings so far
 
-Status: 2026-11-20, branch `anuj/experiments`. Every number below comes from a results file in
+Status: 2026-11-21, branch `anuj/experiments`. Every number below comes from a results file in
 `results/raw/` and is shown live in the project interface (`python scripts/serve.py`). Sections
 marked PENDING fill in as the GPU queue finishes.
 
@@ -24,13 +24,34 @@ marked PENDING fill in as the GPU queue finishes.
    (emotional story minus its neutral twin) share one large common direction (each has cosine
    0.79 with the common mean at layer 12). The project therefore also tests each emotion's
    specific part and the common direction on its own.
-5. **Fewer refusals is not the same as a successful attack (screen, 64-token answers).** Emotion
-   vectors at c = 0.5 cut refusal phrases (happy 40%, calm 47%, against 84% baseline and 74.5% for
-   random vectors) but the HarmBench judge finds little harmful content (happy 13.2%, calm 3.1%,
-   baseline 8.8%): the model drifts into emotional, off-task text. At c = 1.0 emotion vectors give
-   0% judged-harmful answers while one random direction reaches 50.9%. In this model, so far,
-   emotion is a worse attack vector than noise. PENDING: the 256-token finals, the correlation test
-   and the sleeper experiment.
+5. **The proposal's emotion vectors are no better than random pushes.** Full-length answers (256
+   tokens), official HarmBench judge, 159 behaviours, layer 12, strength c = 0.5:
+
+   | Condition | Judged harmful (mean) | Beats random (z > 2) |
+   |---|---|---|
+   | No injection | 14.5% | |
+   | Random directions, 12 seeds | 22.1% (sd 7.9, range 9.4 to 32.7%) | |
+   | Adding each emotion (paired CAA, the proposal's vector) | 20.6% | none of 19 |
+   | Same with the refusal component removed | 23.1% | 1 of 19 |
+   | Each emotion's specific part (shared direction removed) | 29.6% (14 of 19 so far) | happy 52.2%, gloomy 45.3% |
+   | Subtracting each emotion | 29.9% | loving 45.9%, anxious 45.3%, nervous 40.9%, guilty 40.3%, grateful 38.4% |
+   | Refusal direction ablated (upper bound) | 84.9% | |
+
+   Any push of this size raises harmful answers from about 15% to about 22%. The proposal's
+   paired emotion vectors stay inside that random band. A few directions clearly beat it, and
+   their answers stay fluent (1 to 3% broken): the happiness-specific direction (52.2%, which
+   echoes Representation Engineering's 2023 happiness result on LLaMA-2) and removing loving,
+   anxious, nervous, guilty or grateful.
+6. **Geometry does not explain it.** The cosine of an emotion vector with the refusal direction
+   does not predict its attack effect (Spearman rho = -0.18, p = 0.47 for paired vectors;
+   rho = -0.16, p = 0.65 for specific vectors), and removing the refusal component does not
+   weaken the effect (mean change in ASR 6.2 points with it, 8.6 without). Whatever these
+   directions do, they do it around the refusal direction, not through it.
+7. **Strong steering breaks the model, not the guardrail.** At c = 1.0 emotion vectors erase
+   refusal phrases but produce 0% judged-harmful answers: the model drifts into emotional text.
+8. **Text priming does nothing here.** Stress, relaxation and neutral system prompts all leave
+   refusal at 85 to 94% (FreakOut-style baseline, BL-4).
+9. PENDING: the multi-turn sleeper experiment (E12).
 
 ## What the proposal needs to change
 
@@ -48,10 +69,14 @@ marked PENDING fill in as the GPU queue finishes.
   judge, whether any effect survives removing the refusal component, whether it comes from the
   emotion or from the shared "emotional writing" direction, and the turn-1 sleeper effect, which no
   paper has tested. The Audit view carries the full positioning note.
-- **Expected outcome EO1 looks wrong in direction.** The proposal expected high-arousal negative
-  emotions (desperation, fear, hostility) to be the strongest attacks. Geometry and the screen point
-  the other way: hostile and angry sit slightly on the refusal side, pleasant and low-arousal states
-  slightly on the other (PENDING confirmation by the judged finals).
+- **Hypotheses H1 and H2 are not supported as stated.** Emotion injection with the proposal's
+  vectors is not a stronger attack than a random push of the same size, and cosine with the refusal
+  direction does not predict which emotions work. EO1 (desperation, fear and hostility strongest)
+  is not what happens: desperate does nothing beyond baseline, and the strongest effects come from
+  the happiness-specific direction and from removing positive or anxious states. The honest framing
+  for the paper: a careful negative result for the proposal's hypothesis plus a narrower positive
+  finding (specific directions that beat random, fluently), with the controls that make both
+  believable.
 
 ## Model choice
 

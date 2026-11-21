@@ -6,7 +6,7 @@
   "question": "If the refusal direction is projected out of every layer, does the model answer what it refused before?",
   "model": "unsloth/Llama-3.1-8B-Instruct",
   "started": null,
-  "finished": "2026-11-20T15:59:42",
+  "finished": "2026-11-21T07:15:58",
   "config": {},
   "headline": "Removing one direction drops refusal from 84.3% to 0.0%; the judge rates 84.9% of answers harmful (baseline 14.5%).",
   "metrics": [
